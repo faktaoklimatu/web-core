@@ -31,10 +31,13 @@ delete-container:
 bundle-install:
 	bundle install
 
+_config.yml: _config.global.yml ../_config.local.yml
+	cat $^ >$@
+
 local: web
 	bundle exec jekyll serve --trace
 
-web: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install
+web: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml
 
 check: web
 	@echo "Building the website using Jekyll ..."

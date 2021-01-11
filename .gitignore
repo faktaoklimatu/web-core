@@ -1,6 +1,7 @@
 # Generated web files
 assets/generated/*
 assets/studies/*
+_config.yml
 
 # Build Jekyll site
 _site/*
