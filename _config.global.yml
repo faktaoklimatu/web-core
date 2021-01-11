@@ -1,0 +1,54 @@
+# Master Jekyll config file (will have the local config appended to)
+
+# CDN links and hashes
+cdn:
+    # See https://www.srihash.org for info on how to generate the hashes
+    css:              "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    css_hash:         "sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    js:               "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    js_hash:          "sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    jquery:           "https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    jquery_hash:      "sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    popper:           "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    popper_hash:      "sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    fa:               "https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    fa_hash:          "sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    tocbot:           "https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"
+    tocbot_hash:      "sha384-TnuMTlegqfBi40E9e3dO2qfmPVKDjLFCCgyZ5bR3SA/hYTJXI090bTbAr/AXO+bc"
+
+# What files to include/exclude from final site?
+include: [ ".well-known" ]
+exclude:
+    - README.md            # Developer information
+    - CONTRIBUTORS.md      # Developer information
+    - LICENSE.md           # Developer information
+    - Gemfile              # Build settings
+    - Gemfile.lock         # Build settings
+    - Makefile             # Build settings
+    - _config.master.yml   # Build settings
+    - utils                # Development files
+    - Dockerfile           # Containerization
+    - _infografiky/*/*.pdf # Original infographics (build moves them to assets)
+    - _studie/*.jpg        # Study images
+    - _studie/*.png        # Study images
+    - _studie/*.pdf        # Original study infographics (build moves them to assets)
+
+sass:
+    sass_dir: assets/_scss
+    style: compressed
+cache_dir: .cache
+force_polling: true    # Force polling to resolve Windows issues with watch
+
+# Enable smart quotes
+kramdown:
+    smart_quotes: sbquo,lsquo,bdquo,ldquo
+
+markdown: FaktaOKlimatuProcessor
+
+plugins:
+  - jekyll-redirect-from
+  - jekyll-sitemap
+  - jekyll-last-modified-at
+
+target-blank:
+    add_css_classes: ext-link
