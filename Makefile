@@ -34,10 +34,13 @@ bundle-install:
 _config.yml: _config.global.yml ../_config.local.yml
 	cat $^ >$@
 
+CNAME: ../CNAME
+	cp $< $@
+
 local: web
 	bundle exec jekyll serve --trace
 
-web: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml
+web: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml CNAME
 
 check: web
 	@echo "Building the website using Jekyll ..."
