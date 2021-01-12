@@ -23,7 +23,7 @@ container:
 build-container:
 	$(PODMAN) build --file Dockerfile --tag $(CONTAINER_IMAGE) .
 	$(PODMAN) run --interactive --tty --name $(CONTAINER_NAME) \
-		--volume $$PWD:/srv/jekyll --publish 4000:4000 $(CONTAINER_IMAGE) ||:
+		--volume $$PWD/..:/srv/jekyll --publish 4000:4000 $(CONTAINER_IMAGE) ||:
 
 delete-container:
 	$(PODMAN) rm --force $(CONTAINER_NAME)
