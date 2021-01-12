@@ -2,7 +2,7 @@ FROM ubuntu:focal
 
 LABEL name="Fakta o klimatu" \
       summary="Jekyll deployment with Inkscape and pdf2svg for the faktaoklimatu.cz website" \
-      usage="docker run --name faktaweb -p 4000:4000 -v $PWD:/srv/jekyll -it faktaoklimatu"
+      usage="docker run --name faktaweb -p 4000:4000 -v $PWD/..:/srv/jekyll -it faktaoklimatu"
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt install --assume-yes software-properties-common
