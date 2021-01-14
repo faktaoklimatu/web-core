@@ -28,10 +28,10 @@ exclude:
     - _config.master.yml   # Build settings
     - utils                # Development files
     - Dockerfile           # Containerization
-    - _infografiky/*/*.pdf # Original infographics (build moves them to assets)
-    - _studie/*.jpg        # Study images
-    - _studie/*.png        # Study images
-    - _studie/*.pdf        # Original study infographics (build moves them to assets)
+    - _infographics/*/*.pdf # Original infographics (build moves them to assets)
+    - _studies/*.jpg        # Study images
+    - _studies/*.png        # Study images
+    - _studies/*.pdf        # Original study infographics (build moves them to assets)
 
 sass:
     sass_dir: assets/_scss
