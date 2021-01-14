@@ -16,7 +16,7 @@
         {{ content }}
       </div>
     </div>
-    {% assign related = site.infografiky | concat: site.studie | where_exp: "item", "item.tags contains page.tags-topics[0]"
+    {% assign related = site.infographics | concat: site.studies | where_exp: "item", "item.tags contains page.tags-topics[0]"
     | where_exp:"item","item.slug != page.slug" | sample: 3 %}
     {% if related.size > 0 %}
     <div class="section">

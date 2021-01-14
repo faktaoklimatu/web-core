@@ -1,11 +1,11 @@
 {%- if include.tag -%}
-{%- assign num_infographics = site.infografiky | where_exp: "item", "item.tags contains include.tag" | size -%}
-{%- assign num_studies = site.studie | where_exp: "item", "item.tags contains include.tag" | size -%}
-{%- assign num_datasets = site.datasety | where_exp: "item", "item.tags contains include.tag" | size -%}
+{%- assign num_infographics = site.infographics | where_exp: "item", "item.tags contains include.tag" | size -%}
+{%- assign num_studies = site.studies | where_exp: "item", "item.tags contains include.tag" | size -%}
+{%- assign num_datasets = site.datasets | where_exp: "item", "item.tags contains include.tag" | size -%}
 {%- case num_infographics -%}
     {%- when 0 -%}
     {%- when 1 -%}1 infografika
-    {%- when 2, 3, 4 -%}{{num_infographics}} infografiky
+    {%- when 2, 3, 4 -%}{{num_infographics}} infographics
     {%- else -%}{{num_infographics}} infografik
 {%- endcase -%}
 {%- case num_studies -%}
