@@ -28,16 +28,13 @@ build-container:
 delete-container:
 	$(PODMAN) rm --force $(CONTAINER_NAME)
 
-# Targets for generating files and managing the Jekyll site.
-reinstall:
-	-rm -rf vendor/bundle
+bundle-install:
 	bundle install
 
 local: web
-	bundle install
 	bundle exec jekyll serve --trace
 
-web: $(INFOGRAPHICS_DST) $(STUDIES_DST) # $(DATASETS_DST)
+web: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install
 
 check: web
 	@echo "Building the website using Jekyll ..."
@@ -46,6 +43,8 @@ check: web
 	-bundle exec ruby utils/test.rb
 
 deploy: web
+	@echo "Creating humans.txt file ..."
+	mv CONTRIBUTORS.md humans.txt
 	@echo "Building production version using Jekyll ..."
 	JEKYLL_ENV=production bundle exec jekyll build
 
@@ -68,5 +67,5 @@ dataset-images: $(DATASETS_DST)
 $(DATASETS_FOLDER)/%.png: _datasety/%.md
 	@bash utils/download-dataset-preview.sh $< $@
 
-.PHONY: all web local clean
+.PHONY: all web local clean bundle-install
 .PHONY: container build-container delete-container
