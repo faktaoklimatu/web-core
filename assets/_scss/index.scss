@@ -7,18 +7,15 @@
         text-transform: uppercase;
         text-align: right;
         float: left;
-        width: 15.2rem;
         margin-top: 1rem;
     }
 
     p {
-        font-size: 1.5rem;
-        padding-left: 19rem;
-        margin-top: -3.5rem;
+        font-size: 1.5rem
     }
 
-    .tags-list {
-        padding-left: 19rem;
+    p:first-of-type {
+        margin-top: -3.5rem;
     }
 
     @media screen and (max-width: 768px) {
@@ -37,13 +34,15 @@
 
         p {
             padding-left: 0;
-            margin-top: 0;
             text-align: center;
         }
 
-        .tags-list {
+        p:first-of-type {
+            margin-top: 0;
+        }
+
+        form {
             padding-left: 0;
-            text-align: center;
         }
     }
 }
