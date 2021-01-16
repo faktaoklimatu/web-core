@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav ml-auto">
             {%- for menu-item in site.data.navigation -%}
-                {%- if menu-item.link %}
+                {%- if menu-item.link or menu-item.fundraising %}
                 <li><a class="nav-link {{ menu-item.class }}" href="{% if menu-item.fundraising %}{{ site.fundraising }}{% else %}{{ menu-item.link }}{% endif %}">{{ menu-item.title }}</a></li>
                 {%- elsif menu-item.dropdown %}
                 <li class="dropdown">
