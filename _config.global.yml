@@ -32,6 +32,7 @@ exclude:
     - _studies/*.jpg        # Study images
     - _studies/*.png        # Study images
     - _studies/*.pdf        # Original study infographics (build moves them to assets)
+    - .cache/               # Intermediate files
 
 sass:
     sass_dir: assets/_scss
