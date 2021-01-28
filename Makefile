@@ -45,8 +45,10 @@ web: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml CNAME
 check: web
 	@echo "Building the website using Jekyll ..."
 	bundle exec jekyll build
-	@echo "Running tests on the generated site using html-proofer ..."
-	-bundle exec ruby utils/test.rb
+	@echo "Running internal tests on the generated site using html-proofer ..."
+	bundle exec ruby utils/test.rb
+	@echo "Running tests on the external content using html-proofer ..."
+	-bundle exec ruby utils/test.rb external
 
 deploy: web
 	@echo "Creating humans.txt file ..."
