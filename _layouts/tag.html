@@ -30,18 +30,22 @@
         {% else %}
           <p class="lead">Všechny infografiky, studie a datasety týkající se {% if tag.is-scope %}oblasti{% else %}tématu{% endif %} "{{ tag.name-long }}".</p>
         {% endif %}
-        {% for col in page.collections %}
-          <h2>{% if col[0] == 'studies' %}Studie a rešerše{% else %}{{ col[0] }}{% endif %} <small class="text-secondary">({{ col[1]|size }})</small></h2>
-          {% case col[0] %}
-            {% when 'infographics' %}
-            <p class="lead">Naše infografiky týkající se tématu. Na stránce grafiky vždy naleznete zdroj dat i podrobnější informace.</p>
-            {% when 'studies' %}
-            <p class="lead">Naše rešerše a shrnutí studií týkajících se tématu. U studií uvádíme, proč je studie důležitá a jaké jsou její hlavní závěry.</p>
-            {% when 'datasets' %}
-            <p class="lead">Naše datasety vztahující se k tématu. Typicky kombinujeme více zdrojů a vysvětlujeme, jak přesně z nich vycházejí naše infografiky.</p>
-          {% endcase %}
-          {% assign items = col[1] | sort: "weight" %}
-          {% include preview-blocks.html blocks=items %}
+        {% assign sorted_collections = site.collections | sort: "weight" %}
+        {% for collection in sorted_collections %}
+          {% assign items = collection.docs | where_exp: "item", "item.tags contains tag.id" | sort: "weight" %}
+          {% assign items_size = items | size %}
+          {% unless items_size == 0 %}
+            <h2>{{ collection.title }} <small class="text-secondary">({{ items_size }})</small></h2>
+            {% case collection.label %}
+              {% when 'infographics' %}
+              <p class="lead">Naše infografiky týkající se tématu. Na stránce grafiky vždy naleznete zdroj dat i podrobnější informace.</p>
+              {% when 'studies' %}
+              <p class="lead">Naše rešerše a shrnutí studií týkajících se tématu. U studií uvádíme, proč je studie důležitá a jaké jsou její hlavní závěry.</p>
+              {% when 'datasets' %}
+              <p class="lead">Naše datasety vztahující se k tématu. Typicky kombinujeme více zdrojů a vysvětlujeme, jak přesně z nich vycházejí naše infografiky.</p>
+            {% endcase %}
+            {% include preview-blocks.html blocks=items %}
+          {% endunless %}
         {% endfor %}
       </div>
     </div>
