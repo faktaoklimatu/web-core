@@ -1,14 +1,26 @@
-.explainer-cover {
-    padding-bottom: 1rem;
+.explainer-cover-container {
+    display: flex;
+    flex-direction: column-reverse;
 }
 
-.cover-header {
-    padding-top: 33.33%;
+.explainer-cover::before {
+    content: " ";
+    display: block;
+    background-image: var(--path);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    padding-top: 60%;
+    margin-bottom: 1.5rem;
 }
+
+.explainer-cover {
+    padding: 0;
+}
+
 .cover-header-source {
+    padding-top: calc(60% + 1.5rem);
+    margin-bottom: calc(-60% - 1.5rem);
     text-align: right;
     margin-right: 1rem;
     font-size: 0.8rem;
@@ -19,14 +31,15 @@
     }
 }
 
-.explainer-perex {
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
-    font-size: 1.4rem;
-    line-height: 1.5em;
+.explainer-type {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 1rem;
 }
 
 .explainer-metadata {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     font-size: 1.1rem;
     text-align: right;
 
@@ -43,5 +56,47 @@
 
     .tags {
         float: left;
+    }
+}
+
+.explainer-perex {
+    margin-bottom: 3rem;
+    font-size: 1.4rem;
+    line-height: 1.5em;
+}
+
+@media (min-width: 768px) {
+    .explainer-cover::before {
+        content: none;
+    }
+
+    .explainer-cover {
+        background-image: var(--path);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-blend-mode: multiply;
+        background-color: #a0a5b8 !important;
+        padding-top: 12%;
+        color: white;
+        text-shadow: 0px 0px 0.1rem black;
+        h1 {
+            font-size: 4rem;
+            // min-height: calc(1.2em * 3);  // minimum three lines
+            vertical-align: baseline;
+        }
+    }
+
+    .explainer-cover-container {
+        flex-direction: column;
+    }
+
+    .cover-header-source {
+        padding-top: 0;
+        margin-bottom: 0;
+    }
+
+    .explainer-metadata {
+        padding-top: 5%;
     }
 }
