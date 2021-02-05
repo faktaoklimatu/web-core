@@ -6,7 +6,7 @@
             {% if include.highlighted == tag.id %}
             <a href="/" role="button" class="btn btn-tag btn-sm btn-tag-highlighted">
             {% elsif include.link %}
-            <a href="/temata/{{ tag.id }}" role="button" class="btn btn-tag btn-sm btn-tag-link">
+            <a href="/{{ site.slugs.topics }}/{{ tag.id }}" role="button" class="btn btn-tag btn-sm btn-tag-link">
             {% else %}
             <div class="btn btn-tag btn-sm">
             {% endif %}
