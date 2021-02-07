@@ -1,9 +1,10 @@
 .explainer-cover {
+    padding-top: 0rem;
     padding-bottom: 1rem;
 }
 
 .cover-header {
-    padding-top: 33.33%;
+    padding-top: 40%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,6 +18,13 @@
     a {
         color: $c-grey;
     }
+}
+
+.explainer-type {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
 }
 
 .explainer-perex {

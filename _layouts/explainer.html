@@ -10,7 +10,15 @@
     <div class="section explainer-cover">
       <div class="container clearfix">
         <div class="row justify-content-center">
-          <div class="col-12 col-xl-10">
+          <div class="col">
+            {%- if page.cover-source-text and page.cover-source-url %}
+            <div class="cover-header" style="background-image: url(/assets/img/cover/{{ page.slug }}.jpg);">
+            </div>
+            <div class="cover-header-source">
+              Zdroj: <a href="{{ page.cover-source-url }}">{{ page.cover-source-text }}</a>
+            </div>
+            {%- endif %}
+            <div class="explainer-type">Explainer</div>
             <h1>{{ page.title }}</h1>
             {%- if page.perex %}
             <p class="perex explainer-perex">
@@ -27,13 +35,6 @@
         </div>
       </div>
     </div>
-    {%- if page.cover-source-text and page.cover-source-url %}
-    <div class="cover-header" style="background-image: url(/assets/img/cover/{{ page.slug }}.jpg);">
-    </div>
-    <div class="cover-header-source">
-      Zdroj: <a href="{{ page.cover-source-url }}">{{ page.cover-source-text }}</a>
-    </div>
-    {%- endif %}
     <div class="section">
       <div class="container container-xl-fluid">
         <div class="row justify-content-center">
