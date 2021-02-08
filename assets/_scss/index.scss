@@ -170,15 +170,25 @@ a.card:hover {
     padding: 10px 0 10px 30px;
 }
 
-#omnisearch {
+#searchbox-form {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    flex: 10 0 auto;
+
     #searchbox {
-        width: calc(100% - 20px);
+        width: 100%;
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
     }
-    #omnisearch-suggestions {
-        h2 {
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-        }
+}
+
+#omnisearch-suggestions {
+    width: 600px;
+    padding: 0.3rem;
+
+    li {
+        clear: left;
         .search-preview {
             width: 150px;
             height: 106px;
@@ -189,6 +199,7 @@ a.card:hover {
         .title {
             font-size: 1.1rem;
             display: block;
+            text-transform: none;
         }
         .date {
             display: block;

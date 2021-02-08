@@ -62,25 +62,28 @@ $(document).ready(function() {
         $('.longread-toc').addClass('longread-toc-none');
     }
 
-    $('#omnisearch').on('show.bs.modal', function (event) {
-        var searchbox = $(this).find('#searchbox');
-        // Init the search results.
-        search(searchbox.val());
+    $('#searchbox').on('keyup', search);
 
-        // Refresh results while user is typing.
-        searchbox.keyup(function (e) {
-            e.preventDefault();
-            search(searchbox.val());
-        });
-      });
-    $('#omnisearch').on('shown.bs.modal', function (event) {
-        $("#searchbox").focus();
-    });
+    // $('#omnisearch').on('show.bs.modal', function (event) {
+    //     var searchbox = $(this).find('#searchbox');
+    //     // Init the search results.
+    //     search(searchbox.val());
+
+    //     // Refresh results while user is typing.
+    //     searchbox.keyup(function (e) {
+    //         e.preventDefault();
+    //         search(searchbox.val());
+    //     });
+    //   });
+    // $('#omnisearch').on('shown.bs.modal', function (event) {
+    //     $("#searchbox").focus();
+    // });
 });
 
 var posts = []; // will hold the json array from your site.json file
 
-function search(searchStr) {
+function search() {
+    let searchStr = $('#searchbox').val();
 	fetchSiteJson(function () {
         var options = { 		// initialize options for fuse.js
             shouldSort: true,
@@ -109,8 +112,10 @@ function search(searchStr) {
         // initialize fuse.js library
         var fuse = new Fuse(posts, options);
         if (searchStr.length !== 0) {
+            $('#omnisearch-suggestions').show();
             updateResults(fuse.search(searchStr));
         } else {
+            $('#omnisearch-suggestions').hide();
             updateResults([]);
         }
     });
@@ -149,31 +154,27 @@ function getSnippet(matches) {
     return results.join(' ');
 }
 
-function getScore(result) {
-    if (result.item.picture)
-        return result.score - 1;
-    return result.score;
-}
-
 function updateResults(results) {
-    updateResultsCategory(results.filter(a => a.item.picture), 'info');
-    updateResultsCategory(results.filter(a => !a.item.picture), 'other');
+    var resultsHtml = '';
+    resultsHtml += getResultsCategory(results.filter(a => a.item.picture), 'Infografiky');
+    resultsHtml += getResultsCategory(results.filter(a => !a.item.picture), 'Ostatní');
+    $('#omnisearch-suggestions').html(resultsHtml);
 }
 
-function updateResultsCategory(results, suffix) {
-    $('#omnisearch-suggestions-heading-' + suffix).toggle(results.length > 0 ? true : false);
+function getResultsCategory(results, heading) {
     var resultsHtml = '';
+    resultsHtml += '<li><h2 class="dropdown-header">' + heading + '</h2></li>';
     results.forEach(function (res) {
         let item = res.item;
         snippet = getSnippet(res.matches);
-        resultsHtml += '<div class="col-12 my-2">';
+        resultsHtml += '<li>';
         resultsHtml += item.picture ? '<img class="search-preview" src="' + item.picture + '"/>' : ''
         resultsHtml += '<a class="title" href="' + item.url + '">' + item.title + '</a>' +
                        '<span class="date">' + item.date + '</span>' +
                        '<span class="snippet">' + snippet + '</span>' +
-                       '</div>';
+                       '</li>';
     });
-    $('#omnisearch-suggestions-list-' + suffix).html(resultsHtml);
+    return resultsHtml;
 }
 
 function postFilter(data) {
