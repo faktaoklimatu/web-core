@@ -8,6 +8,13 @@
 {% endif %}
     <div class="container">
         <a class="navbar-brand" href="/">{{ site.title }}</a>
+        <form id="searchbox-form">
+            <div class="dropdown">
+                <input class="form-control me-2" id="searchbox" data-bs-toggle="dropdown" type="search" placeholder="Hledat" aria-label="Hledat">
+                <ul class="dropdown-menu" id="omnisearch-suggestions" aria-labelledby="searchbox">
+                </ul>
+            </div>
+        </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Zobrazit/skrýt navigaci">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,29 +52,16 @@
                 {%- endif -%}
             {%- endfor %}
             </ul>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#omnisearch">
-                <span class="btn-inner--icon"></span>
-                <span class="btn-inner--text">Hledat</span>
-            </button>
         </div>
     </div>
 </nav>
 
-
 <!-- Modal -->
-<div id="omnisearch" class="modal fade" tabindex="-1" aria-labelledby="Vyhledávání" aria-hidden="true">
+<!-- <div id="omnisearch" class="modal fade" tabindex="-1" aria-labelledby="Vyhledávání" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="container-fluid">
-                    <div class="mb-3">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <form onsubmit="return false;">
-                            <input id="searchbox" type="text" class="form-control" placeholder="Pište zde...">
-                        </form>
-                    </div>
                     <div id="omnisearch-suggestions">
                         <h2 id="omnisearch-suggestions-heading-info">Infografiky</h2>
                         <div id="omnisearch-suggestions-list-info" class="row">
@@ -80,4 +74,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
