@@ -174,10 +174,28 @@ a.card:hover {
     #searchbox {
         width: calc(100% - 20px);
     }
-}
-
-@media (min-width: 1200px) {
-    #omnisearch .modal-lg {
-        max-width: 1140px;
+    #omnisearch-suggestions {
+        h2 {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .search-preview {
+            width: 150px;
+            height: 106px;
+            float: left;
+            margin-right: 1rem;
+            background-color: #e0e0e0;
+        }
+        .title {
+            font-size: 1.1rem;
+            display: block;
+        }
+        .date {
+            display: block;
+            color: $c-grey;
+        }
+        .keyword {
+            background-color: yellow;
+        }
     }
 }
