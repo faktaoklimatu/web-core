@@ -82,13 +82,14 @@ var posts = []; // will hold the json array from your site.json file
 
 function search(searchStr) {
 	fetchSiteJson(function () {
-        var maxLength = 6;
         var options = { 		// initialize options for fuse.js
             shouldSort: true,
             threshold: 0.3,
             ignoreLocation: true,
             maxPatternLength: 32,
-            minMatchCharLength: 1,
+            minMatchCharLength: 2,
+            includeMatches: true,
+            includeScore: true,
             keys: [
                 {
                     name: "title",
@@ -107,33 +108,85 @@ function search(searchStr) {
 
         // initialize fuse.js library
         var fuse = new Fuse(posts, options);
-        var results = fuse.search(searchStr); // invoke search method in fuse.js library
-
-        if (searchStr.length === 0) {
-            updateResults(posts.slice(0, maxLength), true); // if there are no search results, show some suggestions
+        if (searchStr.length !== 0) {
+            updateResults(fuse.search(searchStr));
         } else {
-            updateResults(results, false);
+            updateResults([]);
         }
     });
 }
 
-function updateResults(results, isSuggestion) {
-    $('#omnisearch-suggestions-heading').text(isSuggestion ? 'Nejnovější' : 'Výsledky');
+function getSnippet(matches) {
+    if (!matches || matches.length == 0)
+        return '';
+    let instances = [];
+    for (const match of matches) {
+        for (const index of match.indices) {
+            // Ignore matches of length 1;
+            if (index[1] - index[0] == 0) continue;
+            instances.push({start: index[0], end: index[1] + 1, text: match.value});
+        }
+    }
+    // Sort by match length, descending.
+    instances.sort((a,b) => (b.end - b.start) - (a.end - a.start));
 
+    let maxSnippets = 2;
+    let context = 30;
+
+    let results = [];
+    for (let i = 0; i < instances.length && i < maxSnippets; i++) {
+        let instance = instances[i];
+        let prefix = instance.text.substring(instance.start - context, instance.start);
+        let suffix = instance.text.substring(instance.end, instance.end + context);
+        let result = '';
+        if (instance.start - context - 1 >= 0) result += '...';
+        if (prefix) result += prefix;
+        result += '<span class="keyword">' + instance.text.substring(instance.start, instance.end) + '</span>';
+        if (suffix) result += suffix;
+        if (instance.end + context + 1 < instance.text.length) result += '...';
+        results.push(result);
+    }
+    return results.join(' ');
+}
+
+function getScore(result) {
+    if (result.item.picture)
+        return result.score - 1;
+    return result.score;
+}
+
+function updateResults(results) {
+    updateResultsCategory(results.filter(a => a.item.picture), 'info');
+    updateResultsCategory(results.filter(a => !a.item.picture), 'other');
+}
+
+function updateResultsCategory(results, suffix) {
+    $('#omnisearch-suggestions-heading-' + suffix).toggle(results.length > 0 ? true : false);
     var resultsHtml = '';
     results.forEach(function (res) {
-        item = res.url ? res : res.item;
-        resultsHtml += '<div class="col-lg-6 col-xl-4"><a href="' + item.url + '" class="preview-card card">' + item.html + '</a></div>';
+        let item = res.item;
+        snippet = getSnippet(res.matches);
+        resultsHtml += '<div class="col-12 my-2">';
+        resultsHtml += item.picture ? '<img class="search-preview" src="' + item.picture + '"/>' : ''
+        resultsHtml += '<a class="title" href="' + item.url + '">' + item.title + '</a>' +
+                       '<span class="date">' + item.date + '</span>' +
+                       '<span class="snippet">' + snippet + '</span>' +
+                       '</div>';
     });
+    $('#omnisearch-suggestions-list-' + suffix).html(resultsHtml);
+}
 
-    $('#omnisearch-suggestions-list').html(resultsHtml);
+function postFilter(data) {
+    // TODO: strip {% ... %}
+    // return data.forEach(function(item) {});
+    return data;
 }
 
 function fetchSiteJson(callback) {
     if (posts.length === 0) {
         // fetch site.json file
         jQuery.get("/search.json", function (data) {
-            posts = data;
+            posts = postFilter(data);
             callback();
         }).fail(function() {
             // TODO: handle failure gracefully.
