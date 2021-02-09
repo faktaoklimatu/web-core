@@ -185,21 +185,35 @@ a.card:hover {
 
 #omnisearch-suggestions {
     width: 600px;
-    padding: 0.3rem;
+    max-height: 85vh;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: $c-grey transparent;
 
-    li {
-        clear: left;
+    h2 {
+        padding: .25rem 1.5rem;
+    }
+
+    .dropdown-item {
+        display: flex;
+        text-align: left;
+        text-transform: none;
+        white-space: normal;
+
         .search-preview {
             width: 150px;
             height: 106px;
-            float: left;
+            flex: 150px 0 0;
             margin-right: 1rem;
             background-color: #e0e0e0;
         }
+        .search-description {
+            flex: 0px 1 0;
+        }
         .title {
+            padding-top: 1rem;
             font-size: 1.1rem;
             display: block;
-            text-transform: none;
         }
         .date {
             display: block;
@@ -208,5 +222,9 @@ a.card:hover {
         .keyword {
             background-color: yellow;
         }
+    }
+    .dropdown-item.active, .dropdown-item:active {
+        color: inherit;
+        background-color: $c-extralight-blue;
     }
 }
