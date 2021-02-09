@@ -1,0 +1,20 @@
+---
+layout: null
+---
+[
+  {%- assign objects = site.infographics | concat: site.studies | sort: "published" | reverse %}
+  {%- for page in objects %}
+    {
+        "title" : "{{ page.title | strip_html }}",
+        "url" : "{{ page.url }}",
+        "slug" : "{{ page.slug }}",
+        "date" : "{{ page.published | date: "%-d. %-m. %Y" }}",
+        {%- if page.layout == 'infographic'%}
+        "picture" : "{{ site.baseurl }}/assets/generated/{{ page.slug }}_600.png",
+        {%- endif %}
+        {%- assign perex = page.caption | append: " " | append: page.perex %}
+        "perex" : "{{ perex }}",
+        "content" : "{{ page.content | markdownify | normalize_whitespace | strip | strip_html | strip_newlines | replace: '"', '' | slice: 0, 300 }}"
+    }{%- if forloop.last %}{% else %},{% endif %}
+  {%- endfor %}
+]
