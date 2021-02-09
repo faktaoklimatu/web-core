@@ -62,60 +62,51 @@ $(document).ready(function() {
         $('.longread-toc').addClass('longread-toc-none');
     }
 
+    $('#searchbox').on('keydown', navigate);
     $('#searchbox').on('keyup', search);
-
-    // $('#omnisearch').on('show.bs.modal', function (event) {
-    //     var searchbox = $(this).find('#searchbox');
-    //     // Init the search results.
-    //     search(searchbox.val());
-
-    //     // Refresh results while user is typing.
-    //     searchbox.keyup(function (e) {
-    //         e.preventDefault();
-    //         search(searchbox.val());
-    //     });
-    //   });
-    // $('#omnisearch').on('shown.bs.modal', function (event) {
-    //     $("#searchbox").focus();
-    // });
 });
 
 var posts = []; // will hold the json array from your site.json file
+var fuse = null;
 
-function search() {
+function navigate(e) {
+    if (e.keyCode == '27') {  // escape
+        e.preventDefault();
+        $('#omnisearch-suggestions').hide();
+        return;
+    }
+    if (e.keyCode == '13') {  // enter
+        $('#omnisearch-suggestions a.active')[0].click();
+        return false;
+    }
+    if (e.keyCode == '38' || e.keyCode == '40') {  // up/down arrow
+        e.preventDefault();
+        let up = e.keyCode == '38';
+        let allLinks = $('#omnisearch-suggestions a');
+        for (let i = 0; i < allLinks.length; i++) {
+            if (allLinks.eq(i).hasClass('active')) {
+                let next = i + (up ? -1 : 1);
+                if (next >= 0 && next < allLinks.length) {
+                    allLinks.eq(i).removeClass('active');
+                    allLinks.eq(next).addClass('active');
+                    allLinks.get(next).scrollIntoView({block: "nearest", inline: "nearest"});
+                }
+                return;
+            }
+        }
+        return;
+    }
+}
+
+function search(e) {
+    if (e.keyCode == '13' || e.keyCode == '27' || e.keyCode == '38' || e.keyCode == '40') {
+        return;
+    }
     let searchStr = $('#searchbox').val();
 	fetchSiteJson(function () {
-        var options = { 		// initialize options for fuse.js
-            shouldSort: true,
-            threshold: 0.3,
-            ignoreLocation: true,
-            maxPatternLength: 32,
-            minMatchCharLength: 2,
-            includeMatches: true,
-            includeScore: true,
-            keys: [
-                {
-                    name: "title",
-                    weight: 0.2		// give title more importance
-                },
-                {
-                    name: "perex",
-                    weight: 0.3		// give perex more importance
-                },
-                {
-                    name: "content",
-                    weight: 0.6
-                }
-            ]
-        };
-
-        // initialize fuse.js library
-        var fuse = new Fuse(posts, options);
         if (searchStr.length !== 0) {
-            $('#omnisearch-suggestions').show();
             updateResults(fuse.search(searchStr));
         } else {
-            $('#omnisearch-suggestions').hide();
             updateResults([]);
         }
     });
@@ -159,27 +150,35 @@ function updateResults(results) {
     resultsHtml += getResultsCategory(results.filter(a => a.item.picture), 'Infografiky');
     resultsHtml += getResultsCategory(results.filter(a => !a.item.picture), 'Ostatní');
     $('#omnisearch-suggestions').html(resultsHtml);
+    $('#omnisearch-suggestions a:first-of-type').addClass('active');
+    if (results.length > 0) {
+        $('#omnisearch-suggestions').show();
+    } else {
+        $('#omnisearch-suggestions').hide();
+    }
 }
 
 function getResultsCategory(results, heading) {
     var resultsHtml = '';
-    resultsHtml += '<li><h2 class="dropdown-header">' + heading + '</h2></li>';
+    if (results.length > 0) {
+        resultsHtml += '<h2>' + heading + '</h2>';
+    }
     results.forEach(function (res) {
         let item = res.item;
         snippet = getSnippet(res.matches);
-        resultsHtml += '<li>';
-        resultsHtml += item.picture ? '<img class="search-preview" src="' + item.picture + '"/>' : ''
-        resultsHtml += '<a class="title" href="' + item.url + '">' + item.title + '</a>' +
+        resultsHtml += '<a class="dropdown-item clearfix" href="' + item.url + '">';
+        resultsHtml += item.picture ? '<img class="search-preview card" src="' + item.picture + '"/>' : ''
+        resultsHtml += '<div class="search-description">' +
+                       '<span class="title">' + item.title + '</span>' +
                        '<span class="date">' + item.date + '</span>' +
                        '<span class="snippet">' + snippet + '</span>' +
-                       '</li>';
+                       '</div></a>';
     });
     return resultsHtml;
 }
 
 function postFilter(data) {
     // TODO: strip {% ... %}
-    // return data.forEach(function(item) {});
     return data;
 }
 
@@ -188,6 +187,30 @@ function fetchSiteJson(callback) {
         // fetch site.json file
         jQuery.get("/search.json", function (data) {
             posts = postFilter(data);
+            var options = { 		// initialize options for fuse.js
+                shouldSort: true,
+                threshold: 0.3,
+                ignoreLocation: true,
+                maxPatternLength: 32,
+                minMatchCharLength: 2,
+                includeMatches: true,
+                includeScore: true,
+                keys: [
+                    {
+                        name: "title",
+                        weight: 0.2		// give title more importance
+                    },
+                    {
+                        name: "perex",
+                        weight: 0.3		// give perex more importance
+                    },
+                    {
+                        name: "content",
+                        weight: 0.6
+                    }
+                ]
+            };
+            fuse = new Fuse(posts, options);
             callback();
         }).fail(function() {
             // TODO: handle failure gracefully.
