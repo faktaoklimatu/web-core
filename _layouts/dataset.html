@@ -23,27 +23,27 @@
 
             <div class="col-md-12 col-lg-3 download-buttons">
               <div class="d-none d-lg-block">
-                <h2>{{ site.data.lang.dataset.data.title }}</h2>
+                <h2>{{ site.data.lang.sidebar.data.title }}</h2>
                 {% include infographic-dataset-sidebar.html section="data" %}
                 <hr />
 
-                <h2>{{ site.data.lang.dataset.share.title }}</h2>
-                <p>{{ site.data.lang.dataset.share.caption1 }} <a href="{{ site.data.lang.licence.link }}" title="{{ site.data.lang.licence.title }}" rel="license">{{ site.data.lang.licence.id }}</a>.</p>
-                <p>{{ site.data.lang.dataset.share.caption2 }}</p>
+                <h2>{{ site.data.lang.sidebar.share.title }}</h2>
+                <p>{{ site.data.lang.sidebar.share.caption-dataset-1 }} <a href="{{ site.data.lang.licence.link }}" title="{{ site.data.lang.licence.title }}" rel="license">{{ site.data.lang.licence.id }}</a>.</p>
+                <p>{{ site.data.lang.sidebar.share.caption-dataset-2 }}</p>
                 {% include infographic-dataset-sidebar.html section="sharing" %}
               </div>
               <div class="d-lg-none download-buttons-smallscreen">
-                <h2>{{ site.data.lang.dataset.mobile.title }}</h2>
-                <p>{{ site.data.lang.dataset.mobile.caption1 }} <a href="{{ site.data.lang.licence.link }}" title="{{ site.data.lang.licence.title }}" rel="license">{{ site.data.lang.licence.id }}</a>. {{ site.data.lang.dataset.share.caption2 }}</p>
+                <h2>{{ site.data.lang.sidebar.mobile.title }}</h2>
+                <p>{{ site.data.lang.sidebar.mobile.caption-dataset-1 }} <a href="{{ site.data.lang.licence.link }}" title="{{ site.data.lang.licence.title }}" rel="license">{{ site.data.lang.licence.id }}</a>. {{ site.data.lang.sidebar.share.caption-dataset-2 }}</p>
                 <div class="d-flex d-lg-none align-items-center text-secondary mt-2">
-                  <div>{{ site.data.lang.dataset.mobile.data }}</div>
+                  <div>{{ site.data.lang.sidebar.mobile.data }}</div>
                   <div class="ml-auto text-right">
                     {% include infographic-dataset-sidebar.html section="data" %}
                   </div>
                 </div>
                 <hr class="w-100 my-0">
                 <div class="d-flex d-lg-none align-items-center text-secondary">
-                  <div>{{ site.data.lang.dataset.mobile.share }}</div>
+                  <div>{{ site.data.lang.sidebar.mobile.share }}</div>
                   <div class="ml-auto text-right">
                     {% include infographic-dataset-sidebar.html section="sharing" %}
                   </div>
@@ -53,7 +53,7 @@
                 <div class="modal-dialog modal-lg" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h2 class="modal-title" id="modal-title">{{ site.data.lang.dataset.share.modal-title }}</h2>
+                      <h2 class="modal-title" id="modal-title">{{ site.data.lang.sidebar.share.modal-title }}</h2>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
