@@ -1,0 +1,23 @@
+{% assign item = include.item %}
+{% case item.layout %}
+    {% when 'infographic' %}
+        <img src="{{ site.baseurl }}/assets/generated/{{ item.slug }}_600.png" alt="{{ item.title }}" class="img-fluid" />
+    {% when 'dataset' %}
+        <img src="{{ site.baseurl }}/assets/datasets/{{ item.slug }}.png" alt="Dataset: {{ item.title }}" class="img-fluid card-img" />
+        <div class="card-img-overlay small-card-img-overlay">
+            <h5>Dataset</h5>
+        </div>
+    {% when 'study' %}
+        <img src="{{ site.baseurl }}/assets/studies/{{ item.slug }}.jpg" alt="Studie: {{ item.title }}" class="img-fluid card-img" />
+        <div class="card-img-overlay small-card-img-overlay">
+            <h5>Studie</h5>
+        </div>
+    {% when 'survey' %}
+        <div class="card-img-overlay small-card-img-overlay">
+            <h5>Rešerše</h5>
+        </div>
+    {% else %}
+        <div class="card-img-overlay small-card-img-overlay">
+            <h5>Unknown type</h5>
+        </div>
+{% endcase %}

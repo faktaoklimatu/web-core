@@ -8,7 +8,8 @@ layout: null
         "title" : "{{ page.title | strip_html }}",
         "url" : "{{ page.url }}",
         "slug" : "{{ page.slug }}",
-        "date" : "{{ page.published | date: "%-d. %-m. %Y" }}",
+        {%- capture html %}{% include preview-block-small.html item=page %}{%- endcapture %}
+        "block" : {{ html | jsonify }},
         {%- if page.layout == 'infographic'%}
         "picture" : "{{ site.baseurl }}/assets/generated/{{ page.slug }}_600.png",
         {%- endif %}
