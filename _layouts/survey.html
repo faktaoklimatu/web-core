@@ -16,14 +16,14 @@
         {{ content }}
       </div>
     </div>
-    {% assign related = site.infographics | concat: site.studies | where_exp: "item", "item.tags contains page.tags-topics[0]"
-    | where_exp:"item","item.slug != page.slug" | sample: 3 %}
-    {% if related.size > 0 %}
+    {% assign objects = site.infographics | concat: site.studies | concat: site.explainers | where_exp: "item","item.sitemap != false"
+    | where_exp: "item", "item.tags contains page.tags-topics[0]" | where_exp:"item","item.slug != page.slug" | sample: 3 %}
+    {% if objects.size > 0 %}
     <div class="section">
       <div class="container">
         <h2>{{ site.data.lang.text.related.title }}</h2>
         <p>{{ site.data.lang.text.related.caption }}</p>
-        {% include preview-blocks.html blocks=related limit=3 %}
+        {% include preview-blocks.html blocks=objects limit=3 %}
       </div>
     </div>
     {% endif %}
