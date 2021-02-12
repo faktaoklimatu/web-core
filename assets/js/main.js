@@ -64,15 +64,46 @@ $(document).ready(function() {
 
     $('#searchbox').on('keydown', navigate);
     $('#searchbox').on('keyup', search);
+    $('#searchbox').on('focus', search);
+    $('#searchbox').on('blur', maybeHideSuggestions);
+    $('#omnisearch-suggestions').on('blur', maybeHideSuggestions);
 });
 
 var posts = []; // will hold the json array from your site.json file
 var fuse = null;
+var searchString = null;
+
+function showSuggestions() {
+    var $body = $(document.body);
+    var oldWidth = $body.innerWidth();
+    $body.width(oldWidth);
+    $('nav').width(oldWidth);
+    $body.css("overflow", "hidden");
+    $('#omnisearch-suggestions').show();
+}
+
+function hideSuggestions() {
+    $('#omnisearch-suggestions').hide();
+    var $body = $(document.body);
+    $body.css("overflow", "auto");
+    $body.width("auto");
+    $('nav').width("auto");
+}
+
+function maybeHideSuggestions(event) {
+    if ($("#searchbox").is(":focus") ||
+        $('#omnisearch-suggestions').is(":focus") ||
+        $("#searchbox")[0].contains(event.relatedTarget) ||
+        $('#omnisearch-suggestions')[0].contains(event.relatedTarget)) {
+        return;
+    }
+    hideSuggestions();
+}
 
 function navigate(e) {
     if (e.keyCode == '27') {  // escape
         e.preventDefault();
-        $('#omnisearch-suggestions').hide();
+        hideSuggestions();
         return;
     }
     if (e.keyCode == '13') {  // enter
@@ -102,12 +133,18 @@ function search(e) {
     if (e.keyCode == '13' || e.keyCode == '27' || e.keyCode == '38' || e.keyCode == '40') {
         return;
     }
-    let searchStr = $('#searchbox').val();
-	fetchSiteJson(function () {
-        if (searchStr.length !== 0) {
-            updateResults(fuse.search(searchStr));
+    fetchSiteJson(function () {
+        let searchResults = [];
+        let newSearchString = $('#searchbox').val();
+        if (newSearchString != searchString && newSearchString.length !== 0) {
+            searchString = newSearchString;
+            searchResults = fuse.search(searchString);
+            updateResults(searchResults);
+        }
+        if ($('#omnisearch-suggestions *').length > 0) {
+            showSuggestions();
         } else {
-            updateResults([]);
+            hideSuggestions();
         }
     });
 }
@@ -172,17 +209,6 @@ function getTitle(matches, unmatchedTitle) {
 }
 
 function updateResults(results) {
-    var resultsHtml = getResultBoxes(results);
-    $('#omnisearch-suggestions').html(resultsHtml);
-    $('#omnisearch-suggestions a:first-of-type').addClass('active');
-    if (results.length > 0) {
-        $('#omnisearch-suggestions').show();
-    } else {
-        $('#omnisearch-suggestions').hide();
-    }
-}
-
-function getResultBoxes(results) {
     var resultsHtml = '';
     results.forEach(function (res) {
         let item = res.item;
@@ -195,7 +221,8 @@ function getResultBoxes(results) {
                        '<span class="snippet">' + snippet + '</span>' +
                        '</div></a>';
     });
-    return resultsHtml;
+    $('#omnisearch-suggestions').html(resultsHtml);
+    $('#omnisearch-suggestions a:first-of-type').addClass('active');
 }
 
 function postFilter(data) {
