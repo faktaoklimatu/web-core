@@ -112,11 +112,15 @@ function search(e) {
     });
 }
 
-function getSnippet(matches) {
-    if (!matches || matches.length == 0)
-        return '';
+function getInstances(matches, shouldMatchTitle) {
     let instances = [];
+    if (!matches)
+        return instances;
     for (const match of matches) {
+        let isTitle = (match.key == 'title');
+        if (isTitle != shouldMatchTitle) {
+            continue;
+        }
         for (const index of match.indices) {
             // Ignore matches of length 1;
             if (index[1] - index[0] == 0) continue;
@@ -125,7 +129,14 @@ function getSnippet(matches) {
     }
     // Sort by match length, descending.
     instances.sort((a,b) => (b.end - b.start) - (a.end - a.start));
+    return instances;
+}
 
+function getSnippet(matches) {
+    let instances = getInstances(matches, false);
+    if (instances.length == 0)
+        return '';
+    
     let maxSnippets = 2;
     let context = 30;
 
@@ -145,10 +156,23 @@ function getSnippet(matches) {
     return results.join(' ');
 }
 
+function getTitle(matches, unmatchedTitle) {
+    let instances = getInstances(matches, true);
+    if (instances.length == 0)
+        return unmatchedTitle;
+    // Only consider the first 
+    let instance = instances[0];
+    let prefix = instance.text.substring(0, instance.start);
+    let suffix = instance.text.substring(instance.end);
+    let result = '';
+    if (prefix) result += prefix;
+    result += '<span class="keyword">' + instance.text.substring(instance.start, instance.end) + '</span>';
+    if (suffix) result += suffix;
+    return result;
+}
+
 function updateResults(results) {
-    var resultsHtml = '';
-    resultsHtml += getResultsCategory(results.filter(a => a.item.picture), 'Infografiky');
-    resultsHtml += getResultsCategory(results.filter(a => !a.item.picture), 'Ostatní');
+    var resultsHtml = getResultBoxes(results);
     $('#omnisearch-suggestions').html(resultsHtml);
     $('#omnisearch-suggestions a:first-of-type').addClass('active');
     if (results.length > 0) {
@@ -158,19 +182,16 @@ function updateResults(results) {
     }
 }
 
-function getResultsCategory(results, heading) {
+function getResultBoxes(results) {
     var resultsHtml = '';
-    if (results.length > 0) {
-        resultsHtml += '<h2>' + heading + '</h2>';
-    }
     results.forEach(function (res) {
         let item = res.item;
         snippet = getSnippet(res.matches);
+        title = getTitle(res.matches, item.title);
         resultsHtml += '<a class="dropdown-item clearfix" href="' + item.url + '">';
-        resultsHtml += item.picture ? '<img class="search-preview card" src="' + item.picture + '"/>' : ''
+        resultsHtml += '<div class="search-preview card">' + item.block + "</div>";
         resultsHtml += '<div class="search-description">' +
-                       '<span class="title">' + item.title + '</span>' +
-                       '<span class="date">' + item.date + '</span>' +
+                       '<span class="title">' + title + '</span>' +
                        '<span class="snippet">' + snippet + '</span>' +
                        '</div></a>';
     });
