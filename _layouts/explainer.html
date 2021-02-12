@@ -7,6 +7,11 @@
 <body>
   {% include navigation.html %}
   <main role="main">
+    {%- if page.cover-source-text and page.cover-source-url %}
+    <div class="cover-header-source">
+      <span><a href="{{ page.cover-source-url }}" title="{{ page.cover-source-text }}">Zdroj obrázku</a></span>
+    </div>
+    {%- endif %}
     <div class="explainer-cover-container">
       <div class="explainer-cover section" style="--path: url(/assets/img/cover/{{ page.slug }}.jpg);">
         <div class="container clearfix">
@@ -16,7 +21,7 @@
               <h1>{{ page.title }}</h1>
               <div class="explainer-metadata">
                 {% include tags.html tags=page.tags link="true" %}
-                <span class="author">{{ page.author }}</span>
+                <span class="author"><a href="/o-nas#clenove">{{ page.author }}</a></span>
                 <span class="date">{{ page.published | date: "%-d. %-m. %Y" }}</span>
               {% assign download_path = site.baseurl | append: "/assets/studies/" | append: page.slug %}
               </div>
@@ -24,12 +29,7 @@
           </div>
         </div>
       </div>
-      {%- if page.cover-source-text and page.cover-source-url %}
     <div class="cover-header" style="background-image: url(/assets/img/cover/{{ page.slug }}.jpg);">
-      <div class="cover-header-source">
-        Zdroj: <a href="{{ page.cover-source-url }}">{{ page.cover-source-text }}</a>
-      </div>
-      {%- endif %}
     </div>
     <div class="section">
       <div class="container container-xl-fluid">

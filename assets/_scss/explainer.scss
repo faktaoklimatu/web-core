@@ -19,15 +19,20 @@
 }
 
 .cover-header-source {
-    padding-top: calc(60% + 1.5rem);
-    margin-bottom: calc(-60% - 1.5rem);
     text-align: right;
-    margin-right: 1rem;
-    font-size: 0.8rem;
-    color: $c-grey;
+    position: relative;
+    top: 1.2em;
+    margin-top: -1.2em;
+    z-index: 1;
 
-    a {
-        color: $c-grey;
+    span {
+        font-size: 0.7rem;
+        color: black;
+        padding: 0.1rem 0.5rem;
+        background-color: rgba(white, 0.4);
+        a {
+            color: black;
+        }
     }
 }
 
@@ -85,15 +90,16 @@
             // min-height: calc(1.2em * 3);  // minimum three lines
             vertical-align: baseline;
         }
+        .author a {
+            color: white;
+        }
+        .tags {
+            text-shadow: none;
+        }
     }
 
     .explainer-cover-container {
         flex-direction: column;
-    }
-
-    .cover-header-source {
-        padding-top: 0;
-        margin-bottom: 0;
     }
 
     .explainer-metadata {
