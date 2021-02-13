@@ -13,7 +13,7 @@
   {% when "data" %}
     {% if page.dataset %}
       <p class="d-none d-lg-block">{{ site.data.lang.sidebar.data.caption-dataset }}</p>
-      <a href="/datasety/{{ page.dataset }}" class="btn btn-primary" role="button">{{ site.data.lang.sidebar.data.button-dataset }}</a>
+      <a href="/{{ site.slugs.dataserts }}/{{ page.dataset }}" class="btn btn-primary" role="button">{{ site.data.lang.sidebar.data.button-dataset }}</a>
     {% else %}
       <p class="d-none d-lg-block">{{ site.data.lang.sidebar.data.caption-data }}</p>
       {% if page.data-our and page.data-our != '' %}
