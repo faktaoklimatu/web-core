@@ -40,10 +40,6 @@ sass:
 cache_dir: .cache
 force_polling: true    # Force polling to resolve Windows issues with watch
 
-# Enable smart quotes
-kramdown:
-    smart_quotes: sbquo,lsquo,bdquo,ldquo
-
 markdown: FaktaOKlimatuProcessor
 
 plugins:
