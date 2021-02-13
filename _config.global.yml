@@ -40,12 +40,17 @@ sass:
 cache_dir: .cache
 force_polling: true    # Force polling to resolve Windows issues with watch
 
-markdown: FaktaOKlimatuProcessor
+# Set folders for global and local plugins
+plugins_dir: [ _plugins, ../plugins-local ]
 
+# Enable external plugins
 plugins:
   - jekyll-redirect-from
   - jekyll-sitemap
   - jekyll-last-modified-at
+
+# Set custom markdown processor for glossary tag expansion
+markdown: FaktaOKlimatuProcessor
 
 target-blank:
     add_css_classes: ext-link
