@@ -45,7 +45,7 @@
           <div class="longread-xl-space-left"></div>
           <div class="col-lg-4 longread-toc invisible">
             <div class="sticky-toc">
-              <h2>Obsah</h2>
+              <h2>{{ site.data.lang.text.toc }}</h2>
               <div id="TOC"></div>
             </div>
           </div>
@@ -62,8 +62,8 @@
     {% if objects.size > 0 %}
     <div class="section">
       <div class="container">
-        <h2>Související infografiky a studie</h2>
-        <p>Zaujala vás tato studie? Prozkoumejte další související infografiky a studie:</p>
+        <h2>{{ site.data.lang.text.related.title }}</h2>
+        <p>{{ site.data.lang.text.related.caption }}</p>
         {% include preview-blocks.html blocks=objects limit=3 %}
       </div>
     </div>

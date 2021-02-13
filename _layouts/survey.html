@@ -21,8 +21,8 @@
     {% if related.size > 0 %}
     <div class="section">
       <div class="container">
-        <h2>Související infografiky a studie</h2>
-        <p>Zaujal vás tento rozcestník? Prozkoumejte další související infografiky a studie:</p>
+        <h2>{{ site.data.lang.text.related.title }}</h2>
+        <p>{{ site.data.lang.text.related.caption }}</p>
         {% include preview-blocks.html blocks=related limit=3 %}
       </div>
     </div>
