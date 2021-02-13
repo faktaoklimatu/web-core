@@ -24,14 +24,14 @@
               <div class="card-body">
                 <h2 class="card-title">{{ page.study-title }}</h2>
                 <ul>
-                  {% if page.study-author %}<li><strong>Autor</strong>: {{ page.study-author }}</li>{% endif %}
-                  {% if page.study-institution %}<li><strong>Instituce</strong>: {{ page.study-institution }}</li>{% endif %}
-                  {% if page.study-year %}<li><strong>Rok vydání</strong>: {{ page.study-year }}</li>{% endif %}
+                  {% if page.study-author %}<li><strong>{{ site.data.lang.sidebar.study.author }}</strong>: {{ page.study-author }}</li>{% endif %}
+                  {% if page.study-institution %}<li><strong>{{ site.data.lang.sidebar.study.institution }}</strong>: {{ page.study-institution }}</li>{% endif %}
+                  {% if page.study-year %}<li><strong>{{ site.data.lang.sidebar.study.year }}</strong>: {{ page.study-year }}</li>{% endif %}
                   {% if page.study-isbn %}<li><strong>ISBN</strong>: {{ page.study-isbn }}</li>{% endif %}
                   {% if page.study-doi %}<li><strong>DOI</strong>: <a href="https://doi.org/{{ page.study-doi }}">{{ page.study-doi }}</a></li>{% endif %}
                 </ul>
-                {% if page.study-url %}<a href="{{ page.study-url }}" id="study-link-1" class="btn btn-primary">Web studie</a>{% endif %}
-                {% if page.study-pdf %}<a href="{{ page.study-pdf }}" id="study-link-2" class="btn btn-primary">PDF studie</a>{% endif %}
+                {% if page.study-url %}<a href="{{ page.study-url }}" id="study-link-1" class="btn btn-primary">{{ site.data.lang.sidebar.study.source-web }}</a>{% endif %}
+                {% if page.study-pdf %}<a href="{{ page.study-pdf }}" id="study-link-2" class="btn btn-primary">{{ site.data.lang.sidebar.study.source-pdf }}</a>{% endif %}
                 {% if page.metadata-extra %} {{ page.metadata-extra }} {% endif %}
               </div>
             </div>

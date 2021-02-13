@@ -10,7 +10,7 @@
   <main role="main" id="page-tag">
     <div class="section intro pb-4 pt-4">
       <div class="container">
-          <span class="tagline">Přehled oblastí a témat,<br/>kterým se věnujeme</span>
+          <span class="tagline">{{ site.data.lang.tag.all-tags-caption }}</span>
           <div class="tags-list clearfix">
             <div class="float-lg-left">
               {% assign tags-scopes-all = site.data.tags_categorized.tags-scopes | map: "id" %}
@@ -24,11 +24,11 @@
     </div>
     <div class="section">
       <div class="container clearfix">
-        <h1>{% if tag.is-scope %}Oblast{% else %}Téma{% endif %}: {{ tag.name-long | capitalize }}</h1>
+        <h1>{% if tag.is-scope %}{{ site.data.lang.tag.scope }}{% else %}{{ site.data.lang.tag.topic }}{% endif %}: {{ tag.name-long | capitalize }}</h1>
         {% if tag.description %}
           <span class="lead">{{ tag.description | markdownify }}</span>
         {% else %}
-          <p class="lead">Všechny infografiky, studie a datasety týkající se {% if tag.is-scope %}oblasti{% else %}tématu{% endif %} "{{ tag.name-long }}".</p>
+          <p class="lead">{% if tag.is-scope %}{{ site.data.lang.tag.all-scope }}{% else %}{{ site.data.lang.tag.all-topic }}{% endif %} "{{ tag.name-long }}".</p>
         {% endif %}
         {% assign sorted_collections = site.collections | sort: "weight" %}
         {% for collection in sorted_collections %}
@@ -38,11 +38,11 @@
             <h2>{{ collection.title }} <small class="text-secondary">({{ items_size }})</small></h2>
             {% case collection.label %}
               {% when 'infographics' %}
-              <p class="lead">Naše infografiky týkající se tématu. Na stránce grafiky vždy naleznete zdroj dat i podrobnější informace.</p>
+              <p class="lead">{{ site.data.lang.tag.all-infographics }}</p>
               {% when 'studies' %}
-              <p class="lead">Naše rešerše a shrnutí studií týkajících se tématu. U studií uvádíme, proč je studie důležitá a jaké jsou její hlavní závěry.</p>
+              <p class="lead">{{ site.data.lang.tag.all-studies }}</p>
               {% when 'datasets' %}
-              <p class="lead">Naše datasety vztahující se k tématu. Typicky kombinujeme více zdrojů a vysvětlujeme, jak přesně z nich vycházejí naše infografiky.</p>
+              <p class="lead">{{ site.data.lang.tag.all-datasets }}</p>
             {% endcase %}
             {% include preview-blocks.html blocks=items %}
           {% endunless %}
