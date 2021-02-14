@@ -1,10 +1,6 @@
 $(document).ready(function() {
-    // Development version adjustments
-    var navHeight = $("nav").height();
     if ($("#dev-warning")) {
         console.log('This is the local development version of the website.');
-        $("body").css('padding-top', navHeight + 'px');
-        $(".sticky-toc").css('top', navHeight + 'px');
     }
 
     // change styling of navbar if the page is scrolled
@@ -18,6 +14,7 @@ $(document).ready(function() {
     });
     // hide navbar if the screen is small and the page is scrolled
     var prevScrollpos = window.pageYOffset;
+    var navHeight = $("nav").height();
     $(document).scroll(function () {
         if ($(window).height() > 741) { // iPhone 6 plus / Galaxy S9 screen viewport height
             $(".navbar").css('top', 0);
@@ -65,13 +62,31 @@ $(document).ready(function() {
     $('#searchbox').on('keydown', navigate);
     $('#searchbox').on('keyup', search);
     $('#searchbox').on('focus', search);
-    $('#searchbox').on('blur', maybeHideSuggestions);
-    $('#omnisearch-suggestions').on('blur', maybeHideSuggestions);
+    $('#searchbox').on('blur', maybeHideSearch);
+    $('#omnisearch-suggestions').on('blur', maybeHideSearch);
 });
 
 var posts = []; // will hold the json array from your site.json file
 var fuse = null;
 var searchString = null;
+
+function showSearch() {
+    $('nav').addClass('navbar-search');
+    $('#searchbox').focus();
+}
+
+function hideSearch() {
+    $('nav').removeClass('navbar-search');
+    hideSuggestions();
+}
+
+function maybeHideSearch(event) {
+    if ($("#searchbox")[0].contains(event.relatedTarget) ||
+        $('#omnisearch-suggestions')[0].contains(event.relatedTarget)) {
+        return;
+    }
+    hideSearch();
+}
 
 function showSuggestions() {
     var $body = $(document.body);
@@ -80,6 +95,7 @@ function showSuggestions() {
     $('nav').width(oldWidth);
     $body.css("overflow", "hidden");
     $('#omnisearch-suggestions').show();
+    $('#searchbox').addClass('searchbox-open');
 }
 
 function hideSuggestions() {
@@ -88,22 +104,13 @@ function hideSuggestions() {
     $body.css("overflow", "auto");
     $body.width("auto");
     $('nav').width("auto");
-}
-
-function maybeHideSuggestions(event) {
-    if ($("#searchbox").is(":focus") ||
-        $('#omnisearch-suggestions').is(":focus") ||
-        $("#searchbox")[0].contains(event.relatedTarget) ||
-        $('#omnisearch-suggestions')[0].contains(event.relatedTarget)) {
-        return;
-    }
-    hideSuggestions();
+    $('#searchbox').removeClass('searchbox-open');
 }
 
 function navigate(e) {
     if (e.keyCode == '27') {  // escape
         e.preventDefault();
-        hideSuggestions();
+        hideSearch();
         return;
     }
     if (e.keyCode == '13') {  // enter
@@ -136,7 +143,7 @@ function search(e) {
     fetchSiteJson(function () {
         let searchResults = [];
         let newSearchString = $('#searchbox').val();
-        if (newSearchString != searchString && newSearchString.length !== 0) {
+        if (newSearchString != searchString) {
             searchString = newSearchString;
             searchResults = fuse.search(searchString);
             updateResults(searchResults);
@@ -215,11 +222,10 @@ function updateResults(results) {
         snippet = getSnippet(res.matches);
         title = getTitle(res.matches, item.title);
         resultsHtml += '<a class="dropdown-item clearfix" href="' + item.url + '">';
-        resultsHtml += '<div class="search-preview card">' + item.block + "</div>";
-        resultsHtml += '<div class="search-description">' +
-                       '<span class="title">' + title + '</span>' +
-                       '<span class="snippet">' + snippet + '</span>' +
-                       '</div></a>';
+        resultsHtml += '<div class="title">' + title + '</div>';
+        resultsHtml += '<div class="search-preview card">' + item.block + '</div>' +
+                       '<div class="snippet">' + snippet + '</div>' +
+                       '</a>';
     });
     $('#omnisearch-suggestions').html(resultsHtml);
     $('#omnisearch-suggestions a:first-of-type').addClass('active');

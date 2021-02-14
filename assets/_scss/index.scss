@@ -182,65 +182,157 @@ a.card:hover {
     padding: 10px 0 10px 30px;
 }
 
+nav button.btn {
+    margin: 0.25rem 0.1rem;
+    font-size: 1.1rem;
+}
+
+#nav-container {
+    opacity: 1;
+    z-index: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+#search-container {
+    position: absolute;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
 #searchbox-form {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    flex: 10 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
 
     #searchbox {
-        width: 100%;
-        max-width: 350px;
+        flex: 10 0 auto;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
+    }
+    #search-close {
+        flex: 0 0 auto;
+        margin-left: 0.5rem;
+        margin-bottom: 0;
+        margin-top: 0;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
+    }
+}
+
+nav.navbar-search {
+    #nav-container {
+        opacity: 0.05;
+        z-index: 0;
+    }
+    #search-container {
+        opacity: 1;
+        z-index: 1;
+    }
+}
+
+#omnisearch-suggestions-container {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    max-height: calc(100vh - 56px);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 56px;
+
+    #omnisearch-suggestions {
+        position: static;
+        max-height: calc(100vh - 56px - 1.5rem);
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: $c-grey transparent;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
+
+        .dropdown-item {
+            text-align: left;
+            text-transform: none;
+            white-space: normal;
+
+            .title {
+                padding-top: 1rem;
+                font-size: 1.2rem;
+                display: block;
+            }
+            .search-preview {
+                width: 100px;
+                height: 71px;
+                float: left;
+                margin-right: 1rem;
+                margin-bottom: 2rem;
+                background-color: #e0e0e0;
+
+                img {
+                    max-height: 100%;
+                }
+            }
+            .snippet {
+                margin: 15px 0px;
+                font-size: 0.9rem;
+            }
+            .date {
+                display: block;
+                color: $c-grey;
+            }
+            .keyword {
+                background-color: yellow;
+            }
+        }
+        .dropdown-item.active, .dropdown-item:active {
+            color: inherit;
+            background-color: $c-extralight-blue;
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    #searchbox-form, #omnisearch-suggestions {
+        width: 510px;
         margin-left: auto;
         margin-right: auto;
     }
 }
 
-#omnisearch-suggestions {
-    width: 600px;
-    max-height: 85vh;
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: $c-grey transparent;
-
-    h2 {
-        padding: .25rem 1.5rem;
+@media (min-width: 768px) {
+    #searchbox-form {
+        width: 600px;
     }
+    #omnisearch-suggestions-container {
+        #omnisearch-suggestions {
+            width: 600px;
 
-    .dropdown-item {
-        display: flex;
-        text-align: left;
-        text-transform: none;
-        white-space: normal;
-
-        .search-preview {
-            width: 150px;
-            height: 106px;
-            flex: 150px 0 0;
-            margin-right: 1rem;
-            background-color: #e0e0e0;
-
-            img {
-                max-height: 100%;
+            .dropdown-item {
+                $text-width: 378px;
+                .title {
+                    width: $text-width;
+                    float: right;
+                    padding-top: 1rem;
+                    font-size: 1.2rem;
+                    display: block;
+                }
+                .search-preview {
+                    float: left;
+                    width: 150px;
+                    height: 106px;
+                    margin-bottom: 1rem;
+                }
+                .snippet {
+                    float: right;
+                    width: $text-width;
+                    font-size: 1rem;
+                }
             }
         }
-        .search-description {
-            flex: 0px 1 0;
-        }
-        .title {
-            padding-top: 1rem;
-            font-size: 1.1rem;
-            display: block;
-        }
-        .date {
-            display: block;
-            color: $c-grey;
-        }
-        .keyword {
-            background-color: yellow;
-        }
-    }
-    .dropdown-item.active, .dropdown-item:active {
-        color: inherit;
-        background-color: $c-extralight-blue;
     }
 }
