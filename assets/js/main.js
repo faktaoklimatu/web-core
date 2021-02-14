@@ -60,7 +60,7 @@ $(document).ready(function() {
     }
 
     $('#searchbox').on('keydown', navigate);
-    $('#searchbox').on('keyup', search);
+    $('#searchbox').on('keyup', delayedSearch);
     $('#searchbox').on('focus', search);
     $('#searchbox').on('blur', maybeHideSearch);
     $('#omnisearch-suggestions').on('blur', maybeHideSearch);
@@ -69,6 +69,7 @@ $(document).ready(function() {
 var posts = []; // will hold the json array from your site.json file
 var fuse = null;
 var searchString = null;
+var timeout = null;
 
 function showSearch() {
     $('nav').addClass('navbar-search');
@@ -140,11 +141,24 @@ function search(e) {
     if (e.keyCode == '13' || e.keyCode == '27' || e.keyCode == '38' || e.keyCode == '40') {
         return;
     }
+    searchInternal();
+}
+
+function delayedSearch(e) {
+    if (e.keyCode == '13' || e.keyCode == '27' || e.keyCode == '38' || e.keyCode == '40') {
+        return;
+    }
+    window.clearTimeout(timeout);
+    timeout = window.setTimeout(searchInternal, 200);
+}
+
+function searchInternal() {
     fetchSiteJson(function () {
         let searchResults = [];
         let newSearchString = $('#searchbox').val();
         if (newSearchString != searchString) {
             searchString = newSearchString;
+            console.log(searchString);
             searchResults = fuse.search(searchString);
             updateResults(searchResults);
         }
