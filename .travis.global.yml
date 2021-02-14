@@ -31,12 +31,19 @@ cache:
   - $TRAVIS_BUILD_DIR/web-core/assets/generated  # Enable caching of generated infographics
 
 deploy:
-  provider: pages
-  local_dir: web-core/_site
-  target_branch: gh-pages
-  skip_cleanup: true
-  keep_history: false
-  verbose: false
-  token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  on:
-    branch: master
+  - provider: pages
+    on:
+      branch: master
+    local_dir: web-core/_site
+    target_branch: gh-pages
+    skip_cleanup: true
+    keep_history: false
+    verbose: false
+    token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  - provider: firebase
+    on:
+      repo: faktaoklimatu/web-en
+      branch: master
+    token: $FIREBASE_TOKEN
+    skip_cleanup: true
+    message: "### Deploying to Firebase ..."
