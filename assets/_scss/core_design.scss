@@ -217,7 +217,7 @@ img.text-img {
     background: $c-body;
     top: 0;
     transition: top 300ms;
-    flex-direction: column;
+    flex-flow: column wrap;
     padding: 0;
 
     a {
@@ -267,6 +267,24 @@ img.text-img {
 .navbar-expand-md .navbar-nav .nav-link {
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+    #navbar-buttons {
+        order: 1;
+        #toggler {
+            display: none;
+        }
+    }
+}
+
+#dev-warning {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    padding: 0.3rem;
+    font-size: 0.8rem;
+    z-index: 1070;
 }
 
 /* Footer */

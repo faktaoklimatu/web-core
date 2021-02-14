@@ -1,24 +1,14 @@
 <nav class="navbar navbar-expand-md navbar-light fixed-top">
-{% if jekyll.environment != "production" %}
-<div id="dev-warning" class="alert-warning w-100 mb-0">
-    <div class="container">
-        <p><i class="fas fa-fw fa-code"></i><strong> {{ site.data.lang.navigation.dev-version }}</strong> {{ site.data.lang.navigation.dev-differences }}</p>
-    </div>
-</div>
-{% endif %}
-    <div class="container">
+    <div id="nav-container" class="container">
         <a class="navbar-brand" href="/">{{ site.title }}</a>
-        <form id="searchbox-form">
-            <div class="dropdown">
-                <input class="form-control me-2" id="searchbox" data-bs-toggle="dropdown" type="search" placeholder="Hledat" aria-label="Hledat" autocomplete="off">
-                <div class="dropdown-menu" id="omnisearch-suggestions" aria-labelledby="searchbox">
-                </div>
-            </div>
-        </form>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Zobrazit/skrýt navigaci">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
+        <div id="navbar-buttons">
+            <button class="btn btn-sm btn-outline-secondary" type="button" onclick="showSearch()" aria-label="Vyhledávání">
+                <i class="fas fa-search"></i>
+            </button>
+            <button id="toggler" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Zobrazit/skrýt navigaci">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav ml-auto">
             {%- for menu-item in site.data.navigation -%}
@@ -54,4 +44,21 @@
             </ul>
         </div>
     </div>
+    <div id="search-container" class="container">
+        <form id="searchbox-form">
+            <input class="form-control me-2" id="searchbox" data-bs-toggle="dropdown" type="search" placeholder="Hledat" aria-label="Hledat" autocomplete="off">
+            <button id="search-close" class="btn btn-sm btn-outline-secondary" type="button" onclick="hideSearch()" aria-label="Zrušit">
+                <i class="fas fa-fw fa-times"></i>
+            </button>
+        </form>
+        <div id="omnisearch-suggestions-container">
+            <div class="dropdown-menu" id="omnisearch-suggestions" aria-labelledby="searchbox">
+            </div>
+        </div>
+    </div>
 </nav>
+{% if jekyll.environment != "production" %}
+<div id="dev-warning" class="alert-warning mb-0" title="{{ site.data.lang.navigation.dev-differences }}">
+    <p><i class="fas fa-fw fa-code"></i> {{ site.data.lang.navigation.dev-version }}</p>
+</div>
+{% endif %}
