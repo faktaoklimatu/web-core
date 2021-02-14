@@ -20,7 +20,8 @@
     {% when 'explainer' %}
         <img src="{{ site.baseurl }}/assets/img/cover/{{ item.slug }}.jpg" alt="Explainer: {{ item.title }}" title="Explainer: {{ item.title }}" class="img-fluid card-img" />
         <div class="card-img-overlay card-dataset-overlay">
-        <h5 class="card-title">Explainer: {{ item.title }}</h5>
+        <h5 class="card-title">{{ item.title }}</h5>
+        <h6 class="card-subtitle">Explainer</h6>
         </div>
         {%- unless include.no_include_tags %}
         <div class="card-img-overlay tags-overlay-box">
