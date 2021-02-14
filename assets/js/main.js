@@ -158,7 +158,6 @@ function searchInternal() {
         let newSearchString = $('#searchbox').val();
         if (newSearchString != searchString) {
             searchString = newSearchString;
-            console.log(searchString);
             searchResults = fuse.search(searchString);
             updateResults(searchResults);
         }
