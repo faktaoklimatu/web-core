@@ -13,7 +13,7 @@
   {% when "data" %}
     {% if page.dataset %}
       <p class="d-none d-lg-block">{{ site.data.lang.sidebar.data.caption-dataset }}</p>
-      <a href="/{{ site.slugs.dataserts }}/{{ page.dataset }}" class="btn btn-primary" role="button">{{ site.data.lang.sidebar.data.button-dataset }}</a>
+      <a href="/{{ site.slugs.datasets }}/{{ page.dataset }}" class="btn btn-primary" role="button">{{ site.data.lang.sidebar.data.button-dataset }}</a>
     {% else %}
       <p class="d-none d-lg-block">{{ site.data.lang.sidebar.data.caption-data }}</p>
       {% if page.data-our and page.data-our != '' %}
@@ -22,15 +22,15 @@
       {% if page.data-orig.size == 1 %}
       <a href="{{ page.data-orig[0][1] }}" id="data-original" class="btn btn-primary" role="button">{{ page.data-orig[0][0] }}</a>
       {% elsif page.data-orig.size > 1 %}
-    <div class="dropdown"> <!-- Do not delete this element -- makes dropdown work -->
-        <button class="btn btn-primary dropdown-toggle" role="button" id="dropdownDataSources" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ site.data.lang.sidebar.data.button-data-orig }}</button>
-        <div class="dropdown-menu dropdown-links" aria-labelledby="dropdownDataSources">
-          {% assign numDataSources = page.data-orig.size | minus: 1 %}
-          {% for i in (0..numDataSources) %}
-          <a class="dropdown-item" id="data-original-{{ i }}" href="{{ page.data-orig[i][1] }}">{{ page.data-orig[i][0] }}</a>
-          {% endfor %}
-        </div>
-    </div>
+      <div class="dropdown"> <!-- Do not delete this element -- makes dropdown work -->
+          <button class="btn btn-primary dropdown-toggle" role="button" id="dropdownDataSources" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ site.data.lang.sidebar.data.button-data-orig }}</button>
+          <div class="dropdown-menu dropdown-links" aria-labelledby="dropdownDataSources">
+            {% assign numDataSources = page.data-orig.size | minus: 1 %}
+            {% for i in (0..numDataSources) %}
+            <a class="dropdown-item" id="data-original-{{ i }}" href="{{ page.data-orig[i][1] }}">{{ page.data-orig[i][0] }}</a>
+            {% endfor %}
+          </div>
+      </div>
       {% endif %}
     {% endif %}
   {% when "sharing" %}
