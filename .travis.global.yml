@@ -44,9 +44,7 @@ deploy:
   - provider: pages
     token: $GITHUB_TOKEN  # Travis secure variable
     on:
-      repo:
-        - faktaoklimatu/web-cz
-        - faktaoklimatu/web-sk
+      repo: faktaoklimatu/web-cz
       branch: master
     skip_cleanup: true
     keep_history: false
@@ -56,14 +54,12 @@ deploy:
   # Firebase production deployment (web-en)
   - provider: firebase # uses FIREBASE_TOKEN
     on:
-      repo: faktaoklimatu/web-en
       branch: master
     skip_cleanup: true
     message: "Travis CI production ($TRAVIS_BRANCH@$TRAVIS_COMMIT)"
   # Firebase preview deployment (web-en)
   - provider: script # uses FIREBASE_TOKEN
     on:
-      repo: faktaoklimatu/web-en
       all_branches: true
       condition: $TRAVIS_BRANCH = preview-*
     skip_cleanup: true
