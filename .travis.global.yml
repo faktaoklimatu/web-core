@@ -1,21 +1,30 @@
 os: linux
-dist: bionic    # Ubuntu 18.04 LTS
+dist: focal    # Ubuntu 20.04 LTS
 language: ruby
+gemfile: web-core/Gemfile
 
 # Clone full git history for git-restore-mtime to work
 git:
   depth: false
 
 # Install the necessary software
-before_install:
-  - sudo add-apt-repository -y ppa:inkscape.dev/stable
-  - sudo apt -q update
-  - sudo apt -y install inkscape
-  - git clone --depth=1 https://github.com/MestreLion/git-tools # Distro version is currently broken
+addons:
+  apt:
+    sources:
+      - sourceline: 'ppa:inkscape.dev/stable'
+    packages:
+    - inkscape
 
-script:
+# Restore file times for better GNU Make optimizations
+before_install:
+  - git clone --depth=1 https://github.com/MestreLion/git-tools # Distro version is currently broken
   - ./git-tools/git-restore-mtime
   - rm -rf ./git-tools
+
+install:
+  - make bundle-install
+
+script:
   - make check
   - make deploy
 
@@ -31,19 +40,34 @@ cache:
   - $TRAVIS_BUILD_DIR/web-core/assets/generated  # Enable caching of generated infographics
 
 deploy:
+  # GitHub Pages production deployment (web-cz)
   - provider: pages
+    token: $GITHUB_TOKEN  # Travis secure variable
     on:
+      repo:
+        - faktaoklimatu/web-cz
+        - faktaoklimatu/web-sk
       branch: master
-    local_dir: web-core/_site
-    target_branch: gh-pages
     skip_cleanup: true
     keep_history: false
+    local_dir: web-core/_site
+    target_branch: gh-pages
     verbose: false
-    token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  - provider: firebase
+  # Firebase production deployment (web-en)
+  - provider: firebase # uses FIREBASE_TOKEN
     on:
       repo: faktaoklimatu/web-en
       branch: master
-    token: $FIREBASE_TOKEN
     skip_cleanup: true
-    message: "### Deploying to Firebase ..."
+    message: "Travis CI production ($TRAVIS_BRANCH@$TRAVIS_COMMIT)"
+  # Firebase preview deployment (web-en)
+  - provider: script # uses FIREBASE_TOKEN
+    on:
+      repo: faktaoklimatu/web-en
+      all_branches: true
+      condition: $TRAVIS_BRANCH = preview-*
+    skip_cleanup: true
+    script: >
+      wget -q --output-document=firebase https://firebase.tools/bin/linux/latest &&
+      chmod +x firebase &&
+      ./firebase hosting:channel:deploy $TRAVIS_BRANCH
