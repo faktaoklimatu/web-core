@@ -47,7 +47,7 @@ local: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml CNAME human
 build: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml CNAME humans.txt
 	@echo "Building the website using Jekyll ..."
 	@if [ "$(TRAVIS_BRANCH)" = "master" ]; then echo "=== Production build ==="; else echo "=== Development build ==="; fi
-	if [ "$(TRAVIS_BRANCH)" = "master" ]; then JEKYLL_ENV=production; fi; bundle exec jekyll build
+	if [ "$(TRAVIS_BRANCH)" = "master" ]; then JEKYLL_ENV=production bundle exec jekyll build; else bundle exec jekyll build; fi
 
 check: build
 	@echo "Running internal tests on the generated site using html-proofer ..."
