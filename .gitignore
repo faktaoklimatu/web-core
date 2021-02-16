@@ -3,6 +3,7 @@ assets/generated/*
 assets/studies/*
 _config.yml
 CNAME
+humans.txt
 
 # Build Jekyll site
 _site/*

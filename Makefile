@@ -12,7 +12,7 @@ PODMAN=podman
 CONTAINER_IMAGE=faktaoklimatu/web
 CONTAINER_NAME=faktaoklimatu
 
-all: web
+all: build
 
 # Phony targets for container management.
 container:
@@ -37,24 +37,23 @@ _config.yml: _config.global.yml ../_config.local.yml
 CNAME: ../CNAME
 	cp $< $@
 
-local: web
+humans.txt:
+	@echo "Creating humans.txt file ..."
+	cp ../CONTRIBUTORS.md humans.txt
+
+local: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml CNAME humans.txt
 	bundle exec jekyll serve --trace
 
-web: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml CNAME
-
-check: web
+build: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml CNAME humans.txt
 	@echo "Building the website using Jekyll ..."
-	bundle exec jekyll build
+	@if [ "$(TRAVIS_BRANCH)" = "master" ]; then echo "=== Production build ==="; else echo "=== Development build ==="; fi
+	if [ "$(TRAVIS_BRANCH)" = "master" ]; then JEKYLL_ENV=production; fi; bundle exec jekyll build
+
+check: build
 	@echo "Running internal tests on the generated site using html-proofer ..."
 	bundle exec ruby utils/test.rb
 	@echo "Running tests on the external content using html-proofer ..."
 	-bundle exec ruby utils/test.rb external
-
-deploy: web
-	@echo "Creating humans.txt file ..."
-	mv CONTRIBUTORS.md humans.txt
-	@echo "Building production version using Jekyll ..."
-	JEKYLL_ENV=production bundle exec jekyll build
 
 clean:
 	rm -rf $(INFOGRAPHICS_FOLDER)
@@ -75,5 +74,5 @@ dataset-images: $(DATASETS_DST)
 $(DATASETS_FOLDER)/%.png: _datasets/%.md
 	@bash utils/download-dataset-preview.sh $< $@
 
-.PHONY: all web local clean bundle-install
+.PHONY: all build local clean bundle-install
 .PHONY: container build-container delete-container

@@ -26,7 +26,6 @@ install:
 
 script:
   - make check
-  - make deploy
 
 env:
   global:
