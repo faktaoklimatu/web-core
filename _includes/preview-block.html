@@ -1,14 +1,14 @@
 {% assign item = include.item %}
 {% case item.layout %}
     {% when 'infographic' %}
-        <img src="{{ site.baseurl }}/assets/generated/{{ item.slug }}_600.png" alt="{{ item.title }}" title="{{ item.title }}" class="img-fluid" />
+        <img src="/assets/generated/{{ item.slug }}_600.png" alt="{{ item.title }}" title="{{ item.title }}" class="img-fluid" />
         {%- unless include.no_include_tags %}
         <div class="card-img-overlay tags-overlay-box">
             {% include tags.html tags=item.tags %}
         </div>
         {%- endunless %}
     {% when 'dataset' %}
-        <img src="{{ site.baseurl }}/assets-local/datasets/{{ item.slug }}.png" alt="Dataset: {{ item.title }}" title="Dataset: {{ item.title }}" class="img-fluid card-img" />
+        <img src="/assets-local/datasets/{{ item.slug }}.png" alt="Dataset: {{ item.title }}" title="Dataset: {{ item.title }}" class="img-fluid card-img" />
         <div class="card-img-overlay card-dataset-overlay">
           <h5 class="card-title">{{ item.title }}</h5>
         </div>
@@ -18,7 +18,7 @@
         </div>
         {%- endunless %}
     {% when 'explainer' %}
-        <img src="{{ site.baseurl }}/assets-local/cover/{{ item.slug }}.jpg" alt="Explainer: {{ item.title }}" title="Explainer: {{ item.title }}" class="img-fluid card-img" />
+        <img src="/assets-local/cover/{{ item.slug }}.jpg" alt="Explainer: {{ item.title }}" title="Explainer: {{ item.title }}" class="img-fluid card-img" />
         <div class="card-img-overlay card-dataset-overlay">
         <h5 class="card-title">{{ item.title }}</h5>
         <h6 class="card-subtitle">Explainer</h6>

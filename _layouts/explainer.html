@@ -23,7 +23,7 @@
                 {% include tags.html tags=page.tags link="true" %}
                 <span class="author"><a href="/o-nas#clenove">{{ page.author }}</a></span>
                 <span class="date">{{ page.published | date: "%-d. %-m. %Y" }}</span>
-              {% assign download_path = site.baseurl | append: "/assets/studies/" | append: page.slug %}
+              {% assign download_path = "/assets/studies/" | append: page.slug %}
               </div>
             </div>
           </div>

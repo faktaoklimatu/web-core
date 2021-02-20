@@ -26,11 +26,11 @@
 <meta name="twitter:card" content="summary_large_image">
 {% case page.layout %}
 {% when 'infographic' %}
-  {% assign social_image = site.url | append: "/assets/generated/" | append: page.slug | append: "_1200.png" %}
+  {% assign social_image = "/assets/generated/" | append: page.slug | append: "_1200.png" %}
 {% when 'study' %}
-  {% assign social_image = site.url | append: "/assets/studies/" | append: page.slug | append: ".jpg" %}
+  {% assign social_image = "/assets/studies/" | append: page.slug | append: ".jpg" %}
 {% else %}
-  {% assign social_image = site.url | append: "/assets-local/img/preview.png" %}
+  {% assign social_image = "/assets-local/img/preview.png" %}
 {% endcase %}
 <meta property="og:image" content="{{ social_image }}">
 <meta name="twitter:image" content="{{ social_image }}">
@@ -48,8 +48,8 @@
 {% endif %}
 
 <link href="{{ site.cdn.css }}" rel="stylesheet" integrity="{{ site.cdn.css_hash }}" crossorigin="anonymous">
-<link href="{{ site.baseurl }}/assets/css/main.css?{{ site.time | date: '%s' }}" rel="stylesheet">
-<link href="{{ site.baseurl }}/assets/fonts/source-sans-pro.css" rel="stylesheet">
+<link href="/assets/css/main.css?{{ site.time | date: '%s' }}" rel="stylesheet">
+<link href="/assets/fonts/source-sans-pro.css" rel="stylesheet">
 <link href="{{ site.cdn.fa }}" rel="stylesheet" integrity="{{ site.cdn.fa_hash }}" crossorigin="anonymous">
 
 <link rel="icon" type="image/png" href="/assets/favicon.png">

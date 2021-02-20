@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-12 col-lg-9">
               <a class="infographic no-ext-link-icon" id="data-our" href="{{ page.dataset-url }}">
-                <img class="dataset" src="{{ site.baseurl }}/assets-local/datasets/{{ page.slug }}.png" alt="Dataset: {{ page.title }}">
+                <img class="dataset" src="/assets-local/datasets/{{ page.slug }}.png" alt="Dataset: {{ page.title }}">
               </a>
               <hr/>
               <p class="caption">{{ page.caption }}</p>
@@ -97,7 +97,7 @@
           {% for infographics in sorted_infographics %}
             <div class="col-sm-6 col-md-4 col-lg-3">
               <a href="{{ infographics.url }}" class="preview-card card">
-                <img src="{{ site.baseurl }}/assets/generated/{{ infographics.slug }}_600.png" alt="{{ infographics.title }}" title="{{ infographics.title }}" class="img-fluid" />
+                <img src="/assets/generated/{{ infographics.slug }}_600.png" alt="{{ infographics.title }}" title="{{ infographics.title }}" class="img-fluid" />
               </a>
             </div>
           {% endfor %}

@@ -2,10 +2,10 @@
 <script src="{{ site.cdn.popper }}" integrity="{{ site.cdn.popper_hash }}" crossorigin="anonymous"></script>
 <script src="{{ site.cdn.js }}" integrity="{{ site.cdn.js_hash }}" crossorigin="anonymous"></script>
 <script src="{{ site.cdn.tocbot }}" integrity="{{ site.cdn.tocbot_hash }}" crossorigin="anonymous"></script>
-<script src="{{ site.baseurl }}/assets/js/main.js"></script>
+<script src="/assets/js/main.js"></script>
 {% if jekyll.environment == "production" %}
 {% include includes-local/website-analytics-noscript.html %}
 {% endif %}
 {% if page.extrascripts == "thankyou" %}
-<script src="{{ site.baseurl }}/assets/js/thankyou.js"></script>
+<script src="/assets/js/thankyou.js"></script>
 {% endif %}
