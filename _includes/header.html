@@ -30,7 +30,7 @@
 {% when 'study' %}
   {% assign social_image = site.url | append: "/assets/studies/" | append: page.slug | append: ".jpg" %}
 {% else %}
-  {% assign social_image = site.url | append: "/assets/img/preview.png" %}
+  {% assign social_image = site.url | append: "/assets-local/img/preview.png" %}
 {% endcase %}
 <meta property="og:image" content="{{ social_image }}">
 <meta name="twitter:image" content="{{ social_image }}">
