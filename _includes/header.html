@@ -29,6 +29,8 @@
   {% assign social_image = "/assets/generated/" | append: page.slug | append: "_1200.png" %}
 {% when 'study' %}
   {% assign social_image = "/assets/studies/" | append: page.slug | append: ".jpg" %}
+{% when 'explainer' %}
+  {% assign social_image = "/assets-local/cover/" | append: page.slug | append: ".jpg" %}
 {% else %}
   {% assign social_image = "/assets-local/img/preview.png" %}
 {% endcase %}
