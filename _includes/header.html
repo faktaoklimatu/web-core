@@ -46,7 +46,7 @@
 {% endcase %}
 
 {% if jekyll.environment == "production" %}
-{% include includes-local/website-analytics.html %}
+<script src="/assets-local/website-analytics.js"></script>
 {% endif %}
 
 <link href="{{ site.cdn.css }}" rel="stylesheet" integrity="{{ site.cdn.css_hash }}" crossorigin="anonymous">
