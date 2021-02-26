@@ -36,9 +36,6 @@ bundle-install:
 _config.yml: _config.global.yml ../_config.local.yml
 	cat $^ >$@
 
-CNAME: ../CNAME
-	cp $< $@
-
 humans.txt:
 	@echo "Creating humans.txt file ..."
 	cp ../CONTRIBUTORS.md humans.txt

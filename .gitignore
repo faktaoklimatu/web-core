@@ -2,7 +2,6 @@
 assets/generated/*
 assets/studies/*
 _config.yml
-CNAME
 humans.txt
 robots.txt
 .well-known/security.txt
