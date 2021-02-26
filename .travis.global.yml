@@ -39,17 +39,6 @@ cache:
   - $TRAVIS_BUILD_DIR/web-core/assets/generated  # Enable caching of generated infographics
 
 deploy:
-  # GitHub Pages production deployment (web-cz)
-  - provider: pages
-    token: $GITHUB_TOKEN  # Travis secure variable
-    on:
-      repo: faktaoklimatu/web-cz
-      branch: master
-    skip_cleanup: true
-    keep_history: false
-    local_dir: web-core/_site
-    target_branch: gh-pages
-    verbose: false
   # Firebase production deployment (web-en)
   - provider: firebase # uses FIREBASE_TOKEN
     on:
