@@ -1,0 +1,4 @@
+Contact: info@faktyoklime.sk
+Acknowledgments: {{ URL }}/humans.txt
+Preferred-Languages: cs, sk, en
+Canonical: {{ URL }}/.well-known/security.txt

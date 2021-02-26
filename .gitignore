@@ -4,6 +4,8 @@ assets/studies/*
 _config.yml
 CNAME
 humans.txt
+robots.txt
+.well-known/security.txt
 
 # Build Jekyll site
 _site/*

@@ -9,8 +9,10 @@ STUDIES_SRC=$(wildcard _studies/*.jpg _studies/*.png)
 STUDIES_DST=$(addprefix $(STUDIES_FOLDER)/,$(notdir $(STUDIES_SRC)))
 
 PODMAN=podman
-CONTAINER_IMAGE=faktaoklimatu/web
-CONTAINER_NAME=faktaoklimatu
+CONTAINER_IMAGE=factsonclimate/web
+CONTAINER_NAME=factsonclimate
+# Get site URL with protocol
+URL:=`cat _config.yml | grep -m 1 "^url: " | sed 's/^url: //' | sed 's/[\r\n]//g'`
 
 all: build
 
@@ -41,10 +43,17 @@ humans.txt:
 	@echo "Creating humans.txt file ..."
 	cp ../CONTRIBUTORS.md humans.txt
 
-local: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml CNAME humans.txt
+.well-known/security.txt: .well-known-templates/security.txt _config.yml
+	mkdir -p .well-known
+	sed "s|{{ URL }}|$(URL)|" $< >$@
+
+robots.txt: .well-known-templates/robots.txt _config.yml
+	sed "s|{{ URL }}|$(URL)|" $< >$@
+
+local: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml CNAME humans.txt robots.txt .well-known/security.txt
 	bundle exec jekyll serve --trace
 
-build: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml CNAME humans.txt
+build: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml CNAME humans.txt robots.txt .well-known/security.txt
 	@echo "Building the website using Jekyll ..."
 	@if [ "$(TRAVIS_BRANCH)" = "master" ]; then echo "=== Production build ==="; else echo "=== Development build ==="; fi
 	if [ "$(TRAVIS_BRANCH)" = "master" ]; then JEKYLL_ENV=production bundle exec jekyll build; else bundle exec jekyll build; fi

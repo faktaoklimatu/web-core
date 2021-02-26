@@ -17,10 +17,9 @@ cdn:
     tocbot_hash:      "sha384-TnuMTlegqfBi40E9e3dO2qfmPVKDjLFCCgyZ5bR3SA/hYTJXI090bTbAr/AXO+bc"
 
 # What files to include/exclude from final site?
-include: [ ".well-known" ]
+include: [ ".well-known" ] # .well-known-templates implicitly excluded
 exclude:
     - README.md            # Developer information
-    - CONTRIBUTORS.md      # Developer information
     - LICENSE.md           # Developer information
     - Gemfile              # Build settings
     - Gemfile.lock         # Build settings
