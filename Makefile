@@ -36,7 +36,7 @@ bundle-install:
 _config.yml: _config.global.yml ../_config.local.yml
 	cat $^ >$@
 
-humans.txt:
+humans.txt: ../CONTRIBUTORS.md
 	@echo "Creating humans.txt file ..."
 	cp ../CONTRIBUTORS.md humans.txt
 
@@ -64,6 +64,7 @@ check: build
 clean:
 	rm -rf $(INFOGRAPHICS_FOLDER)
 	rm -rf $(STUDIES_FOLDER)
+	rm -f robots.txt .well-known/security.txt humans.txt _config.yml
 
 $(INFOGRAPHICS_FOLDER)/%.pdf: _infographics/*/%.pdf
 	@utils/convert-infographic.sh $< $@
