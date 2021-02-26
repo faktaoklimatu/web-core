@@ -47,10 +47,10 @@ humans.txt:
 robots.txt: .well-known-templates/robots.txt _config.yml
 	sed "s|{{ URL }}|$(URL)|" $< >$@
 
-local: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml CNAME humans.txt robots.txt .well-known/security.txt
+local: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml humans.txt robots.txt .well-known/security.txt
 	bundle exec jekyll serve --trace
 
-build: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml CNAME humans.txt robots.txt .well-known/security.txt
+build: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml humans.txt robots.txt .well-known/security.txt
 	@echo "Building the website using Jekyll ..."
 	@if [ "$(TRAVIS_BRANCH)" = "master" ]; then echo "=== Production build ==="; else echo "=== Development build ==="; fi
 	if [ "$(TRAVIS_BRANCH)" = "master" ]; then JEKYLL_ENV=production bundle exec jekyll build; else bundle exec jekyll build; fi
