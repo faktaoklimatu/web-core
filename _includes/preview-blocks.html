@@ -4,9 +4,9 @@
     <div class="col-md-6 col-lg-4">
         {% if forloop.index == include.limit and include.link %}
             {% if include.link == "news" %}
-                <a href="/aktuality" class="preview-card card">
+                <a href="/{{ site.slugs.news }}" class="preview-card card">
             {% else %} 
-                <a href="/temata/{{ include.link.id }}" class="preview-card card">
+                <a href="/{{ site.slugs.topics }}/{{ include.link.id }}" class="preview-card card">
             {% endif %}
         {% else %}
             <a href="{{ item.url }}" class="preview-card card">
