@@ -18,7 +18,8 @@
         </div>
         {%- endunless %}
     {% when 'explainer' %}
-        <img src="/assets-local/cover/{{ item.slug }}.jpg" alt="Explainer: {{ item.title }}" title="Explainer: {{ item.title }}" class="img-fluid card-img" />
+        <div style="background-image: url('/assets-local/cover/{{ item.slug }}.jpg')" title="Explainer: {{ item.title }}" class="preview-card-image img-fluid card-img">
+        </div>
         <div class="card-img-overlay card-dataset-overlay">
         <h5 class="card-title">{{ item.title }}</h5>
         <h6 class="card-subtitle">Explainer</h6>
