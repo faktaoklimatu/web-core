@@ -203,6 +203,14 @@ img.text-img {
     border-color: $c-light-blue;
 }
 
+.dropdown-menu {
+    min-width: auto;
+}
+
+.dropdown-item {
+    padding: 0.25rem 1rem;
+}
+
 /* Navigation bar */
 
 .navbar {
@@ -228,10 +236,16 @@ img.text-img {
         background-size: 1.5rem;
         background-position: left;
     }
-}
 
-.navbar .container {
-    padding: 0.5em 1em;
+    .container {
+        padding: 0.5em 1em;
+    }
+
+    .flag {
+        height: 1rem;
+        padding-right: 0.5rem;
+        vertical-align: middle;
+    }
 }
 
 .navbar-light .navbar-nav .nav-link {
