@@ -1,13 +1,13 @@
 <dl class="data-header">
-    <dt>Zdroj</dt><dd>{{ include.name }}</dd>
+    <dt>{{ site.data.lang.text.dataset.source }}</dt><dd>{{ include.name }}</dd>
     {% if include.description %}
-    <dt>Popis</dt><dd>{{ include.description }}</dd>
+    <dt>{{ site.data.lang.text.dataset.description }}</dt><dd>{{ include.description }}</dd>
     {% endif %}
-    <dt>Odkaz</dt><dd class="ellipsis"><a href="{{ include.url }}">{{ include.url }}</a></dd>
+    <dt>{{ site.data.lang.text.dataset.link }}</dt><dd class="ellipsis"><a href="{{ include.url }}">{{ include.url }}</a></dd>
     {% if include.doi %}
     <dt>DOI</dt><dd class="ellipsis"><a href="{{ include.doi }}">{{ include.doi }}</a></dd>
     {% endif %}
-    <dt>Licence</dt>
+    <dt>{{ site.data.lang.text.dataset.licence }}</dt>
     <dd>
             {% if include.licence-url %}
             <a href="{{ include.licence-url }}">{{ include.licence }}</a>
@@ -15,7 +15,7 @@
             {{ include.licence }}
             {% endif %}
             {% if include.licence-proof %}
-            (viz <a href="{{ include.licence-proof }}">informace o licenci</a>)
+            ({{ site.data.lang.text.dataset.see }} <a href="{{ include.licence-proof }}">{{ site.data.lang.text.dataset.licence-proof }}</a>)
             {% endif %}
     </dd>
 </dl>
