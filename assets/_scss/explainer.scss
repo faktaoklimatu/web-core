@@ -20,18 +20,41 @@
 
 .cover-header-source {
     text-align: right;
-    position: relative;
-    top: 1.2em;
-    margin-top: -1.2em;
+    padding-top: 0.2rem;
+    padding-right: 0.2rem;
+    position: absolute;
+    width: 100%;
     z-index: 1;
 
-    span {
-        font-size: 0.7rem;
-        color: black;
-        padding: 0.1rem 0.5rem;
-        background-color: rgba(white, 0.4);
+    .cover-header-source-toggle, #coverLicense {
+        float: right;
+        clear: right;
+        padding: 0 0.3rem;
+
         a {
             color: black;
+        }
+    }
+
+    .cover-header-source-toggle.collapsed {
+        background-color: rgba(white, 0.5);
+    }
+
+    .cover-header-source-toggle, .cover-header-source-toggle:hover {
+        color: rgba(black, 0.8);
+        background-color: rgba(white, 0.9);
+    }
+
+    #coverLicense {
+        font-size: 0.7rem;
+        min-width: 150px;
+        max-width: 250px;
+        color: black;
+        background-color: rgba(white, 0.9);
+
+        dl, dd {
+            text-align: left;
+            margin-bottom: 0.4rem;
         }
     }
 }
@@ -71,6 +94,15 @@
 }
 
 @media (min-width: 768px) {
+    .cover-header-source {
+        .cover-header-source-toggle.collapsed {
+            background-color: rgba(white, 0.3);
+        }
+        .cover-header-source-toggle, .cover-header-source-toggle:hover, #coverLicense {
+            background-color: rgba(white, 0.6);
+        }
+    }
+
     .explainer-cover::before {
         content: none;
     }
