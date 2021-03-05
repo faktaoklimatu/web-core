@@ -17,10 +17,10 @@
                 <div>
                     {% if include.link == "news" %}
                         <i class="fas fa-newspaper"></i>
-                        <p>Zobrazit celý přehled novinek, oprav a aktualizací...</p>
+                        <p>{{ site.data.lang.text.index.all-news }}</p>
                     {% else %}
                         <i class="fas fa-angle-double-right"></i>
-                        <p>Další infografiky, studie a datasety k tématu <em>{{ include.link.name-long }}</em>...</p>
+                        <p>{{ site.data.lang.text.index.all-tag }} <em>{{ include.link.name-long }}</em>...</p>
                     {% endif %}
                 </div>
             </div>
