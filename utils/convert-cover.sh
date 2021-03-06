@@ -34,26 +34,25 @@ SRC_FILE_JPG=$1
 DST_FILE_JPG=$2
 
 # Create destination folder if necessary
-mkdir -p $(dirname $DST_FILE_PDF)
+mkdir -p $(dirname $DST_FILE_JPG)
 
 resize_jpg() {
     input_jpg=$1
     width=$2
     convert \
         "$input_jpg" \
-        -resize ${width}x
+        -resize "${width}x" \
         "${input_jpg%.jpg}_$width.jpg" \
         >/dev/null 2>&1
 }
 
-# Resize cover into JPGs of various sizes.
-for width in ${WIDTHS[@]}; do
-    echo -e `basename $DST_FILE_JPG`": converting to PNG (${width}px)..."
-    resize_jpg "$SRC_FILE_JPG" $width
-done
-
-# If all previous conversions pass, copy the main cover, checked by Make.
 echo `basename $SRC_FILE_JPG`": copying to $DST_FILE_JPG..."
 cp "$SRC_FILE_JPG" "$DST_FILE_JPG"
+
+# Resize cover into JPGs of various sizes.
+for width in ${WIDTHS[@]}; do
+    echo -e `basename $DST_FILE_JPG`": resizing to JPG (${width}px)..."
+    resize_jpg "$DST_FILE_JPG" $width
+done
 
 echo `basename $SRC_FILE_JPG`": All done."
