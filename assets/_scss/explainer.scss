@@ -6,7 +6,7 @@
 .explainer-cover::before {
     content: " ";
     display: block;
-    background-image: var(--path);
+    background-image: var(--path-mobile);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -108,7 +108,7 @@
     }
 
     .explainer-cover {
-        background-image: var(--path);
+        background-image: var(--path-desktop);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
