@@ -7,6 +7,9 @@ DATASETS_DST=$(addprefix $(DATASETS_FOLDER)/,$(notdir $(DATASETS_SRC:.md=.png)))
 STUDIES_FOLDER=assets/studies
 STUDIES_SRC=$(wildcard _studies/*.jpg _studies/*.png)
 STUDIES_DST=$(addprefix $(STUDIES_FOLDER)/,$(notdir $(STUDIES_SRC)))
+COVERS_FOLDER=assets/covers
+COVERS_SRC=$(wildcard _explainers/*.jpg)
+COVERS_DST=$(addprefix $(COVERS_FOLDER)/,$(notdir $(COVERS_SRC)))
 
 PODMAN=podman
 CONTAINER_IMAGE=factsonclimate/web
@@ -47,10 +50,10 @@ humans.txt: ../CONTRIBUTORS.md
 robots.txt: .well-known-templates/robots.txt _config.yml
 	sed "s|{{ URL }}|$(URL)|" $< >$@
 
-local: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml humans.txt robots.txt .well-known/security.txt
+local: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) bundle-install _config.yml humans.txt robots.txt .well-known/security.txt
 	bundle exec jekyll serve --trace
 
-build: $(INFOGRAPHICS_DST) $(STUDIES_DST) bundle-install _config.yml humans.txt robots.txt .well-known/security.txt
+build: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) bundle-install _config.yml humans.txt robots.txt .well-known/security.txt
 	@echo "Building the website using Jekyll ..."
 	@if [ "$(TRAVIS_BRANCH)" = "master" ]; then echo "=== Production build ==="; else echo "=== Development build ==="; fi
 	if [ "$(TRAVIS_BRANCH)" = "master" ]; then JEKYLL_ENV=production bundle exec jekyll build; else bundle exec jekyll build; fi
@@ -64,6 +67,7 @@ check: build
 clean:
 	rm -rf $(INFOGRAPHICS_FOLDER)
 	rm -rf $(STUDIES_FOLDER)
+	rm -rf $(COVERS_FOLDER)
 	rm -f robots.txt .well-known/security.txt humans.txt _config.yml
 
 $(INFOGRAPHICS_FOLDER)/%.pdf: _infographics/*/%.pdf
@@ -75,6 +79,9 @@ $(INFOGRAPHICS_FOLDER)/%.pdf: _studies/%.pdf
 $(STUDIES_FOLDER)/%: _studies/%
 	mkdir -p $(@D)
 	cp $< $@
+
+$(COVERS_FOLDER)/%: _explainers/%
+	@utils/convert-cover.sh $< $@
 
 dataset-images: $(DATASETS_DST)
 
