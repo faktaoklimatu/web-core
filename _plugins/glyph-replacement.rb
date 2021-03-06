@@ -4,6 +4,7 @@ Jekyll::Hooks.register :site, :post_render do |site|
   Jekyll.logger.info  "                  * Replacing special spaces ..."
   
   site.documents.each do |page|
+    Jekyll.logger.error "Undefined page.output for '#{page.path}'. Consider excluding this file" if not page.respond_to? :output
     replace!(page.output)
   end
 end
