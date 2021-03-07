@@ -7,6 +7,11 @@
         <div class="card-img-overlay small-card-img-overlay">
             <h5>Dataset</h5>
         </div>
+    {% when 'explainer' %}
+        <img src="/assets-local/cover/{{ item.slug }}.jpg" alt="Explainer: {{ item.title }}" title="Explainer: {{ item.title }}" class="img-fluid card-img" />
+        <div class="card-img-overlay small-card-img-overlay">
+            <h5>Explainer</h5>
+        </div>
     {% when 'study' %}
         <img src="{{ site.baseurl }}/assets/studies/{{ item.slug }}.jpg" alt="Studie: {{ item.title }}" class="img-fluid card-img" />
         <div class="card-img-overlay small-card-img-overlay">
