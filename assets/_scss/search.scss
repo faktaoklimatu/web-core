@@ -32,38 +32,41 @@ nav.navbar-search {
     align-items: stretch;
 
     #searchbox {
-        flex: 10 0 auto;
+        flex: 1 0 auto;
         width: auto;
         margin-left: auto;
         margin-right: auto;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
+        box-shadow: 0 0 0.5rem rgba(0,0,0,0.4);
     }
     #search-close {
         flex: 0 0 auto;
         margin-left: 0.5rem;
         margin-bottom: 0;
         margin-top: 0;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
+        box-shadow: 0 0 0.5rem rgba(0,0,0,0.4);
     }
 }
 
 /* Search results */
 
 #omnisearch-suggestions-container {
+    --header-size: 56px;
+    --padding-top: 0.5rem;
+    --padding-bottom: 1rem;
     width: 100%;
     padding-left: 15px;
     padding-right: 15px;
-    padding-top: 0.5rem;
-    padding-bottom: 1rem;
-    max-height: calc(100vh - 56px);
+    padding-top: var(--padding-top);
+    padding-bottom: var(--padding-bottom);
+    max-height: calc(100vh - var(--header-size));
     position: absolute;
     left: 0;
     right: 0;
-    top: 56px;
+    top: var(--header-size);
 
     #omnisearch-suggestions {
         position: static;
-        max-height: calc(100vh - 56px - 1.5rem);
+        max-height: calc(100vh - var(--header-size) - var(--padding-top) - var(--padding-bottom));
         float: none;
         margin-left: auto;
         margin-right: auto;
@@ -82,13 +85,14 @@ nav.navbar-search {
                 font-size: 1.2rem;
                 display: block;
             }
+
             .search-preview {
                 width: 100px;
                 height: 71px;
                 float: left;
                 margin-right: 1rem;
                 margin-bottom: 2rem;
-                background-color: #e0e0e0;
+                background-color: #f0f0f0;
 
                 img {
                     max-height: 100%;
@@ -100,22 +104,27 @@ nav.navbar-search {
                     background: url("/assets/favicon.png") 50% 20%/32px no-repeat;
                 }
             }
+
             .snippet {
                 margin: 15px 0px;
                 font-size: 0.9rem;
             }
+
             .date {
                 display: block;
                 color: $c-grey;
             }
+
             .keyword {
                 background-color: yellow;
             }
         }
+
         .dropdown-item.active, .dropdown-item:active {
             color: inherit;
             background-color: $c-extralight-blue;
         }
+
         .dropdown-item.empty {
             font-size: 0.9rem;
             color: $c-secondary;
@@ -135,19 +144,22 @@ nav.navbar-search {
     #searchbox-form {
         width: 600px;
     }
+
     #omnisearch-suggestions-container {
         #omnisearch-suggestions {
             width: 600px;
 
             .dropdown-item {
-                $text-width: 378px;
+                --text-width: 378px;
+
                 .title {
-                    width: $text-width;
+                    width: var(--text-width);
                     float: right;
                     padding-top: 1rem;
                     font-size: 1.2rem;
                     display: block;
                 }
+
                 .search-preview {
                     float: left;
                     width: 150px;
@@ -161,9 +173,10 @@ nav.navbar-search {
                         background-size: 48px;
                     }
                 }
+
                 .snippet {
                     float: right;
-                    width: $text-width;
+                    width: var(--text-width);
                     font-size: 1rem;
                 }
             }
