@@ -2,7 +2,7 @@
 layout: null
 ---
 [
-  {%- assign objects = site.infographics | concat: site.studies | sort: "published" | reverse %}
+  {%- assign objects = site.infographics | concat: site.studies | concat: site.explainers | sort: "published" | reverse %}
   {%- for page in objects %}
     {
         "title" : "{{ page.title | strip_html }}",
