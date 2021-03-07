@@ -2,7 +2,7 @@
     <div id="nav-container" class="container">
         <a class="navbar-brand" href="/">{{ site.title }}</a>
         <div id="navbar-buttons">
-            <button class="btn btn-sm btn-outline-secondary" type="button" onclick="showSearch()" aria-label="Vyhledávání">
+            <button id="searchShow" class="btn btn-sm btn-outline-secondary" type="button" aria-label="Vyhledávání">
                 <i class="fas fa-search"></i>
             </button>
             <button id="toggler" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Zobrazit/skrýt navigaci">
@@ -47,7 +47,7 @@
     <div id="search-container" class="container">
         <form id="searchbox-form">
             <input class="form-control me-2" id="searchbox" data-bs-toggle="dropdown" type="search" placeholder="Hledat" aria-label="Hledat" autocomplete="off">
-            <button id="search-close" class="btn btn-sm btn-outline-secondary" type="button" onclick="hideSearch()" aria-label="Zrušit">
+            <button id="searchHide" class="btn btn-sm btn-outline-secondary" type="button" aria-label="Zrušit">
                 <i class="fas fa-fw fa-times"></i>
             </button>
         </form>
