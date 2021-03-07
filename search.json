@@ -10,12 +10,38 @@ layout: null
         "slug" : "{{ page.slug }}",
         {%- capture html %}{% include preview-block-small.html item=page %}{%- endcapture %}
         "block" : {{ html | jsonify }},
-        {%- if page.layout == 'infographic'%}
-        "picture" : "{{ site.baseurl }}/assets/generated/{{ page.slug }}_600.png",
-        {%- endif %}
         {%- assign perex = page.caption | append: " " | append: page.perex %}
         "perex" : "{{ perex }}",
         "content" : "{{ page.content | markdownify | normalize_whitespace | strip | strip_html | strip_newlines | replace: '"', '' | slice: 0, 3000 }}"
-    }{%- if forloop.last %}{% else %},{% endif %}
+    },
   {%- endfor %}
+    {
+        "title" : "Slovník pojmů",
+        "url" : "/slovnik",
+        "block" : "<div class='branded-card'></div><div class='card-img-overlay small-card-img-overlay'><h5>Slovník</h5></div>",
+        {%- capture content %}
+          {%- for item in site.data.glossary %} {{ item.name-short }} {{ item.name-long }} {{ item.description }}{% endfor %}
+        {%- endcapture %}
+        "content" : "{{ content | markdownify | normalize_whitespace | strip | strip_html | strip_newlines | replace: '"', '' }}"
+    },
+    {
+      "title" : "Další zdroje a odkazy",
+      "url" : "/zdroje",
+      "block" : "<div class='branded-card'></div><div class='card-img-overlay small-card-img-overlay'><h5>Zdroje</h5></div>",
+      {%- capture content %}
+        {%- for res in site.data.resources %}
+          {%- for item in res[1].items %} {{ item.title }} {{ item.name-long }} {{ item.description-short }} {{ item.description-long }}{% endfor %}
+        {%- endfor %}
+      {%- endcapture %}
+      "content" : "{{ content | markdownify | normalize_whitespace | strip | strip_html | strip_newlines | replace: '"', '' }}"
+    },
+    {
+      "title" : "Aktuality",
+      "url" : "/aktuality",
+      "block" : "<div class='branded-card'></div><div class='card-img-overlay small-card-img-overlay'><h5>Aktuality</h5></div>",
+      {%- capture content %}
+        {%- for item in site.data.news %} {{ item.title }} {{ item.summary }}{%- endfor %}
+      {%- endcapture %}
+      "content" : "{{ content | markdownify | normalize_whitespace | strip | strip_html | strip_newlines | replace: '"', '' }}"
+    }
 ]
