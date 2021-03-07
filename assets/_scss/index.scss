@@ -293,6 +293,10 @@ nav.navbar-search {
             color: inherit;
             background-color: $c-extralight-blue;
         }
+        .dropdown-item.empty {
+            font-size: 0.9rem;
+            color: $c-secondary;
+        }
     }
 }
 
