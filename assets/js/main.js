@@ -158,7 +158,7 @@ function searchInternal() {
         let newSearchString = $('#searchbox').val();
         if (newSearchString != searchString) {
             searchString = newSearchString;
-            searchResults = fuse.search(searchString);
+            searchResults = searchString.length > 1 ? fuse.search(searchString) : null;
             updateResults(searchResults);
         }
         if ($('#omnisearch-suggestions *').length > 0) {
@@ -228,7 +228,13 @@ function getTitle(matches, unmatchedTitle) {
     return result;
 }
 
-function updateResults(results) {
+function getResultsHtml(results) {
+    if (results == null) {
+        return '';
+    }
+    if (results.length == 0) {
+        return '<div class="dropdown-item empty">Nic nenalezeno</div>';
+    }
     var resultsHtml = '';
     results.forEach(function (res) {
         let item = res.item;
@@ -240,7 +246,11 @@ function updateResults(results) {
                        '<div class="snippet">' + snippet + '</div>' +
                        '</a>';
     });
-    $('#omnisearch-suggestions').html(resultsHtml);
+    return resultsHtml;
+}
+
+function updateResults(results) {
+    $('#omnisearch-suggestions').html(getResultsHtml(results));
     $('#omnisearch-suggestions a:first-of-type').addClass('active');
 }
 
