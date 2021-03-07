@@ -246,6 +246,11 @@ img.text-img {
         padding-right: 0.5rem;
         margin-top: -0.3rem;
     }
+
+    button.btn {
+        margin: 0.25rem 0.1rem;
+        font-size: 1.1rem;
+    }
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -277,6 +282,8 @@ img.text-img {
         }
     }
 }
+
+/* Developer version warning box */
 
 #dev-warning {
     --dev-space: 0.6rem;
