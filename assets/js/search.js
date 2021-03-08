@@ -1,103 +1,50 @@
+---
+# Adding empty front matter to get access to Jekyll variables.
+---
+
 class Search {
     constructor() {
         this.fuse = null;
         this.searchString = null;
         this.timeout = null;
 
-        $('#searchShow').on('click', $.proxy(this.showSearch, this));
-        $('#searchHide').on('click', $.proxy(this.hideSearch, this));
+        // CSS classes to use for different modes.
+        this.classes = Object.freeze({
+            selectedEntry: 'active',
+            searchingMode: 'navbar-search',
+            openSearchbox: 'searchbox-open',
+        });
 
-        $('#searchbox').on('keydown', $.proxy(this.navigate, this));
-        $('#searchbox').on('focus', $.proxy(this.instantSearch, this));
-        $('#searchbox').on('keyup', $.proxy(this.delayedSearch, this));
-        $('#searchbox').on('blur', $.proxy(this.maybeHideSearch, this));
+        // CSS selectors for accessing page elements.
+        this.selectors = Object.freeze({
+            searchbox: '#searchbox',
+            results: '#omnisearch-suggestions',
+            resultElements: '#omnisearch-suggestions *',
+            resultAllEntries: '#omnisearch-suggestions a',
+            resultSelectedEntry: `#omnisearch-suggestions a.${this.classes.selectedEntry}`,
+            resultsFirstEntry: '#omnisearch-suggestions a:first-of-type',
+            nav: 'nav',
+            show: '#searchShow',
+            hide: '#searchHide',
+        });
 
-        $('#omnisearch-suggestions').on('blur', $.proxy(this.maybeHideSearch, this));
-    }
+        // Search index types.
+        this.types = Object.freeze({
+            title: 'title',
+            perex: 'perex',
+            content: 'content',
+        });
 
-    /**
-     * Event callbacks.
-     */
-    showSearch() {
-        $('nav').addClass('navbar-search');
-        $('#searchbox').focus();
-    }
+        // Keycodes used in navigation shortcuts.
+        this.shortcuts = Object.freeze({
+            escape: '27',
+            enter: '13',
+            up: '38',
+            down: '40',
+        });
 
-    hideSearch() {
-        $('nav').removeClass('navbar-search');
-        this._hideSuggestions();
-    }
-
-    maybeHideSearch(event) {
-        if ($("#searchbox")[0].contains(event.relatedTarget) ||
-            $('#omnisearch-suggestions')[0].contains(event.relatedTarget)) {
-            return;
-        }
-        this.hideSearch();
-    }
-
-    navigate(e) {
-        if (e.keyCode == '27') {  // escape
-            e.preventDefault();
-            this.hideSearch();
-            return;
-        }
-        if (e.keyCode == '13') {  // enter
-            $('#omnisearch-suggestions a.active')[0].click();
-            return false;
-        }
-        if (e.keyCode == '38' || e.keyCode == '40') {  // up/down arrow
-            e.preventDefault();
-            let up = e.keyCode == '38';
-            let allLinks = $('#omnisearch-suggestions a');
-            for (let i = 0; i < allLinks.length; i++) {
-                if (allLinks.eq(i).hasClass('active')) {
-                    let next = i + (up ? -1 : 1);
-                    if (next >= 0 && next < allLinks.length) {
-                        allLinks.eq(i).removeClass('active');
-                        allLinks.eq(next).addClass('active');
-                        allLinks.get(next).scrollIntoView({block: "nearest", inline: "nearest"});
-                    }
-                    return;
-                }
-            }
-            return;
-        }
-    }
-
-    instantSearch(e) {
-        if (e.keyCode == '13' || e.keyCode == '27' || e.keyCode == '38' || e.keyCode == '40') {
-            return;
-        }
-        this._initAndSearch();
-    }
-
-    delayedSearch(e) {
-        if (e.keyCode == '13' || e.keyCode == '27' || e.keyCode == '38' || e.keyCode == '40') {
-            return;
-        }
-        window.clearTimeout(this.timeout);
-        this.timeout = window.setTimeout($.proxy(this._initAndSearch, this), 200);
-    }
-
-    /**
-     * Private implementation functions.
-     */
-
-    _initAndSearch() {
-        if (this.fuse === null) {
-            // Init by fetching site.json file
-            jQuery.get("/search.json", $.proxy(this._onSiteJsonFetched, this)).fail(() => {
-                // TODO: handle failure gracefully.
-            });
-            return;
-        }
-
-        this._search();
-    }
-
-    _onSiteJsonFetched (data) {
-        var options = { 		// initialize options for fuse.js
+        // Options for the fuse library.
+        this.fuseOptions = Object.freeze({
             shouldSort: true,
             threshold: 0.3,
             ignoreLocation: true,
@@ -107,85 +54,194 @@ class Search {
             includeScore: true,
             keys: [
                 {
-                    name: "title",
+                    name: this.types.title,
                     weight: 0.2		// give title more importance
                 },
                 {
-                    name: "perex",
+                    name: this.types.perex,
                     weight: 0.3		// give perex more importance
                 },
                 {
-                    name: "content",
+                    name: this.types.content,
                     weight: 0.6
                 }
             ]
-        };
-        this.fuse = new Fuse(data, options);
-        this._search();
+        });
+
+        $(this.selectors.show).on('click', $.proxy(this.showSearch, this));
+        $(this.selectors.hide).on('click', $.proxy(this.hideSearch, this));
+
+        $(this.selectors.searchbox).on('blur', $.proxy(this.maybeHideSearch, this));
+        $(this.selectors.searchbox).on('keydown', $.proxy(this.navigate, this));
+        $(this.selectors.searchbox).on('focus', $.proxy(this.instantSearch, this));
+        $(this.selectors.searchbox).on('keyup', $.proxy(this.delayedSearch, this));
+
+        $(this.selectors.results).on('blur', $.proxy(this.maybeHideSearch, this));
     }
 
-    _search() {
-        let searchResults = [];
-        let newSearchString = $('#searchbox').val();
+    /**
+     * Event callbacks.
+     */
+    showSearch() {
+        $(this.selectors.nav).addClass(this.classes.searchingMode);
+        $(this.selectors.searchbox).focus();
+    }
+
+    hideSearch() {
+        $(this.selectors.nav).removeClass(this.classes.searchingMode);
+        this.hideSuggestions();
+    }
+
+    maybeHideSearch(event) {
+        if ($(this.selectors.searchbox)[0].contains(event.relatedTarget) ||
+            $(this.selectors.results)[0].contains(event.relatedTarget)) {
+            return;
+        }
+        this.hideSearch();
+    }
+
+    navigate(e) {
+        switch (e.keyCode) {
+            case this.shortcuts.escape:
+                e.preventDefault();
+                this.hideSearch();
+                return;
+            case this.shortcuts.enter:
+                $(this.selectors.resultSelectedEntry)[0].click();
+                return false;
+            case this.shortcuts.down:
+                e.preventDefault();
+                this.move(true);
+                return;
+            case this.shortcuts.up:
+                e.preventDefault();
+                this.move(false);
+                return;
+        }
+    }
+
+    move(down) {
+        let allEntries = $(this.selectors.resultAllEntries);
+        for (let i = 0; i < allEntries.length; i++) {
+            if (allEntries.eq(i).hasClass(this.classes.selectedEntry)) {
+                let next = i + (down ? 1 : -1);
+                if (next < 0 || next >= allEntries.length) {
+                    return;
+                }
+                allEntries.eq(i).removeClass(this.classes.selectedEntry);
+                allEntries.eq(next).addClass(this.classes.selectedEntry);
+                allEntries.get(next).scrollIntoView({block: "nearest", inline: "nearest"});
+                break;
+            }
+        }
+    }
+
+    isShortcut(keyCode) {
+        return Object.values(this.shortcuts).includes(keyCode);
+    }
+    
+    instantSearch(e) {
+        // Skip for special shortcuts, these are handled by navigate().
+        if (this.isShortcut(e.keyCode)) {
+            return;
+        }
+        this.search();
+    }
+
+    delayedSearch(e) {
+        // Skip for special shortcuts, these are handled by navigate().
+        if (this.isShortcut(e.keyCode)) {
+            return;
+        }
+        window.clearTimeout(this.timeout);
+        this.timeout = window.setTimeout($.proxy(this.search, this), 200);
+    }
+
+    /**
+     * Private implementation functions.
+     */
+
+    search() {
+        if (this.fuse === null) {
+            jQuery.get("/search.json", $.proxy(this.onSiteJsonSucceeded, this)).fail($.proxy(this.onSiteJsonFailed, this));
+            return;
+        }
+
+        let newSearchString = $(this.selectors.searchbox).val();
         if (newSearchString != this.searchString) {
             this.searchString = newSearchString;
-            searchResults = this.searchString.length > 1 ? this.fuse.search(this.searchString) : null;
-            this._updateResults(searchResults);
+            let searchResultsHtml = '';
+            if (this.searchString.length > 1) {
+                let searchResults = this.fuse.search(this.searchString);
+                searchResultsHtml = searchResults.length ? 
+                                        this.getResultsHtml(searchResults) : 
+                                        this.getEmptyResultsHtml('{{ site.data.lang.navigation.search-empty }}');
+            } else {
+                searchResultsHtml = '';
+            }
+            this.updateResults(searchResultsHtml);
         }
-        if ($('#omnisearch-suggestions *').length > 0) {
-            this._showSuggestions();
+        if ($(this.selectors.resultElements).length > 0) {
+            this.showSuggestions();
         } else {
-            this._hideSuggestions();
+            this.hideSuggestions();
         }
     }
 
-    _showSuggestions() {
+    onSiteJsonSucceeded (data) {
+        this.fuse = new Fuse(data, this.fuseOptions);
+        this.search();
+    }
+
+    onSiteJsonFailed () {
+        this.updateResults(this.getEmptyResultsHtml('{{ site.data.lang.navigation.search-failed }}'));
+        this.showSuggestions();
+    }
+
+    updateResults(resultsHtml) {
+        $(this.selectors.results).html(resultsHtml);
+        $(this.selectors.resultsFirstEntry).addClass(this.classes.selectedEntry);
+    }
+
+    showSuggestions() {
         let $body = $(document.body);
         let oldWidth = $body.innerWidth();
         $body.width(oldWidth);
-        $('nav').width(oldWidth);
+        $(this.selectors.nav).width(oldWidth);
         $body.css("overflow", "hidden");
-        $('#omnisearch-suggestions').show();
-        $('#searchbox').addClass('searchbox-open');
+        $(this.selectors.results).show();
+        $(this.selectors.searchbox).addClass(this.classes.openSearchbox);
     }
 
-    _hideSuggestions() {
-        $('#omnisearch-suggestions').hide();
+    hideSuggestions() {
+        $(this.selectors.results).hide();
         let $body = $(document.body);
         $body.css("overflow", "auto");
         $body.width("auto");
-        $('nav').width("auto");
-        $('#searchbox').removeClass('searchbox-open');
+        $(this.selectors.nav).width("auto");
+        $(this.selectors.searchbox).removeClass(this.classes.openSearchbox);
     }
 
-    _updateResults(results) {
-        $('#omnisearch-suggestions').html(this._getResultsHtml(results));
-        $('#omnisearch-suggestions a:first-of-type').addClass('active');
-    }
-
-    _getResultsHtml(results) {
-        if (results == null) {
-            return '';
-        }
-        if (results.length == 0) {
-            return '<div class="dropdown-item empty">Nic nenalezeno</div>';
-        }
+    getResultsHtml(results) {
         var resultsHtml = '';
         results.forEach(res => {
             let item = res.item;
-            let snippet = this._getSnippet(res.matches);
-            let title = this._getTitle(res.matches, item.title);
-            resultsHtml += '<a class="dropdown-item clearfix" href="' + item.url + '">';
-            resultsHtml += '<div class="title">' + title + '</div>';
-            resultsHtml += '<div class="search-preview card">' + item.block + '</div>' +
-                           '<div class="snippet">' + snippet + '</div>' +
-                           '</a>';
+            let title = this.getTitle(res.matches, item.title);
+            let snippet = this.getSnippet(res.matches);
+            let card = `<div class="title">${title}</div>` +
+                       `<div class="search-preview card">${item.block}</div>` +
+                       `<div class="snippet">${snippet}</div>`;
+            resultsHtml += `<a class="dropdown-item clearfix" href="${item.url}">${card}</a>`;
         });
         return resultsHtml;
     }
 
-    _getSnippet(matches) {
-        let instances = this._getKeywordInstances(matches, false);
+    getEmptyResultsHtml(infoText) {
+        return `<div class="dropdown-item empty">${infoText}</div>`;
+    }
+
+    getSnippet(matches) {
+        let instances = this.getKeywordInstances(matches, false);
         if (instances.length == 0)
             return '';
 
@@ -200,7 +256,7 @@ class Search {
             let result = '';
             if (instance.start - context - 1 >= 0) result += '...';
             if (prefix) result += prefix;
-            result += '<span class="keyword">' + instance.text.substring(instance.start, instance.end) + '</span>';
+            result += this.getKeywordHTML(instance.text.substring(instance.start, instance.end));
             if (suffix) result += suffix;
             if (instance.end + context + 1 < instance.text.length) result += '...';
             results.push(result);
@@ -208,8 +264,8 @@ class Search {
         return results.join(' ');
     }
 
-    _getTitle(matches, unmatchedTitle) {
-        let instances = this._getKeywordInstances(matches, true);
+    getTitle(matches, unmatchedTitle) {
+        let instances = this.getKeywordInstances(matches, true);
         if (instances.length == 0)
             return unmatchedTitle;
         // Only consider the first.
@@ -218,17 +274,21 @@ class Search {
         let suffix = instance.text.substring(instance.end);
         let result = '';
         if (prefix) result += prefix;
-        result += '<span class="keyword">' + instance.text.substring(instance.start, instance.end) + '</span>';
+        result += this.getKeywordHTML(instance.text.substring(instance.start, instance.end));
         if (suffix) result += suffix;
         return result;
     }
 
-    _getKeywordInstances(matches, shouldMatchTitle) {
+    getKeywordHTML(text) {
+        return `<span class="keyword">${text}</span>`;
+    }
+
+    getKeywordInstances(matches, shouldMatchTitle) {
         let instances = [];
         if (!matches)
             return instances;
         for (const match of matches) {
-            let isTitle = (match.key == 'title');
+            let isTitle = (match.key == this.types.title);
             if (isTitle != shouldMatchTitle) {
                 continue;
             }
