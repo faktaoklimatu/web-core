@@ -52,6 +52,8 @@
     margin-top: 1.5em;
 }
 
-.tags-list {
-    padding-left: 19rem;
+@media (min-width: 768px) {
+    .tags-list {
+        padding-left: 19rem;
+    }
 }
