@@ -14,6 +14,7 @@ addons:
       - sourceline: 'ppa:inkscape.dev/stable'
     packages:
     - inkscape
+    - imagemagick
 
 # Restore file times for better GNU Make optimizations
 before_install:
