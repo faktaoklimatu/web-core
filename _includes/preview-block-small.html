@@ -3,24 +3,24 @@
     {% when 'infographic' %}
         <img src="/assets/generated/{{ item.slug }}_600.png" alt="{{ item.title }}" class="img-fluid" />
     {% when 'dataset' %}
-        <img src="/assets/datasets/{{ item.slug }}.png" alt="Dataset: {{ item.title }}" class="img-fluid card-img" />
+        <img src="/assets/datasets/{{ item.slug }}.png" alt="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" class="img-fluid card-img" />
         <div class="card-img-overlay small-card-img-overlay">
-            <h5>Dataset</h5>
+            <h5>{{ site.data.lang.text.dataset.dataset }}</h5>
         </div>
     {% when 'explainer' %}
-        <img src="/assets-local/cover/{{ item.slug }}.jpg" alt="Explainer: {{ item.title }}" title="Explainer: {{ item.title }}" class="img-fluid card-img" />
+        <img src="/assets/covers/{{ item.slug }}_600.jpg" alt="{{ site.data.lang.text.explainer.explainer }}: {{ item.title }}" class="img-fluid card-img" />
         <div class="card-img-overlay small-card-img-overlay">
-            <h5>Explainer</h5>
+            <h5>{{ site.data.lang.text.explainer.explainer }}</h5>
         </div>
     {% when 'study' %}
-        <img src="/assets/studies/{{ item.slug }}.jpg" alt="Studie: {{ item.title }}" class="img-fluid card-img" />
+        <img src="/assets/studies/{{ item.slug }}.jpg" alt="{{ site.data.lang.text.study.study }}: {{ item.title }}" class="img-fluid card-img" />
         <div class="card-img-overlay small-card-img-overlay">
-            <h5>Studie</h5>
+            <h5>{{ site.data.lang.text.study.study }}</h5>
         </div>
     {% when 'survey' %}
         <div class='branded-card'></div>
         <div class="card-img-overlay small-card-img-overlay">
-            <h5>Rešerše</h5>
+            <h5>{{ site.data.lang.text.survey.survey }}</h5>
         </div>
     {% else %}
         <div class="card-img-overlay small-card-img-overlay">
