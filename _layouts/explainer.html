@@ -14,26 +14,18 @@
       </a>
       <div class="collapse" id="coverLicense">
         <dl>
-          <dt>Zdroj:</dt>
+          <dt>{{ site.data.lang.text.explainer.source }}:</dt>
           <dd><a href="{{ page.cover-source-url }}">{{ page.cover-source-text }}</a></dd>
           {%- if page.cover-source-author %}
-            <dt>Autor:</dt>
+            <dt>{{ site.data.lang.text.explainer.author }}:</dt>
             <dd>{{ page.cover-source-author }}</dd>
           {%- endif %}
-          {%- if page.cover-source-license %}
             <dt>
-              Licence:
+              {{ site.data.lang.text.explainer.licence }}:
             </dt>
             <dd>
-              {%- if page.cover-source-license-url %}
-                <a href="{{ page.cover-source-license-url }}">
-              {%- endif %}
-              {{ page.cover-source-license }}
-              {%- if page.cover-source-license-url %}
-                </a>
+              <a href="{{ page.cover-source-license-url }}">{{ page.cover-source-license }}</a>
             </dd>
-            {%- endif %}
-          {%- endif %}
           </dl>
         </div>
     </div>
@@ -43,7 +35,7 @@
         <div class="container clearfix">
           <div class="row justify-content-center">
             <div class="col">
-              <div class="explainer-type">Explainer</div>
+              <div class="explainer-type">{{ site.data.lang.text.explainer.explainer }}</div>
               <h1>{{ page.title }}</h1>
               <div class="explainer-metadata">
                 {% include tags.html tags=page.tags link="true" %}
