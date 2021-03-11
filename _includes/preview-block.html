@@ -8,7 +8,7 @@
         </div>
         {%- endunless %}
     {% when 'dataset' %}
-        <img src="/assets-local/datasets/{{ item.slug }}.png" alt="Dataset: {{ item.title }}" title="Dataset: {{ item.title }}" class="img-fluid card-img" />
+        <img src="/assets-local/datasets/{{ item.slug }}.png" alt="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" title="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" class="img-fluid card-img" />
         <div class="card-img-overlay card-dataset-overlay">
           <h5 class="card-title">{{ item.title }}</h5>
         </div>
@@ -18,11 +18,11 @@
         </div>
         {%- endunless %}
     {% when 'explainer' %}
-        <div style="background-image: url('/assets-local/cover/{{ item.slug }}.jpg')" title="Explainer: {{ item.title }}" class="preview-card-image img-fluid card-img">
+        <div style="background-image: url('/assets-local/cover/{{ item.slug }}.jpg')" title="{{ site.data.lang.text.explainer.explainer }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
         </div>
         <div class="card-img-overlay card-dataset-overlay">
         <h5 class="card-title">{{ item.title }}</h5>
-        <h6 class="card-subtitle">Explainer</h6>
+        <h6 class="card-subtitle">{{ site.data.lang.text.explainer.explainer }}</h6>
         </div>
         {%- unless include.no_include_tags %}
         <div class="card-img-overlay tags-overlay-box">
