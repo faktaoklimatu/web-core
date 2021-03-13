@@ -82,17 +82,17 @@ nav.navbar-search {
             white-space: normal;
 
             .title {
-                padding-top: 1rem;
-                font-size: 1.2rem;
+                padding-top: 0.5rem;
+                font-size: 1.1rem;
                 display: block;
             }
 
             .search-preview {
-                width: 100px;
-                height: 71px;
+                width: 120px;
+                height: 85px;
                 float: left;
-                margin-right: 1rem;
-                margin-bottom: 2rem;
+                margin-right: 0.8rem;
+                margin-block: 0.8rem;
                 background-color: #f0f0f0;
 
                 img {
@@ -107,13 +107,8 @@ nav.navbar-search {
             }
 
             .snippet {
-                margin: 15px 0px;
-                font-size: 0.9rem;
-            }
-
-            .date {
-                display: block;
-                color: $c-grey;
+                margin-block: 0.8rem;
+                font-size: 0.8rem;
             }
 
             .keyword {
@@ -151,7 +146,8 @@ nav.navbar-search {
             width: 600px;
 
             .dropdown-item {
-                --text-width: 378px;
+                // card-width - image-with - card-margins - image-right-margin
+                --text-width: calc(592px - 180px - 2rem - 1rem);
 
                 .title {
                     width: var(--text-width);
@@ -163,22 +159,24 @@ nav.navbar-search {
 
                 .search-preview {
                     float: left;
-                    width: 150px;
-                    height: 106px;
-                    margin-bottom: 1rem;
+                    width: 180px;
+                    height: 127px;
                     margin-right: 0;
+                    margin-block: 1rem;
 
                     div.branded-card {
                         width: 100%;
                         height: 100%;
                         background-size: 48px;
+                        background-position-y: 30%;
                     }
                 }
 
                 .snippet {
                     float: right;
                     width: var(--text-width);
-                    font-size: 1rem;
+                    font-size: 0.9rem;
+                    margin-block: 0.5rem;
                 }
             }
         }
