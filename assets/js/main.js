@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    if ($("#dev-warning")) {
+    if ($("#dev-warning").length == 1) {
         console.log('This is the local development version of the website.');
     }
 
