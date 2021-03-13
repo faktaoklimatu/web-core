@@ -231,7 +231,8 @@ class Search {
             let card = `<div class="title">${title}</div>` +
                        `<div class="search-preview card">${item.block}</div>` +
                        `<div class="snippet">${snippet}</div>`;
-            resultsHtml += `<a class="dropdown-item clearfix" href="${item.url}">${card}</a>`;
+            let url = `${item.url}?q=${encodeURIComponent(this.searchString)}`;
+            resultsHtml += `<a class="dropdown-item clearfix" href="${url}">${card}</a>`;
         });
         return resultsHtml;
     }
