@@ -1,85 +1,29 @@
-# O projektu Fakta o klimatu
+# Facts on climate: Web core
 
-Shromažďujeme data o klimatu a klimatické změně, která poskytují vědecké instituce (ČHMÚ, NASA, Eurostat a jiné) a zpracováváme z nich grafy, infografiky a přístupné datasety pro další použití.
+This repository contains the core part of our websites with climate change infographics. The mission of the whole project is to change how people talk and think about climate change and climate policies. The deployed websites can be found on [faktaoklimatu.cz](https://faktaoklimatu.cz) (in Czech, currently the biggest site), [faktyoklime.sk](https://faktyoklime.sk) (in Slovak) and [factsonclimate.org](https://factsonclimate.org) (in English, currently only a titlepage placeholder).
 
-Jsme studenti, doktorandi, akademici nebo IT profesionálové. Sami jsme si zkusili vyhledat data o teplotě či emisích, najít určité informace v mnohasetstránkových zprávách IPCC nebo původních článcích. Jde to, ale zabere to hodně času. Musíte umět dobře anglicky a musíte si dohledávat spoustu souvislostí. Běžný novinář nebo politik (ani bězný Čech) většinou nemá tolik trpělivosti nebo dostatečnou úroveň angličtiny a tak si data nevyhledá. Rozhodli jsme se proto, že tu práci, kterou jsme s hledáním dat sami měli, ostatním ušetříme - zpracujeme infografiky, dáme odkazy na původní data i naše zpracované datasety na jedno místo a doplníme základní souvislosti. A dáme je k dispozici všem, pro koho budou užitečné. Doufáme, že se postupně tyto informace dostanou ke všem, kterých se změny klimatu týkají. Tedy ke všem.
+## Local website build
 
-Informace k licenci najdete v souboru [LICENSE.md](LICENSE.md), autory v [CONTRIBUTORS.md](CONTRIBUTORS.md) vývojářskou dokumentaci najdete níže.
+To build the website, a Linux environment is advisable (WSL in Windows 10 is sufficient). Currently tested systems are Ubuntu 20.10+, Fedora 33+ and Windows 10 WSL-1. There are two options to build the website: local installation or container-based installation. Don't mix local and container-based build. If you do, you may need to hard-clean the build using `make clean-build`.
 
-## Vývojářská dokumentace
+### Local installation
 
-### Jak nahrávat obsah
+The local installation has the following prerequisites:
 
-Nahrávání obsahu vyžaduje drobné technické zkušenosti, schopnost pracovat s verzovacím systémem Git a dodržení tohoto návodu.
+* Ruby developer environment (`ruby-dev`)
+* GNU Make (`make`, often included in meta-packages such as `build-essential`)
+* Jekyll and Bundler (`jekyll`, `bundler`)
+* Inkscape of version 1.0 or higher (`inkscape`)
+* ImageMagic (`imagemagick`)
 
-### Titulní stránka
+In Ubuntu 20.10 or higher, you can install all dependencies with `sudo apt install jekyll ruby bundler inkscape build-essential`. After installation, you can build the website by running `make local -j4`.
 
-Obsah je členěn do sekcí, ke kterým je jedna či více info grafik, které odkazují vždy jeden obrázek. Po sekcích následuje seznam studií, datasetů a dalších stránek. Obsah sekcí odpovídá tématům (`tags-topics`) definovaných u jednotlivých objektů. Metadata těchto sekcí (název, popis, ...) jsou uloženy v `_data/tags.yml`. Obsah ostatních částí (studie, datasety, stránky) je definován v souboru titulní stránky (`_stranky/index.md`)
+### Container-based installation
 
-#### Vytvoření stránky grafiky
+* For container management, use [Podman](https://podman.io) or [Docker](https://www.docker.com/)
+* If your distribution uses SELinux, you may need to adjust the folder's security context with `sudo chcon -Rt svirt_sandbox_file_t .`
+* For local website serve and container management, use the Make targets `container`, `build-container` and `delete-container`
 
-Zobrazují se v sekcích na úvodní stránce, každá infografika musí mít svoji stránku samostatnou stránku ve složce `_infografiky/`.
-Názvy souborů musí mít vždy formát `<SLUG>.md`. Soubory jsou pro přehlednost ukládány ve složkách podle primárního tématu.
+## Interaction with the localized repository
 
-Co se týče formátu, inspirujte se u existujících a dodržujte hlavičku. Váhou určíte pořadí v rámci grafik v jedné sekci – stránky s nižší váhou se zobrazí před stránkami s váhou vyšší. Nezbytné pro správné zobrazení jsou témata (`tags-topics`) a oblasti (`tags-scope`). Zde se vyskytují tagy, podle kterých se infografiky vybírají do sekcí na úvodní stránce.
-
-Obrázky jednotlivých grafik (pouze PDF) nahrávejte do stejné složky jako infografiky se stejným názvem jako je soubor infografiky.
-
-### Jak vyvíjet lokálně
-
-_Fakta o klimatu_ lze vyvíjet a testovat i lokálně na vlastním stroji. Můžete tak okamžitě vidět, jak bude například nová infografika, stránka datasetu nebo studie vypadat na živém webu. Zároveň lze experimentovat například s novým typem obsahu, stylem stránek atd.
-
-Aktuálně podporujeme dva způsoby lokálního vývoje: pomocí kontejnerů (preferovaný způsob), nebo ruční instalací nutných balíčků. Oba způsoby jsme prozatím ozkoušeli a fungují pouze na populárních linuxových distribucích (Fedora, Ubuntu atd.).
-
-#### Kontejnery
-
-Kontejnery umožňují oddělit programy nutné pro sestavení a spuštění webu od zbytku vašeho operačního systému. Zároveň vytvoří konzistentní prostředí, které je téměř totožné s tím, ve kterém se sestavuje živý, publikovaný web.
-
-Následující instrukce předpokládají, že pracujete na distribuci Fedora, ačkoliv pro ostatní distribuce by měly fungovat též, s minimálními změnami. Pro správu kontejnerů používáme balíček [Podman](https://podman.io), který je na Fedoře předinstalovaný, ale použití s [Dockerem](https://www.docker.com/) je téměř totožné (viz níže).
-
-Jedinou další prerekvizitou je program Make, který není v základní výbavě většiny distribucí. Na Fedoře jej nainstalujete jednoduše pomocí správce balíčků:
-
-```bash
-sudo dnf install -y make
-```
-
-Prvním krokem je získání zdrojového kódu webu. Zadáním následujících příkazů do terminálu jej stáhnete z našeho GitHubového projektu pomocí Gitu do adresáře `faktaoklimatu`:
-
-```bash
-git clone https://github.com/faktaoklimatu/web.git faktaoklimatu
-cd faktaoklimatu
-```
-
-Aby měl kontejner ke zdroji přístup, je potřeba upravit bezpečnostní kontext celého adresáře. (Pokud vaše distribuce nepoužívá SELinux, tento krok přeskočte.) V terminálu v adresáři se zdrojovým kódem spusťte následující příkaz:
-
-```bash
-sudo chcon -Rt svirt_sandbox_file_t .
-```
-
-Následně stačí v terminálu zadat
-
-```bash
-make container
-```
-
-Při prvním spuštění tento příkaz stáhne a připraví software potřebný pro vývoj webu. To může chvíli trvat, v závislosti na rychlosti připojení, většinou do patnácti minut. (Další spuštění jsou už rychlejší.) Následně se kontejner spustí, sestaví web ze zdrojových kódů a spustí webový server.
-
-Jakmile je vše připraveno, objeví se hláška `Server running... press ctrl-c to stop.`. Vygenerovaný web je po dobu běhu kontejneru přístupný na adrese <http://localhost:4000/>. Změny, které provedete například v doprovodných textech infografik nebo na jiných stránkách, se rychle promítnou i zde.
-
-Kontejner zastavíte stisknutím <kbd>Ctrl</kbd>+<kbd>C</kbd>. Znovu jej spustíte opět příkazem `make container`. Při dalších spuštěních se automaticky provádí už jen nezbytné kroky (např. generování obrázků nových infografik nebo generování nových HTML stránek).
-
-**Poznámka:** Pokud přidáváte novou stránku, např. novou infografiku, je potřeba kontejner zastavit a znovu spustit, aby se vygenerovaly všechny potřebné soubory. Pokud pouze upravujete texty, není třeba kontejner restartovat.
-
-#### Ruční instalace
-
-Je k tomu potřeba si připravit potřebné nástroje, doporučujeme postupovat podle tohoto [návodu](https://help.github.com/en/articles/setting-up-your-github-pages-site-locally-with-jekyll) (v případě Ubuntu 18.04 nutno nejdříve nainstalovat balíčky `build-essential libpng-dev ruby-dev zlib1g-dev`). Dále je potřeba mít nainstalovaný vektorový editor [Inkscape](https://inkscape.org/) verze alespoň 1.0, který se používá na konverzi infografik.
-
-Poté již stačí v kořenové složce projektu spustit příkaz `make local`, který sestaví, co je potřeba, zpřístupní web na adrese <http://localhost:4000> a následně bude monitorovat soubory a v případě jejich změny automaticky sestaví novou verzi stránky.
-
-Po provedení všech změn nezapomeňte pushnout, ideálně do samostatné větve u které následně požádáte o *Pull Request*, aby existovala možnost práci zkontrolovat.
-
-### Jak nasadit novou verzi
-
-Na webu [faktaoklimatu.cz](https://faktaoklimatu.cz) se nasadí automaticky každá verze, která je v hlavní větvi (`master`) tohoto repozitáře na GitHubu.
-
-V případě potíží zůstane k dispozici stará verze a důvod selhání bude potřeba získat skrze správce, tím je vlastník tohoto repozitáře.
+TBA Git submodules basics, more details in the [Notion document](https://www.notion.so/faktaoklimatu/Workflow-GitHub-4c5b294731dc4f9a8b2203daefcff432).
