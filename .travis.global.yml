@@ -19,7 +19,7 @@ addons:
 # Restore file times for better GNU Make optimizations
 before_install:
   - git clone --depth=1 https://github.com/MestreLion/git-tools # Distro version is currently broken
-  - ./git-tools/git-restore-mtime
+  - ./git-tools/git-restore-mtime --force
   - rm -rf ./git-tools
 
 install:
