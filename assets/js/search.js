@@ -37,10 +37,10 @@ class Search {
 
         // Keycodes used in navigation shortcuts.
         this.shortcuts = Object.freeze({
-            escape: '27',
-            enter: '13',
-            up: '38',
-            down: '40',
+            escape: 27,
+            enter: 13,
+            up: 38,
+            down: 40,
         });
 
         // Options for the fuse library.
