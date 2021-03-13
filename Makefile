@@ -70,6 +70,10 @@ clean:
 	rm -rf $(COVERS_FOLDER)
 	rm -f robots.txt .well-known/security.txt humans.txt _config.yml
 
+clean-build: clean
+	rm -rf vendor
+	rm -rf .cache
+
 $(INFOGRAPHICS_FOLDER)/%.pdf: _infographics/*/%.pdf
 	@utils/convert-infographic.sh $< $@
 
@@ -88,5 +92,5 @@ dataset-images: $(DATASETS_DST)
 $(DATASETS_FOLDER)/%.png: _datasets/%.md
 	@bash utils/download-dataset-preview.sh $< $@
 
-.PHONY: all build local clean bundle-install
+.PHONY: all build local clean clean-build bundle-install
 .PHONY: container build-container delete-container
