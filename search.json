@@ -52,7 +52,7 @@ layout: null
         {%- capture html %}{% include preview-block-small.html item=page %}{%- endcapture %}
         "block" : {{ html | jsonify }},
         {%- assign perex = page.caption | append: " " | append: page.perex %}
-        "perex" : "{{ perex }}",
+        "perex" : "{{ perex | normalize_whitespace | strip | strip_html | strip_newlines | replace: '"', '' }}",
         "content" : "{{ page.content | markdownify | normalize_whitespace | strip | strip_html | strip_newlines | replace: '"', '' | slice: 0, 3000 }}"
     }{%- if forloop.last %}{% else %},{% endif %}
   {%- endfor %}
