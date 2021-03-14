@@ -69,6 +69,7 @@ clean:
 	rm -rf $(STUDIES_FOLDER)
 	rm -rf $(COVERS_FOLDER)
 	rm -f robots.txt .well-known/security.txt humans.txt _config.yml
+	rm -rf _site
 
 clean-build: clean
 	rm -rf vendor
