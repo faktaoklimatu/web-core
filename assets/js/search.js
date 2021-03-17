@@ -78,10 +78,9 @@ class Search {
 
         $(this.selectors.results).on('blur', $.proxy(this.maybeHideSearch, this));
 
-        // With open suggestions we set a fixed body width which does not work with resizing content. Hide suggestions on
-        // resize to avoid this glitch. Clicking the input box will reshow the suggestions.
-        $(window).on('resize', $.proxy(this.hideSuggestions, this));
-        $(this.selectors.searchbox).on('click', $.proxy(this.instantSearch, this));
+        // With open suggestions we set a fixed body width which does not work with resizing content. Hide search on resize
+        // to avoid this glitch.
+        $(window).on('resize', $.proxy(this.hideSearch, this));
     }
 
     /**
