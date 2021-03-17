@@ -1,29 +1,40 @@
-{% assign item = include.item %}
-{% case item.layout %}
-    {% when 'infographic' %}
+{%- assign item = include.item %}
+{%- case item.layout %}
+    {%- when 'infographic' %}
         <img src="/assets/generated/{{ item.slug }}_600.png" alt="{{ item.title }}" class="img-fluid" />
-    {% when 'dataset' %}
+    {%- when 'dataset' %}
         <img src="/assets/datasets/{{ item.slug }}.png" alt="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" class="img-fluid card-img" />
         <div class="card-img-overlay small-card-img-overlay">
             <h5>{{ site.data.lang.text.dataset.dataset }}</h5>
         </div>
-    {% when 'explainer' %}
+    {%- when 'explainer' %}
         <img src="/assets/covers/{{ item.slug }}_600.jpg" alt="{{ site.data.lang.text.explainer.explainer }}: {{ item.title }}" class="img-fluid card-img" />
         <div class="card-img-overlay small-card-img-overlay">
             <h5>{{ site.data.lang.text.explainer.explainer }}</h5>
         </div>
-    {% when 'study' %}
+    {%- when 'study' %}
         <img src="/assets/studies/{{ item.slug }}.jpg" alt="{{ site.data.lang.text.study.study }}: {{ item.title }}" class="img-fluid card-img" />
         <div class="card-img-overlay small-card-img-overlay">
             <h5>{{ site.data.lang.text.study.study }}</h5>
         </div>
-    {% when 'survey' %}
+    {%- when 'survey' %}
         <div class='branded-card'></div>
         <div class="card-img-overlay small-card-img-overlay">
             <h5>{{ site.data.lang.text.survey.survey }}</h5>
         </div>
-    {% else %}
-        <div class="card-img-overlay small-card-img-overlay">
-            <h5>Unknown type</h5>
-        </div>
-{% endcase %}
+    {%- else %}
+        {%- if item.search_type %}
+            {%- if item.search_image %}
+                <img src="{{ item.search_image }}" alt="{{ page.search_type }}: {{ item.title }}" class="img-fluid card-img" />
+            {%- else %}
+                <div class='branded-card'></div>
+            {%- endif %}
+            <div class='card-img-overlay small-card-img-overlay'>
+                <h5>{{ page.search_type }}</h5>
+            </div>
+        {%- else %}
+            <div class="card-img-overlay small-card-img-overlay">
+                <h5>Unknown type</h5>
+            </div>
+        {%- endif %}
+{%- endcase %}
