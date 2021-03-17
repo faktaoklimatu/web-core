@@ -54,6 +54,10 @@ nav.navbar-search {
         margin-top: 0;
         box-shadow: 0 0 0.5rem rgba(0,0,0,0.4);
     }
+
+    #searchHide:not(:hover) {
+        background-color: white;
+    }
 }
 
 /* Search results */
