@@ -189,8 +189,9 @@ div.longread-figure {
     }
     .source {
         text-align: right;
-        margin-right: 1rem;
+        margin: 0.5rem 0.5rem 0 0.5rem;
         font-size: 0.8rem;
+        line-height: 150%;
         color: $c-grey;
         a {
             color: $c-grey;

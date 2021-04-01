@@ -1,8 +1,13 @@
 <div class="longread-figure">
   <img src="/assets-local/figures/{{ page.slug }}/{{ include.name }}" alt="{{ include.alt }}">
-  {%- if include.source-text and include.source-url %}
+  {%- if include.caption or (include.source-text and include.source-url) %}
   <div class="source">
-    Zdroj: <a href="{{ include.source-url }}">{{ include.source-text }}</a>
+    {%- if include.caption %}
+      {{- include.caption }} 
+    {%- endif %}
+    {%- if include.source-text %}
+      Zdroj: <a href="{{ include.source-url }}">{{ include.source-text }}</a>
+    {%- endif %}
   </div>
   {%- endif %}
 </div>
