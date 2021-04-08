@@ -4,6 +4,7 @@
         url('subset-SourceSansPro-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -12,6 +13,7 @@
         url('subset-SourceSansPro-It.woff') format('woff');
     font-weight: normal;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
@@ -20,5 +22,6 @@
         url('subset-SourceSansPro-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
 }
 
