@@ -26,7 +26,8 @@ exclude:
     - Gemfile              # Build settings
     - Gemfile.lock         # Build settings
     - Makefile             # Build settings
-    - _config.master.yml   # Build settings
+    - config-templates     # Build settings
+    - firebase.json        # Deploy settings
     - utils                # Development files
     - Dockerfile           # Containerization
     - _infographics/*/*.pdf # Original infographics (build moves them to assets)

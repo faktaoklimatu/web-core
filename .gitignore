@@ -1,18 +1,18 @@
 # Generated web files
-assets/generated/*
-assets/studies/*
-assets/covers/*
-_config.yml
-humans.txt
-robots.txt
-.well-known/security.txt
+/assets/generated/*
+/assets/studies/*
+/assets/covers/*
+/_config.yml
+/humans.txt
+/robots.txt
+/.well-known/security.txt
 
-# Build Jekyll site
-_site/*
-.cache/*
+# Build Jekyll site, cache, test results
+/_site/*
+/.cache/*
 
 # Locally donwloaded and installed gems
-vendor
+/vendor
 
 # Temporary files
 *~
