@@ -14,8 +14,12 @@ COVERS_DST=$(addprefix $(COVERS_FOLDER)/,$(notdir $(COVERS_SRC)))
 PODMAN=podman
 CONTAINER_IMAGE=factsonclimate/web
 CONTAINER_NAME=factsonclimate
-# Get site URL with protocol
-URL:=`cat _config.yml | grep -m 1 "^url: " | sed 's/^url: //' | sed 's/[\r\n]//g'`
+# Set branch name (from Travis or locally)
+BRANCH:=$(or $(TRAVIS_BRANCH),`cd .. && git branch --show-current`)
+# Load values from configuration
+CONFIG_URL:=`cat _config.yml | ruby -ryaml -e "inventory = YAML::load(STDIN.read); puts inventory['url']"`
+CONFIG_FIREBASE_PROJECT:=`cat _config.yml | ruby -ryaml -e "inventory = YAML::load(STDIN.read); puts inventory['deploy']['firebase-project']"`
+CONFIG_CORS_REPORT_URI:=`cat _config.yml | ruby -ryaml -e "inventory = YAML::load(STDIN.read); puts inventory['deploy']['cors-report-uri']"`
 
 all: build
 
@@ -40,6 +44,9 @@ bundle-install:
 	bundle install
 
 build: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
+	@echo "Building the website using Jekyll ..."
+	@if [ "$(BRANCH)" = "master" ]; then echo "=== Production build ($(BRANCH)) ==="; else echo "=== Development build ($(BRANCH)) ==="; fi
+	if [ "$(BRANCH)" = "master" ]; then JEKYLL_ENV=production bundle exec jekyll build; else bundle exec jekyll build; fi
 
 local: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
 	bundle exec jekyll serve --trace
@@ -75,6 +82,11 @@ humans.txt: ../CONTRIBUTORS.md
 robots.txt: config-templates/robots.txt _config.yml
 	sed "s|{{ URL }}|$(CONFIG_URL)|" $< >$@
 
+firebase.json: config-templates/firebase.json _config.yml
+	sed "s|{{ CORS_REPORT_URI }}|$(CONFIG_CORS_REPORT_URI)|" $< >$@
+
+.firebaserc: config-templates/.firebaserc _config.yml
+	sed "s|{{ FIREBASE_PROJECT }}|$(CONFIG_FIREBASE_PROJECT)|" $< >$@
 
 $(INFOGRAPHICS_FOLDER)/%.pdf: _infographics/*/%.pdf
 	@utils/convert-infographic.sh $< $@
@@ -94,5 +106,20 @@ dataset-images: $(DATASETS_DST)
 $(DATASETS_FOLDER)/%.png: _datasets/%.md
 	@bash utils/download-dataset-preview.sh $< $@
 
-.PHONY: all build local clean clean-build bundle-install
+# === Cleaning targets  ===
+
+clean:
+	rm -rf $(INFOGRAPHICS_FOLDER)
+	rm -rf $(STUDIES_FOLDER)
+	rm -rf $(COVERS_FOLDER)
+	rm -f robots.txt .well-known/security.txt humans.txt _config.yml firebase.json .firebaserc
+	rm -rf _site
+
+clean-build: clean
+	rm -rf vendor
+	rm -rf .cache
+
+# === Target flags  ===
+
+.PHONY: all build local clean clean-build bundle-install generated-files
 .PHONY: container build-container delete-container

@@ -6,6 +6,8 @@
 /humans.txt
 /robots.txt
 /.well-known/security.txt
+/firebase.json
+/.firebaserc
 
 # Build Jekyll site, cache, test results
 /_site/*
