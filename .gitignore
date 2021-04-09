@@ -12,6 +12,7 @@
 # Build Jekyll site, cache, test results
 /_site/*
 /.cache/*
+/.lighthouseci/*
 
 # Locally donwloaded and installed gems
 /vendor
