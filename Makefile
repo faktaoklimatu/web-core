@@ -19,7 +19,8 @@ URL:=`cat _config.yml | grep -m 1 "^url: " | sed 's/^url: //' | sed 's/[\r\n]//g
 
 all: build
 
-# Phony targets for container management.
+# === Container management targets  ===
+
 container:
 	if $(PODMAN) inspect $(CONTAINER_NAME) >/dev/null 2>&1 ; \
 		then $(PODMAN) start -a $(CONTAINER_NAME) ||: ; \
@@ -33,30 +34,15 @@ build-container:
 delete-container:
 	$(PODMAN) rm --force $(CONTAINER_NAME)
 
+# === Core build, test and deploy targets  ===
+
 bundle-install:
 	bundle install
 
-_config.yml: _config.global.yml ../_config.local.yml
-	cat $^ >$@
+build: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
 
-humans.txt: ../CONTRIBUTORS.md
-	@echo "Creating humans.txt file ..."
-	cp ../CONTRIBUTORS.md humans.txt
-
-.well-known/security.txt: .well-known-templates/security.txt _config.yml
-	mkdir -p .well-known
-	sed "s|{{ URL }}|$(URL)|" $< >$@
-
-robots.txt: .well-known-templates/robots.txt _config.yml
-	sed "s|{{ URL }}|$(URL)|" $< >$@
-
-local: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) bundle-install _config.yml humans.txt robots.txt .well-known/security.txt
+local: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
 	bundle exec jekyll serve --trace
-
-build: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) bundle-install _config.yml humans.txt robots.txt .well-known/security.txt
-	@echo "Building the website using Jekyll ..."
-	@if [ "$(TRAVIS_BRANCH)" = "master" ]; then echo "=== Production build ==="; else echo "=== Development build ==="; fi
-	if [ "$(TRAVIS_BRANCH)" = "master" ]; then JEKYLL_ENV=production bundle exec jekyll build; else bundle exec jekyll build; fi
 
 check: build
 	@echo "Running internal tests on the generated site using html-proofer ..."
@@ -64,16 +50,31 @@ check: build
 	@echo "Running tests on the external content using html-proofer ..."
 	-bundle exec ruby utils/test.rb external
 
-clean:
-	rm -rf $(INFOGRAPHICS_FOLDER)
-	rm -rf $(STUDIES_FOLDER)
-	rm -rf $(COVERS_FOLDER)
-	rm -f robots.txt .well-known/security.txt humans.txt _config.yml
-	rm -rf _site
+# To run lighthouse, you need Google Chrome and Lighthous CLI (npm install -g @lhci/cli@0.7.x)
+lighthouse: build
+	lhci autorun
 
-clean-build: clean
-	rm -rf vendor
-	rm -rf .cache
+deploy-preview: build
+	firebase hosting:channel:deploy $(BRANCH)
+
+# === Targets for generating files  ===
+
+generated-files: _config.yml humans.txt .well-known/security.txt robots.txt firebase.json .firebaserc
+
+_config.yml: config-templates/_config.global.yml ../_config.local.yml
+	cat $^ >$@
+
+humans.txt: ../CONTRIBUTORS.md
+	@echo "Creating humans.txt file ..."
+	cp ../CONTRIBUTORS.md humans.txt
+
+.well-known/security.txt: config-templates/security.txt _config.yml
+	mkdir -p .well-known
+	sed "s|{{ URL }}|$(CONFIG_URL)|" $< >$@
+
+robots.txt: config-templates/robots.txt _config.yml
+	sed "s|{{ URL }}|$(CONFIG_URL)|" $< >$@
+
 
 $(INFOGRAPHICS_FOLDER)/%.pdf: _infographics/*/%.pdf
 	@utils/convert-infographic.sh $< $@

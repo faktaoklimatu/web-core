@@ -9,7 +9,6 @@ git:
 
 # Install the necessary software
 addons:
-  chrome: stable
   apt:
     sources:
       - sourceline: 'ppa:inkscape.dev/stable'
@@ -42,6 +41,8 @@ cache:
   - $TRAVIS_BUILD_DIR/web-core/assets/studies  # Enable caching of copied study thumbnails
   - $TRAVIS_BUILD_DIR/web-core/assets/covers  # Enable caching of generated explainer covers
 
+before_deploy: cp web-core/.firebaserc web-core/firebase.json .
+
 deploy:
   # Firebase production deployment
   - provider: firebase # uses FIREBASE_TOKEN
@@ -57,18 +58,5 @@ deploy:
     skip_cleanup: true
     script: >-
       wget -q --output-document=firebase https://firebase.tools/bin/linux/latest &&
-      chmod +x firebase &&
-      ./firebase hosting:channel:deploy $TRAVIS_BRANCH
-  # Lighthouse performance analysis
-  - provider: script
-    on:
-      branch: lighthouse
-    skip_cleanup: true
-    script: >-
-      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash &&
-      export NVM_DIR="$HOME/.nvm" &&
-      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" &&
-      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" &&
-      nvm use 12 &&
-      npm install -g @lhci/cli@0.7.x &&
-      lhci autorun
+      chmod +x firebase && alias firebase=./firebase &&
+      make deploy-preview
