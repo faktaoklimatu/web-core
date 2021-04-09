@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "{{ FIREBASE_PROJECT }}"
+  },
+  "targets": {
+    "{{ FIREBASE_PROJECT }}": {
+      "hosting": {
+        "production": [
+          "{{ FIREBASE_PROJECT }}"
+        ],
+        "preview": [
+          "{{ FIREBASE_PROJECT }}"
+        ]
+      }
+    }
   }
 }

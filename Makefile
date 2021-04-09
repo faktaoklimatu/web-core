@@ -62,7 +62,10 @@ lighthouse: build
 	lhci autorun
 
 deploy-preview: build
-	firebase hosting:channel:deploy $(BRANCH)
+	firebase hosting:channel:deploy $(BRANCH) --only preview
+
+deploy-production: build
+	firebase deploy --only hosting:production
 
 # === Targets for generating files  ===
 
