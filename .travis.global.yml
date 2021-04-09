@@ -41,22 +41,23 @@ cache:
   - $TRAVIS_BUILD_DIR/web-core/assets/studies  # Enable caching of copied study thumbnails
   - $TRAVIS_BUILD_DIR/web-core/assets/covers  # Enable caching of generated explainer covers
 
-before_deploy: cp web-core/.firebaserc web-core/firebase.json .
+before_deploy: 
+  - wget -q --output-document=firebase https://firebase.tools/bin/linux/latest
+  - chmod +x firebase 
+  - alias firebase=./firebase
+  - cp web-core/.firebaserc web-core/firebase.json .
 
 deploy:
   # Firebase production deployment
-  - provider: firebase # uses FIREBASE_TOKEN
+  - provider: script # uses FIREBASE_TOKEN
     on:
       branch: master
     skip_cleanup: true
-    message: "Travis CI production ($TRAVIS_BRANCH@$TRAVIS_COMMIT)"
+    script: make deploy-production
   # Firebase preview deployment
   - provider: script # uses FIREBASE_TOKEN
     on:
       all_branches: true
       condition: $TRAVIS_BRANCH = preview-*
     skip_cleanup: true
-    script: >-
-      wget -q --output-document=firebase https://firebase.tools/bin/linux/latest &&
-      chmod +x firebase && alias firebase=./firebase &&
-      make deploy-preview
+    script: make deploy-preview
