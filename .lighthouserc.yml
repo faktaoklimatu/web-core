@@ -1,0 +1,13 @@
+ci:
+  collect:
+    staticDistDir: "./_site/"
+    url:
+      - http://localhost/index.html
+      - http://localhost/temata/klima/index.html
+      - http://localhost/explainery/emise-vyroba-cementu.html
+      - http://localhost/infografiky/emisni-scenare-pariz.html
+      - http://localhost/studie/2020-reserse-transformace-energetiky.html
+      - http://localhost/datasety/koncentrace-co2.html
+      - http://localhost/atlas.html
+  upload:
+    target: "temporary-public-storage"
