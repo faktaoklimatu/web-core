@@ -7,13 +7,13 @@ layout: null
   {%- assign all = pages | concat: objects %}
   {%- for page in all %}
     {
-        "title" : "{{ page.title | strip_html }}",
+        "title" : {{ page.title | strip_html | jsonify }},
         "url" : "{{ page.url }}",
         {%- capture html %}{% include preview-block-small.html item=page %}{%- endcapture %}
         "block" : {{ html | normalize_whitespace | jsonify }},
         {%- assign perex = page.caption | append: " " | append: page.perex | append: " " | append: page.intro %}
-        "perex" : "{{ perex | normalize_whitespace | strip | strip_html | strip_newlines | replace: '"', '' }}",
-        "content" : "{{ page.content | markdownify | normalize_whitespace | strip | strip_html | strip_newlines | replace: '"', '' | slice: 0, 3000 }}"
+        "perex" : {{ perex | normalize_whitespace | strip | strip_html | strip_newlines | replace: '"', '' | jsonify }},
+        "content" : {{ page.content | markdownify | normalize_whitespace | strip | strip_html | strip_newlines | replace: '"', '' | slice: 0, 3000 | jsonify }}
     }{%- if forloop.last %}{% else %},{% endif %}
   {%- endfor %}
 ]
