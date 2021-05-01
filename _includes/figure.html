@@ -1,5 +1,7 @@
 <div class="longread-figure">
-  <img src="/assets-local/figures/{{ page.slug }}/{{ include.name }}" alt="{{ include.alt }}">
+  <a href="/assets-local/figures/{{ page.slug }}/{{ include.name }}">
+    <img src="/assets-local/figures/{{ page.slug }}/{{ include.name }}" alt="{{ include.alt }}">
+  </a>
   {%- if include.caption or (include.source-text and include.source-url) %}
   <div class="source">
     {%- if include.caption %}
