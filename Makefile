@@ -46,7 +46,7 @@ bundle-install:
 build: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
 	@echo "Building the website using Jekyll ..."
 	@if [ "$(BRANCH)" = "master" ]; then echo "=== Production build ($(BRANCH)) ==="; else echo "=== Development build ($(BRANCH)) ==="; fi
-	if [ "$(BRANCH)" = "master" ]; then JEKYLL_ENV=production bundle exec jekyll build; else bundle exec jekyll build; fi
+	@if [ "$(BRANCH)" = "master" ]; then JEKYLL_ENV=production bundle exec jekyll build; else bundle exec jekyll build; fi
 
 local: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
 	bundle exec jekyll serve --trace
@@ -62,10 +62,10 @@ lighthouse: build
 	lhci autorun
 
 deploy-preview: build
-	firebase hosting:channel:deploy $(BRANCH) --only preview
+	./firebase hosting:channel:deploy $(BRANCH) --only preview
 
 deploy-production: build
-	firebase deploy --only hosting:production
+	./firebase deploy --only hosting:production
 
 # === Targets for generating files  ===
 

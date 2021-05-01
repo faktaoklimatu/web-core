@@ -42,10 +42,8 @@ cache:
   - $TRAVIS_BUILD_DIR/web-core/assets/covers  # Enable caching of generated explainer covers
 
 before_deploy: 
-  - wget -q --output-document=firebase https://firebase.tools/bin/linux/latest
-  - chmod +x firebase 
-  - alias firebase=./firebase
-  - cp web-core/.firebaserc web-core/firebase.json .
+  - wget -q --output-document=web-core/firebase https://firebase.tools/bin/linux/latest
+  - chmod +x web-core/firebase
 
 deploy:
   # Firebase production deployment
