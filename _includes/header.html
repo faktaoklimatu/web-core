@@ -30,7 +30,7 @@
 {%- when 'study' -%}
   {%- assign social_image = "/assets/studies/" | append: page.slug | append: ".jpg" -%}
 {%- when 'explainer' -%}
-  {%- assign social_image = "/assets-local/cover/" | append: page.slug | append: ".jpg" -%}
+  {%- assign social_image = "/assets/covers/" | append: page.slug | append: ".jpg" -%}
 {%- else -%}
   {%- assign social_image = "/assets-local/img/preview.png" -%}
 {%- endcase -%}
