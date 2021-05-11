@@ -2,7 +2,7 @@
 
 Jekyll::Hooks.register :site, :post_render do |site|
   Jekyll.logger.info  "                  * Replacing special spaces ..."
-  
+
   def replace!(content)
     # Thin spaces before percent sign, permille sign and before groups of digits.
     content.gsub!(/(?<=\d) (%|‰|€|$|\d{3})/, '&#8239;\1')
@@ -12,8 +12,11 @@ Jekyll::Hooks.register :site, :post_render do |site|
   end
 
   site.documents.each do |page|
-    Jekyll.logger.error "Undefined page.output for '#{page.path}'. Consider excluding this file" if not page.respond_to? :output
+    if not page.respond_to? :output
+      Jekyll.logger.error "Undefined page.output for '#{page.path}'. Consider excluding this file"
+      continue
+    end
     replace!(page.output)
   end
-  
+
 end
