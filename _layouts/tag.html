@@ -38,7 +38,7 @@
             <h2>{{ collection.title }} <small class="text-secondary">({{ items_size }})</small></h2>
             {% case collection.label %}
               {% when 'explainers' %}
-              <p class="lead">Naše explainery k tématu. Vysvětlujeme důležité otázky a dáváme je do souvislostí.</p>
+              <p class="lead">{{ site.data.lang.tag.all-explainers }}</p>
               {% when 'infographics' %}
               <p class="lead">{{ site.data.lang.tag.all-infographics }}</p>
               {% when 'studies' %}
