@@ -78,8 +78,8 @@ class Search {
 
         $(this.selectors.results).on('blur', $.proxy(this.maybeHideSearch, this));
 
-        // With open suggestions we set a fixed body width which does not work with resizing content. Hide search on resize
-        // to avoid this glitch.
+        // With open suggestions we set a fixed body width which does not work with
+        // resizing content. Hide search on resize to avoid this glitch.
         $(window).on('resize', $.proxy(this.hideSearch, this));
     }
 
@@ -97,8 +97,13 @@ class Search {
     }
 
     maybeHideSearch(event) {
+        // Do not hide if
+        // a) focus is lost to either the search box or the results list, or
+        // b) the whole window loses focus (e.g. when switching keyboard layout).
         if ($(this.selectors.searchbox)[0].contains(event.relatedTarget) ||
-            $(this.selectors.results)[0].contains(event.relatedTarget)) {
+            $(this.selectors.results)[0].contains(event.relatedTarget) ||
+            document.activeElement === event.target)
+        {
             return;
         }
         this.hideSearch();
