@@ -11,7 +11,6 @@
     }
 
     .date {
-        width: 6em;
         vertical-align: top;
         padding-right: 1rem;
         margin-bottom: 0.2rem;
@@ -29,8 +28,11 @@
         }
     }
 
-
     @media screen and (min-width: 768px) {
+        .date {
+            width: 6em;
+        }
+
         .summary {
             width: calc(100% - 7em);
         }
