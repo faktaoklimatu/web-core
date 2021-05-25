@@ -57,17 +57,7 @@
         </div>
       </div>
     </div>
-    {% assign objects = site.documents | where_exp: "item", "'infographics, studies, explainers' contains item.collection"
-    | where_exp: "item", "item.tags contains page.tags-topics[0]" | where_exp:"item","item.slug != page.slug" | sample: 3 %}
-    {% if objects.size > 0 %}
-    <div class="section">
-      <div class="container">
-        <h2>{{ site.data.lang.text.related.title }}</h2>
-        <p>{{ site.data.lang.text.related.caption }}</p>
-        {% include preview-blocks.html blocks=objects limit=3 %}
-      </div>
-    </div>
-    {% endif %}
+    {% include related.html %}
   </main>
   {% include footer.html %}
   {% include scripts.html %}
