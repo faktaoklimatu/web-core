@@ -47,12 +47,12 @@
     <div id="search-container" class="container">
         <form id="searchbox-form">
             <input class="form-control me-2" id="searchbox" data-bs-toggle="dropdown" type="search" placeholder="Hledat" aria-label="Hledat" autocomplete="off">
-            <button id="searchHide" class="btn btn-sm btn-outline-secondary" type="button" aria-label="Zrušit">
+            <button id="searchHide" class="btn btn-sm btn-outline-secondary" type="button" aria-label="Zrušit" tabindex="-1">
                 <i class="fas fa-fw fa-times"></i>
             </button>
         </form>
         <div id="omnisearch-suggestions-container">
-            <div class="dropdown-menu" id="omnisearch-suggestions" aria-labelledby="searchbox" tabindex="0">
+            <div class="dropdown-menu" id="omnisearch-suggestions" aria-labelledby="searchbox">
             </div>
         </div>
     </div>
