@@ -16,12 +16,12 @@
                 <li><a class="nav-link {{ menu-item.class }}" href="{% if menu-item.fundraising %}{{ site.fundraising }}{% else %}{{ menu-item.link }}{% endif %}">{{ menu-item.title }}</a></li>
                 {%- elsif menu-item.dropdown %}
                 <li class="dropdown">
-                    <a class="nav-link dropdown-toggle" id="dropdown_{{ menu-item.title | slugify }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="nav-link dropdown-toggle" id="dropdown_{{ menu-item.title | slugify }}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         {% if menu-item.lang %}
                             <img class="flag" alt="{{ menu-item.title }}" src="/assets/flags/{{ menu-item.lang }}.svg" />{{ menu-item.lang }}
                         {% else %}
                             {{ menu-item.title }}
-                        {% endif %}</a>
+                        {% endif %}</div>
                     <div class="dropdown-menu" aria-labelledby="dropdown_{{ menu-item.title | slugify }}">
                         {%- if menu-item.list-topics -%}
                             {%- assign sorted_index_tags = site.data.tags | where_exp: "item", "item.index-weight > 0" | sort: "index-weight" -%}
