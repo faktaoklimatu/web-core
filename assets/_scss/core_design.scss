@@ -220,7 +220,7 @@ img.text-img {
     flex-flow: column wrap;
     padding: 0;
 
-    a {
+    a, div.dropdown-toggle {
         text-transform: uppercase;
         text-decoration: none;
     }
