@@ -51,6 +51,7 @@ plugins:
   - jekyll-redirect-from
   - jekyll-sitemap
   - jekyll-last-modified-at
+  - jekyll-tidy
 
 # Set custom markdown processor for glossary tag expansion
 markdown: FaktaOKlimatuProcessor
