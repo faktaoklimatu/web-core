@@ -7,6 +7,7 @@ class Search {
         this.fuse = null;
         this.searchString = null;
         this.timeout = null;
+        this.fixedWindowWidth = null;
 
         // CSS classes to use for different modes.
         this.classes = Object.freeze({
@@ -80,7 +81,7 @@ class Search {
 
         // With open suggestions we set a fixed body width which does not work with
         // resizing content. Hide search on resize to avoid this glitch.
-        $(window).on('resize', $.proxy(this.hideSearch, this));
+        $(window).on('resize', $.proxy(this.onResize, this));
     }
 
     /**
@@ -106,6 +107,19 @@ class Search {
         {
             return;
         }
+        this.hideSearch();
+    }
+
+    onResize() {
+        if (this.fixedWindowWidth === null ||
+            this.fixedWindowWidth == window.innerWidth)
+        {
+            return;
+        }
+        // Hide the searchbox if the width of the window has changed since the
+        // search results box got opened. This avoids weird artifacts of
+        // resizing the body while it's width is fixed (fixing the width itself
+        // protects the body from scrolling while search results are open).
         this.hideSearch();
     }
 
@@ -220,10 +234,12 @@ class Search {
         $body.css("overflow", "hidden");
         $(this.selectors.results).show();
         $(this.selectors.searchbox).addClass(this.classes.openSearchbox);
+        this.fixedWindowWidth = window.innerWidth;
     }
 
     hideSuggestions() {
         $(this.selectors.results).hide();
+        this.fixedWindowWidth = null;
         let $body = $(document.body);
         $body.css("overflow", "auto");
         $body.width("auto");
