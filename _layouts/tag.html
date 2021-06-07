@@ -7,7 +7,7 @@
 <body>
   {% include navigation.html %}
   {% assign tag = site.data.tags | where: "id", page.title | first %}
-  <main role="main" id="page-tag">
+  <main id="page-tag">
     <div class="section intro pb-4 pt-4">
       <div class="container">
           <span class="tagline">{{ site.data.lang.tag.all-tags-caption }}</span>
