@@ -1,12 +1,26 @@
 <footer>
     <div class="container">
         <div>
+            {% if site.newsletter %}
             <a class="no-ext-link-icon" href="{{ site.newsletter }}">
             <span class="fas fa-fw fa-envelope-open-text"></span> {{ site.data.lang.footer.get-newsletter }}</a><br/>
+            {% endif %}
+            {% if site.fundraising %}
             <a class="no-ext-link-icon" href="{{ site.fundraising }}">
             <span class="fas fa-fw fa-heart"></span> {{ site.data.lang.footer.support-us }}</a><br/>
+            {% endif %}
+            {% if site.twitter %}
             <a class="no-ext-link-icon" href="https://twitter.com/{{ site.twitter }}">
             <span class="fab fa-fw fa-twitter"></span> @{{ site.twitter }}</a><br/>
+            {% endif %}
+            {% if site.facebook %}
+            <a class="no-ext-link-icon" href="https://facebook.com/{{ site.facebook }}">
+            <span class="fab fa-fw fa-facebook"></span> fb.com/{{ site.facebook }}</a><br/>
+            {% endif %}
+            {% if site.linkedin %}
+            <a class="no-ext-link-icon" href="https://www.linkedin.com/company/{{ site.linkedin }}">
+            <span class="fab fa-fw fa-linkedin"></span> {{ site.title }}</a><br/>
+            {% endif %}
             <a class="no-ext-link-icon" href="mailto:{{ site.email }}">
             <span class="fas fa-fw fa-envelope"></span> {{ site.email }}</a><br/>
         </div>
