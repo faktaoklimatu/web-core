@@ -1,53 +1,53 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-{%- if page.tags -%}
+{% if page.tags %}
   <meta name="keywords" content="{{ page.tags | join: ', ' | prepend: ', ' | prepend: site.keywords }}">
-{%- else -%}
+{% else %}
   <meta name="keywords" content="{{ site.keywords }}">
-{%- endif -%}
+{% endif %}
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:url" content="{{ page.url | absolute_url }}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{{ page.title }}">
 <meta name="twitter:title" content="{{ page.title }}">
-{%- if page.caption -%}
+{% if page.caption %}
   <meta name="description" content="{{ page.caption }}">
   <meta property="og:description" content="{{ page.caption }}">
   <meta name="twitter:description" content="{{ page.caption }}">
-{%- elsif page.intro -%}
+{% elsif page.intro %}
   <meta name="description" content="{{ page.intro }}">
   <meta property="og:description" content="{{ page.intro }}">
   <meta name="twitter:description" content="{{ page.intro }}">
-{%- else -%}
+{% else %}
   <meta name="description" content="{{ site.description }}">
   <meta property="og:description" content="{{ site.description }}">
   <meta name="twitter:description" content="{{ site.description }}">
-{%- endif -%}
+{% endif %}
 <meta name="twitter:card" content="summary_large_image">
-{%- case page.layout -%}
-{%- when 'infographic' -%}
-  {%- assign social_image = "/assets/generated/" | append: page.slug | append: "_1200.png" -%}
-{%- when 'study' -%}
-  {%- assign social_image = "/assets/studies/" | append: page.slug | append: ".jpg" -%}
-{%- when 'explainer' -%}
-  {%- assign social_image = "/assets/covers/" | append: page.slug | append: ".jpg" -%}
-{%- else -%}
-  {%- assign social_image = "/assets-local/img/preview.png" -%}
-{%- endcase -%}
+{% case page.layout %}
+{% when 'infographic' %}
+  {% assign social_image = "/assets/generated/" | append: page.slug | append: "_1200.png" %}
+{% when 'study' %}
+  {% assign social_image = "/assets/studies/" | append: page.slug | append: ".jpg" %}
+{% when 'explainer' %}
+  {% assign social_image = "/assets/covers/" | append: page.slug | append: ".jpg" %}
+{% else %}
+  {% assign social_image = "/assets-local/img/preview.png" %}
+{% endcase %}
 <meta property="og:image" content="{{ social_image | absolute_url }}">
 <meta name="twitter:image" content="{{ social_image | absolute_url }}">
 <meta name="twitter:image:alt" content="{{ page.title }}">
 
-{%- case page.layout -%}
-{%- when 'tag' -%}
+{% case page.layout %}
+{% when 'tag' %}
   <title>Položky se štítkem "{{ page.title }}"</title>
-{%- else -%}
+{% else %}
   <title>{{ page.title }}</title>
-{%- endcase -%}
+{% endcase %}
 
-{%- if jekyll.environment == "production" -%}
+{% if jekyll.environment == "production" %}
 <script src="/assets-local/website-analytics.js"></script>
-{%- endif -%}
+{% endif %}
 
 <link href="{{ site.cdn.bootstrap_css }}" rel="stylesheet" integrity="{{ site.cdn.bootstrap_css_hash }}" crossorigin="anonymous">
 <link href="/assets/css/main.css?{{ site.time | date: '%s' }}" rel="stylesheet">
