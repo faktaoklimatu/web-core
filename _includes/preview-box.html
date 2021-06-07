@@ -3,11 +3,9 @@
 {%- if include.title %}
 <h4>{{ include.title }}</h4>
 {%- endif %}
-{%- if include.text_pre %}
 <div markdown="1">
-  {{ include.text_pre }}
+  {{ include.text }}
 </div>
-{%- endif %}
 {%- if include.slug %}
 <div class="row">
   {% for needle in slugs %}
@@ -18,11 +16,6 @@
       </a>
     </div>
   {% endfor %}
-</div>
-{%- endif %}
-{%- if include.text %}
-<div markdown="1">
-  {{ include.text }}
 </div>
 {%- endif %}
 </div>
