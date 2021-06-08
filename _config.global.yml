@@ -51,10 +51,14 @@ plugins:
   - jekyll-redirect-from
   - jekyll-sitemap
   - jekyll-last-modified-at
-#  - jekyll-tidy # Temporarily disabled as it breaks search
 
 # Set custom markdown processor for glossary tag expansion
 markdown: FaktaOKlimatuProcessor
 
 target-blank:
     add_css_classes: ext-link
+
+html-beautify:
+  include:
+    - "*.html"
+    - "*.md"

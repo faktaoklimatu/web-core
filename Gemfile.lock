@@ -26,7 +26,6 @@ GEM
       typhoeus (~> 1.3)
       yell (~> 2.0)
     htmlbeautifier (1.3.1)
-    htmlcompressor (0.4.0)
     http_parser.rb (0.6.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
@@ -54,10 +53,6 @@ GEM
       sassc (> 2.0.1, < 3.0)
     jekyll-sitemap (1.4.0)
       jekyll (>= 3.7, < 5.0)
-    jekyll-tidy (0.2.2)
-      htmlbeautifier
-      htmlcompressor
-      jekyll
     jekyll-watch (2.2.1)
       listen (~> 3.0)
     katex (0.8.0)
@@ -114,11 +109,11 @@ DEPENDENCIES
   execjs
   ffi-icu
   html-proofer
+  htmlbeautifier
   jekyll
   jekyll-last-modified-at
   jekyll-redirect-from
   jekyll-sitemap
-  jekyll-tidy
   kramdown-math-katex
   nokogumbo
   webrick (~> 1.7)
