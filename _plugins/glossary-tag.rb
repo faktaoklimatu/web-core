@@ -51,7 +51,7 @@ module Jekyll
           end
 
           # Render the template and replace the original element.
-          context = { 'item' => item, 'inner' => element.inner_html }
+          context = { 'item' => item, 'inner' => element.inner_html, 'glossary-slug' => site.config['slugs']['glossary'] }
           new_element = template.render!(context, template_info).strip
           element.replace new_element
         end
