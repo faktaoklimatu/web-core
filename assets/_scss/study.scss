@@ -19,9 +19,9 @@
     }
 }
 
-// No margin after the last button link
-table td .btn:last-of-type {
-    margin-bottom: 0;
+// Adjust margins of buttons in table
+table td .btn {
+    margin: 0.25rem 0.25em 0.25rem 0.25em;;
 }
 
 /* Customizations of resource page */
