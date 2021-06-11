@@ -140,7 +140,7 @@ p.caption {
     .sticky-toc {
         position: sticky;
         position: -webkit-sticky;
-        top: 56px;
+        top: var(--navbar-height);
         left: 100px;
     }
 }
