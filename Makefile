@@ -16,8 +16,7 @@ CONTAINER_IMAGE=factsonclimate/web
 CONTAINER_NAME=factsonclimate
 # Set branch name (from Travis or locally)
 BRANCH:=$(or $(TRAVIS_BRANCH),`cd .. && git branch --show-current`)
-# Load values from configuration
-CONFIG_URL:=`cat _config.yml | ruby -ryaml -e "inventory = YAML::load(STDIN.read); puts inventory['url']"`
+# Load deploy values from configuration
 CONFIG_FIREBASE_PROJECT:=`cat _config.yml | ruby -ryaml -e "inventory = YAML::load(STDIN.read); puts inventory['deploy']['firebase-project']"`
 CONFIG_CORS_REPORT_URI:=`cat _config.yml | ruby -ryaml -e "inventory = YAML::load(STDIN.read); puts inventory['deploy']['cors-report-uri']"`
 
@@ -69,26 +68,19 @@ deploy-production: build
 
 # === Targets for generating files  ===
 
-generated-files: _config.yml humans.txt .well-known/security.txt robots.txt firebase.json .firebaserc
+generated-files: _config.yml humans.txt firebase.json .firebaserc
 
-_config.yml: config-templates/_config.global.yml ../_config.local.yml
+_config.yml: _config.global.yml ../_config.local.yml
 	cat $^ >$@
 
 humans.txt: ../CONTRIBUTORS.md
 	@echo "Creating humans.txt file ..."
 	cp ../CONTRIBUTORS.md humans.txt
 
-.well-known/security.txt: config-templates/security.txt _config.yml
-	mkdir -p .well-known
-	sed "s|{{ URL }}|$(CONFIG_URL)|" $< >$@
-
-robots.txt: config-templates/robots.txt _config.yml
-	sed "s|{{ URL }}|$(CONFIG_URL)|" $< >$@
-
-firebase.json: config-templates/firebase.json _config.yml
+firebase.json: deploy-templates/firebase.json _config.yml
 	sed "s|{{ CORS_REPORT_URI }}|$(CONFIG_CORS_REPORT_URI)|" $< >$@
 
-.firebaserc: config-templates/.firebaserc _config.yml
+.firebaserc: deploy-templates/.firebaserc _config.yml
 	sed "s|{{ FIREBASE_PROJECT }}|$(CONFIG_FIREBASE_PROJECT)|" $< >$@
 
 $(INFOGRAPHICS_FOLDER)/%.pdf: _infographics/*/%.pdf
@@ -115,7 +107,7 @@ clean:
 	rm -rf $(INFOGRAPHICS_FOLDER)
 	rm -rf $(STUDIES_FOLDER)
 	rm -rf $(COVERS_FOLDER)
-	rm -f robots.txt .well-known/security.txt humans.txt _config.yml firebase.json .firebaserc
+	rm -f humans.txt _config.yml firebase.json .firebaserc
 	rm -rf _site
 
 clean-build: clean
