@@ -187,3 +187,15 @@ a.card:hover {
     height: 100px;
     padding: 10px 0 10px 30px;
 }
+
+// Newsletter pop-up
+
+#newsletter-modal {
+    .modal-content {
+        background-color: $c-extralight-blue;
+    }
+
+    button.close {
+        margin-bottom: -16px;
+    }
+}

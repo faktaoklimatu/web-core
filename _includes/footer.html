@@ -2,7 +2,7 @@
     <div class="container">
         <div>
             {% if site.newsletter %}
-            <a class="no-ext-link-icon" href="{{ site.newsletter }}">
+            <a class="no-ext-link-icon" href="#newsletter-modal" id="newsletter-embed" data-toggle="modal" data-target="#newsletter-modal">
             <span class="fas fa-fw fa-envelope-open-text"></span> {{ site.data.lang.footer.get-newsletter }}</a><br/>
             {% endif %}
             {% if site.fundraising %}
