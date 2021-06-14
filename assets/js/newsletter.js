@@ -1,15 +1,17 @@
----
-# Empty front matter to enable Jekyll processing
----
-$("#newsletter-modal").on('shown.bs.modal', function(w, d, s, o, f, js, fjs) {
-    w['ecm-widget'] = o;
-    w[o] = w[o] || function() {
-        (w[o].q = w[o].q || []).push(arguments)
-    };
-    js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
-    js.id = '{{ site.newsletter }}';
-    js.dataset.a = 'faktaoklimatu';
-    js.src = f;
-    js.async = 1;
-    fjs.parentNode.insertBefore(js, fjs);
-}(window, document, 'script', 'ecmwidget', 'https://d70shl7vidtft.cloudfront.net/widget.js'));
+$(document).ready(() => {
+    $('#newsletter-modal').one('show.bs.modal', (event) => {
+        const newsletterId = event.target.dataset.newsletterId;
+
+        window['ecm-widget'] = 'ecmwidget';
+        window['ecmwidget'] = window['ecmwidget'] || function() {
+            (window['ecmwidget'].q = window['ecmwidget'].q || []).push(arguments)
+        };
+
+        const js = document.createElement('script');
+        js.id = newsletterId;
+        js.dataset.a = 'faktaoklimatu';
+        js.src = 'https://d70shl7vidtft.cloudfront.net/widget.js';
+
+        document.head.appendChild(js);
+    });
+});
