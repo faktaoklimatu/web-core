@@ -12,22 +12,30 @@ module Jekyll
       return @include_paths.any? { |pattern| File.fnmatch(pattern, path) }
     end
 
-    def self.process(output)
-      return HtmlBeautifier.beautify output
+    def self.process_file(file)
+      if Beautify.include?(file.relative_path)
+        file.output = HtmlBeautifier.beautify(file.output)
+      end
+    end
+
+    def self.process_site(site)
+      Jekyll.logger.info  "                  * Beautifying HTML ..."
+
+      site.documents.each do |doc|
+        Beautify.process_file(doc)
+      end
+
+      site.pages.each do |page|
+        Beautify.process_file(page)
+      end
     end
   end
 
-  Hooks.register :site, :after_reset do |jekyll|
-    Jekyll::Beautify.init(jekyll)
+  Hooks.register :site, :after_reset do |site|
+    Jekyll::Beautify.init(site)
   end
 
-  Hooks.register :documents, :post_render do |doc|
-    next if !Jekyll::Beautify::include?(doc.relative_path)
-    doc.output = Jekyll::Beautify::process(doc.output)
-  end
-
-  Hooks.register :pages, :post_render do |page|
-    next if !Jekyll::Beautify::include?(page.relative_path)
-    page.output = Jekyll::Beautify::process(page.output)
+  Hooks.register :site, :post_render do |site|
+    Jekyll::Beautify.process_site(site)
   end
 end
