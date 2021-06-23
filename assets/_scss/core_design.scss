@@ -349,7 +349,7 @@ footer {
     }
 }
 
-/* Collapssible sections in texts. */
+/* Collapsible sections in texts. */
 
 details {
     padding-right: 2rem;
@@ -405,4 +405,12 @@ details {
     p {
         text-align: left;
     }
+}
+
+/* Microtypography adjustments */
+
+sup.chem-ion {
+    top: -0.6em;
+    margin-right: 0.05em;
+    margin-left: -0.5em;
 }
