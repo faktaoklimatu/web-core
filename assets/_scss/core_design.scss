@@ -414,3 +414,18 @@ sup.chem-ion {
     margin-right: 0.05em;
     margin-left: -0.5em;
 }
+
+/* Inline bullet lists */
+
+ul.inline-bullet-list {
+    padding-left: 0;
+
+    > li {
+        display: inline;
+
+        &:not(:first-child)::before {
+            content: "\2022\ ";
+            margin: 0 0.4em;
+        }
+    }
+}
