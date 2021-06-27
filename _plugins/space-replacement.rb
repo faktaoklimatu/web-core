@@ -7,7 +7,7 @@ Jekyll::Hooks.register :site, :post_render do |site|
     # Narrow no-break space between groups of digits.
     content.gsub!(/(?<=\d) (\d{3})\b/, "\u202f\\1")
     # No-break space before units.
-    content.gsub!(/(?<=\d) (%|‰|€|$|°C|ppm|kg|k?m|mil\.)/, "\u00a0\\1")
+    content.gsub!(/(?<=\d) (%|‰|€|$|°C|ppm|kg|k?m|mil\.)\b/, "\u00a0\\1")
     content.gsub!(/(?<=\d) ([kMGT]?(?:t CO|Wh?))\b/, "\u00a0\\1")
   end
 
