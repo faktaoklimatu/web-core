@@ -55,6 +55,8 @@ check: build
 	bundle exec ruby utils/test.rb
 	@echo "Running tests on the external content using html-proofer ..."
 	-bundle exec ruby utils/test.rb external
+	@echo "Validating generated search index ..."
+	bundle exec ruby utils/validate-json.rb _site/search.json
 
 # To run lighthouse, you need Google Chrome and Lighthous CLI (npm install -g @lhci/cli@0.7.x)
 lighthouse: build
