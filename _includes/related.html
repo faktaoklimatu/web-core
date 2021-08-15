@@ -14,7 +14,7 @@
 | where_exp: "item", "item.tags contains page.tags-topics[0]" | where_exp: "item", "item.slug != page.slug" | map: "slug" | sample: 3 %}
 {%- endif %}
 {% if related_by_tags.size > 0 %}
-<div class="section">
+<div class="section" id="related">
   <div class="container">
     <h2>{{ site.data.lang.text.related.title }}</h2>
     <p>{{ site.data.lang.text.related.caption }}</p>

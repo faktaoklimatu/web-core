@@ -27,6 +27,13 @@ body {
     }
 }
 
+@media print {
+    body {
+        padding-top: 0;
+        color: black;
+    }
+}
+
 main {
     flex-grow: 1;
 }
@@ -185,6 +192,12 @@ span[title] {
 
 .section:nth-of-type(odd) {
     background-color: white;
+}
+
+@media print {
+    .section {
+        background-color: white;
+    }
 }
 
 ul:last-child {
@@ -638,6 +651,12 @@ a.expander.collapsed i.fas {
     font-variant: normal;
 }
 
+@media print {
+    #dev-warning {
+        display: none;
+    }
+}
+
 /* Footer */
 
 footer {
@@ -669,6 +688,38 @@ footer {
             margin: 0.5rem;
         }
     }
+}
+
+@media print {
+    footer {
+        display: none;
+    }
+}
+
+/* Collapsible sections in texts. */
+
+details {
+    padding-right: 2rem;
+    padding-left: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    background: rgba(255, 255, 255, 0.5);
+
+    + details {
+        border-top: 0;
+    }
+
+    > summary {
+        padding: 0.75rem 0 0.75rem 0;
+
+        &::marker {
+            content: "⯆";
+        }
+
+        h2, h3, h4 {
+            display: inline;
+            margin-left: 0.5em;
+        }
+    }
 
     .flag {
         height: 1rem;
@@ -698,5 +749,11 @@ sup.chem-ion {
 @media (max-width: 576px) {
     a.lightbox-desktop-only {
         pointer-events: none;
+    }
+}
+
+@media print {
+    #related {
+        display: none;
     }
 }
