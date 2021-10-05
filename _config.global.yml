@@ -51,6 +51,7 @@ plugins:
   - jekyll-redirect-from
   - jekyll-sitemap
   - jekyll-last-modified-at
+  - jekyll-feed
 
 # Set custom markdown processor for glossary tag expansion
 markdown: FaktaOKlimatuProcessor
@@ -62,3 +63,9 @@ html-beautify:
   include:
     - "*.html"
     - "*.md"
+
+feed:
+  collections:
+    - explainers
+    - infographics
+    - studies
