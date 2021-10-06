@@ -13,7 +13,9 @@
       {{- include.caption }} 
     {%- endif %}
     {%- if include.source-text %}
-      Zdroj: <a href="{{ include.source-url }}">{{ include.source-text }}</a>
+      Zdroj: {%- if include.source-url %}<a href="{{ include.source-url }}">{% endif %}
+        {{ include.source-text }}
+        {%- if include.source-url %}</a>{% endif %}
     {%- endif %}
   </div>
   {%- endif %}
