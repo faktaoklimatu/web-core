@@ -1,6 +1,6 @@
 # This generator implements the glossary tag (<glossary>)
 
-require 'nokogumbo'
+require 'nokogiri'
 
 module Jekyll
   class GlossaryTag

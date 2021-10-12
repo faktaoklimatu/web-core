@@ -10,7 +10,7 @@ gem 'jekyll-redirect-from'
 gem 'jekyll-sitemap'
 gem 'htmlbeautifier'
 gem 'kramdown-math-katex'
-gem 'nokogumbo'
+gem 'nokogiri', '~> 1.12'
 
 # The plugin in the gem repository is ccurrently not maintained.
 # Temporarity provided locally.
