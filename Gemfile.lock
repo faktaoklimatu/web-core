@@ -115,7 +115,7 @@ DEPENDENCIES
   jekyll-redirect-from
   jekyll-sitemap
   kramdown-math-katex
-  nokogumbo
+  nokogiri (~> 1.12)
   webrick (~> 1.7)
 
 BUNDLED WITH
