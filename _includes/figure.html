@@ -4,8 +4,8 @@
     {%- if suffix == "svg" %}
     data-type="iframe"
     {%- endif %}
-    {%- if include.caption %}
-    data-options='{ "caption": {{ include.caption | jsonify }} }'
+    {%- if include.caption or (include.source-text and include.source-url) %}
+    data-caption="..."
     {%- endif %}>
     <picture>
       {%- if include.name-mobile %}
@@ -15,7 +15,7 @@
     </picture>
   </a>
   {%- if include.caption or (include.source-text and include.source-url) %}
-  <div class="source">
+  <div class="source fancybox-custom-caption">
     {%- if include.caption %}
       {{- include.caption }} 
     {%- endif %}
