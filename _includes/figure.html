@@ -2,7 +2,7 @@
   <a href="/assets-local/figures/{{ page.slug }}/{{ include.name }}">
     <picture>
       {%- if include.name-mobile %}
-      <source media="(max-width: 767px)" srcset="/assets-local/figures/{{ page.slug }}/{{ include.name-mobile }}">
+      <source media="(max-width: 767px)" srcset="/assets-local/figures/{{ page.slug }}/{{ include.name-mobile }}" />
       {%- endif %}
       <img src="/assets-local/figures/{{ page.slug }}/{{ include.name }}" alt="{{ include.alt }}">
     </picture>
