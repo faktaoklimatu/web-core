@@ -16,9 +16,11 @@
           <div class="col-lg-9">
             <a class="infographic" id="infographic-fullscreen" href="{{ download_path }}_6000.png">
               <img class="infographic" src="{{ download_path }}_1920.png" alt="{{ page.title }}"
-                srcset="{{ download_path }}_600.png 600w, {{ download_path }}_1200.png 1200w, {{ download_path }}_1920.png 1920w, {{ download_path }}_6000.png 6000w"/>
+                srcset="{{ download_path }}_600.png 600w, {{ download_path }}_1200.png 1200w, {{ download_path }}_1920.png 1920w"
+                sizes="(max-width: 575.98px) 600px, (max-width: 1199.98px) 1200px, 1920px"
+              />
             </a>
-            <hr/>
+            <hr />
             <p class="caption">{{ page.caption }}</p>
           </div>
 
