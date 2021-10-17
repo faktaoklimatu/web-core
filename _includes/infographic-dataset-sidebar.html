@@ -1,13 +1,13 @@
 {% case include.section %}
   {% when "downloads" %}
     <div class="btn-group dropdown d-lg-inline-flex" role="group">
-      <a href="{{ download_path }}.pdf" id="infographic-pdf" class="btn btn-primary" download>PDF</a>
-      <a href="{{ download_path }}.svg" id="infographic-svg" class="btn btn-primary" download>SVG</a>
-      <button class="btn btn-primary dropdown-toggle" role="button" id="dropdownPNGselection" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PNG</button>
-      <div class="dropdown-menu dropdown-links" aria-labelledby="dropdownPNGselection">
-        <a class="dropdown-item" id="infographic-png-3" href="{{ download_path }}_6000.png" download>6000 x 4242 px</a>
-        <a class="dropdown-item" id="infographic-png-2" href="{{ download_path }}_1920.png" download>1920 x 1358 px</a>
-        <a class="dropdown-item" id="infographic-png-1" href="{{ download_path }}_1200.png" download>1200 x 848 px</a>
+      <a href="{{ download_path }}.pdf" class="btn btn-primary download-pdf" download>PDF</a>
+      <a href="{{ download_path }}.svg" class="btn btn-primary download-svg" download>SVG</a>
+      <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PNG</button>
+      <div class="dropdown-menu dropdown-links" aria-label="{{ site.data.lang.sidebar.download.png-size }}">
+        <a class="dropdown-item download-png-lg" href="{{ download_path }}_6000.png" download>6000 x 4242 px</a>
+        <a class="dropdown-item download-png-md" href="{{ download_path }}_1920.png" download>1920 x 1358 px</a>
+        <a class="dropdown-item download-png-sm" href="{{ download_path }}_1200.png" download>1200 x 848 px</a>
       </div>
     </div>
   {% when "data" %}
