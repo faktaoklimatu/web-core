@@ -24,7 +24,7 @@
         "source": "@(assets|assets-local)/!(files)/**",
         "headers": [ {
           "key": "Cache-Control",
-          "value": "public, max-age=600"
+          "value": "public, max-age=604800, stale-while-revalidate=2678400"
         } ]
       }, {
         "source": "**",
