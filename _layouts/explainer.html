@@ -28,7 +28,9 @@
               {{ site.data.lang.text.explainer.licence }}:
             </dt>
             <dd>
-              <a href="{{ page.cover-source-license-url }}">{{ page.cover-source-license }}</a>
+              {% if page.cover-source-license-url %}<a href="{{ page.cover-source-license-url }}">{% endif %}
+                {{ page.cover-source-license }}
+              {% if page.cover-source-license-url %}</a>{% endif %}
             </dd>
           </dl>
         </div>
