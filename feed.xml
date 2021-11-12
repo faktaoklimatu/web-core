@@ -9,6 +9,7 @@
   <id>{{ page.url | absolute_url | xml_escape }}</id>
   <title type="html">{{ site.title | smartify | xml_escape }}</title>
   <subtitle>{{ site.description | xml_escape }}</subtitle>
+  <icon>{{ site.url }}/assets/favicon.png</icon>
   <author>
     <name>{{ site.author | xml_escape }}</name>
     <email>{{ site.email | xml_escape }}</email>
