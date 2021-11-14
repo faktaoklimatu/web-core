@@ -3,7 +3,7 @@
     
     {
       "_comment": "HTTP header setting for production channel",
-      "_comment-details": "All caches to 1 week, files must revalidate, others have stale-while-revalidate for 1 month, CSP report URI is empty",
+      "_comment-details": "All caches to 1 week, files must revalidate, others have stale-while-revalidate for 1 month",
 
       "target": "production",
       "public": "_site",
