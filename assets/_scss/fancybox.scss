@@ -1,0 +1,29 @@
+.fancybox-is-open {
+  .fancybox-bg {
+    background: white;
+    opacity: 1;
+  }
+}
+
+.fancybox-caption {
+  background: white;
+  color: $c-grey;
+  
+  a, a:link {
+    color: $c-grey;
+    text-decoration: underline;
+  }
+}
+
+.fancybox-slide {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.fancybox-button {
+  background: $c-body;
+  
+  svg {
+    color: $c-grey;
+  }
+}
