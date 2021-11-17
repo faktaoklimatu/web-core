@@ -14,10 +14,10 @@
     <name>{{ site.author | xml_escape }}</name>
     <email>{{ site.email | xml_escape }}</email>
   </author>
-  {% assign objects = site.explainers | concat: site.infographics | concat: site.studies | concat: site.datasets | where_exp: "item", "item.published != false" | sort: "published" | reverse %}
+  {%- assign objects = site.explainers | concat: site.infographics | concat: site.studies | concat: site.datasets | where_exp: "item", "item.published != false" | sort: "published" | reverse -%}
   {% for object in objects %}
     <entry xml:lang="{{ site.lang }}">
-      {% assign post_title = object.title | smartify | strip_html | normalize_whitespace | xml_escape %}
+      {%- assign post_title = object.title | smartify | strip_html | normalize_whitespace | xml_escape -%}
       <title type="html">{{ post_title }}</title>
       <link href="{{ object.url | absolute_url }}" rel="alternate" type="text/html" title="{{ post_title }}" />
       <published>{{ object.published | date_to_xmlschema }}</published>
@@ -25,10 +25,10 @@
       <author>
           <name>{{ object.author | default: site.author | xml_escape }}</name>
       </author>
-      {% for tag in object.tags %}
+      {% for tag in object.tags -%}
         <category term="{{ tag | xml_escape }}" />
       {% endfor %}
-      {% case object.layout %}
+      {%- case object.layout -%}
         {% when 'infographic' %}
           {% assign image = "/assets/generated/" | append: object.slug | append: "_1200.png" %}
         {% when 'study' %}
@@ -37,15 +37,15 @@
           {% assign image = "/assets/covers/" | append: object.slug | append: ".jpg" %}
         {% else %}
           {% assign image = "/assets-local/img/preview.png" %}
-      {% endcase %}
+      {%- endcase -%}
       <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="{{ image | absolute_url | xml_escape }}" />
       <media:content medium="image" url="{{ image | absolute_url | xml_escape }}" xmlns:media="http://search.yahoo.com/mrss/" />
       <content type="html" xml:base="{{ object.url | absolute_url | xml_escape }}">
-        {% case object.layout %}
+        {%- case object.layout -%}
           {% when 'explainer' %}
             {{ object.perex | markdownify | xml_escape }}
           {% when 'infographic' %}
-            {% capture img-tag %}<img src="{{ site.url | append: '/assets/generated/' | append: object.slug | append: '_1920.png' | xml_escape }}" alt="{{ object.title | xml_escape }}" />{% endcapture %}
+            {%- capture img-tag %}<img src="{{ site.url | append: '/assets/generated/' | append: object.slug | append: '_1920.png' | xml_escape }}" alt="{{ object.title | xml_escape }}" />{%- endcapture -%}
             {{ img-tag | xml_escape }}
             {{ object.caption | markdownify | xml_escape }}
           {% when 'study' %}
@@ -56,10 +56,10 @@
             {{ object.intro | markdownify | xml_escape }}
           {% when 'dataset' %}
             {{ object.intro | markdownify | xml_escape }}
-          {% endcase %}
-        {% capture more-online %}_{{ site.data.lang.text.rss.more-online }}_{% endcapture %}
-        {{ more-online | markdownify | xml_escape }}
+          {%- endcase -%}
+        {%- capture more-online %}_{{ site.data.lang.text.rss.more-online }}_{% endcapture -%}
+        {{ more-online | markdownify | strip | xml_escape }}
       </content>
     </entry>
-  {% endfor %}
+  {%- endfor -%}
 </feed>
