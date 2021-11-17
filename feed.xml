@@ -52,8 +52,13 @@
             {{ object.intro | markdownify | xml_escape }}
             {{ site.data.lang.text.study.summary | prepend: "## " | markdownify | xml_escape }}
             {{ object.summary | markdownify | xml_escape }}
+          {% when 'survey' %}
+            {{ object.intro | markdownify | xml_escape }}
+          {% when 'dataset' %}
+            {{ object.intro | markdownify | xml_escape }}
           {% endcase %}
-        {{ object.content | xml_escape }}
+        {% capture more-online %}_{{ site.data.lang.text.rss.more-online }}_{% endcapture %}
+        {{ more-online | markdownify | xml_escape }}
       </content>
     </entry>
   {% endfor %}
