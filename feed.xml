@@ -10,6 +10,8 @@
   <title type="html">{{ site.title | smartify | xml_escape }}</title>
   <subtitle>{{ site.description | xml_escape }}</subtitle>
   <icon>{{ site.url }}/assets/favicon.png</icon>
+  <logo>{{ site.url }}/assets/logo-2x1.png</logo>
+  <rights>{{ site.data.lang.licence.id }}</rights>
   <author>
     <name>{{ site.author | xml_escape }}</name>
     <email>{{ site.email | xml_escape }}</email>
