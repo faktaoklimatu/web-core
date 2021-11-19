@@ -198,7 +198,7 @@ class Search {
                 let searchResults = this.fuse.search(this.searchString);
                 searchResultsHtml = searchResults.length ? 
                                         this.getResultsHtml(searchResults) : 
-                                        this.getEmptyResultsHtml('{{ site.data.lang.navigation.search-empty }}');
+                                        this.getEmptyResultsHtml('{{ site.data.lang.navigation.search.empty }}');
             } else {
                 searchResultsHtml = '';
             }
@@ -217,7 +217,7 @@ class Search {
     }
 
     onSiteJsonFailed () {
-        this.updateResults(this.getEmptyResultsHtml('{{ site.data.lang.navigation.search-failed }}'));
+        this.updateResults(this.getEmptyResultsHtml('{{ site.data.lang.navigation.search.failed }}'));
         this.showSuggestions();
     }
 
