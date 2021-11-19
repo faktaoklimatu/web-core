@@ -17,4 +17,18 @@
       captionBody.appendChild(customCaption.cloneNode(true));
     }
   };
+
+  defaults.afterLoad = function(instance, current) {
+    if (current.contentType === 'iframe') {
+      const iframeDocument = current.$iframe[0].contentDocument;
+      const svg = iframeDocument.firstElementChild;
+
+      const bg = iframeDocument.createElementNS(svg.getAttribute('xmlns'), 'rect');
+      bg.setAttribute('width', '100%');
+      bg.setAttribute('height', '100%');
+      bg.setAttribute('fill', 'white');
+
+      svg.insertBefore(bg, svg.firstChild);
+    }
+  };
 })();
