@@ -17,4 +17,8 @@
       captionBody.appendChild(customCaption.cloneNode(true));
     }
   };
+
+  if (!$.fancybox.isMobile) {
+    $('[data-lightbox]').fancybox();
+  }
 })();
