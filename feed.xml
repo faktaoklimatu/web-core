@@ -45,9 +45,11 @@
       <content type="html" xml:base="{{ object.url | absolute_url | xml_escape }}">
         {%- case object.layout -%}
           {% when 'explainer' %}
+            {%- capture img-tag %}<img src="{{ site.url | append: '/assets/covers/' | append: object.slug | append: '_600.jpg' | xml_escape }}" alt="{{ object.title | xml_escape }}" />{%- endcapture -%}
+            {{ img-tag | xml_escape }}
             {{ object.perex | markdownify | xml_escape }}
           {% when 'infographic' %}
-            {%- capture img-tag %}<img src="{{ site.url | append: '/assets/generated/' | append: object.slug | append: '_1200.png' | xml_escape }}" alt="{{ object.title | xml_escape }}" />{%- endcapture -%}
+            {%- capture img-tag %}<img src="{{ site.url | append: '/assets/generated/' | append: object.slug | append: '_600.png' | xml_escape }}" alt="{{ object.title | xml_escape }}" />{%- endcapture -%}
             {{ img-tag | xml_escape }}
             {{ object.caption | markdownify | xml_escape }}
           {% when 'study' %}
