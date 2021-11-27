@@ -53,6 +53,8 @@ local: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-i
 check: build
 	@echo "Validating generated search index ..."
 	bundle exec ruby utils/validate-json.rb _site/search.json
+	@echo "Validating generated Atom feed ..."
+	bundle exec ruby utils/validate-xml.rb _site/feed.xml
 	@echo "Running internal tests on the generated site using html-proofer ..."
 	bundle exec ruby utils/test.rb
 	@echo "Running tests on the external content using html-proofer ..."
