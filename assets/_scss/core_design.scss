@@ -210,11 +210,11 @@ ul:last-child {
     }
 
     &-brand {
-        padding-left: 2rem;
-        background-image: url(/assets/favicon.png);
-        background-repeat: no-repeat;
-        background-size: 1.5rem;
-        background-position: left;
+        padding-top: 0px;
+        padding-bottom: 5px;
+        img {
+            height: 25px;
+        }
     }
 
     .container {
