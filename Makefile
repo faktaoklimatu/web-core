@@ -43,7 +43,7 @@ bundle-install:
 	bundle install
 
 build: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
-	@echo "Building the website using Jekyll ..."
+	@echo "Building the website using Jekyll..."
 	@if [ "$(BRANCH)" = "master" ]; then echo "=== Production build ($(BRANCH)) ==="; else echo "=== Development build ($(BRANCH)) ==="; fi
 	@if [ "$(BRANCH)" = "master" ]; then JEKYLL_ENV=production bundle exec jekyll build; else bundle exec jekyll build; fi
 
@@ -51,13 +51,13 @@ local: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-i
 	bundle exec jekyll serve --trace --host 0.0.0.0
 
 check: build
-	@echo "Validating generated search index ..."
+	@echo "Validating generated search index..."
 	bundle exec ruby utils/validate-json.rb _site/search.json
-	@echo "Validating generated Atom feed ..."
+	@echo "Validating generated Atom feed..."
 	bundle exec ruby utils/validate-xml.rb _site/feed.xml
-	@echo "Running internal tests on the generated site using html-proofer ..."
+	@echo "Running internal tests on the generated site using html-proofer..."
 	bundle exec ruby utils/test.rb
-	@echo "Running tests on the external content using html-proofer ..."
+	@echo "Running tests on the external content using html-proofer..."
 	-bundle exec ruby utils/test.rb external
 
 # To run lighthouse, you need Google Chrome and Lighthous CLI (npm install -g @lhci/cli@0.7.x)
@@ -72,20 +72,25 @@ deploy-production: build
 
 # === Targets for generating files  ===
 
-generated-files: _config.yml humans.txt firebase.json .firebaserc
+generated-files: _config.yml humans.txt firebase.json .firebaserc favicon.ico
 
 _config.yml: _config.global.yml ../_config.local.yml
+	@echo "Generating Jekyll cofiguration..."
 	cat $^ >$@
 
 humans.txt: ../CONTRIBUTORS.md
-	@echo "Creating humans.txt file ..."
-	cp ../CONTRIBUTORS.md humans.txt
+	@echo "Creating humans.txt file..."
+	cp $^ $@
 
 firebase.json: deploy-templates/firebase.json _config.yml
 	sed "s|{{ CORS_REPORT_URI }}|$(CONFIG_CORS_REPORT_URI)|" $< >$@
 
 .firebaserc: deploy-templates/.firebaserc _config.yml
 	sed "s|{{ FIREBASE_PROJECT }}|$(CONFIG_FIREBASE_PROJECT)|" $< >$@
+
+favicon.ico: assets-local/favicon.ico
+	@echo "Copying favicon..."
+	cp $^ $@
 
 $(INFOGRAPHICS_FOLDER)/%.pdf: _infographics/*/%.pdf
 	@utils/convert-infographic.sh $< $@

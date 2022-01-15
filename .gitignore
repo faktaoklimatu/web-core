@@ -8,6 +8,7 @@
 /.well-known/security.txt
 /firebase.json
 /.firebaserc
+/favicon.ico
 
 # Build Jekyll site, cache, test results
 /_site/**
