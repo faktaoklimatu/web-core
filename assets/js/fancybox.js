@@ -1,4 +1,6 @@
-(function() {
+---
+---
+$(document).ready(function() {
   const defaults = $.fancybox.defaults;
 
   defaults.lang = {{ site.lang | jsonify }};
@@ -21,4 +23,4 @@
   if (!$.fancybox.isMobile) {
     $('[data-lightbox]').fancybox();
   }
-})();
+});
