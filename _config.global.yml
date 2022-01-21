@@ -41,6 +41,14 @@ exclude:
     - _explainers/*.jpg     # Explainer cover image
     - .cache/               # Intermediate files
 
+# Set the strictness of the parser
+liquid:
+  error_mode: strict      # Stop build on error
+  strict_filters: true    # Catch non-existing filters
+  # Disabled due to long-standing bug: https://github.com/Shopify/liquid/issues/1034
+  # strict_variables: true  # Catch non-assigned variables
+
+# Style file settings
 sass:
     sass_dir: assets/_scss
     style: compressed
@@ -59,9 +67,11 @@ plugins:
 # Set custom markdown processor for glossary tag expansion
 markdown: FaktaOKlimatuProcessor
 
+# Set custom class for external links
 target-blank:
     add_css_classes: ext-link
 
+# Set files for post-render HTML beautification
 html-beautify:
   include:
     - "*.html"
