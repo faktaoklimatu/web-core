@@ -4,7 +4,7 @@
     {%- if suffix == "svg" %}
     data-type="iframe"
     {%- endif %}
-    {%- if include.caption or (include.source-text and include.source-url) %}
+    {%- if include.caption or include.source-text %}
     data-caption="..."
     {%- endif %}>
     <picture>
@@ -14,7 +14,7 @@
       <img src="/assets-local/figures/{{ page.slug }}/{{ include.name }}" alt="{{ include.alt }}">
     </picture>
   </a>
-  {%- if include.caption or (include.source-text and include.source-url) %}
+  {%- if include.caption or include.source-text %}
   <div class="source fancybox-custom-caption">
     {%- if include.caption %}
       {{- include.caption }} 
