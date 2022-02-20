@@ -1,0 +1,36 @@
+.leadin-figure {
+    width: 8em;
+    margin: 0 1.5em 1em 0;
+
+    img {
+        width: 100%;
+    }
+}
+
+.longread-figure {
+    margin: 2rem 0rem;
+
+    img {
+        width: 100%;
+    }
+
+    .source {
+        text-align: right;
+        margin: 0.5rem 0.5rem 0 0.5rem;
+        font-size: 0.8rem;
+        line-height: 150%;
+        color: $c-grey;
+
+        a {
+            color: $c-grey;
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .leadin-figure {
+        float: left;
+        margin-bottom: 0;
+    }
+}
+
