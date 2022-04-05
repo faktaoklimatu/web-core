@@ -1,3 +1,6 @@
+TOPICS_FOLDER=assets/topics
+TOPICS_SRC=$(wildcard _topics/*.svg)
+TOPICS_DST=$(addprefix $(TOPICS_FOLDER)/,$(notdir $(TOPICS_SRC)))
 INFOGRAPHICS_FOLDER=assets/generated
 INFOGRAPHICS_SRC=$(wildcard _infographics/*/*.pdf _studies/*.pdf)
 INFOGRAPHICS_DST=$(addprefix $(INFOGRAPHICS_FOLDER)/,$(notdir $(INFOGRAPHICS_SRC)))
@@ -42,12 +45,12 @@ delete-container:
 bundle-install:
 	bundle install
 
-build: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
+build: $(TOPICS_DST) $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
 	@echo "Building the website using Jekyll..."
 	@if [ "$(BRANCH)" = "master" ]; then echo "=== Production build ($(BRANCH)) ==="; else echo "=== Development build ($(BRANCH)) ==="; fi
 	@if [ "$(BRANCH)" = "master" ]; then JEKYLL_ENV=production bundle exec jekyll build; else bundle exec jekyll build; fi
 
-local: $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
+local: $(TOPICS_DST) $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
 	bundle exec jekyll serve --trace --host 0.0.0.0
 
 check: build
@@ -92,6 +95,10 @@ favicon.ico: assets-local/favicon.ico
 	@echo "Copying favicon..."
 	cp $^ $@
 
+$(TOPICS_FOLDER)/%: _topics/%
+	mkdir -p $(@D)
+	cp $< $@
+
 $(INFOGRAPHICS_FOLDER)/%.pdf: _infographics/*/%.pdf
 	@utils/convert-infographic.sh $< $@
 
@@ -113,6 +120,7 @@ $(DATASETS_FOLDER)/%.png: _datasets/%.md
 # === Cleaning targets  ===
 
 clean:
+	rm -rf $(TOPICS_FOLDER)
 	rm -rf $(INFOGRAPHICS_FOLDER)
 	rm -rf $(STUDIES_FOLDER)
 	rm -rf $(COVERS_FOLDER)

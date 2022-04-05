@@ -1,7 +1,8 @@
 # Generated web files
+/assets/covers/*
 /assets/generated/*
 /assets/studies/*
-/assets/covers/*
+/assets/topics/*
 /_config.yml
 /humans.txt
 /robots.txt

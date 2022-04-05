@@ -25,15 +25,16 @@ cdn:
 # What files to include/exclude from final site?
 include: [ ".well-known" ] # .well-known-templates implicitly excluded
 exclude:
-    - README.md            # Developer information
-    - LICENSE.md           # Developer information
-    - Gemfile              # Build settings
-    - Gemfile.lock         # Build settings
-    - Makefile             # Build settings
-    - config-templates     # Build settings
-    - firebase.json        # Deploy settings
-    - utils                # Development files
-    - Dockerfile           # Containerization
+    - README.md             # Developer information
+    - LICENSE.md            # Developer information
+    - Gemfile               # Build settings
+    - Gemfile.lock          # Build settings
+    - Makefile              # Build settings
+    - config-templates      # Build settings
+    - firebase.json         # Deploy settings
+    - utils                 # Development files
+    - Dockerfile            # Containerization
+    - _topics/*.svg         # Topics maps
     - _infographics/*/*.pdf # Original infographics (build moves them to assets)
     - _studies/*.jpg        # Study images
     - _studies/*.png        # Study images
