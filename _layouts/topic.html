@@ -17,8 +17,7 @@
                 {%- if page.map %}
                     <div class="col-lg-7 mt-4 text-center" id="topic-map">
                         <a href="/assets/topics/{{ page.slug }}.svg" data-lightbox>
-                            <img loading="eager" src="/assets/topics/{{ page.slug }}.svg"/>
-                            <!--alt="{{ page.title }}"-->
+                            <img loading="eager" src="/assets/topics/{{ page.slug }}.svg"/ alt="{{ page.title }}: {{ site.data.lang.topic.map-caption }}">
                         </a>
                         <div class="caption">{{ page.title }}: {{ site.data.lang.topic.map-caption }}</div>
                     </div>
