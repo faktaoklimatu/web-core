@@ -37,14 +37,16 @@
                                 <span class="unit">{{ gauge.unit }}</span>
                             </div>
                             <div class="subtitle">{{ gauge.subtitle }}</div>
+                            <div class="comment">{{ gauge.comment }}</div>
 
                             {%-if gauge.value-vs %}
-                                <span class="versus">×</span>
+                                <div class="versus">×</div>
                                 <div class="value ">
                                     <span class="number">{{ gauge.value-vs }}</span>
                                     <span class="unit">{{ gauge.unit }}</span>
                                 </div>
                                 <div class="subtitle">{{ gauge.subtitle-vs }}</div>
+                                <div class="comment">{{ gauge.comment-vs }}</div>
                             {%-endif %}
 
                             {%-if gauge.source or gauge.source-url %}
