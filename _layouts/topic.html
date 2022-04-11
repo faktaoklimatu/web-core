@@ -95,7 +95,7 @@
                                 <dt class="clearfix">
                                     <a data-toggle="collapse" data-target="#collapse-{{ qaCounter }}" aria-expanded="false" aria-controls="collapse-{{ qaCounter }}">
                                         <div>
-                                            {{ qa.question }}
+                                            {{ qa.q }}
                                             <div class="qa-button">
                                                 <i class="fas fa-chevron-down"></i>
                                             </div>
@@ -103,7 +103,7 @@
                                     </a>
                                 </dt>
                                 <dd class="collapse" id="collapse-{{ qaCounter }}">
-                                    <div>{{ qa.answer | markdownify }}</div>
+                                    <div>{{ qa.a | markdownify }}</div>
                                 </dd>
                                 {% assign qaCounter = qaCounter | plus: 1 %}
                             {%- endfor %}
