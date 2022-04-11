@@ -8,113 +8,113 @@
   {% include navigation.html %}
   <main>
     <div class="section">
-        <div class="container clearfix">
-            <h1>{{ page.title }}</h1>
-            <div class="row">
-                <div class="col-lg-5 mt-4 lead">
-                    {{ content }}
-                </div>
-                {%- if page.map %}
-                    <div class="col-lg-7 mt-4 text-center" id="topic-map">
-                        <a href="/assets/topics/{{ page.slug }}.svg" data-lightbox>
-                            <img loading="eager" src="/assets/topics/{{ page.slug }}.svg"/ alt="{{ page.title }}: {{ site.data.lang.topic.map-caption }}">
-                        </a>
-                        <div class="caption">{{ page.title }}: {{ site.data.lang.topic.map-caption }}</div>
-                    </div>
-                {%- endif %}
+      <div class="container clearfix">
+        <h1>{{ page.title }}</h1>
+        <div class="row">
+          <div class="col-lg-5 mt-4 lead">
+            {{ content }}
+          </div>
+          {%- if page.map %}
+            <div class="col-lg mt-4 text-center topic-map">
+              <a href="/assets/topics/{{ page.slug }}.svg" data-lightbox>
+                <img loading="eager" src="/assets/topics/{{ page.slug }}.svg" alt="{{ page.title }}: {{ site.data.lang.topic.map-caption }}">
+              </a>
+              <div class="caption">{{ page.title }}: {{ site.data.lang.topic.map-caption }}</div>
             </div>
+          {%- endif %}
         </div>
+      </div>
     </div>
     {%- if page.dashboard %}
-        <div class="section">
-            <div class="container clearfix">
-                <div class="dashboard row">
-                    {%- for gauge in page.dashboard %}
-                        <div class="gauge col-md-6 col-lg-4 p-3 text-center">
-                            <div class="title">{{ gauge.title }}</div>
-                            <div class="value">
-                                <span class="number">{{ gauge.value }}</span>
-                                <span class="unit">{{ gauge.unit }}</span>
-                            </div>
-                            <div class="subtitle">{{ gauge.subtitle }}</div>
-                            <div class="comment">{{ gauge.comment }}</div>
-
-                            {%-if gauge.value-vs %}
-                                <div class="versus">×</div>
-                                <div class="value ">
-                                    <span class="number">{{ gauge.value-vs }}</span>
-                                    <span class="unit">{{ gauge.unit }}</span>
-                                </div>
-                                <div class="subtitle">{{ gauge.subtitle-vs }}</div>
-                                <div class="comment">{{ gauge.comment-vs }}</div>
-                            {%-endif %}
-
-                            {%-if gauge.source or gauge.source-url %}
-                                <div class="source">
-                                    {%-if gauge.source %}
-                                        {{ site.data.lang.topic.gauge-source }}: <a href="{{ gauge.source-url }}">{{ gauge.source }}</a>
-                                    {%-else %}
-                                        <a href="{{ gauge.source-url }}">{{ site.data.lang.topic.gauge-source }}</a>
-                                    {%-endif %}
-                                </div>
-                            {%-endif %}
-                        </div>
-                    {%- endfor %}
+      <div class="section">
+        <div class="container clearfix">
+          <div class="dashboard row">
+            {%- for gauge in page.dashboard %}
+              <div class="gauge col-md-6 col-lg-4 p-3 text-center">
+                <div class="title">{{ gauge.title }}</div>
+                <div class="value">
+                  <span class="number">{{ gauge.value }}</span>
+                  <span class="unit">{{ gauge.unit }}</span>
                 </div>
-            </div>
+                <div class="subtitle">{{ gauge.subtitle }}</div>
+                <div class="comment">{{ gauge.comment }}</div>
+
+                {%- if gauge.value-vs %}
+                  <div class="versus">×</div>
+                  <div class="value ">
+                    <span class="number">{{ gauge.value-vs }}</span>
+                    <span class="unit">{{ gauge.unit }}</span>
+                  </div>
+                  <div class="subtitle">{{ gauge.subtitle-vs }}</div>
+                  <div class="comment">{{ gauge.comment-vs }}</div>
+                {%- endif %}
+
+                {%- if gauge.source-url %}
+                  <div class="source">
+                    {%- if gauge.source %}
+                      {{ site.data.lang.topic.gauge-source }}: <a href="{{ gauge.source-url }}">{{ gauge.source }}</a>
+                    {%- else %}
+                    <a href="{{ gauge.source-url }}">{{ site.data.lang.topic.gauge-source }}</a>
+                    {%- endif %}
+                  </div>
+                {%- endif %}
+              </div>
+            {%- endfor %}
+          </div>
         </div>
+      </div>
     {%- endif %}
     {%- assign qaCounter = 1 %}
     {%- for sub in page.subtopics %}
-        <div class="section">
-            <div class="container">
-                <div class="subtopic">
-                    {%- if sub.id %}
-                        {%- assign sub_id = sub.id %}
-                        {%- assign sub_title = sub.title %}
-                    {%- else %}
-                        {%- assign sub_id = site.data.lang.topic.nutshell-id %}
-                        {%- assign sub_title = site.data.lang.topic.nutshell-title %}
-                    {%- endif %}
-                    <h2 id="{{ sub_id }}">{{ sub_title }} <a href="#{{ sub_id }}" class="section-link">#</a></h2>
-                    {%- if sub.perex %}
-                        <p class="perex">{{ sub.perex | markdownify }}</p>
-                    {%- endif %}
-                    <div class="row justify-content-md">
-                        {%- for slug in sub.content %}
-                            {%- assign item = site.documents | where_exp: "item", "'infographics, studies, explainers' contains item.collection" | find: "slug", slug %}
-                            {%- if item %}
-                                <div class="col-md-6 col-lg-4">
-                                    <a href="{{ item.url }}" class="preview-card card">
-                                        {% include preview-block.html item=item %}
-                                    </a>
-                                </div>
-                            {%- endif %}
-                        {%- endfor %}
-                    </div>
-                    {%- if sub.qa %}
-                        <dl class="qa">
-                            {%- for qa in sub.qa %}
-                                <dt class="clearfix">
-                                    <a data-toggle="collapse" data-target="#collapse-{{ qaCounter }}" aria-expanded="false" aria-controls="collapse-{{ qaCounter }}">
-                                        <div>
-                                            {{ qa.q }}
-                                            <div class="qa-button">
-                                                <i class="fas fa-chevron-down"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </dt>
-                                <dd class="collapse" id="collapse-{{ qaCounter }}">
-                                    <div>{{ qa.a | markdownify }}</div>
-                                </dd>
-                                {% assign qaCounter = qaCounter | plus: 1 %}
-                            {%- endfor %}
-                        </dl>
-                    {%- endif %}
-                </div>
+      <div class="section">
+        <div class="container">
+          <div class="subtopic">
+            {%- if sub.id and sub.title %}
+              {%- assign sub_id = sub.id %}
+              {%- assign sub_title = sub.title %}
+            {%- else %}
+              {%- assign sub_id = site.data.lang.topic.nutshell-id %}
+              {%- assign sub_title = site.data.lang.topic.nutshell-title %}
+            {%- endif %}
+            <h2 id="{{ sub_id }}">{{ sub_title }} <a href="#{{ sub_id }}" class="section-link" title="{{ site.data.lang.text.section-link }}">#</a></h2>
+            {%- if sub.lead %}
+              <div class="lead">{{ sub.lead | markdownify }}</div>
+            {%- endif %}
+            <div class="row justify-content-md">
+              {%- for slug in sub.content %}
+                {%- assign item = site.documents | where_exp: "item", "'infographics, studies, explainers' contains item.collection" | find: "slug", slug %}
+                {%- if item %}
+                  <div class="col-md-6 col-lg-4">
+                    <a href="{{ item.url }}" class="preview-card card">
+                      {% include preview-block.html item=item %}
+                    </a>
+                  </div>
+                {%- endif %}
+              {%- endfor %}
             </div>
+            {%- if sub.qa %}
+              <dl class="qa">
+                {%- for qa in sub.qa %}
+                  <dt class="clearfix">
+                    <a data-toggle="collapse" data-target="#collapse-qa-{{ qaCounter }}" aria-expanded="false" aria-controls="collapse-qa-{{ qaCounter }}">
+                      <div>
+                        {{ qa.q }}
+                        <div class="qa-button">
+                          <i class="fas fa-chevron-down"></i>
+                        </div>
+                      </div>
+                    </a>
+                  </dt>
+                  <dd class="collapse" id="collapse-qa-{{ qaCounter }}">
+                    <div>{{ qa.a | markdownify }}</div>
+                  </dd>
+                  {% assign qaCounter = qaCounter | plus: 1 %}
+                {%- endfor %}
+              </dl>
+            {%- endif %}
+          </div>
         </div>
+      </div>
     {%- endfor %}
   </main>
   {% include footer.html %}
