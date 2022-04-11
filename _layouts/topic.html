@@ -70,10 +70,13 @@
             <div class="container">
                 <div class="subtopic">
                     {%- if sub.id %}
-                        <h2 id="{{ sub.id }}">{{ sub.title }}</h2>
+                        {%- assign sub_id = sub.id %}
+                        {%- assign sub_title = sub.title %}
                     {%- else %}
-                        <h2 id="_nutshell">{{ site.data.lang.topic.nutshell }}</h2>
+                        {%- assign sub_id = site.data.lang.topic.nutshell-id %}
+                        {%- assign sub_title = site.data.lang.topic.nutshell-title %}
                     {%- endif %}
+                    <h2 id="{{ sub_id }}">{{ sub_title }} <a href="#{{ sub_id }}" class="section-link">#</a></h2>
                     {%- if sub.perex %}
                         <p class="perex">{{ sub.perex | markdownify }}</p>
                     {%- endif %}
