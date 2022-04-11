@@ -63,6 +63,13 @@
 
 .subtopic {
     font-size: 1.1rem;
+    .section-link {
+        visibility: hidden;
+        font-size: 1rem;
+    }
+    h2:hover .section-link {
+        visibility: visible;
+    }
     .qa {
         border: 1px solid black;
         dt a {
