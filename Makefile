@@ -1,5 +1,5 @@
 TOPICS_FOLDER=assets/topics
-TOPICS_SRC=$(wildcard _topics/*.svg)
+TOPICS_SRC=$(wildcard collections/_topics/*.svg)
 TOPICS_DST=$(addprefix $(TOPICS_FOLDER)/,$(notdir $(TOPICS_SRC)))
 INFOGRAPHICS_FOLDER=assets/generated
 INFOGRAPHICS_SRC=$(wildcard collections/_infographics/*/*.pdf collections/_studies/*.pdf)
@@ -95,7 +95,7 @@ favicon.ico: assets-local/favicon.ico
 	@echo "Copying favicon..."
 	cp $^ $@
 
-$(TOPICS_FOLDER)/%: _topics/%
+$(TOPICS_FOLDER)/%: collections/_topics/%
 	mkdir -p $(@D)
 	cp $< $@
 
