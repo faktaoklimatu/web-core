@@ -2,16 +2,16 @@ TOPICS_FOLDER=assets/topics
 TOPICS_SRC=$(wildcard _topics/*.svg)
 TOPICS_DST=$(addprefix $(TOPICS_FOLDER)/,$(notdir $(TOPICS_SRC)))
 INFOGRAPHICS_FOLDER=assets/generated
-INFOGRAPHICS_SRC=$(wildcard _infographics/*/*.pdf _studies/*.pdf)
+INFOGRAPHICS_SRC=$(wildcard collections/_infographics/*/*.pdf collections/_studies/*.pdf)
 INFOGRAPHICS_DST=$(addprefix $(INFOGRAPHICS_FOLDER)/,$(notdir $(INFOGRAPHICS_SRC)))
 DATASETS_FOLDER=assets/datasets
-DATASETS_SRC=$(wildcard _datasets/*.md)
+DATASETS_SRC=$(wildcard collections/_datasets/*.md)
 DATASETS_DST=$(addprefix $(DATASETS_FOLDER)/,$(notdir $(DATASETS_SRC:.md=.png)))
 STUDIES_FOLDER=assets/studies
-STUDIES_SRC=$(wildcard _studies/*.jpg _studies/*.png)
+STUDIES_SRC=$(wildcard collections/_studies/*.jpg _studies/*.png)
 STUDIES_DST=$(addprefix $(STUDIES_FOLDER)/,$(notdir $(STUDIES_SRC)))
 COVERS_FOLDER=assets/covers
-COVERS_SRC=$(wildcard _explainers/*.jpg)
+COVERS_SRC=$(wildcard collections/_explainers/*.jpg)
 COVERS_DST=$(addprefix $(COVERS_FOLDER)/,$(notdir $(COVERS_SRC)))
 
 PODMAN=podman
@@ -99,22 +99,22 @@ $(TOPICS_FOLDER)/%: _topics/%
 	mkdir -p $(@D)
 	cp $< $@
 
-$(INFOGRAPHICS_FOLDER)/%.pdf: _infographics/*/%.pdf
+$(INFOGRAPHICS_FOLDER)/%.pdf: collections/_infographics/*/%.pdf
 	@utils/convert-infographic.sh $< $@
 
-$(INFOGRAPHICS_FOLDER)/%.pdf: _studies/%.pdf
+$(INFOGRAPHICS_FOLDER)/%.pdf: collections/_studies/%.pdf
 	@utils/convert-infographic.sh $< $@
 
-$(STUDIES_FOLDER)/%: _studies/%
+$(STUDIES_FOLDER)/%: collections/_studies/%
 	mkdir -p $(@D)
 	cp $< $@
 
-$(COVERS_FOLDER)/%: _explainers/%
+$(COVERS_FOLDER)/%: collections/_explainers/%
 	@utils/convert-cover.sh $< $@
 
 dataset-images: $(DATASETS_DST)
 
-$(DATASETS_FOLDER)/%.png: _datasets/%.md
+$(DATASETS_FOLDER)/%.png: collections/_datasets/%.md
 	@bash utils/download-dataset-preview.sh $< $@
 
 # === Cleaning targets  ===
