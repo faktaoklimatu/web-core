@@ -85,7 +85,12 @@
                 {%- assign item = site.documents | where_exp: "item", "'infographics, studies, explainers, episodes' contains item.collection" | find: "slug", slug %}
                 {%- if item %}
                   <div class="col-md-6 col-lg-4">
-                    <a href="{{ item.url }}" class="preview-card card">
+                    {%- if item.layout == "episode" %}
+                      {%- assign url_prefix = "https://2050podcast.cz" %}
+                    {%- else %}
+                      {%- assign url_prefix = "" %}
+                    {%- endif %}
+                    <a href="{{ url_prefix }}{{ item.url }}" class="preview-card card">
                       {% include preview-block.html item=item %}
                     </a>
                   </div>
