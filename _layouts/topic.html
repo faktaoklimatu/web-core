@@ -82,7 +82,7 @@
             {%- endif %}
             <div class="row justify-content-md">
               {%- for slug in sub.content %}
-                {%- assign item = site.documents | where_exp: "item", "'infographics, studies, explainers' contains item.collection" | find: "slug", slug %}
+                {%- assign item = site.documents | where_exp: "item", "'infographics, studies, explainers, episodes' contains item.collection" | find: "slug", slug %}
                 {%- if item %}
                   <div class="col-md-6 col-lg-4">
                     <a href="{{ item.url }}" class="preview-card card">
