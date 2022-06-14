@@ -13,6 +13,9 @@ STUDIES_DST=$(addprefix $(STUDIES_FOLDER)/,$(notdir $(STUDIES_SRC)))
 COVERS_FOLDER=assets/covers
 COVERS_SRC=$(wildcard collections/_explainers/*.jpg)
 COVERS_DST=$(addprefix $(COVERS_FOLDER)/,$(notdir $(COVERS_SRC)))
+EPISODES_FOLDER=assets/episodes
+EPISODES_SRC=$(wildcard collections/_episodes/*.jpg)
+EPISODES_DST=$(addprefix $(EPISODES_FOLDER)/,$(notdir $(EPISODES_SRC)))
 
 PODMAN=podman
 CONTAINER_IMAGE=factsonclimate/web
@@ -50,7 +53,7 @@ build: $(TOPICS_DST) $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-
 	@if [ "$(BRANCH)" = "master" ]; then echo "=== Production build ($(BRANCH)) ==="; else echo "=== Development build ($(BRANCH)) ==="; fi
 	@if [ "$(BRANCH)" = "master" ]; then JEKYLL_ENV=production bundle exec jekyll build; else bundle exec jekyll build; fi
 
-local: $(TOPICS_DST) $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
+local: $(TOPICS_DST) $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) $(EPISODES_DST) generated-files bundle-install
 	bundle exec jekyll serve --trace --host 0.0.0.0
 
 check: build
@@ -116,6 +119,10 @@ dataset-images: $(DATASETS_DST)
 
 $(DATASETS_FOLDER)/%.png: collections/_datasets/%.md
 	@bash utils/download-dataset-preview.sh $< $@
+
+$(EPISODES_FOLDER)/%: collections/_episodes/%
+	mkdir -p $(@D)
+	cp $< $@
 
 # === Cleaning targets  ===
 

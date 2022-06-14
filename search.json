@@ -3,12 +3,17 @@ layout: null
 ---
 [
   {%- assign pages = site.pages | where_exp: "page", "page.search_type" %}
-  {%- assign objects = site.infographics | concat: site.studies | concat: site.explainers | sort: "published" | reverse %}
+  {%- assign objects = site.infographics | concat: site.studies | concat: site.explainers | concat: site.episodes | sort: "published" | reverse %}
   {%- assign all = pages | concat: objects %}
   {%- for page in all %}
+    {%- if page.layout == "episode" %}
+      {%- assign url_prefix = "https://2050podcast.cz" %}
+    {%- else %}
+      {%- assign url_prefix = "" %}
+    {%- endif %}
     {
         "title" : {{ page.title | strip_html | jsonify }},
-        "url" : "{{ page.url }}",
+        "url" : "{{ url_prefix }}{{ page.url }}",
         {%- capture html %}{% include preview-block-small.html item=page %}{%- endcapture %}
         "block" : {{ html | normalize_whitespace | jsonify }},
         {%- assign perex = page.caption | append: " " | append: page.perex | append: " " | append: page.intro %}

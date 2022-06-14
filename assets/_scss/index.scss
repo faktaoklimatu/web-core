@@ -70,6 +70,7 @@
     // Add 70% of the 4px border as well.
     padding-bottom: calc(70% + 3px);
     background-size: cover;
+    background-position: bottom;
 }
 
 a.card:hover {

@@ -1,19 +1,19 @@
 {%- assign item = include.item %}
 {%- case item.layout %}
     {%- when 'infographic' %}
-        <img src="/assets/generated/{{ item.slug }}_600.png" alt="{{ item.title }}" class="img-fluid" />
+        <div style="background-image: url('/assets/generated/{{ item.slug }}_600.png')" alt="{{ item.title }}" class="specific-card"></div>
     {%- when 'dataset' %}
-        <img src="/assets/datasets/{{ item.slug }}.png" alt="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" class="img-fluid card-img" />
+        <img style="background-image: url('/assets/datasets/{{ item.slug }}.png')" alt="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" class="specific-card"></div>
         <div class="card-img-overlay small-card-img-overlay">
             <h5>{{ site.data.lang.text.dataset.dataset }}</h5>
         </div>
     {%- when 'explainer' %}
-        <img src="/assets/covers/{{ item.slug }}_600.jpg" alt="{{ site.data.lang.text.explainer.explainer }}: {{ item.title }}" class="img-fluid card-img" />
+        <div style="background-image: url('/assets/covers/{{ item.slug }}_600.jpg')" alt="{{ site.data.lang.text.explainer.explainer }}: {{ item.title }}" class="specific-card"></div>
         <div class="card-img-overlay small-card-img-overlay">
             <h5>{{ site.data.lang.text.explainer.explainer }}</h5>
         </div>
     {%- when 'study' %}
-        <img src="/assets/studies/{{ item.slug }}.jpg" alt="{{ site.data.lang.text.study.study }}: {{ item.title }}" class="img-fluid card-img" />
+        <div style="background-image: url('/assets/studies/{{ item.slug }}.jpg')" alt="{{ site.data.lang.text.study.study }}: {{ item.title }}" class="specific-card"></div>
         <div class="card-img-overlay small-card-img-overlay">
             <h5>{{ site.data.lang.text.study.study }}</h5>
         </div>
@@ -22,10 +22,15 @@
         <div class="card-img-overlay small-card-img-overlay">
             <h5>{{ site.data.lang.text.survey.survey }}</h5>
         </div>
+    {%- when 'episode' %}
+        <div style="background-image: url('/assets/episodes/{{ item.slug }}.jpg')" alt="{{ site.data.lang.text.episode.episode }}: {{ item.title }}" class="specific-card"></div>
+        <div class="card-img-overlay small-card-img-overlay">
+            <h5>{{ site.data.lang.text.episode.episode }} <i class="fas fa-external-link-alt"></i></h5>
+        </div>
     {%- else %}
         {%- if item.search_type %}
             {%- if item.search_image %}
-                <img src="{{ item.search_image }}" alt="{{ page.search_type }}: {{ item.title }}" class="img-fluid card-img" />
+                <div src="{{ item.search_image }}" alt="{{ page.search_type }}: {{ item.title }}" class="specific-card"></div>
             {%- else %}
                 <div class='branded-card'></div>
             {%- endif %}
