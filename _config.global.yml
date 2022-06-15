@@ -78,3 +78,7 @@ html-beautify:
   include:
     - "*.html"
     - "*.md"
+
+podcast-redirect:
+  layout: "episode"
+  site:   "https://2050podcast.cz"
