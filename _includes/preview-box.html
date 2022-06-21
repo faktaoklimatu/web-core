@@ -10,8 +10,8 @@
 <div class="row">
   {% for needle in slugs %}
     <div class="{{ include.card_class | default: 'py-1 w-100' }}">
-      {% assign item = site.infographics | concat: site.studies | concat: site.explainers | find_exp:"item","item.slug == needle" %}
-      <a href="{{ item.url }}" class="preview-card card">
+      {% assign item = site.infographics | concat: site.studies | concat: site.explainers | concat: site.episodes | find_exp:"item","item.slug == needle" %}
+      <a href="{{ item | get_url }}" class="preview-card card">
         {% include preview-block.html item=item no_include_tags=true %}
       </a>
     </div>
