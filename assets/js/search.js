@@ -257,7 +257,9 @@ class Search {
                        `<div class="search-preview card">${item.block}</div>` +
                        `<div class="snippet">${snippet}</div>`;
             let url = `${item.url}?q=${encodeURIComponent(this.searchString)}`;
-            resultsHtml += `<a class="dropdown-item clearfix" href="${url}" tabindex="0">${card}</a>`;
+            let is_url_absolute = /^(?:[a-z]+:)?\/\//i.test(url);
+            let target = is_url_absolute ? ' target="_blank"' : "";
+            resultsHtml += `<a class="dropdown-item clearfix" href="${url}"${target} tabindex="0">${card}</a>`;
         });
         return resultsHtml;
     }

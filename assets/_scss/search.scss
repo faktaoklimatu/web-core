@@ -116,6 +116,13 @@ nav.navbar-search {
                     height: 100%;
                     background: url("/assets-local/favicon.png") 50% 20%/32px no-repeat;
                 }
+
+                div.specific-card {
+                    width: 100%;
+                    height: 100%;
+                    background-size: cover;
+                    background-position: bottom;
+                }
             }
 
             .snippet {
@@ -177,16 +184,8 @@ nav.navbar-search {
                     margin-block: 1rem;
 
                     div.branded-card {
-                        width: 100%;
-                        height: 100%;
                         background-size: 48px;
                         background-position-y: 30%;
-                    }
-                    div.specific-card {
-                        width: 100%;
-                        height: 100%;
-                        background-size: cover;
-                        background-position: bottom;
                     }
                 }
 

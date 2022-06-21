@@ -81,12 +81,29 @@ a.card:hover {
 .small-card-img-overlay {
     background-color: rgba(255, 255, 255, 0.9);
     top: auto;
-    bottom: 0.5rem;
-    padding: 0.3rem 1rem;
+    bottom: 0.3rem;
+    padding: 0.3rem 0.5rem;
 
     h5 {
         margin-bottom: 0;
-        font-size: 1rem;
+        font-size: 0.9rem;
+        font-weight: normal;
+        i.fas {
+            padding-left: 0.1rem;
+            font-size: 0.7rem;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .small-card-img-overlay {
+        bottom: 0.5rem;
+        padding: 0.3rem 1rem;
+
+        h5 {
+            font-size: 1rem;
+            font-weight: bold;
+        }
     }
 }
 
