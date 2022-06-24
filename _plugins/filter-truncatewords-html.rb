@@ -1,4 +1,4 @@
-require 'nokogumbo'
+require 'nokogiri'
 
 module Jekyll
   module TruncateWordsHtmlFilter
