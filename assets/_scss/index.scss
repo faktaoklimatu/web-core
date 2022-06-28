@@ -64,6 +64,15 @@
         text-transform: uppercase;
         font-size: 0.9rem;
     }
+    p.card-author {
+        font-size: 0.9rem;
+        color: slategray;
+        margin-top: -.375rem;
+        margin-bottom: 0.5rem;
+    }
+    p.card-survey-caption {
+        font-size: 0.9rem;
+    }
 }
 
 .preview-card-image {
@@ -90,11 +99,15 @@ a.card:hover {
     }
 }
 
-.card-dataset-overlay {
+.card-title-overlay {
     background-color: rgba(255, 255, 255, 0.9);
     bottom: auto;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+.card-study-overlay {
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
 .more-overlay-box {

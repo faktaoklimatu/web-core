@@ -86,7 +86,7 @@
                 {%- if item %}
                   <div class="col-md-6 col-lg-4">
                     <a href="{{ item | get_url }}" class="preview-card card">
-                      {% include preview-block.html item=item %}
+                      {% include preview-block.html item=item no_include_tags=true %}
                     </a>
                   </div>
                 {%- endif %}
