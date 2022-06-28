@@ -1,6 +1,7 @@
 html {
     --navbar-height: 5rem;
     scroll-padding-top: var(--navbar-height);
+    scroll-behavior: smooth;
 }
 
 body {
