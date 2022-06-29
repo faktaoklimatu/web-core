@@ -88,7 +88,8 @@ a.card:hover {
 }
 
 .small-card-img-overlay {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.925);
+    border-radius: 0;
     top: auto;
     bottom: 0.5rem;
     padding: 0.3rem 1rem;
@@ -100,14 +101,10 @@ a.card:hover {
 }
 
 .card-title-overlay {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.925);
     bottom: auto;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.card-study-overlay {
-    background-color: rgba(255, 255, 255, 0.95);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0;
 }
 
 .more-overlay-box {
