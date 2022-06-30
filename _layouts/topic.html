@@ -71,30 +71,32 @@
     </div>
     {%- assign qaCounter = 1 %}
     {%- for sub in page.subtopics %}
-      <div class="section">
+      {%- if sub.id and sub.title %}
+        {%- assign sub_id = sub.id %}
+        {%- assign sub_title = sub.title %}
+        {%- assign sub_class = "" %}
+      {%- else %}
+        {%- assign sub_id = site.data.lang.topic.nutshell-id %}
+        {%- assign sub_title = site.data.lang.topic.nutshell-title %}
+        {%- assign sub_class = " bg-extralight-blue" %}
+      {%- endif %}
+      <div class="section{{ sub_class }}">
         <div class="container">
           <div class="subtopic">
-            {%- if sub.id and sub.title %}
-              {%- assign sub_id = sub.id %}
-              {%- assign sub_title = sub.title %}
-            {%- else %}
-              {%- assign sub_id = site.data.lang.topic.nutshell-id %}
-              {%- assign sub_title = site.data.lang.topic.nutshell-title %}
-            {%- endif %}
             <h2 id="{{ sub_id }}">{{ sub_title }} <a href="#{{ sub_id }}" class="section-link" title="{{ site.data.lang.text.section-link }}">#</a></h2>
             {%- if sub.lead %}
               <div class="lead">{{ sub.lead | markdownify }}</div>
             {%- endif %}
             <div class="row justify-content-md">
+              {%- for entry in sub.commented-content %}
+                <div class="col-md-6 col-lg-4">
+                  {% include preview-block.html slug=entry.slug comment=entry.comment comment_number=entry.comment_number no_include_tags=true %}
+                </div>
+              {%- endfor %}
               {%- for slug in sub.content %}
-                {%- assign item = site.documents | where_exp: "item", "'infographics, studies, explainers, episodes' contains item.collection" | find: "slug", slug %}
-                {%- if item %}
-                  <div class="col-md-6 col-lg-4">
-                    <a href="{{ item | get_url }}" class="preview-card card">
-                      {% include preview-block.html item=item no_include_tags=true %}
-                    </a>
-                  </div>
-                {%- endif %}
+                <div class="col-md-6 col-lg-4">
+                  {% include preview-block.html slug=slug no_include_tags=true %}
+                </div>
               {%- endfor %}
             </div>
             {%- if sub.qa %}

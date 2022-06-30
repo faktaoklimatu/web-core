@@ -1,66 +1,16 @@
-{% assign item = include.item %}
-{% case item.layout %}
-    {% when 'infographic' %}
-        <img src="/assets/generated/{{ item.slug }}_600.png" alt="{{ item.title }}" title="{{ item.title }}" class="img-fluid" />
-        {%- unless include.no_include_tags %}
-        <div class="card-img-overlay tags-overlay-box">
-            {% include tags.html tags=item.tags %}
-        </div>
-        {%- endunless %}
-    {% when 'dataset' %}
-        <img src="/assets-local/datasets/{{ item.slug }}.png" alt="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" title="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" class="img-fluid card-img" />
-        <div class="card-img-overlay card-title-overlay">
-            <h5 class="card-title">{{ item.title }}</h5>
-            <h6 class="card-subtitle">{{ site.data.lang.text.dataset.dataset }}</h6>
-        </div>
-        {%- unless include.no_include_tags %}
-        <div class="card-img-overlay tags-overlay-box">
-            {% include tags.html tags=item.tags %}
-        </div>
-        {%- endunless %}
-    {% when 'explainer' %}
-        <div style="background-image: url('/assets/covers/{{ item.slug }}_600.jpg')" title="{{ site.data.lang.text.explainer.explainer }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
-        </div>
-        <div class="card-img-overlay card-title-overlay">
-            <h5 class="card-title">{{ item.title }}</h5>
-            <h6 class="card-subtitle">{{ site.data.lang.text.explainer.explainer }}</h6>
-        </div>
-        {%- unless include.no_include_tags %}
-        <div class="card-img-overlay tags-overlay-box">
-            {% include tags.html tags=item.tags %}
-        </div>
-        {%- endunless %}
-    {% when 'study' %}
-        <div style="background-image: url('/assets/studies/{{ item.slug }}.jpg')" title="{{ site.data.lang.text.explainer.explainer }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
-        </div>
-        <div class="card-img-overlay card-title-overlay">
-            <h5 class="card-title">{{ item.title }}</h5>
-            <p class="card-author">{{ item.study-institution }}, {{ item.study-year }}</p>
-            <h6 class="card-subtitle">{{ site.data.lang.text.study.study }}</h6>
-        </div>
-        {%- unless include.no_include_tags %}
-        <div class="card-img-overlay tags-overlay-box">
-            {% include tags.html tags=item.tags %}
-        </div>
-        {%- endunless %}
-    {% when 'survey' %}
-        <div class="card-body">
-            <h5 class="card-title">{{ item.title }}</h5>
-            <h6 class="card-subtitle">{{ site.data.lang.text.survey.survey }}</h6>
-            <p class="card-text card-survey-caption mt-3">{{ item.caption }}</p>
-        </div>
-        {%- unless include.no_include_tags %}
-        <div class="card-img-overlay tags-overlay-box">
-            {% include tags.html tags=item.tags %}
-        </div>
-        {%- endunless %}
-    {% when 'episode' %}
-        <div style="background-image: url('/assets/episodes/{{ item.slug }}.jpg')" title="{{ site.data.lang.text.episodes.episodes }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
-        </div>
-        <div class="card-img-overlay card-title-overlay">
-            <h5 class="card-title">{{ item.title }}</h5>
-            <h6 class="card-subtitle">{{ site.data.lang.text.episode.episode }} <i class="fas fa-external-link-alt"></i></h6>
-        </div>
-    {% else %}
-        <p>Unknown layout.</p>
-{% endcase %}
+{% assign item = site.infographics | concat: site.studies | concat: site.explainers | concat: site.episodes | find_exp:"item","item.slug == include.slug" %}
+{%- if include.comment %}
+  <a href="{{ item | get_url }}" class="card preview-card commented-preview-card">
+    <div class="card-comment">
+      {%- if include.comment_number %}
+        <div class="card-comment-number">{{ include.comment_number }}</div>
+      {%- endif %}
+      <div class="card-comment-text">{{ include.comment | markdownify }}</div>
+    </div>
+    {% include preview-block-without-link.html item=item comment=include.comment no_include_tags=include.no_include_tags %}
+  </a>
+{%- else %}
+  <a href="{{ item | get_url }}" class="preview-card card">
+    {% include preview-block-without-link.html item=item no_include_tags=include.no_include_tags %}
+  </a>
+{%- endif %}

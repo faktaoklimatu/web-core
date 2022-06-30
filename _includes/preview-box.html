@@ -1,21 +1,18 @@
 <div class="longread-box {{ include.class | default: 'preview-box' }}">
-{% assign slugs = include.slug | split: "," %}
-{%- if include.title %}
-<h4>{{ include.title }}</h4>
-{%- endif %}
-<div markdown="1">
-  {{ include.text }}
-</div>
-{%- if include.slug %}
-<div class="row">
-  {% for needle in slugs %}
-    <div class="{{ include.card_class | default: 'py-1 w-100' }}">
-      {% assign item = site.infographics | concat: site.studies | concat: site.explainers | concat: site.episodes | find_exp:"item","item.slug == needle" %}
-      <a href="{{ item | get_url }}" class="preview-card card">
-        {% include preview-block.html item=item no_include_tags=true %}
-      </a>
+  {%- assign slugs = include.slug | split: "," %}
+  {%- if include.title %}
+    <h4>{{ include.title }}</h4>
+  {%- endif %}
+  <div markdown="1">
+    {{ include.text }}
+  </div>
+  {%- if include.slug %}
+    <div class="row">
+      {%- for slug in slugs %}
+        <div class="{{ include.card_class | default: 'py-1 w-100' }}">
+          {%- include preview-block.html slug=slug no_include_tags=true %}
+        </div>
+      {%- endfor %}
     </div>
-  {% endfor %}
-</div>
-{%- endif %}
+  {%- endif %}
 </div>
