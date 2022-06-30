@@ -28,7 +28,12 @@
                             {%- for tag in sorted_index_tags %}
                             <a class="dropdown-item" href="/{{ menu-item.dropdown }}/{{ tag.id }}">{{ tag.name-long }}</a>
                             {%- endfor- %}
-                        {% elsif menu-item.lang %}
+                        {%- elsif menu-item.list-topic-pages -%}
+                            {%- assign sorted_topics = site.topics | where_exp: "item", "item.weight > 0" | sort: "weight" -%}
+                            {%- for topic in sorted_topics %}
+                            <a class="dropdown-item" href="{{ topic.url }}">{{ topic.title }}</a>
+                            {%- endfor- %}
+                        {%- elsif menu-item.lang %}
                             {%- for submenu-item in menu-item.dropdown %}
                             <a class="dropdown-item no-ext-link-icon" href="{{ submenu-item.link }}"><img class="flag" alt="{{ submenu-item.title }}" src="/assets/flags/{{ submenu-item.lang }}.svg" />{{ submenu-item.title }}</a>
                             {%- endfor -%}
