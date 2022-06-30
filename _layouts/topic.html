@@ -23,47 +23,52 @@
             </div>
           {%- endif %}
         </div>
-      </div>
-    </div>
-    {%- if page.dashboard %}
-      <div class="section">
-        <div class="container clearfix">
+        {%- if page.dashboard %}
           <div class="dashboard row">
             {%- for gauge in page.dashboard %}
-              <div class="gauge col-md-6 col-lg-4 p-3 text-center">
-                <div class="title">{{ gauge.title }}</div>
-                <div class="value">
-                  <span class="number">{{ gauge.value }}</span>
-                  <span class="unit">{{ gauge.unit }}</span>
-                </div>
-                <div class="subtitle">{{ gauge.subtitle }}</div>
-                <div class="comment">{{ gauge.comment }}</div>
+              <div class="col-md-6 col-lg-4 p-2">
+                <div class="gauge">
+                  <div class="title">{{ gauge.title | markdownify}}</div>
 
-                {%- if gauge.value-vs %}
-                  <div class="versus">×</div>
-                  <div class="value ">
-                    <span class="number">{{ gauge.value-vs }}</span>
-                    <span class="unit">{{ gauge.unit }}</span>
-                  </div>
-                  <div class="subtitle">{{ gauge.subtitle-vs }}</div>
-                  <div class="comment">{{ gauge.comment-vs }}</div>
-                {%- endif %}
+                  <div class="data">
+                    <div class="value">
+                      <span class="number">{{ gauge.value }}</span>
+                      <span class="unit">{{ gauge.unit }}</span>
+                    </div>
+                    {%- if gauge.subtitle %}
+                      <div class="subtitle">{{ gauge.subtitle | markdownify}}</div>
+                    {%- endif %}
+                    {%- if gauge.comment %}
+                      <div class="comment">{{ gauge.comment }}</div>
+                    {%- endif %}
 
-                {%- if gauge.source-url %}
-                  <div class="source">
-                    {%- if gauge.source %}
-                      {{ site.data.lang.topic.gauge-source }}: <a href="{{ gauge.source-url }}">{{ gauge.source }}</a>
-                    {%- else %}
-                    <a href="{{ gauge.source-url }}">{{ site.data.lang.topic.gauge-source }}</a>
+                    {%- if gauge.value-vs %}
+                      <div class="versus"></div>
+                      <div class="value ">
+                        <span class="number">{{ gauge.value-vs }}</span>
+                        <span class="unit">{{ gauge.unit }}</span>
+                      </div>
+                      <div class="subtitle">{{ gauge.subtitle-vs | markdownify }}</div>
+                      <div class="comment">{{ gauge.comment-vs }}</div>
                     {%- endif %}
                   </div>
-                {%- endif %}
+
+                  {%- if gauge.source-url %}
+                    <div class="source">
+                      {%- if gauge.source %}
+                      {{ site.data.lang.topic.gauge-source }}: <a href="{{ gauge.source-url }}">{{ gauge.source }}</a>
+                      {%- else %}
+                      <a href="{{ gauge.source-url }}">{{ site.data.lang.topic.gauge-source }}</a>
+                      {%- endif %}
+                    </div>
+                  {%- endif %}
+                </div>
               </div>
             {%- endfor %}
           </div>
-        </div>
+        {%- endif %}
       </div>
-    {%- endif %}
+    </div>
     {%- assign qaCounter = 1 %}
     {%- for sub in page.subtopics %}
       <div class="section">
@@ -95,13 +100,15 @@
             {%- if sub.qa %}
               <dl class="qa">
                 {%- for qa in sub.qa %}
-                  <dt class="clearfix">
+                  <dt>
                     <a class="collapsed" data-toggle="collapse" data-target="#collapse-qa-{{ qaCounter }}" aria-expanded="false" aria-controls="collapse-qa-{{ qaCounter }}">
-                      <div>
-                        {{ qa.q }}
+                      <div class="qa-question">
                         <div class="qa-button">
                           <i class="fas fa-chevron-down"></i>
                         </div>
+                        <p>
+                          {{ qa.q }}
+                        </p>
                       </div>
                     </a>
                   </dt>
