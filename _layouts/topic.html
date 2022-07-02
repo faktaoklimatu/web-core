@@ -87,7 +87,7 @@
             {%- if sub.lead %}
               <div class="lead">{{ sub.lead | markdownify }}</div>
             {%- endif %}
-            <div class="row justify-content-md">
+            <div class="row justify-content-md py-3">
               {%- for entry in sub.commented-content %}
                 <div class="col-md-6 col-lg-4">
                   {% include preview-block.html slug=entry.slug comment=entry.comment comment-key=entry.comment-key no_include_tags=true %}
