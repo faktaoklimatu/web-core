@@ -90,7 +90,7 @@
             <div class="row justify-content-md">
               {%- for entry in sub.commented-content %}
                 <div class="col-md-6 col-lg-4">
-                  {% include preview-block.html slug=entry.slug comment=entry.comment comment_number=entry.comment_number no_include_tags=true %}
+                  {% include preview-block.html slug=entry.slug comment=entry.comment comment-key=entry.comment-key no_include_tags=true %}
                 </div>
               {%- endfor %}
               {%- for slug in sub.content %}
