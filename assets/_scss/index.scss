@@ -56,9 +56,8 @@
     text-decoration: none;
     text-align: left;
     // enforce 10:7 aspect ratio
-    --card-heigth-to-width-ratio: 70%;
     height: 0;
-    padding-bottom: var(--card-heigth-to-width-ratio);
+    padding-bottom: 70%;
     overflow: hidden;
 
     h6.card-subtitle {
@@ -80,8 +79,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding-top: 2rem;
-    padding-bottom: 1rem;
+    padding-top: 1rem;
 
     .comment {
         display: flex;
@@ -103,38 +101,6 @@
 
     .card {
         flex-grow: 0;
-    }
-}
-
-.commented-preview-card {
-    --comment-heigth-to-width-ratio: 40%;
-    --commented-card-heigth-to-width-ratio: calc(var(--card-heigth-to-width-ratio) + var(--comment-heigth-to-width-ratio));
-    padding-top: var(--comment-heigth-to-width-ratio);
-    padding-bottom: var(--card-heigth-to-width-ratio);
-    background-color: #f8f8fa;
-
-}
-
-@media (min-width: 576px) {
-    .commented-preview-card {
-        div.card-comment {
-            max-height: calc(var(--comment-heigth-to-width-ratio) / 1.1);
-            transition: max-height .3s ease-in-out 0s;
-        }
-    }
-
-    .commented-preview-card:hover div.card-comment {
-        max-height: 100%;
-    }
-
-    .commented-preview-card:not(:hover) div.card-comment::after {
-        content: " ";
-        display: block;
-        position: absolute;
-        bottom: 0px;
-        width: 100%;
-        padding-bottom: 15%;
-        background-image: linear-gradient(rgba(black, 0%), #f8f8fa);
     }
 }
 
