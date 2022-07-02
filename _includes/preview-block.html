@@ -1,16 +1,18 @@
-{% assign item = site.infographics | concat: site.studies | concat: site.explainers | concat: site.episodes | find_exp:"item","item.slug == include.slug" %}
 {%- if include.comment %}
-  <a href="{{ item | get_url }}" class="card preview-card commented-preview-card">
-    <div class="card-comment">
-      {%- if include.comment_number %}
-        <div class="card-comment-number">{{ include.comment_number }}</div>
+  <div class="card-with-comment">
+    <div class="comment">
+      {%- if include.comment-key %}
+      <div class="card-comment-number">{{ include.comment-key }}</div>
       {%- endif %}
       <div class="card-comment-text">{{ include.comment | markdownify }}</div>
     </div>
-    {% include preview-block-without-link.html item=item comment=include.comment no_include_tags=include.no_include_tags %}
-  </a>
-{%- else %}
-  <a href="{{ item | get_url }}" class="preview-card card">
-    {% include preview-block-without-link.html item=item no_include_tags=include.no_include_tags %}
-  </a>
+{%- endif %}
+
+{% assign item = site.infographics | concat: site.studies | concat: site.explainers | concat: site.episodes | find_exp:"item","item.slug == include.slug" %}
+<a href="{{ item | get_url }}" class="preview-card card">
+  {% include preview-block-without-link.html item=item no_include_tags=include.no_include_tags %}
+</a>
+
+{%- if include.comment %}
+  </div>
 {%- endif %}
