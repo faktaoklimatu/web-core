@@ -111,6 +111,10 @@
     background-position: bottom;
 }
 
+.episode-card-image {
+    background-image: url('/assets/episode-card.png');
+}
+
 a.card:hover {
     border-color: rgba($c-primary, 0.5);
     text-decoration: none;
