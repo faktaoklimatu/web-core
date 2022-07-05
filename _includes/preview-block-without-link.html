@@ -55,7 +55,7 @@
         </div>
         {%- endunless %}
     {% when 'episode' %}
-        <div style="background-image: url('/assets/episodes/{{ item.slug }}.jpg')" title="{{ site.data.lang.text.episodes.episodes }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
+        <div title="{{ site.data.lang.text.episodes.episodes }}: {{ item.title }}" class="preview-card-image episode-card-image img-fluid card-img">
         </div>
         <div class="card-img-overlay card-title-overlay">
             <h5 class="card-title">{{ item.title }}</h5>
