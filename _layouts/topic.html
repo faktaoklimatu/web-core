@@ -64,6 +64,20 @@
         {%- endif %}
       </div>
     </div>
+    <div id="secondary-navbar" class="section">
+      <ul class="container">
+        {%- for sub in page.subtopics %}
+          {%- if sub.id and sub.title %}
+            {%- assign sub_id = sub.id %}
+            {%- assign sub_title_short = sub.title-short | default: sub.title %}
+          {%- else %}
+            {%- assign sub_id = site.data.lang.topic.nutshell-id %}
+            {%- assign sub_title_short = site.data.lang.topic.nutshell-title %}
+          {%- endif %}
+          <li><a href="#{{ sub_id }}">{{ sub_title_short }}</a></li>
+        {%- endfor %}
+      </ul>
+    </div>
     {%- assign qaCounter = 1 %}
     {%- for sub in page.subtopics %}
       {%- if sub.id and sub.title %}

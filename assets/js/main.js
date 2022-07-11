@@ -1,33 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function () {
     if ($("#dev-warning").length == 1) {
         console.log('This is the local development version of the website.');
     }
-
-    // change styling of navbar if the page is scrolled
-    $(document).scroll(function() {
-        var scrolled = $(this).scrollTop();
-        if(scrolled > 50) {
-            $(".navbar").addClass('navbar-scrolled');
-        } else {
-            $(".navbar").removeClass('navbar-scrolled');
-        }
-    });
-    // hide navbar if the screen is small and the page is scrolled
-    var prevScrollpos = window.pageYOffset;
-    var navHeight = $("nav").height();
-    $(document).scroll(function () {
-        if ($(window).height() > 741) { // iPhone 6 plus / Galaxy S9 screen viewport height
-            $(".navbar").css('top', 0);
-            return;
-        }
-        var currentScrollPos = window.pageYOffset;
-        if (currentScrollPos < navHeight || prevScrollpos > currentScrollPos) {
-            $(".navbar").css('top', 0);
-        } else {
-            $(".navbar").css('top', (-1 * navHeight) + 'px');
-        }
-        prevScrollpos = currentScrollPos;
-    });
 
     // Open the correponding <details> rolldown if the URL target is inside one
     // and scroll browser view to the target element.
@@ -61,4 +35,7 @@ $(document).ready(function() {
 
     // Create the instance that handles js search.
     var s = new Search();
+
+    // Create the instance that handles navbars.
+    var n = new Navbars();
 });

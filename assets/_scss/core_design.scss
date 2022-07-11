@@ -1,7 +1,14 @@
 html {
-    --navbar-height: 5rem;
-    scroll-padding-top: var(--navbar-height);
+    --navbar-zindex: 10;
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+}
+
+@media (min-width: 768px) {
+    html {
+        --navbar-height: 9rem;
+        scroll-padding-top: var(--navbar-height);
+    }
 }
 
 body {
@@ -200,6 +207,7 @@ ul:last-child {
     transition: top 300ms;
     flex-flow: column wrap;
     padding: 0;
+    z-index: var(--navbar-zindex);
 
     a, div.dropdown-toggle {
         text-transform: uppercase;
@@ -261,6 +269,45 @@ ul:last-child {
         #toggler {
             display: none;
         }
+    }
+}
+
+#secondary-navbar {
+    background: $c-body;
+    transition: top 300ms;
+    padding: 0rem;
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+        padding: 0.3rem 0rem;
+        font-size: 1.1rem;
+    }
+
+    li {
+        display: block;
+        margin: 0.5rem 1rem;
+    }
+    a {
+        text-decoration: none;
+        color: gray;
+    }
+    a.highlighted {
+        color: $c-primary;
+        border-bottom: 2px solid $c-primary;
+    }
+}
+
+@media (min-width: 768px) {
+    #secondary-navbar {
+        position: sticky;
+        z-index: calc(var(--navbar-zindex) - 1);
+    }
+
+    .secondary-navbar-stuck {
+        box-shadow: 0 3px 10px #e2e2ff;
     }
 }
 
