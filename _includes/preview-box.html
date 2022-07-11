@@ -3,8 +3,8 @@
   {%- if include.title %}
     <h4>{{ include.title }}</h4>
   {%- endif %}
-  <div markdown="1">
-    {{ include.text }}
+  <div>
+    {{ include.text | markdownify }}
   </div>
   {%- if include.slug %}
     <div class="row">
