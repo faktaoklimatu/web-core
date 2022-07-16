@@ -31,7 +31,7 @@ class Navbars {
       this.secondaryNav.css('top',
         navbarsVisible
           ? 'calc(' + primaryNavHeight + 'px - 0.5rem)'
-          : getTopForHiddenElement(this.secondaryNav));
+          : this.getTopForHiddenElement(this.secondaryNav));
 
       if (this.isSecondaryNavStuck()) {
         this.secondaryNav.addClass('secondary-navbar-stuck');
@@ -44,18 +44,18 @@ class Navbars {
   }
 
   updateSecondaryNavHighlight() {
-    var links = $("#secondary-navbar a");
     var previousHeading = null;
     var headings = [];
-    for (const link of links) {
+    // Exclude the home link in the search for headings.
+    for (const link of $("#secondary-navbar a:not(.home)")) {
       let heading = $(link.hash);
       if (heading) {
         headings.push(heading[0]);
       }
     }
-    var highlighted = this.getHighlighted(headings);
-    for (const link of links) {
-      if (link.hash == "#" + highlighted.id) {
+    var highlightedHash = this.getHighlightedHash(headings);
+    for (const link of $("#secondary-navbar a")) {
+      if (link.hash == highlightedHash) {
         $(link).addClass('highlighted');
       } else {
         $(link).removeClass('highlighted');
@@ -86,20 +86,20 @@ class Navbars {
     return (-1 * heightWithShadow) + 'px';
   }
 
-  getHighlighted(headings) {
+  getHighlightedHash(headings) {
     var secondaryNavBottom = this.secondaryNav[0].getBoundingClientRect().bottom;
 
     // Special-case headings selected by clicking.
     for (const heading of headings) {
       if (this.isSelected(heading) && this.isVisible(heading, secondaryNavBottom)) {
-        return heading;
+        return "#" + heading.id;
       }
     }
     // Highlight the first visible heading or the last heading scrolled above the viewport.
     var lastAbove = null;
     for (const heading of headings) {
       if (this.isVisible(heading, secondaryNavBottom)) {
-        return heading;
+        return "#" + heading.id;
       }
       if (heading.getBoundingClientRect().top < secondaryNavBottom) {
         lastAbove = heading;
@@ -107,10 +107,10 @@ class Navbars {
     }
 
     if (lastAbove) {
-      return lastAbove;
+      return "#" + lastAbove.id;
     }
-    // If no is highlighted, return the first one.
-    return headings[0];
+    // If no section is visible, highlight the intro of the page.
+    return "";
   }
 
   isSelected(heading) {
