@@ -53,9 +53,9 @@ class Navbars {
         headings.push(heading[0]);
       }
     }
-    var highlightedHash = this.getHighlightedHash(headings);
+    var highlightedId = this.getHighlightedId(headings);
     for (const link of $("#secondary-navbar a")) {
-      if (link.hash == highlightedHash) {
+      if (link.hash == "#" + highlightedId) {
         $(link).addClass('highlighted');
       } else {
         $(link).removeClass('highlighted');
@@ -86,20 +86,20 @@ class Navbars {
     return (-1 * heightWithShadow) + 'px';
   }
 
-  getHighlightedHash(headings) {
+  getHighlightedId(headings) {
     var secondaryNavBottom = this.secondaryNav[0].getBoundingClientRect().bottom;
 
     // Special-case headings selected by clicking.
     for (const heading of headings) {
       if (this.isSelected(heading) && this.isVisible(heading, secondaryNavBottom)) {
-        return "#" + heading.id;
+        return heading.id;
       }
     }
     // Highlight the first visible heading or the last heading scrolled above the viewport.
     var lastAbove = null;
     for (const heading of headings) {
       if (this.isVisible(heading, secondaryNavBottom)) {
-        return "#" + heading.id;
+        return heading.id;
       }
       if (heading.getBoundingClientRect().top < secondaryNavBottom) {
         lastAbove = heading;
@@ -107,10 +107,10 @@ class Navbars {
     }
 
     if (lastAbove) {
-      return "#" + lastAbove.id;
+      return lastAbove.id;
     }
     // If no section is visible, highlight the intro of the page.
-    return "";
+    return "uvod";
   }
 
   isSelected(heading) {
