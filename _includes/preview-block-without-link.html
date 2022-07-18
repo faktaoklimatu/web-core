@@ -43,6 +43,6 @@
 
 {%- unless include.no_include_tags %}
 <div class="card-img-overlay tags-overlay-box">
-    {% include tags.html tags=item.tags %}
+    {% include tags.html tags=item.tags slug=item.slug %}
 </div>
 {%- endunless %}
