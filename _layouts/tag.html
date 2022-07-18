@@ -46,7 +46,7 @@
               {% when 'datasets' %}
               <p class="lead">{{ site.data.lang.tag.all-datasets }}</p>
             {% endcase %}
-            {% include preview-blocks.html blocks=items %}
+            {% include preview-blocks.html blocks=items no_include_tags=true %}
           {% endunless %}
         {% endfor %}
       </div>
