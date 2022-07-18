@@ -14,7 +14,7 @@
             {%- if include.highlighted == topic.slug %}
             <a href="/" role="button" class="btn btn-tag btn-sm btn-tag-highlighted">
             {%- elsif include.link %}
-            <a href="/{{ site.slugs.topics }}/{{ topic.slug }}" role="button" class="btn btn-tag btn-sm btn-tag-link">
+            <a href="/{{ site.slugs.new-topics }}/{{ topic.slug }}" role="button" class="btn btn-tag btn-sm btn-tag-link">
             {%- else %}
             <div class="btn btn-tag btn-sm">
             {%- endif %}
@@ -23,7 +23,7 @@
         {%- endif %}
     {%- endfor %}
     {%- if is_in_any_topic == false %}
-        <div class="build-error">Page not present in any topic</div>
+        <div class="build-error">{{ include.slug }} is not present in any topic</div>
     {%- endif %}
     </div>
 {%- else %}
@@ -35,7 +35,7 @@
                     {%- if include.highlighted == tag.id %}
                     <a href="/" role="button" class="btn btn-tag btn-sm btn-tag-highlighted">
                     {%- elsif include.link %}
-                    <a href="/{{ site.slugs.tags }}/{{ tag.id }}" role="button" class="btn btn-tag btn-sm btn-tag-link">
+                    <a href="/{{ site.slugs.topics }}/{{ tag.id }}" role="button" class="btn btn-tag btn-sm btn-tag-link">
                     {%- else %}
                     <div class="btn btn-tag btn-sm">
                     {%- endif %}
