@@ -238,28 +238,19 @@ a.card:hover {
     }
 }
 
-/* Accordion of topics covered */
+/* Tiles for topics */
 
-.accordion-item {
-    border-bottom: 1px solid rgba(0,0,0,.25);
-}
+.topic-tile {
+    padding: 1rem;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
 
-.accordion-item:last-child {
-    border: none;
-}
-
-.accordion-header {
-    cursor: pointer;
-    padding: 1rem 0;
-    margin-bottom: 0;
-}
-
-.accordion-header .fa {
-    transition: .3s transform ease-in-out;
-  }
-
-.accordion-header.collapsed .fa {
-    transform: rotate(180deg);
+    img {
+        width: 100%;
+    }
 }
 
 /* Carousel with successes */

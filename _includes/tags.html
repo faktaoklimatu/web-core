@@ -1,5 +1,5 @@
 {%- if include.slug and site.topics.size > 0 %}
-    {%- assign sorted_topic_pages = site.topics | sort_localized: "slug" %}
+    {%- assign sorted_topic_pages = site.topics | sort_localized: "tag-name" %}
     {%- assign is_in_any_topic = false %}
     <div class="tags {{ include.container-class }}">
     {%- for topic in sorted_topic_pages %}
@@ -18,7 +18,7 @@
             {%- else %}
             <div class="btn btn-tag btn-sm">
             {%- endif %}
-            {% if include.name-long %}{{ topic.title }}{% else %}{{ topic.slug }}{% endif %}
+            {% if include.name-long %}{{ topic.title }}{% else %}{{ topic.tag-name }}{% endif %}
             {% if include.highlighted == topic.slug or include.link %}</a>{% else %}</div>{% endif %}
         {%- endif %}
     {%- endfor %}
@@ -27,7 +27,7 @@
     {%- endif %}
     </div>
 {%- else %}
-    {%- if include.tags %}
+    {%- if include.tags and site.data.tags %}
         {%- assign sorted_full_tags = site.data.tags | sort_localized: "name-short" | sort: "is-scope", "last" %}
         <div class="tags {{ include.container-class }}">
             {%- for tag in sorted_full_tags %}
