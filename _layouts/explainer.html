@@ -46,7 +46,7 @@
               <div class="explainer-type">{{ site.data.lang.text.explainer.explainer }}</div>
               <h1>{{ page.title }}</h1>
               <div class="explainer-metadata">
-                {% include tags.html tags=page.tags link="true" %}
+                {% include tags.html tags=page.tags slug=page.slug link="true" %}
                 <span class="author"><a href="/{{ site.slugs.about }}#members">{{ page.author }}</a></span>
                 <span class="date">{{ page.published | date: "%-d. %-m. %Y" }}</span>
               {% assign download_path = "/assets/studies/" | append: page.slug %}
