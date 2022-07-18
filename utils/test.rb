@@ -1,5 +1,14 @@
 require 'html-proofer'
 
+class CheckBuildErrors < ::HTMLProofer::Check
+    def run
+        @html.css('div.build-error').each do |node|
+            @div = create_element(node)
+            add_issue("Build error", line: @div.line, content: node.inner_html)
+        end
+    end
+end
+
 options = {
     :assume_extension => true,
     :check_favicon => true,
