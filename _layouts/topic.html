@@ -21,42 +21,56 @@
         {%- if page.dashboard %}
           <div class="dashboard row">
             {%- for gauge in page.dashboard %}
-              <div class="col-md-6 col-lg-4 p-2">
-                <div class="gauge">
-                  <div class="title">{{ gauge.title | markdownify}}</div>
-
-                  <div class="data">
-                    <div class="value">
-                      <span class="number">{{ gauge.value }}</span>
-                      <span class="unit">{{ gauge.unit }}</span>
-                    </div>
-                    {%- if gauge.subtitle %}
-                      <div class="subtitle">{{ gauge.subtitle | markdownify}}</div>
-                    {%- endif %}
-                    {%- if gauge.comment %}
-                      <div class="comment">{{ gauge.comment }}</div>
-                    {%- endif %}
-
-                    {%- if gauge.value-vs %}
-                      <div class="versus"></div>
-                      <div class="value ">
-                        <span class="number">{{ gauge.value-vs }}</span>
-                        <span class="unit">{{ gauge.unit }}</span>
+              {%- if gauge.source %}
+                {%- assign source_text = site.data.lang.topic.gauge-source | append: ": " | append: gauge.source %}
+              {%- else %}
+                {%- assign source_text = "" %}
+              {%- endif %}
+              <div class="col-12 col-md-6 col-lg-{{ gauge.col-size | default: 4 }}">
+                <div class="gauge gauge-{{ gauge.type }}" title="{{ source_text }}">
+                  {%- case gauge.type %}
+                    {% when 'single' %}
+                      <div class="data"><div class="item">
+                        <div class="value line-with-source">
+                          {{ gauge.value | markdownify }}
+                          {%-if gauge.source-url %}
+                            <a class="source" href="{{ gauge.source-url }}"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                          {%- endif %}
+                        </div>
+                        {%- if gauge.subtitle %}
+                        <div class="subtitle">{{ gauge.subtitle | markdownify}}</div>
+                        {%- endif %}
+                      </div></div>
+                    {% when 'compare' %}
+                      <div class="title line-with-source">
+                        {{ gauge.title | markdownify}}
+                        {%-if gauge.source-url %}
+                          <a class="source" href="{{ gauge.source-url }}"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        {%- endif %}
                       </div>
-                      <div class="subtitle">{{ gauge.subtitle-vs | markdownify }}</div>
-                      <div class="comment">{{ gauge.comment-vs }}</div>
-                    {%- endif %}
-                  </div>
-
-                  {%- if gauge.source-url %}
-                    <div class="source">
-                      {%- if gauge.source %}
-                      {{ site.data.lang.topic.gauge-source }}: <a href="{{ gauge.source-url }}">{{ gauge.source }}</a>
-                      {%- else %}
-                      <a href="{{ gauge.source-url }}">{{ site.data.lang.topic.gauge-source }}</a>
-                      {%- endif %}
-                    </div>
-                  {%- endif %}
+                      <div class="data">
+                        {%- for item in gauge.data %}
+                          <div class="item">
+                            <div class="scope">
+                              {%- case item.region %}
+                                {% when 'cz' %}
+                                  <img src="/assets/topic-icons/cz.svg" title="ČR"><span>ČR</span>
+                                {% when 'eu' %}
+                                  <img src="/assets/topic-icons/eu.svg" title="EU"><span>EU</span>
+                                {% when 'world' %}
+                                  <img src="/assets/topic-icons/world.svg" title="svět"><span>svět</span>
+                              {%- endcase %}
+                            </div>
+                            <div class="value">
+                              {{ item.value | markdownify }}
+                            </div>
+                            {%- if item.subtitle %}
+                              <div class="subtitle">{{ item.subtitle | markdownify}}</div>
+                            {%- endif %}
+                          </div>
+                        {%- endfor %}
+                      </div>
+                  {%- endcase %}
                 </div>
               </div>
             {%- endfor %}
