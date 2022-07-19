@@ -31,7 +31,7 @@
         </div>
         {%- endunless %}
     {% when 'study' %}
-        <div style="background-image: url('/assets/studies/{{ item.slug }}.jpg')" title="{{ site.data.lang.text.explainer.explainer }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
+        <div style="background-image: url('/assets/studies/{{ item.slug }}.jpg')" title="{{ site.data.lang.text.study.study }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
         </div>
         <div class="card-img-overlay card-title-overlay">
             <h5 class="card-title">{{ item.title }}</h5>
@@ -55,7 +55,7 @@
         </div>
         {%- endunless %}
     {% when 'episode' %}
-        <div title="{{ site.data.lang.text.episodes.episodes }}: {{ item.title }}" class="preview-card-image episode-card-image img-fluid card-img">
+        <div title="{{ site.data.lang.text.episode.episode }}: {{ item.title }}" class="preview-card-image episode-card-image img-fluid card-img">
         </div>
         <div class="card-img-overlay card-title-overlay">
             <h5 class="card-title">{{ item.title }}</h5>
