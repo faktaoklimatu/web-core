@@ -1,20 +1,21 @@
 {%- if include.slug and site.topics.size > 0 %}
-    {%- assign sorted_topic_pages = site.topics | sort_localized: "tag-name" %}
+    {%- assign sorted_topic_pages = site.topics | sort: "weight" %}
     {%- assign is_in_any_topic = false %}
     <div class="tags {{ include.container-class }}">
     {%- for topic in sorted_topic_pages %}
-        {%- assign is_in_topic = false %}
+        {%- assign subtopic_id = nil %}
         {%- for sub in topic.subtopics %}
-            {%- if sub.content contains include.slug %}
-                {%- assign is_in_topic = true %}
+            {%- if sub.id and sub.content contains include.slug %}
+                {%- assign subtopic_id = sub.id %}
                 {%- assign is_in_any_topic = true %}
+                {% break %}
             {%- endif %}
         {%- endfor %}
-        {%- if is_in_topic %}
+        {%- if subtopic_id %}
             {%- if include.highlighted == topic.slug %}
             <a href="/" role="button" class="btn btn-tag btn-sm btn-tag-highlighted">
             {%- elsif include.link %}
-            <a href="/{{ site.slugs.new-topics }}/{{ topic.slug }}" role="button" class="btn btn-tag btn-sm btn-tag-link">
+            <a href="{{ topic.url }}#{{ subtopic_id }}" role="button" class="btn btn-tag btn-sm btn-tag-link">
             {%- else %}
             <div class="btn btn-tag btn-sm">
             {%- endif %}
