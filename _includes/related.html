@@ -1,5 +1,18 @@
-{% assign related_by_tags = site.documents | where_exp: "item", "'infographics, studies, explainers' contains item.collection"
+{%- if site.topics.size > 0 %}
+  {% assign related_slugs = "" %}
+  {%- for topic in site.topics %}
+    {%- for sub in topic.subtopics %}
+        {%- if sub.content contains page.slug %}
+            {%- assign new_slugs = sub.content | join: "|" %}
+            {%- assign related_slugs = related_slugs | append: new_slugs | append: "|" %}
+        {%- endif %}
+    {%- endfor %}
+  {%- endfor %}
+  {% assign related_by_tags = related_slugs | split: "|" | compact | where_exp: "item", "item != page.slug" | sample: 3 %}
+{%- else %}
+  {% assign related_by_tags = site.documents | where_exp: "item", "'infographics, studies, explainers' contains item.collection"
 | where_exp: "item", "item.tags contains page.tags-topics[0]" | where_exp: "item", "item.slug != page.slug" | map: "slug" | sample: 3 %}
+{%- endif %}
 {% if related_by_tags.size > 0 %}
 <div class="section">
   <div class="container">
