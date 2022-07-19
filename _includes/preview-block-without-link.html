@@ -2,22 +2,12 @@
 {% case item.layout %}
     {% when 'infographic' %}
         <img src="/assets/generated/{{ item.slug }}_600.png" alt="{{ item.title }}" title="{{ item.title }}" class="img-fluid" />
-        {%- unless include.no_include_tags %}
-        <div class="card-img-overlay tags-overlay-box">
-            {% include tags.html tags=item.tags %}
-        </div>
-        {%- endunless %}
     {% when 'dataset' %}
         <img src="/assets-local/datasets/{{ item.slug }}.png" alt="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" title="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" class="img-fluid card-img" />
         <div class="card-img-overlay card-title-overlay">
             <h5 class="card-title">{{ item.title }}</h5>
             <h6 class="card-subtitle">{{ site.data.lang.text.dataset.dataset }}</h6>
         </div>
-        {%- unless include.no_include_tags %}
-        <div class="card-img-overlay tags-overlay-box">
-            {% include tags.html tags=item.tags %}
-        </div>
-        {%- endunless %}
     {% when 'explainer' %}
         <div style="background-image: url('/assets/covers/{{ item.slug }}_600.jpg')" title="{{ site.data.lang.text.explainer.explainer }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
         </div>
@@ -25,11 +15,6 @@
             <h5 class="card-title">{{ item.title }}</h5>
             <h6 class="card-subtitle">{{ site.data.lang.text.explainer.explainer }}</h6>
         </div>
-        {%- unless include.no_include_tags %}
-        <div class="card-img-overlay tags-overlay-box">
-            {% include tags.html tags=item.tags %}
-        </div>
-        {%- endunless %}
     {% when 'study' %}
         <div style="background-image: url('/assets/studies/{{ item.slug }}.jpg')" title="{{ site.data.lang.text.study.study }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
         </div>
@@ -38,22 +23,12 @@
             <p class="card-author">{{ item.study-institution }}, {{ item.study-year }}</p>
             <h6 class="card-subtitle">{{ site.data.lang.text.study.study }}</h6>
         </div>
-        {%- unless include.no_include_tags %}
-        <div class="card-img-overlay tags-overlay-box">
-            {% include tags.html tags=item.tags %}
-        </div>
-        {%- endunless %}
     {% when 'survey' %}
         <div class="card-body">
             <h5 class="card-title">{{ item.title }}</h5>
             <h6 class="card-subtitle">{{ site.data.lang.text.survey.survey }}</h6>
             <p class="card-text card-survey-caption mt-3">{{ item.caption }}</p>
         </div>
-        {%- unless include.no_include_tags %}
-        <div class="card-img-overlay tags-overlay-box">
-            {% include tags.html tags=item.tags %}
-        </div>
-        {%- endunless %}
     {% when 'episode' %}
         <div title="{{ site.data.lang.text.episode.episode }}: {{ item.title }}" class="preview-card-image episode-card-image img-fluid card-img">
         </div>
@@ -64,3 +39,9 @@
     {% else %}
         <p>Unknown layout.</p>
 {% endcase %}
+
+{%- unless include.no_include_tags %}
+<div class="card-img-overlay tags-overlay-box">
+    {% include tags.html tags=item.tags %}
+</div>
+{%- endunless %}
