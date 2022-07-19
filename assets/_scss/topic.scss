@@ -1,5 +1,6 @@
 .topic-intro {
     margin-bottom: 8rem;
+    font-size: 1.15rem;
 
     .topic-icon img {
         width: 100%;
@@ -86,6 +87,9 @@
     }
     h2:hover .section-link {
         visibility: visible;
+    }
+    .subtopic-intro {
+        font-size: 1.15rem;
     }
     .qa {
         dt {

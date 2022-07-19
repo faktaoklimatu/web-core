@@ -11,7 +11,7 @@
       <div class="container clearfix">
         <h1>{{ page.title }}</h1>
         <div class="row topic-intro">
-          <div class="col-12 col-lg-7 col-xl-6 mt-4 lead">
+          <div class="col-12 col-lg-7 col-xl-6 mt-4">
             {{ content }}
           </div>
           <div class="d-none d-lg-block col-lg-5 col-xl-6 mt-4 text-center topic-icon">
@@ -80,7 +80,7 @@
           <div class="subtopic">
             <h2 id="{{ sub_id }}">{{ sub_title }} <a href="#{{ sub_id }}" class="section-link" title="{{ site.data.lang.text.section-link }}">#</a></h2>
             {%- if sub.lead %}
-              <div class="lead">{{ sub.lead | markdownify }}</div>
+              <div class="subtopic-intro">{{ sub.lead | markdownify }}</div>
             {%- endif %}
             <div class="row justify-content-md py-3">
               {%- for entry in sub.commented-content %}
