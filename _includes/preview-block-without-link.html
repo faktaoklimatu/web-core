@@ -3,7 +3,8 @@
     {% when 'infographic' %}
         <img src="/assets/generated/{{ item.slug }}_600.png" alt="{{ item.title }}" title="{{ item.title }}" class="img-fluid" />
     {% when 'dataset' %}
-        <img src="/assets-local/datasets/{{ item.slug }}.png" alt="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" title="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" class="img-fluid card-img" />
+        <div style="background-image: url('/assets-local/datasets/{{ item.slug }}.png')" title="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
+        </div>
         <div class="card-img-overlay card-title-overlay">
             <h5 class="card-title">{{ item.title }}</h5>
             <h6 class="card-subtitle">{{ site.data.lang.text.dataset.dataset }}</h6>
