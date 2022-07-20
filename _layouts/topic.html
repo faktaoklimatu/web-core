@@ -51,16 +51,18 @@
                       <div class="data">
                         {%- for item in gauge.data %}
                           <div class="item">
-                            <div class="scope">
-                              {%- case item.region %}
-                                {% when 'cz' %}
-                                  <img src="/assets/topic-icons/cz.svg" alt="ČR"><span>ČR</span>
-                                {% when 'eu' %}
-                                  <img src="/assets/topic-icons/eu.svg" alt="EU"><span>EU</span>
-                                {% when 'world' %}
-                                  <img src="/assets/topic-icons/world.svg" alt="svět"><span>svět</span>
-                              {%- endcase %}
-                            </div>
+                            {%- if item.region %}
+                              <div class="scope">
+                                {%- case item.region %}
+                                  {% when 'cz' %}
+                                    <img src="/assets/topic-icons/cz.svg" alt="ČR"><span>ČR</span>
+                                  {% when 'eu' %}
+                                    <img src="/assets/topic-icons/eu.svg" alt="EU"><span>EU</span>
+                                  {% when 'world' %}
+                                    <img src="/assets/topic-icons/world.svg" alt="svět"><span>svět</span>
+                                {%- endcase %}
+                              </div>
+                            {%- endif %}
                             <div class="value">
                               {{ item.value | markdownify }}
                             </div>
