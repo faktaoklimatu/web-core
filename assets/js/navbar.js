@@ -1,3 +1,7 @@
+---
+# Adding empty front matter to get access to Jekyll variables.
+---
+
 class Navbars {
   constructor() {
     this.primaryNav = $(".navbar");
@@ -121,7 +125,7 @@ class Navbars {
       return lastAbove.id;
     }
     // If no section is visible, highlight the intro of the page.
-    return "uvod";
+    return "{{ site.data.lang.navigation.first-id }}";
   }
 
   isSelected(heading) {

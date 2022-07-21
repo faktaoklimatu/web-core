@@ -9,13 +9,13 @@
   <main>
     <div class="section pb-1">
       <div class="container clearfix">
-        <h1 id="uvod">{{ page.title }}</h1>
+        <h1 id="{{ site.data.lang.navigation.first-id }}">{{ page.title }}</h1>
       </div>
     </div>
     <div id="secondary-navbar" class="section">
       <div class="container page-title">{{ page.title }}</div>
       <ul class="container">
-        <li><a class="home" href="#uvod">{{ site.data.lang.topic.intro-title }}</a></li>
+        <li><a class="home" href="#{{ site.data.lang.navigation.first-id }}">{{ site.data.lang.topic.intro-title }}</a></li>
         {%- for sub in page.subtopics %}
           {%- if sub.id %}
             <li><a href="#{{ sub.id }}">{{ sub.title-short | default: sub.title }}</a></li>
