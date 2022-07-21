@@ -33,7 +33,7 @@ class Navbars {
           ? 'calc(' + primaryNavHeight + 'px - 0.5rem)'
           : this.getTopForHiddenElement(this.secondaryNav));
 
-      if (this.isSecondaryNavStuck()) {
+      if (navbarsVisible && this.isSecondaryNavStuck()) {
         this.secondaryNav.addClass('secondary-navbar-stuck');
       } else {
         this.secondaryNav.removeClass('secondary-navbar-stuck');
