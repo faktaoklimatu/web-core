@@ -2,6 +2,9 @@ class Navbars {
   constructor() {
     this.primaryNav = $(".navbar");
     this.secondaryNav = $("#secondary-navbar");
+    if (this.secondaryNav.length === 0) {
+      this.secondaryNav = null;
+    }
     this.prevScrollpos = window.pageYOffset;
 
     this.updateNavbars();
@@ -20,7 +23,7 @@ class Navbars {
 
     this.primaryNav.css('top', navbarsVisible ? 0 : this.getTopForHiddenElement(this.primaryNav));
 
-    var primaryScrolled = $(document).scrollTop() > 50;
+    var primaryScrolled = $(document).scrollTop() > this.getHidingOffset();
     if (primaryScrolled && !this.isSecondaryNavStuck()) {
       this.primaryNav.addClass('navbar-scrolled');
     } else {
@@ -63,14 +66,22 @@ class Navbars {
     }
   }
 
+  getHidingOffset() {
+    var offset = this.primaryNav.height() + 50;
+    if (this.secondaryNav) {
+      offset += this.secondaryNav.height();
+    }
+    return offset;
+  }
+
   areNavbarsVisible() {
-    // Hide navbar if the screen is small and the page is scrolled.
+    // Always show navbars on large screens.
     if ($(window).height() > 741) { // iPhone 6 plus / Galaxy S9 screen viewport height.
       return true;
     }
 
     var currentScrollPos = window.pageYOffset;
-    return currentScrollPos < this.primaryNav.height() || this.prevScrollpos > currentScrollPos;
+    return currentScrollPos < this.getHidingOffset() || this.prevScrollpos > currentScrollPos;
   }
 
   isSecondaryNavStuck() {
@@ -78,7 +89,7 @@ class Navbars {
       return false;
     }
     var secondaryTop = this.secondaryNav[0].getBoundingClientRect().top;
-    return secondaryTop >= 0 && secondaryTop <= this.primaryNav.height();
+    return secondaryTop <= this.primaryNav.height();
   }
 
   getTopForHiddenElement(element) {
