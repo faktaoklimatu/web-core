@@ -26,7 +26,13 @@
               {%- else %}
                 {%- assign source_text = "" %}
               {%- endif %}
-              <div class="col-12 col-md-6 col-lg-{{ gauge.col-size | default: 4 }}">
+
+              {%- assign col-lg-size = gauge.col-lg-size | default: 4 %}
+              {%- assign gauge-class = "col-lg-" | append: col-lg-size %}
+              {%- if gauge.col-xl-size %}
+                {%- assign gauge-class = gauge-class | append: " col-xl-" | append: gauge.col-xl-size %}
+              {%- endif %}
+              <div class="col-12 col-md-6 {{ gauge-class }}">
                 <div class="gauge gauge-{{ gauge.type }}" title="{{ source_text }}">
                   {%- case gauge.type %}
                     {% when 'single' %}
