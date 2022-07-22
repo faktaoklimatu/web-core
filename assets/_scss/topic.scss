@@ -102,6 +102,83 @@
     }
 }
 
+@media (min-width: 992px) {
+    .dashboard {
+        // Only mid-points are needed, the rest is covered by bootstrap.
+        .col-lg-2-5 {
+            -ms-flex: 0 0 20.83333%;
+            flex: 0 0 20.83333%;
+            max-width: 20.83333%;
+        }
+        .col-lg-3-5 {
+            -ms-flex: 0 0 29.16667%;
+            flex: 0 0 29.16667%;
+            max-width: 29.16667%;
+        }
+        .col-lg-4-5 {
+            -ms-flex: 0 0 37.5%;
+            flex: 0 0 37.5%;
+            max-width: 37.5%;
+        }
+        .col-lg-5-5 {
+            -ms-flex: 0 0 45.83333%;
+            flex: 0 0 45.83333%;
+            max-width: 45.83333%;
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .dashboard {
+        // Also integral points are needed to override custom lg mid-points.
+        .col-xl-2 {
+            -ms-flex: 0 0 16.66667%;
+            flex: 0 0 16.66667%;
+            max-width: 16.66667%;
+        }
+        .col-xl-2-5 {
+            -ms-flex: 0 0 20.83333%;
+            flex: 0 0 20.83333%;
+            max-width: 20.83333%;
+        }
+        .col-xl-3 {
+            -ms-flex: 0 0 25%;
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+        .col-xl-3-5 {
+            -ms-flex: 0 0 29.16667%;
+            flex: 0 0 29.16667%;
+            max-width: 29.16667%;
+        }
+        .col-xl-4 {
+            -ms-flex: 0 0 33.33333%;
+            flex: 0 0 33.33333%;
+            max-width: 33.33333%;
+        }
+        .col-xl-4-5 {
+            -ms-flex: 0 0 37.5%;
+            flex: 0 0 37.5%;
+            max-width: 37.5%;
+        }
+        .col-xl-5 {
+            -ms-flex: 0 0 41.66667%;
+            flex: 0 0 41.66667%;
+            max-width: 41.66667%;
+        }
+        .col-xl-5-5 {
+            -ms-flex: 0 0 45.83333%;
+            flex: 0 0 45.83333%;
+            max-width: 45.83333%;
+        }
+        .col-xl-6 {
+            -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+    }
+}
+
 @media (min-width: 768px) {
     .dashboard {
         margin-top: 0rem;
