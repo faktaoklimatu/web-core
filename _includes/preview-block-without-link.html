@@ -62,5 +62,5 @@
             <h6 class="card-subtitle">{{ site.data.lang.text.episode.episode }} <i class="fas fa-external-link-alt"></i></h6>
         </div>
     {% else %}
-        <div class="build-error">Unknown layout</div>
+        <div class="build-error">Unknown layout ‘{{ item.layout }}’</div>
 {% endcase %}
