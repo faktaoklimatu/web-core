@@ -1,11 +1,4 @@
-.topic-intro {
-    margin-bottom: 8rem;
-    font-size: 1.15rem;
-
-    .topic-icon img {
-        width: 100%;
-    }
-}
+/* Dasboards */
 
 .dashboard {
     font-size: 0.9rem;
@@ -190,6 +183,17 @@
     }
 }
 
+/* Page intro and subtopics */
+
+.topic-intro {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+
+    .topic-icon img {
+        width: 100%;
+    }
+}
+
 .subtopic {
     font-size: 1.1rem;
 
@@ -200,10 +204,9 @@
     h2:hover .section-link {
         visibility: visible;
     }
-    .subtopic-intro {
-        font-size: 1.15rem;
-    }
+
     .qa {
+        font-size: 1rem;
         dt {
             padding: 0.5em 0.2em;
             a {
@@ -241,6 +244,12 @@
 @media (min-width: 768px) {
     .topic-map img {
         width: 80%;
+    }
+    .subtopic .qa {
+        font-size: 1.1rem;
+    }
+    .topic-intro, .subtitle .subtopic-intro {
+        font-size: 1.15rem;
     }
 }
 
