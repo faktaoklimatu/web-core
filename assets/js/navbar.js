@@ -22,12 +22,12 @@ class Navbars {
   }
 
   updateNavbars() {
-    var primaryNavHeight = this.primaryNav.height();
+    var primaryNavHeight = this.primaryNav.outerHeight();
     var navbarsVisible = this.areNavbarsVisible();
 
     this.primaryNav.css('top', navbarsVisible ? 0 : this.getTopForHiddenElement(this.primaryNav));
 
-    var primaryScrolled = $(document).scrollTop() > this.getHidingOffset();
+    var primaryScrolled = $(document).scrollTop() > 30;
     if (primaryScrolled && !this.isSecondaryNavStuck()) {
       this.primaryNav.addClass('navbar-scrolled');
     } else {
@@ -70,11 +70,22 @@ class Navbars {
     }
   }
 
-  getHidingOffset() {
-    var offset = this.primaryNav.height() + 50;
-    if (this.secondaryNav) {
-      offset += this.secondaryNav.height();
+  getSizeBetweenNavbars() {
+    // Get the height of the heading that's between the primary and the secondary navbars.
+    var element = $("#{{ site.data.lang.navigation.first-id }}");
+    if (element.length !== 0) {
+      return element.outerHeight();
     }
+    // Default value that corresponds to one-line title.
+    return 75;
+  }
+
+  getHidingOffset() {
+    var offset = this.primaryNav.outerHeight() + this.getSizeBetweenNavbars();
+    if (this.secondaryNav) {
+      offset += this.secondaryNav.outerHeight();
+    }
+    console.log(offset)
     return offset;
   }
 
@@ -93,11 +104,17 @@ class Navbars {
       return false;
     }
     var secondaryTop = this.secondaryNav[0].getBoundingClientRect().top;
-    return secondaryTop <= this.primaryNav.height();
+
+    // Push the navbar top edge further up (due to the title that's about to appear).
+    if ($("#secondary-navbar .page-title").outerHeight() == 0) {
+      secondaryTop -= 20;
+    }
+
+    return secondaryTop <= this.primaryNav.outerHeight();
   }
 
   getTopForHiddenElement(element) {
-    let heightWithShadow = element.height() + 10;
+    let heightWithShadow = element.outerHeight() + 10;
     return (-1 * heightWithShadow) + 'px';
   }
 
