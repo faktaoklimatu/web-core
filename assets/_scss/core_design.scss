@@ -39,9 +39,15 @@ h1, h2, h3, h4, h5, .display-1, .display-2, .display-3 { font-weight: bold; }
 h1 a, h2 a, h3 a, h4 a, h5 a { text-decoration: none; }
 
 // Display versions for the title page
-.display-1 { font-size: 4.5rem; }
-.display-2 { font-size: 2.5rem; text-transform: none; }
-.display-3 { font-size: 1.75em; margin: 0rem}
+.display-1 { font-size: 3rem; }
+.display-2 { font-size: 2rem; text-transform: none; }
+.display-3 { font-size: 1.5em; margin: 0rem}
+
+@media (min-width: 768px) {
+    .display-1 { font-size: 4rem; }
+    .display-2 { font-size: 2.5rem; text-transform: none; }
+    .display-3 { font-size: 1.75em; margin: 0rem}
+}
 
 /* Links */
 
@@ -113,6 +119,16 @@ pre {
     white-space: nowrap;
 }
 
+.lead {
+    font-size: 1.15rem;
+}
+
+@media (min-width: 768px) {
+    .lead {
+        font-size: 1.2rem;
+    }
+}
+
 /* Structure elements: section, ul, table, img text */
 
 .section {
@@ -156,7 +172,7 @@ ul:last-child {
 
 .btn {
     text-decoration: none;
-    margin: 0 0.25em 0.5rem 0.25em;
+    margin: 0.25rem;
 }
 
 .btn-group .btn {
@@ -392,16 +408,9 @@ ul:last-child {
 footer {
     flex-shrink: 1;
     width: 100%;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
     line-height: 1.5rem;
     background: rgba(0,0,0,0.05);
     color: $c-secondary;
-
-    > .container {
-        display: flex;
-        justify-content: space-between;
-    }
 
     a {
         color: $c-secondary;
