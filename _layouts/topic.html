@@ -120,18 +120,15 @@
             {%- if sub.lead %}
               <div class="subtopic-intro">{{ sub.lead | markdownify }}</div>
             {%- endif %}
-            <div class="row justify-content-md py-3">
-              {%- for entry in sub.commented-content %}
-                <div class="col-md-6 col-lg-4">
-                  {% include preview-block.html slug=entry.slug comment=entry.comment comment-key=entry.comment-key no_include_tags=true %}
-                </div>
-              {%- endfor %}
-              {%- for slug in sub.content %}
-                <div class="col-md-6 col-lg-4">
-                  {% include preview-block.html slug=slug no_include_tags=true %}
-                </div>
-              {%- endfor %}
-            </div>
+            {%- if sub.commented-content %}
+              {%- assign slugs = sub.commented-content | map: "slug" %}
+              {%- assign comments = sub.commented-content | map: "comment" %}
+              {%- assign comment-keys = sub.commented-content | map: "comment-key" %}
+              {%- include preview-blocks-expandable.html slugs=slugs comments=comments comment-keys=comment-keys no_include_tags=true %}
+            {%- endif %}
+            {%- if sub.content %}
+              {%- include preview-blocks-expandable.html slugs=sub.content no_include_tags=true %}
+            {%- endif %}
             {%- if sub.qa %}
               <dl class="qa">
                 {%- for qa in sub.qa %}

@@ -360,6 +360,49 @@ ul:last-child {
     }
 }
 
+/* Generic expandable styles */
+
+a.expander {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    .expander-button {
+        padding-right: 0.5em;
+    }
+    i.fas {
+        transition: .3s transform ease-in-out;
+    }
+}
+a.expander.collapsed i.fas {
+    transform: rotate(0deg);
+}
+a.expander:not(.collapsed) i.fas {
+    transform: rotate(-180deg);
+}
+
+.expandable-block .expandable {
+    &.expanding {
+        display: block !important;
+        transition: .5s max-height ease-in-out;
+        max-height: 0;
+    }
+    &.expanded {
+        max-height: 100% !important;
+    }
+}
+
+/* Expandable for preview blocks */
+
+.preview-blocks-expander {
+    --shift: 15px;
+    background: rgba(0,0,0,0.05);
+    padding: 0.3rem 1rem;
+    border-radius: 0 0 10% 10%;
+    z-index: 0;
+    margin-top: calc(-1 * var(--shift));
+    margin-bottom: var(--shift);
+}
+
 /* Developer version warning box */
 
 #dev-warning {
