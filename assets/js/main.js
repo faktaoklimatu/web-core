@@ -33,6 +33,21 @@ $(document).ready(function() {
         $('.longread-toc').addClass('longread-toc-none');
     }
 
+    // Custom expanders for expandable preview blocks.
+    $(".preview-blocks-expander .expander").click(function() {
+        $(this).toggleClass("collapsed");
+        var expandables = $(this).parents(".expandable-block").find(".expandable");
+        if (expandables.hasClass("expanded")) {
+            expandables.removeClass("expanded").delay(100).removeClass("expanding");
+        } else {
+            expandables.addClass("expanding").delay(100).addClass("expanded");
+        }
+        // Scroll back up after hiding blocks (notably needed for mobile).
+        if ($(this).hasClass("collapsed")) {
+            $(this).parents(".expandable-block").get(0).scrollIntoView({block: "nearest", inline: "nearest"});
+        }
+    });
+
     // Create the instance that handles js search.
     var s = new Search();
 

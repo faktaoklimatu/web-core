@@ -1,0 +1,57 @@
+{%- assign show_rows = include.rows | default: 2 %}
+{%- assign show_lg = show_rows | times: 3 %}
+{%- assign show_md = show_rows | times: 2 %}
+{%- assign show_xs = show_rows %}
+{%- assign needs_expanding_lg = false %}
+{%- assign needs_expanding_md = false %}
+{%- assign needs_expanding_xs = false %}
+<div class="expandable-block">
+<div class="row justify-content-md">
+  {%- for slug in include.slugs %}
+    {%- if forloop.index > show_lg %}
+      {%- assign show_class = " d-none" %}
+      {%- assign needs_expanding_lg = true %}
+    {%- elsif forloop.index > show_md %}
+      {%- assign show_class = " d-none d-lg-block" %}
+      {%- assign needs_expanding_md = true %}
+    {%- elsif forloop.index > show_xs %}
+      {%- assign show_class = " d-none d-md-block" %}
+      {%- assign needs_expanding_xs = true %}
+    {%- else %}
+      {%- assign show_class = "" %}
+    {%- endif %}
+    <div class="col-md-6 col-lg-4{{ show_class }} expandable">
+      {%- if include.comments %}
+        {% assign comment = include.comments[forloop.index0] %}
+        {% assign comment-key = include.comment-keys[forloop.index0] %}
+        {% include preview-block.html slug=slug comment=comment comment-key=comment-key no_include_tags=include.no_include_tags %}
+      {%- else %}
+        {% include preview-block.html slug=slug no_include_tags=include.no_include_tags %}
+      {%- endif %}
+    </div>
+  {%- endfor %}
+</div>
+
+{%- if needs_expanding_xs %}
+  {%- if needs_expanding_lg %}
+    {%- assign show_class = "" %}
+  {%- elsif needs_expanding_md %}
+    {%- assign show_class = " d-flex d-lg-none" %}
+  {%- else %}
+    {%- assign show_class = " d-flex d-md-none" %}
+  {%- endif %}
+
+  <div class="row justify-content-center{{ show_class }}">
+    <span class="preview-blocks-expander">
+      <a class="expander collapsed" aria-expanded="false">
+        <div class="expander-button">
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <p>
+          {{ site.data.lang.navigation.preview-boxes-expand }}
+        </p>
+      </a>
+    </span>
+  </div>
+{%- endif %}
+</div>
