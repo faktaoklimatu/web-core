@@ -133,15 +133,13 @@
               <dl class="qa">
                 {%- for qa in sub.qa %}
                   <dt>
-                    <a class="collapsed" data-toggle="collapse" data-target="#collapse-qa-{{ qaCounter }}" aria-expanded="false" aria-controls="collapse-qa-{{ qaCounter }}">
-                      <div class="qa-question">
-                        <div class="qa-button">
-                          <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <p>
-                          {{ qa.q }}
-                        </p>
+                    <a class="expander collapsed" data-toggle="collapse" data-target="#collapse-qa-{{ qaCounter }}" aria-expanded="false" aria-controls="collapse-qa-{{ qaCounter }}">
+                      <div class="expander-button">
+                        <i class="fas fa-chevron-down"></i>
                       </div>
+                      <p>
+                        {{ qa.q }}
+                      </p>
                     </a>
                   </dt>
                   <dd class="collapse" id="collapse-qa-{{ qaCounter }}">

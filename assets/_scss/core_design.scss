@@ -360,7 +360,7 @@ ul:last-child {
     }
 }
 
-/* Generic expandable styles */
+/* Generic expander styles */
 
 a.expander {
     text-decoration: none;
@@ -379,6 +379,8 @@ a.expander.collapsed i.fas {
 a.expander:not(.collapsed) i.fas {
     transform: rotate(-180deg);
 }
+
+/* Generic expandable styles */
 
 .expandable-block .expandable {
     --max-height: 1000px;
