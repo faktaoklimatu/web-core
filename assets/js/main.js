@@ -35,23 +35,29 @@ $(document).ready(function() {
 
     // Custom expanders for expandable preview blocks.
     $(".preview-blocks-expander .expander").click(function() {
-        $(this).toggleClass("collapsed");
+        let buttonCollapsedClass = "collapsed";
+        let blockExpandingClass = "expanding";
+        let blockExpandedClass = "expanded";
+        $(this).toggleClass(buttonCollapsedClass);
         $(this).find("span").toggleClass("d-none");
-        var expandables = $(this).parents(".expandable-block").find(".expandable");
-        if (expandables.hasClass("expanded")) {
-            expandables.removeClass("expanded");
+        var root = $(this).parents(".expandable-block");
+        var expandables = root.find(".expandable");
+        // Do a 2-phase transition to make sure the 'display' property does not change in one of the phases.
+        // This is the animated phase (change in 'display' blocks css transition to happen).
+        if (expandables.hasClass(blockExpandedClass)) {
+            expandables.removeClass(blockExpandedClass);
             setTimeout(() => {
-                expandables.removeClass("expanding");
+                expandables.removeClass(blockExpandingClass);
               }, "550");
         } else {
-            expandables.addClass("expanding");
+            expandables.addClass(blockExpandingClass);
             setTimeout(() => {
-                expandables.addClass("expanded");
+                expandables.addClass(blockExpandedClass);
               }, "50");
         }
         // Scroll back up after hiding blocks (notably needed for mobile).
-        if ($(this).hasClass("collapsed")) {
-            $(this).parents(".expandable-block").get(0).scrollIntoView({block: "nearest", inline: "nearest"});
+        if ($(this).hasClass(buttonCollapsedClass)) {
+            root.get(0).scrollIntoView({block: "nearest", inline: "nearest"});
         }
     });
 
