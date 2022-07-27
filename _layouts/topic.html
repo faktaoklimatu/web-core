@@ -124,7 +124,7 @@
               {%- assign slugs = sub.commented-content | map: "slug" %}
               {%- assign comments = sub.commented-content | map: "comment" %}
               {%- assign comment-keys = sub.commented-content | map: "comment-key" %}
-              {%- include preview-blocks-expandable.html slugs=slugs comments=comments comment-keys=comment-keys no_include_tags=true %}
+              {%- include preview-blocks-expandable.html slugs=slugs comments=comments comment-keys=comment-keys no_include_tags=true expand-all=true %}
             {%- endif %}
             {%- if sub.content %}
               {%- include preview-blocks-expandable.html slugs=sub.content no_include_tags=true %}

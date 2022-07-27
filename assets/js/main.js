@@ -36,11 +36,18 @@ $(document).ready(function() {
     // Custom expanders for expandable preview blocks.
     $(".preview-blocks-expander .expander").click(function() {
         $(this).toggleClass("collapsed");
+        $(this).find("span").toggleClass("d-none");
         var expandables = $(this).parents(".expandable-block").find(".expandable");
         if (expandables.hasClass("expanded")) {
-            expandables.removeClass("expanded").delay(100).removeClass("expanding");
+            expandables.removeClass("expanded");
+            setTimeout(() => {
+                expandables.removeClass("expanding");
+              }, "550");
         } else {
-            expandables.addClass("expanding").delay(100).addClass("expanded");
+            expandables.addClass("expanding");
+            setTimeout(() => {
+                expandables.addClass("expanded");
+              }, "50");
         }
         // Scroll back up after hiding blocks (notably needed for mobile).
         if ($(this).hasClass("collapsed")) {
