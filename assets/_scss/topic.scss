@@ -209,25 +209,6 @@
         font-size: 1rem;
         dt {
             padding: 0.5em 0.2em;
-            a {
-                text-decoration: none;
-                .qa-question {
-                    display: flex;
-                    flex-direction: row;
-                    .qa-button {
-                        padding-right: 0.5em;
-                    }
-                }
-                i.fas {
-                    transition: .3s transform ease-in-out;
-                }
-            }
-            a.collapsed i.fas {
-                transform: rotate(0deg);
-            }
-            a:not(.collapsed) i.fas {
-                transform: rotate(-180deg);
-            }
         }
         dt:not(:first-of-type) {
             border-top: 1px solid rgba(0,0,0,.25);
