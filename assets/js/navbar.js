@@ -49,7 +49,7 @@ class Navbars {
       var primaryNavHeight = this.primaryNav.outerHeight();
       this.secondaryNav.css('top',
         navbarsVisible
-          ? 'calc(' + Math.floor(primaryNavHeight) + 'px - 0.2rem)'
+          ? 'calc(' + primaryNavHeight + 'px - 0.2rem)'
           : this.getTopForHiddenElement(this.secondaryNav));
 
       if (navbarsVisible && this.isSecondaryNavStuck()) {
