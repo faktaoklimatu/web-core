@@ -293,14 +293,22 @@ ul:last-child {
     }
 }
 
+.between-navbars {
+    // Make it below navbar but above #secondary-navbar (which uses negative margin so it would overlap, otherwise).
+    position: relative;
+    z-index: calc(var(--navbar-zindex) - 2);
+}
+
 #secondary-navbar {
     background-color: white;
     transition: all 300ms ease-out;
     transition-property: top, background-color, box-shadow;
-    padding-block: 0.3rem;
+    padding-block: 0 0.3rem;
     font-size: 1rem;
     position: sticky;
-    z-index: calc(var(--navbar-zindex) - 1);
+    z-index: calc(var(--navbar-zindex) - 3);
+    // Compensate a bit for the invisible .page-title.
+    margin-top: -1rem;
 
     ul {
         display: flex;
@@ -324,10 +332,8 @@ ul:last-child {
 
     .page-title {
         font-weight: bold;
-        height: 0;
         opacity: 0;
         transition: opacity 300ms ease-out;
-        overflow: hidden;
     }
 
     a {
@@ -343,9 +349,10 @@ ul:last-child {
 #secondary-navbar.secondary-navbar-stuck {
     box-shadow: 0 3px 10px #e2e2ff;
     background-color: $c-body;
+    // Make it cover .between-navbars to make the two navbars feel as one.
+    z-index: calc(var(--navbar-zindex) - 1);
 
     .page-title {
-        height: auto;
         opacity: 1;
     }
 }
