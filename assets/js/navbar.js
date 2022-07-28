@@ -34,7 +34,6 @@ class Navbars {
     if (this.frozenUpdates) {
       return;
     }
-    var primaryNavHeight = this.primaryNav.outerHeight();
     var navbarsVisible = this.areNavbarsVisible();
 
     this.primaryNav.css('top', navbarsVisible ? 0 : this.getTopForHiddenElement(this.primaryNav));
@@ -47,9 +46,10 @@ class Navbars {
     }
 
     if (this.secondaryNav) {
+      var primaryNavHeight = this.primaryNav.outerHeight();
       this.secondaryNav.css('top',
         navbarsVisible
-          ? 'calc(' + primaryNavHeight + 'px - 0.5rem)'
+          ? 'calc(' + Math.floor(primaryNavHeight) + 'px - 0.2rem)'
           : this.getTopForHiddenElement(this.secondaryNav));
 
       if (navbarsVisible && this.isSecondaryNavStuck()) {
@@ -97,7 +97,6 @@ class Navbars {
     if (this.secondaryNav) {
       offset += this.secondaryNav.outerHeight();
     }
-    console.log(offset)
     return offset;
   }
 
@@ -116,12 +115,6 @@ class Navbars {
       return false;
     }
     var secondaryTop = this.secondaryNav[0].getBoundingClientRect().top;
-
-    // Push the navbar top edge further up (due to the title that's about to appear).
-    if ($("#secondary-navbar .page-title").outerHeight() == 0) {
-      secondaryTop -= 20;
-    }
-
     return secondaryTop <= this.primaryNav.outerHeight();
   }
 
