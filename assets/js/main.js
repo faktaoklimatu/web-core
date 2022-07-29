@@ -33,6 +33,12 @@ $(document).ready(function() {
         $('.longread-toc').addClass('longread-toc-none');
     }
 
+    // Create the instance that handles js search.
+    var s = new Search();
+
+    // Create the instance that handles navbars.
+    var navbars = new Navbars();
+
     // Custom expanders for expandable preview blocks.
     $(".preview-blocks-expander .expander").click(function() {
         let buttonCollapsedClass = "collapsed";
@@ -49,9 +55,12 @@ $(document).ready(function() {
         let blockExpandingClass = "expanding";
         let blockExpandedClass = "expanded";
         if (expandables.hasClass(blockExpandedClass)) {
+            // Hiding the block may cause scrolling, esp. on mobile. Minimize the chaos by freezing navbar updates.
+            navbars.freezeUpdates();
             expandables.removeClass(blockExpandedClass);
             setTimeout(() => {
                 expandables.removeClass(blockExpandingClass);
+                navbars.unfreezeUpdates();
               }, "550");
         } else {
             expandables.addClass(blockExpandingClass);
@@ -59,15 +68,5 @@ $(document).ready(function() {
                 expandables.addClass(blockExpandedClass);
               }, "50");
         }
-        // Scroll back up after hiding blocks (notably needed for mobile).
-        if ($(this).hasClass(buttonCollapsedClass)) {
-            root.get(0).scrollIntoView({block: "nearest", inline: "nearest"});
-        }
     });
-
-    // Create the instance that handles js search.
-    var s = new Search();
-
-    // Create the instance that handles navbars.
-    var n = new Navbars();
 });
