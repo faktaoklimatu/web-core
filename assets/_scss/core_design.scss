@@ -417,13 +417,10 @@ a.expander:not(.collapsed) i.fas {
 /* Expandable for preview blocks */
 
 .preview-blocks-expander {
-    --shift: 10px;
     background: rgba(0,0,0,0.05);
     padding: 0.3rem 1rem;
     border-radius: 10%;
-    z-index: 0;
-    margin-top: calc(-1 * var(--shift));
-    margin-bottom: var(--shift);
+    border: 0;
 }
 
 /* Developer version warning box */

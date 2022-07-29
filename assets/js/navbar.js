@@ -10,10 +10,19 @@ class Navbars {
       this.secondaryNav = null;
     }
     this.prevScrollpos = window.pageYOffset;
+    this.frozenUpdates = false;
 
     this.updateNavbars();
 
     $(document).scroll($.proxy(this.onScroll, this));
+  }
+
+  freezeUpdates() {
+    this.frozenUpdates = true;
+  }
+
+  unfreezeUpdates() {
+    this.frozenUpdates = false;
   }
 
   onScroll() {
@@ -22,6 +31,9 @@ class Navbars {
   }
 
   updateNavbars() {
+    if (this.frozenUpdates) {
+      return;
+    }
     var primaryNavHeight = this.primaryNav.outerHeight();
     var navbarsVisible = this.areNavbarsVisible();
 
