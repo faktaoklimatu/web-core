@@ -371,19 +371,26 @@ a.expander {
     }
     i.fas {
         transition: .3s transform ease-in-out;
+        transform: rotate(-180deg);
     }
 }
 a.expander.collapsed i.fas {
     transform: rotate(0deg);
 }
-a.expander:not(.collapsed) i.fas {
-    transform: rotate(-180deg);
+
+/* Expandable for preview blocks */
+
+.preview-blocks-expander {
+    background: rgba(0,0,0,0.05);
+    padding: 0.3rem 1rem;
+    border-radius: 10%;
+    border: 0;
 }
 
 /* Generic expandable styles */
 
 .expandable-block .expandable {
-    --max-height: 1000px;
+    --max-height: 600px;
     &.expand-always {
         max-height: var(--max-height) !important;
     }
@@ -412,15 +419,6 @@ a.expander:not(.collapsed) i.fas {
         display: block !important;
         max-height: var(--max-height) !important;
     }
-}
-
-/* Expandable for preview blocks */
-
-.preview-blocks-expander {
-    background: rgba(0,0,0,0.05);
-    padding: 0.3rem 1rem;
-    border-radius: 10%;
-    border: 0;
 }
 
 /* Developer version warning box */

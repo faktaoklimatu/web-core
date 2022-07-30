@@ -34,12 +34,12 @@ $(document).ready(function() {
     }
 
     // Create the instance that handles js search.
-    var s = new Search();
+    var search = new Search();
 
     // Create the instance that handles navbars.
     var navbars = new Navbars();
 
-    // Custom expanders for expandable preview blocks.
+    // Custom handler for expanders for expandable preview blocks.
     $(".preview-blocks-expander .expander").click(function() {
         let buttonCollapsedClass = "collapsed";
         // Animate the chevron icon.
@@ -61,12 +61,12 @@ $(document).ready(function() {
             setTimeout(() => {
                 expandables.removeClass(blockExpandingClass);
                 navbars.unfreezeUpdates();
-              }, "550");
+              }, 550);
         } else {
             expandables.addClass(blockExpandingClass);
             setTimeout(() => {
                 expandables.addClass(blockExpandedClass);
-              }, "50");
+              });
         }
     });
 });
