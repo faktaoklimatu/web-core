@@ -247,9 +247,16 @@ a.card:hover {
     flex-flow: column;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
 
     img {
         width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .topic-tile {
+        margin-inline: 2rem;
     }
 }
 
