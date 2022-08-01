@@ -396,25 +396,29 @@ a.expander.collapsed i.fas {
 
 /* Generic expandable styles */
 
-.expandable-block .expandable {
-    --max-height: 600px;
-    &.expand-always {
-        max-height: var(--max-height) !important;
-    }
-    &.expanding {
-        display: block !important;
-        position: relative;
-        transition: .5s max-height ease-in-out;
-        max-height: 0;
-        overflow: hidden;
-    }
-    &.expanded {
-        display: block !important;
-        max-height: var(--max-height);
+.expandable-block {
+    margin-bottom: 0.5rem;
+
+    .expandable {
+        --max-height: 600px;
+        &.expand-always {
+            max-height: var(--max-height) !important;
+        }
+        &.expanding {
+            display: block !important;
+            position: relative;
+            transition: .5s max-height ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        &.expanded {
+            display: block !important;
+            max-height: var(--max-height);
+        }
     }
 }
 
-@media (min-width: 576px) {
+@media (min-width: 768px) {
     .expandable-block .expandable.expand-from-md {
         display: block !important;
         max-height: var(--max-height) !important;
