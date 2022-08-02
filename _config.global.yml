@@ -82,3 +82,14 @@ html-beautify:
 podcast-redirect:
   layout: "episode"
   site:   "https://2050podcast.cz"
+
+langs:
+  - code:  "cs"
+    title: "Čeština"
+    link:  "https://faktaoklimatu.cz"
+  - code:  "sk"
+    title: "Slovenčina"
+    link:  "https://faktyoklime.sk"
+  - code:  "en"
+    title: "English"
+    link:  "https://factsonclimate.org"

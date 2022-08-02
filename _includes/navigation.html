@@ -2,8 +2,10 @@
     <div id="nav-container" class="container">
         <a class="navbar-brand" href="/"><img src="/assets-local/logo-navbar.svg" alt="{{ site.title }}"/></a>
         <div id="navbar-buttons">
+            <div class="filler"></div>
             <button id="searchShow" class="btn btn-sm btn-outline-secondary" type="button" aria-label="Vyhledávání">
                 <i class="fas fa-search"></i>
+                <span class="d-none">{{ site.data.lang.navigation.search.label }}</span>
             </button>
             <button id="toggler" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Zobrazit/skrýt navigaci">
                 <i class="fas fa-bars"></i>
@@ -12,16 +14,15 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav ml-auto">
             {%- for menu-item in site.data.navigation -%}
-                {%- if menu-item.link or menu-item.fundraising %}
-                <li><a class="nav-link {{ menu-item.class }}" href="{% if menu-item.fundraising %}{{ site.fundraising }}{% else %}{{ menu-item.link }}{% endif %}">{{ menu-item.title }}</a></li>
+                {%- if menu-item.fundraising %}
+                <li><a id="fundraising" class="nav-link no-ext-link-icon btn btn-primary" href="{{ site.fundraising }}">{{ menu-item.title }}</a></li>
+                {%- elsif menu-item.link %}
+                <li><a class="nav-link {{ menu-item.class }}" href="{{ menu-item.link }}">{{ menu-item.title }}</a></li>
                 {%- elsif menu-item.dropdown %}
                 <li class="dropdown">
-                    <div class="nav-link dropdown-toggle" id="dropdown_{{ menu-item.title | slugify }}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        {% if menu-item.lang %}
-                            <img class="flag" alt="{{ menu-item.title }}" src="/assets/flags/{{ menu-item.lang }}.svg" />{{ menu-item.lang }}
-                        {% else %}
-                            {{ menu-item.title }}
-                        {% endif %}</div>
+                    <div class="nav-link dropdown-toggle" id="dropdown_{{ menu-item.title | slugify }}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" {{ menu-item.params }}>
+                        {{ menu-item.title }}
+                    </div>
                     <div class="dropdown-menu" aria-labelledby="dropdown_{{ menu-item.title | slugify }}">
                         {%- if menu-item.list-topics -%}
                             {%- assign sorted_index_tags = site.data.tags | where_exp: "item", "item.index-weight > 0" | sort: "index-weight" -%}
@@ -39,7 +40,7 @@
                             {%- endfor -%}
                         {%- else -%}
                             {%- for submenu-item in menu-item.dropdown %}
-                            <a class="dropdown-item {{ submenu-item.class }}" href="{% if submenu-item.fundraising %}{{ site.fundraising }}{% else %}{{ submenu-item.link }}{% endif %}">{{ submenu-item.title }}</a>
+                            <a class="dropdown-item {{ submenu-item.class }}" href="{% if submenu-item.fundraising %}{{ site.fundraising }}{% else %}{{ submenu-item.link }}{% endif %}" {{ submenu-item.params }}>{{ submenu-item.title }}</a>
                             {%- endfor -%}
                         {%- endif %}
                     </div>
@@ -51,6 +52,7 @@
     </div>
     <div id="search-container" class="container">
         <form id="searchbox-form">
+            <i id="searchboxIcon" class="fas fa-search"></i>
             <input class="form-control me-2" id="searchbox" data-bs-toggle="dropdown" type="search" placeholder="{{ site.data.lang.navigation.search.label }}" aria-label="{{ site.data.lang.navigation.search.label }}" autocomplete="off">
             <button id="searchHide" class="btn btn-sm btn-outline-secondary" type="button" aria-label="{{ site.data.lang.navigation.search.hide }}" tabindex="-1">
                 <i class="fas fa-fw fa-times"></i>

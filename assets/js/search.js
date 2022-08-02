@@ -24,7 +24,7 @@ class Search {
             resultAllEntries: '#omnisearch-suggestions a',
             resultSelectedEntry: `#omnisearch-suggestions a.${this.classes.selectedEntry}`,
             resultsFirstEntry: '#omnisearch-suggestions a:first-of-type',
-            nav: 'nav',
+            nav: 'body',
             show: '#searchShow',
             hide: '#searchHide',
         });
