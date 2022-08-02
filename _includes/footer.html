@@ -1,37 +1,61 @@
-<footer class="pb-4">
+<footer class="py-4">
     <div class="container"><div class="row">
-        <div class="col-12 col-md-6 mt-4">
-            {% if site.newsletter %}
-            <a class="no-ext-link-icon" href="#newsletter-modal" id="newsletter-embed" data-toggle="modal" data-target="#newsletter-modal">
-            <span class="fas fa-fw fa-envelope-open-text"></span> {{ site.data.lang.footer.get-newsletter }}</a><br/>
-            {% endif %}
-            {% if site.fundraising %}
-            <a class="no-ext-link-icon" href="{{ site.fundraising }}">
-            <span class="fas fa-fw fa-heart"></span> {{ site.data.lang.footer.support-us }}</a><br/>
-            {% endif %}
-            {% if site.twitter %}
-            <a class="no-ext-link-icon" href="https://twitter.com/{{ site.twitter }}">
-            <span class="fab fa-fw fa-twitter"></span> @{{ site.twitter }}</a><br/>
-            {% endif %}
-            {% if site.facebook %}
-            <a class="no-ext-link-icon" href="https://facebook.com/{{ site.facebook }}">
-            <span class="fab fa-fw fa-facebook"></span> fb.com/{{ site.facebook }}</a><br/>
-            {% endif %}
-            {% if site.linkedin %}
-            <a class="no-ext-link-icon" href="https://www.linkedin.com/company/{{ site.linkedin }}">
-            <span class="fab fa-fw fa-linkedin"></span> {{ site.title }}</a><br/>
-            {% endif %}
-            <a class="no-ext-link-icon" href="mailto:{{ site.email }}">
-            <span class="fas fa-fw fa-envelope"></span> {{ site.email }}</a><br/>
+        <div class="col-12 col-md-6 col-lg-4 mt-3 text-md-center">
+            <h3>Sledujte nás také na sociálních sítích</h3>
+            <ul class="social justify-content-md-center">
+                {% if site.twitter %}
+                <li><a class="no-ext-link-icon" href="https://twitter.com/{{ site.twitter }}">
+                <span class="fab fa-twitter-square"></span></a></li>
+                {% endif %}
+                {% if site.facebook %}
+                <li><a class="no-ext-link-icon" href="https://facebook.com/{{ site.facebook }}">
+                <span class="fab fa-facebook-square"></span></a></li>
+                {% endif %}
+                {% if site.linkedin %}
+                <li><a class="no-ext-link-icon" href="https://www.linkedin.com/company/{{ site.linkedin }}">
+                <span class="fab fa-linkedin"></span></a></li>
+                {% endif %}
+                {% if site.instagram %}
+                <li><a class="no-ext-link-icon" href="https://www.instagram.com/{{ site.instagram }}">
+                <span class="fab fa-instagram-square"></span></a></li>
+                {% endif %}
+                {% if site.youtube %}
+                <li><a class="no-ext-link-icon" href="https://www.youtube.com/channel/{{ site.youtube }}">
+                <span class="fab fa-youtube"></span></a></li>
+                {% endif %}
+            </ul>
         </div>
-        <div class="col-12 col-md-6 mt-4 text-md-right">
-            {{ site.copyright }}<br/>
-            {% if site.data.lang.footer.privacy-policy %}
-                <a href="/gdpr">{{ site.data.lang.footer.privacy-policy }}</a><br/>
+        <div class="col-12 col-md-6 col-lg-4 mt-3 pl-md-5">
+            {% if site.how-to-use %}
+            <a class="no-ext-link-icon" href="/{{ site.how-to-use.slug }}"><span class="fas fa-fw fa-redo"></span> {{ site.how-to-use.title }}</a><br/>
             {% endif %}
-            {{ site.data.lang.footer.last-change }}: <a class="no-ext-link-icon" href="https://github.com/{{ site.github }}/commit/{{ site.git.commit_hash }}"
-            title="commit {{ site.git.commit_hash_short }}">{{ site.git.commit_date }}</a><br/>
-            GitHub: <a class="no-ext-link-icon" href="https://github.com/{{ site.github }}/">{{ site.github }}</a>
+            {% if site.further-sources %}
+            <a class="no-ext-link-icon" href="/{{ site.further-sources.slug }}"><span class="fas fa-fw fa-bookmark"></span> {{ site.further-sources.title }}</a><br/>
+            {% endif %}
+            {% if site.data.lang.footer.privacy-policy %}
+            <a href="/gdpr"><span class="fas fa-fw fa-file-contract"></span> {{ site.data.lang.footer.privacy-policy }}</a><br/>
+            {% endif %}
+            {% if site.github %}
+            <a class="no-ext-link-icon" href="https://github.com/{{ site.github }}/"><span class="fab fa-fw fa-github"></span> {{ site.github }}</a><br/>
+            {% endif %}
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mt-3 text-md-center">
+            {%- assign selected_lang = site.langs | find_exp: "item", "item.code == site.lang" %}
+            {%- if selected_lang %}
+            <div class="dropdown mb-2">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="langMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="flag" alt="{{ selected_lang.title }}" src="/assets/flags/{{ selected_lang.code }}.svg" />{{ selected_lang.title }}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="langMenuButton">
+                    {%- assign other_langs  = site.langs | where_exp: "item", "item.code != site.lang" %}
+                    {%- for lang in other_langs %}
+                    <a class="dropdown-item no-ext-link-icon" href="{{ lang.link }}"><img class="flag" alt="{{ lang.title }}" src="/assets/flags/{{ lang.code }}.svg" />{{ lang.title }}</a>
+                    {%- endfor -%}
+                </div>
+            </div>
+            {%- endif %}
+            &copy; {{ site.git.commit_date | date: "%Y" }} {{ site.copyright }}<br/>
+            <a class="no-ext-link-icon" href="mailto:{{ site.email }}">{{ site.email }}</a><br/>
         </div>
     </div></div>
 </footer>

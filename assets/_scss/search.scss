@@ -1,26 +1,34 @@
 /* Main navbar containers */
 
+#nav-container, #search-container, main {
+    transition: opacity 0.3s ease-out;
+}
+
 #nav-container {
     opacity: 1;
     z-index: 1;
-    transition: opacity 0.3s ease-out;
 }
 
 #search-container {
     position: absolute;
     z-index: 0;
     opacity: 0;
-    transition: opacity 0.3s ease-out;
 
     #omnisearch-suggestions-container {
         display: none;
     }
 }
 
-nav.navbar-search {
+body.navbar-search {
     #nav-container {
         opacity: 0.05;
         z-index: 0;
+    }
+    .secondary-navbar-stuck .container {
+        opacity: 0.4 !important;
+    }
+    main {
+        opacity: 0.4;
     }
     #search-container {
         opacity: 1;
@@ -35,16 +43,24 @@ nav.navbar-search {
 /* Searchbox */
 
 #searchbox-form {
+    --border-color: #6c757d;
     width: 100%;
     display: flex;
     align-items: stretch;
 
+    #searchboxIcon {
+        position: relative;
+        left: .9rem;
+        font-size: 1.1rem;
+        line-height: 2.2;
+        color: $c-secondary;
+    }
     #searchbox {
+        padding-left: 2.5rem;
         flex: 1 0 auto;
         width: auto;
-        margin-left: auto;
-        margin-right: auto;
-        box-shadow: 0 0 0.5rem rgba(0,0,0,0.4);
+        margin-left: -1.1rem;
+        border-color: var(--border-color);
     }
 
     #searchHide {
@@ -52,7 +68,7 @@ nav.navbar-search {
         margin-left: 0.5rem;
         margin-bottom: 0;
         margin-top: 0;
-        box-shadow: 0 0 0.5rem rgba(0,0,0,0.4);
+        border-color: var(--border-color);
     }
 
     #searchHide:not(:hover) {
@@ -86,7 +102,7 @@ nav.navbar-search {
         overflow-y: scroll;
         scrollbar-width: thin;
         scrollbar-color: $c-grey transparent;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
+        border-color: var(--border-color);
 
         .dropdown-item {
             text-align: left;
