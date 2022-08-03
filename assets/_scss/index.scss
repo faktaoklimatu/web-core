@@ -241,8 +241,6 @@ a.card:hover {
 /* Tiles for topics */
 
 .topic-tile {
-    padding: 1rem;
-    height: 100%;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
@@ -253,15 +251,18 @@ a.card:hover {
         width: 100%;
 
         &:hover {
-            filter: saturate(200%);
+            filter: saturate(150%);
         }
     }
+    h3 { margin-top: .5rem; }
 }
 
 @media (max-width: 768px) {
-    .topic-tile {
-        margin-inline: 2rem;
-    }
+    h3 { font-size: 1.1rem; }
+}
+
+@media (min-width: 1200px) {
+    .topic-tile { margin-inline: 1rem; }
 }
 
 /* Carousel with successes */
