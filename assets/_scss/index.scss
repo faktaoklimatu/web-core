@@ -251,6 +251,10 @@ a.card:hover {
 
     img {
         width: 100%;
+
+        &:hover {
+            filter: saturate(200%);
+        }
     }
 }
 
