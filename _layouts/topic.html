@@ -26,11 +26,12 @@
     <div class="section pt-0">
       <div class="container clearfix">
         <div class="row topic-intro">
-          <div class="col-12 col-lg-7 col-xl-6 mt-4">
+          <div class="col-12 col-lg-7 col-xl-6">
+            <img class="d-none d-md-block d-lg-none float-right col-6 pr-0 pb-3" loading="eager" src="/assets/topics/{{ page.slug }}.svg" alt="{{ page.title }}">
             {{ content }}
           </div>
-          <div class="d-none d-lg-block col-lg-5 col-xl-6 mt-4 text-center topic-icon">
-            <img loading="eager" src="/assets/topics/{{ page.slug }}.svg" alt="{{ page.title }}">
+          <div class="col-10 col-sm-8 d-md-none d-lg-block col-lg-5 col-xl-6 topic-icon">
+            <img class="pl-xl-4 pr-xl-5" loading="eager" src="/assets/topics/{{ page.slug }}.svg" alt="{{ page.title }}">
           </div>
         </div>
         {%- if page.dashboard %}
