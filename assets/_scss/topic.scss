@@ -189,8 +189,16 @@
     margin-bottom: 2rem;
     font-size: 1.1rem;
 
-    .topic-icon img {
-        width: 100%;
+    > div {
+        margin-top: 1.5rem;
+    }
+
+    .topic-icon {
+        margin-inline: auto;
+
+        img {
+            width: 100%;
+        }
     }
 }
 
