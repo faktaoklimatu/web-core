@@ -376,6 +376,7 @@ ul:last-child {
 /* Generic expander styles */
 
 a.expander {
+    font-size: 1.1rem;
     text-decoration: none;
     display: flex;
     flex-direction: row;
@@ -394,7 +395,7 @@ a.expander.collapsed i.fas {
 /* Generic expandable styles */
 
 .expandable-block {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
 
     .expandable {
         --max-height: 600px;
