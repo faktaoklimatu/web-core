@@ -1,7 +1,7 @@
 /* Dasboards */
 
 .dashboard {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: black;
     align-items: stretch;
     margin-top: .75rem;
@@ -21,7 +21,7 @@
     }
 
     .title {
-        font-size: 1rem;
+        font-size: .9rem;
         margin-bottom: .4rem;
     }
 
@@ -34,7 +34,7 @@
 
     .source {
         color: #aaa;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         padding-left: 1rem;
     }
 
@@ -57,6 +57,7 @@
 
         .scope {
             margin-block: 0.2rem;
+            opacity: 35%;
             img {
                 margin-right: 0.4rem;
                 height: 1.1rem;
@@ -65,22 +66,21 @@
                 vertical-align: middle;
                 text-transform: uppercase;
                 font-weight: bold;
-                font-size: 0.8rem;
-                color: #888888;
+                font-size: 0.75rem;
             }
         }
 
         .value {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
 
             strong {
-                font-size: 1.6rem;
+                font-size: 1.45rem;
                 padding: 0 0.1rem;
             }
         }
 
         .subtitle {
-            line-height: 1.2rem;
+            line-height: 1.1rem;
         }
     }
 
@@ -89,8 +89,8 @@
             margin-bottom: 0.4rem;
         }
         .subtitle {
-            font-size: 1rem;
-            line-height: 1.3rem;
+            font-size: .9rem;
+            line-height: 1.2rem;
         }
     }
 }
@@ -186,15 +186,15 @@
 /* Page intro and subtopics */
 
 .topic-intro {
-    margin-bottom: 2rem;
     font-size: 1.1rem;
 
     > div {
-        margin-top: 1.5rem;
+        margin-top: 1rem;
     }
 
     .topic-icon {
         margin-inline: auto;
+        order: -1;
 
         img {
             width: 100%;
@@ -223,27 +223,23 @@
         dt {
             padding: 0.5em 0.2em;
         }
-        dt:not(:first-of-type) {
-            border-top: 1px solid rgba(0,0,0,.25);
-        }
         dd {
             margin: 0;
             div {
-                padding: 0em 1.5em 1em 1.5em;
+                padding: 0em 1.5em 1.5em 1.5em;
             }
         }
     }
 }
 
 @media (min-width: 768px) {
+    .topic-intro > div { margin-top: 1.5rem; }
+    .topic-intro .topic-icon { order: 0; }
     .topic-map img {
         width: 80%;
     }
     .subtopic .qa {
         font-size: 1.1rem;
-    }
-    .topic-intro, .subtitle .subtopic-intro {
-        font-size: 1.15rem;
     }
 }
 

@@ -31,7 +31,7 @@
             {{ content }}
           </div>
           <div class="col-10 col-sm-8 d-md-none d-lg-block col-lg-5 col-xl-6 topic-icon">
-            <img class="pl-xl-4 pr-xl-5" loading="eager" src="/assets/topics/{{ page.slug }}.svg" alt="{{ page.title }}">
+            <img class="px-xl-5" loading="eager" src="/assets/topics/{{ page.slug }}.svg" alt="{{ page.title }}">
           </div>
         </div>
         {%- if page.dashboard %}
@@ -43,12 +43,19 @@
                 {%- assign source_text = "" %}
               {%- endif %}
 
+              {%- case gauge.type %}
+                {% when 'single' %}
+                  {%- assign col-size = gauge.col-size | default: 9 %}
+                {% when 'compare' %}
+                  {%- assign col-size = gauge.col-size | default: 12 %}
+              {%- endcase %}
+              {%- assign gauge-main-class = "col-" | append: col-size %}
               {%- assign col-lg-size = gauge.col-lg-size | default: 4 %}
               {%- assign gauge-class = "col-lg-" | append: col-lg-size %}
               {%- if gauge.col-xl-size %}
                 {%- assign gauge-class = gauge-class | append: " col-xl-" | append: gauge.col-xl-size %}
               {%- endif %}
-              <div class="col-12 col-md-6 {{ gauge-class }}">
+              <div class="{{ gauge-main-class }} col-md-6 {{ gauge-class }} px-2 px-md-3">
                 <div class="gauge gauge-{{ gauge.type }}" title="{{ source_text }}">
                   {%- case gauge.type %}
                     {% when 'single' %}
