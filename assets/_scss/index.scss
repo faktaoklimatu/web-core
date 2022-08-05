@@ -248,12 +248,6 @@ a.card:hover {
     text-align: center;
     text-decoration: none;
 
-    img {
-
-        &:hover {
-            filter: saturate(150%);
-        }
-    }
     h3 {
         margin-top: .5rem;
         font-weight: 600;
@@ -262,7 +256,7 @@ a.card:hover {
     }
 }
 
-.topic-tiles:hover a:not(:hover) {
+.topic-tiles:hover .topic-tile:not(:hover) {
     filter: grayscale(80%);
     opacity: 0.6;
 }
