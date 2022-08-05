@@ -123,6 +123,12 @@ pre {
     font-size: 1.15rem;
 }
 
+@media (min-width: 992px) {
+    .narrow-text {
+        width: 80%;
+    }
+}
+
 @media (min-width: 768px) {
     .lead {
         font-size: 1.2rem;
@@ -383,15 +389,6 @@ a.expander {
 }
 a.expander.collapsed i.fas {
     transform: rotate(0deg);
-}
-
-/* Expandable for preview blocks */
-
-.preview-blocks-expander {
-    background: rgba(0,0,0,0.05);
-    padding: 0.3rem 1rem;
-    border-radius: 10%;
-    border: 0;
 }
 
 /* Generic expandable styles */
