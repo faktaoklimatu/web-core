@@ -307,8 +307,7 @@ ul:last-child {
 
 #secondary-navbar {
     background-color: white;
-    transition: all 300ms ease-out;
-    transition-property: top, background-color, box-shadow;
+    transition: top 300ms ease-out;
     padding-block: 0 0.3rem;
     font-size: 1rem;
     position: sticky;
@@ -355,6 +354,9 @@ ul:last-child {
 #secondary-navbar.secondary-navbar-stuck {
     box-shadow: 0 3px 10px #e2e2ff;
     background-color: $c-body;
+    // When getting stuck, animate also bg-color and shadow. When getting unstuck, animate neither bg-color not shadow
+    // to avoid a weird transition artifact when scrolling fast up on desktop.
+    transition-property: top, background-color, box-shadow;
     // Make it cover .between-navbars to make the two navbars feel as one.
     z-index: calc(var(--navbar-zindex) - 1);
 
