@@ -12,15 +12,13 @@
             {%- endif %}
         {%- endfor %}
         {%- if subtopic_id %}
-            {%- if include.highlighted == topic.slug %}
-            <a href="/" role="button" class="btn btn-tag btn-sm btn-tag-highlighted">
-            {%- elsif include.link %}
+            {%- if include.link %}
             <a href="{{ topic.url }}#{{ subtopic_id }}" role="button" class="btn btn-tag btn-sm btn-tag-link">
             {%- else %}
             <div class="btn btn-tag btn-sm">
             {%- endif %}
             {% if include.name-long %}{{ topic.title }}{% else %}{{ topic.tag-name }}{% endif %}
-            {% if include.highlighted == topic.slug or include.link %}</a>{% else %}</div>{% endif %}
+            {% if include.link %}</a>{% else %}</div>{% endif %}
         {%- endif %}
     {%- endfor %}
     {%- if is_in_any_topic == false %}
