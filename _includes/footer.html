@@ -26,11 +26,11 @@
             </ul>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mt-3 pl-md-5">
-            {% if site.how-to-use %}
-            <a class="no-ext-link-icon" href="/{{ site.how-to-use.slug }}"><span class="fas fa-fw fa-redo"></span> {{ site.how-to-use.title }}</a><br/>
+            {% if site.data.lang.footer.how-to-use %}
+            <a class="no-ext-link-icon" href="/{{ site.slugs.how-to-use }}"><span class="fas fa-fw fa-redo"></span> {{ site.data.lang.footer.how-to-use }}</a><br/>
             {% endif %}
-            {% if site.further-sources %}
-            <a class="no-ext-link-icon" href="/{{ site.further-sources.slug }}"><span class="fas fa-fw fa-bookmark"></span> {{ site.further-sources.title }}</a><br/>
+            {% if site.data.lang.footer.further-sources %}
+            <a class="no-ext-link-icon" href="/{{ site.slugs.further-sources }}"><span class="fas fa-fw fa-bookmark"></span> {{ site.data.lang.footer.further-sources }}</a><br/>
             {% endif %}
             {% if site.data.lang.footer.privacy-policy %}
             <a href="/gdpr"><span class="fas fa-fw fa-file-contract"></span> {{ site.data.lang.footer.privacy-policy }}</a><br/>
@@ -55,6 +55,7 @@
             </div>
             {%- endif %}
             &copy; {{ site.git.commit_date | date: "%Y" }} {{ site.copyright }}<br/>
+            <a href="{{ site.data.lang.licence.link }}" title="{{ site.data.lang.licence.title }}" rel="license">{{ site.data.lang.licence.id }}</a><br/>
             <a class="no-ext-link-icon" href="mailto:{{ site.email }}">{{ site.email }}</a><br/>
         </div>
     </div></div>
