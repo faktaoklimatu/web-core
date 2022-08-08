@@ -75,6 +75,7 @@
 
 .preview-card-container {
     height: 100%;
+    overflow: hidden;
     // Make it smaller on mobile.
     width: 90%;
     margin-inline: auto;
