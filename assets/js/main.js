@@ -60,8 +60,12 @@ $(document).ready(function() {
             expandables.removeClass(blockExpandedClass);
             setTimeout(() => {
                 expandables.removeClass(blockExpandingClass);
+                this.scrollIntoView({block: "nearest"});
+            }, 550);
+            // Allow enough time for scrollIntoView to propagate before unfreezing navbar.
+            setTimeout(() => {
                 navbars.unfreezeUpdates();
-              }, 550);
+            }, 1500);
         } else {
             expandables.addClass(blockExpandingClass);
             setTimeout(() => {
