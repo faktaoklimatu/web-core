@@ -15,9 +15,9 @@
             <ul class="navbar-nav ml-auto">
             {%- for menu-item in site.data.navigation -%}
                 {%- if menu-item.fundraising %}
-                <li><a id="fundraising" class="nav-link no-ext-link-icon btn btn-primary" href="{{ site.fundraising }}">{{ menu-item.title }}</a></li>
+                <li><a id="fundraising" class="nav-link no-ext-link-icon btn btn-primary" href="{{ site.fundraising }}" {{ menu-item.params }}>{{ menu-item.title }}</a></li>
                 {%- elsif menu-item.link %}
-                <li><a class="nav-link {{ menu-item.class }}" href="{{ menu-item.link }}">{{ menu-item.title }}</a></li>
+                <li><a class="nav-link {{ menu-item.class }}" href="{{ menu-item.link }}" {{ menu-item.params }}>{{ menu-item.title }}</a></li>
                 {%- elsif menu-item.dropdown %}
                 <li class="dropdown">
                     <div class="nav-link dropdown-toggle" id="dropdown_{{ menu-item.title | slugify }}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" {{ menu-item.params }}>
@@ -34,13 +34,13 @@
                             {%- for topic in sorted_topics %}
                             <a class="dropdown-item" href="{{ topic.url }}">{{ topic.title }}</a>
                             {%- endfor- %}
-                        {%- elsif menu-item.lang %}
-                            {%- for submenu-item in menu-item.dropdown %}
-                            <a class="dropdown-item no-ext-link-icon" href="{{ submenu-item.link }}"><img class="flag" alt="{{ submenu-item.title }}" src="/assets/flags/{{ submenu-item.lang }}.svg" />{{ submenu-item.title }}</a>
-                            {%- endfor -%}
                         {%- else -%}
                             {%- for submenu-item in menu-item.dropdown %}
-                            <a class="dropdown-item {{ submenu-item.class }}" href="{% if submenu-item.fundraising %}{{ site.fundraising }}{% else %}{{ submenu-item.link }}{% endif %}" {{ submenu-item.params }}>{{ submenu-item.title }}</a>
+                            {%- if submenu-item.fundraising %}
+                            <a class="dropdown-item {{ submenu-item.class }}" href="{{ site.fundraising }}" {{ submenu-item.params }}>{{ submenu-item.title }}</a>
+                            {%- else %}
+                            <a class="dropdown-item {{ submenu-item.class }}" href="{{ submenu-item.link }}" {{ submenu-item.params }}>{{ submenu-item.title }}</a>
+                            {%- endif %}
                             {%- endfor -%}
                         {%- endif %}
                     </div>
