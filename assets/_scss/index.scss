@@ -306,6 +306,12 @@ a.card:hover {
     align-items: center;
     text-align: center;
 
+    img {
+        // Fix for img sizing on Safari.
+        max-width: 100%;
+        height: auto;
+    }
+
     h3 {
         margin-top: .5rem;
         font-weight: 600;
