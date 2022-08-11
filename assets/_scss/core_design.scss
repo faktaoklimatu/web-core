@@ -273,6 +273,9 @@ ul.arrow {
     #searchShow, #toggler {
         font-size: 1rem;
     }
+    .ext-link:after {
+        margin-left: 0.5em;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
