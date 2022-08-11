@@ -1,7 +1,7 @@
-{%- assign show_rows = include.rows | default: 2 %}
+{%- assign show_rows = include.rows | default: 2 | at_least: 1 %}
 {%- assign show_lg = show_rows | times: 3 %}
 {%- assign show_md = show_rows | times: 2 %}
-{%- assign show_xs = show_rows %}
+{%- assign show_xs = show_rows | at_least: 2 %}
 {%- assign needs_expanding_lg = false %}
 {%- assign needs_expanding_md = false %}
 {%- assign needs_expanding_xs = false %}
@@ -33,7 +33,7 @@
   {%- endfor %}
 </div>
 
-{%- if needs_expanding_xs %}
+{%- if needs_expanding_xs or needs_expanding_md %}
   {%- if needs_expanding_lg %}
     {%- assign show_class = "" %}
   {%- elsif needs_expanding_md %}
