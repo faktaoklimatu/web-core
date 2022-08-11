@@ -278,6 +278,12 @@ ul.arrow {
     }
 }
 
+.navbar, .dropdown-menu { font-size: 1.1rem; }
+
+@media (min-width: 768px) {
+    .navbar, .dropdown-menu { font-size: 1rem; }
+}
+
 @media (min-width: 768px) and (max-width: 992px) {
     .navbar #fundraising {
         margin-inline: 0.4rem;
@@ -310,7 +316,7 @@ ul.arrow {
 
 .navbar-expand-md .navbar-nav .nav-link {
     padding-inline: .6rem;
-    padding-block: .25rem;
+    padding-block: .4rem;
 }
 
 @media (min-width: 768px) {
@@ -322,6 +328,9 @@ ul.arrow {
     }
     #toggler {
         display: none;
+    }
+    .navbar-expand-md .navbar-nav .nav-link {
+        padding-block: .25rem;
     }
 }
 @media (min-width: 992px) {
