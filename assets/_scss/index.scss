@@ -284,13 +284,13 @@ a.card:hover {
     }
 }
 
-.our-users img {
+.logos img {
     height: 60px;
     margin: 0.3rem .6rem;
     &.small { height: 40px; }
 }
 @media (min-width: 768px) {
-    .our-users img {
+    .logos img {
         height: 90px;
         margin: 0.5rem 1rem;
         &.small { height: 60px; }
