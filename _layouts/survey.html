@@ -11,7 +11,7 @@
       <div class="container">
         <h1>{{ site.data.lang.text.survey.survey }}: {{ page.title }}</h1>
         {% include tags.html tags=page.tags slug=page.slug link="true" %}
-        <p class="lead">{{ page.intro }}</p>
+        <div class="lead mt-2 mb-4">{{ page.intro | markdownify }}</div>
 
         {{ content }}
       </div>
