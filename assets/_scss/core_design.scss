@@ -268,6 +268,7 @@ ul.arrow {
     }
     #fundraising {
         margin-left: .6rem;
+        margin-block: .4rem;
         padding-inline: .6rem;
     }
     #searchShow, #toggler {
@@ -278,10 +279,11 @@ ul.arrow {
     }
 }
 
-.navbar, .dropdown-menu { font-size: 1.1rem; }
+.navbar, .dropdown-menu { font-size: 1.2rem; }
 
 @media (min-width: 768px) {
     .navbar, .dropdown-menu { font-size: 1rem; }
+    .navbar #fundraising { margin-block: 0; }
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
