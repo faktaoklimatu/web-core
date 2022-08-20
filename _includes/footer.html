@@ -24,6 +24,9 @@
                 <span class="fab fa-youtube"></span></a></li>
                 {% endif %}
             </ul>
+            {% if site.data.lang.footer.support-us %}
+            <a href="{{ site.fundraising }}" class="btn btn-outline-secondary d-md-none"><i class="fas fa-fw fa-heart"></i> {{ site.data.lang.footer.support-us }}</a>
+            {% endif %}
         </div>
         <div class="col-12 col-md-6 col-lg-4 mt-3 pl-md-5">
             {% if site.data.lang.footer.how-to-use %}
