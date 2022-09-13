@@ -13,7 +13,7 @@ This repository (_web-core_) cannot (!) be built as is. It is just the core web 
   * Note: This is not done if you call Make from within web-core.
 * Apart from sym-linking the content to the parent (localized) repository, several files are generated based on templates and language-specific settings in the parent repository (e.g., `_config.yml`, `humans.txt` and others).
 
-More tips and tricks for efficient development can be found in the [Notion document](https://www.notion.so/faktaoklimatu/Workflow-GitHub-4c5b294731dc4f9a8b2203daefcff432).
+More tips and tricks for efficient development can be found in the [Notion document](https://faktaoklimatu.notion.site/Workflow-GitHub-57f94afa90864f51845b2be4c553cb6b).
 
 ## Local website build
 
