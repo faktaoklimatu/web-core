@@ -1,4 +1,4 @@
-<div class="longread-figure">
+<div class="longread-figure {{ include.class }}">
   <a href="/assets-local/figures/{{ page.slug }}/{{ include.name }}" data-lightbox
     {%- assign suffix = include.name | split:'.' | last %}
     {%- if suffix == "svg" %}
@@ -15,14 +15,18 @@
     </picture>
   </a>
   {%- if include.caption or include.source-text %}
-  <div class="source fancybox-custom-caption">
+  <div class="fancybox-custom-caption">
     {%- if include.caption %}
-      {{- include.caption }} 
+      <div class="caption">
+        {{- include.caption }}
+      </div>
     {%- endif %}
     {%- if include.source-text %}
-      Zdroj: {%- if include.source-url %}<a href="{{ include.source-url }}">{% endif %}
-        {{ include.source-text }}
-        {%- if include.source-url %}</a>{% endif %}
+      <div class="source">
+        Zdroj: {%- if include.source-url %}<a href="{{ include.source-url }}">{% endif %}
+          {{ include.source-text }}
+          {%- if include.source-url %}</a>{% endif %}
+      </div>
     {%- endif %}
   </div>
   {%- endif %}

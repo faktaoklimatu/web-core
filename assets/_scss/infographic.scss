@@ -81,8 +81,8 @@ p.caption {
     }
 
     h3 {
-        font-size: 1.4rem;
-        margin-top: 1.5rem;
+        font-size: 1.5rem;
+        margin-top: 2rem;
         margin-bottom: 1rem;
     }
 
@@ -90,6 +90,10 @@ p.caption {
         font-size: 1.2rem;
         margin-top: 1rem;
         margin-bottom: 0.5rem;
+    }
+
+    .longread-small {
+        font-size: 1rem;
     }
 }
 
@@ -126,7 +130,8 @@ p.caption {
         padding-left: 1rem;
 
         ol {
-            padding-left: 2rem;
+            padding-left: 1rem;
+            font-size: 0.9rem;
             list-style-type: lower-alpha;
         }
     }
@@ -151,7 +156,7 @@ p.caption {
     margin-right: auto;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    padding: 1rem 0rem 1rem 1.5rem;
+    padding: 0.75rem 0rem 0.75rem 1.5rem;
     border-left: 0.15rem solid rgba(0,0,0,0.2);
     font-size: 1rem;
     line-height: 1.5em;
@@ -163,7 +168,7 @@ p.caption {
         text-align: left;
     }
     .row {
-        margin: 0.5rem 0 0;
+        margin: 0.5rem 0;
     }
     .card {
         margin: 0;
@@ -172,6 +177,10 @@ p.caption {
 
 .preview-box, .highlight-text-box {
     max-width: 300px;
+}
+
+.no-float-preview-box {
+    border-left-width: 0;
 }
 
 .double-preview-box {
@@ -193,6 +202,10 @@ p.caption {
         margin-right: 0;
         position: relative;
         left: 25px;
+    }
+    .no-float-preview-box {
+        float: none;
+        position: static;
     }
 }
 
@@ -219,7 +232,7 @@ p.caption {
     }
     .longread {
         flex: 3 0 640px;
-        line-height: 1.6em;
+        line-height: 1.6;
     }
     .longread-xl-space-right {
         flex: 10 0 240px;
@@ -229,6 +242,10 @@ p.caption {
         width: 60%;
         left: 40%;
         margin-left: calc(-40% + 2rem);
+    }
+    .no-float-preview-box {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .double-preview-box {
