@@ -1,0 +1,7 @@
+<div class="columns {{ include.class }}">
+  <div class="column {{ include.column-class }}"> {{ include.col1 | markdownify }} </div>
+  <div class="column {{ include.column-class }}"> {{ include.col2 | markdownify }} </div>
+  {%- if include.col3 %}
+    <div class="column {{ include.column-class }}"> {{ include.col3 | markdownify }} </div>
+  {%- endif %}
+</div>

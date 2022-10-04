@@ -3,9 +3,11 @@
   {%- if include.title %}
     <h4>{{ include.title }}</h4>
   {%- endif %}
-  <div>
-    {{ include.text | markdownify }}
-  </div>
+  {%- if include.text %}
+    <div>
+      {{ include.text | markdownify }}
+    </div>
+  {%- endif %}
   {%- if include.slug %}
     <div class="row">
       {%- for slug in slugs %}
@@ -13,6 +15,11 @@
           {%- include preview-block.html slug=slug no_include_tags=true %}
         </div>
       {%- endfor %}
+    </div>
+  {%- endif %}
+  {%- if include.text-below %}
+    <div>
+      {{ include.text-below | markdownify }}
     </div>
   {%- endif %}
 </div>

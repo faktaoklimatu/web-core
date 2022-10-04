@@ -1,0 +1,13 @@
+<div class="expander-block">
+  <h4 class="expander-title {{ include.label-class }}">
+    <a class="expander collapsed" data-toggle="collapse" data-target="#collapse-figure-{{ include.name }}" aria-expanded="false" aria-controls="collapse-figure-{{ include.name }}">
+      <div class="expander-button">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <p>
+        {{ include.label }}
+      </p>
+    </a>
+  </h4>
+  <div class="expander-body collapse" id="collapse-figure-{{ include.name }}">{{ include.content | markdownify }}</div>
+</div>
