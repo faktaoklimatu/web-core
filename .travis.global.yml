@@ -40,9 +40,8 @@ cache:
   - $TRAVIS_BUILD_DIR/web-core/assets/generated  # Enable caching of generated infographics
   - $TRAVIS_BUILD_DIR/web-core/assets/studies  # Enable caching of copied study thumbnails
   - $TRAVIS_BUILD_DIR/web-core/assets/covers  # Enable caching of generated explainer covers
-  - $TRAVIS_BUILD_DIR/web-core/assets/episodes  # Enable caching of copied episode covers
 
-before_deploy: 
+before_deploy:
   - wget -q --output-document=web-core/firebase https://firebase.tools/bin/linux/latest
   - chmod +x web-core/firebase
 
