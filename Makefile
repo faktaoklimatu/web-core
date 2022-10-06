@@ -3,7 +3,9 @@ TOPICS_SRC=$(wildcard collections/_topics/*.svg)
 TOPICS_DST=$(addprefix $(TOPICS_FOLDER)/,$(notdir $(TOPICS_SRC)))
 INFOGRAPHICS_FOLDER=assets/generated
 INFOGRAPHICS_SRC=$(wildcard collections/_infographics/*/*.pdf collections/_studies/*.pdf)
-INFOGRAPHICS_DST=$(addprefix $(INFOGRAPHICS_FOLDER)/,$(notdir $(INFOGRAPHICS_SRC)))
+INFOGRAPHICS_BASE=$(addprefix $(INFOGRAPHICS_FOLDER)/,$(basename $(notdir $(INFOGRAPHICS_SRC))))
+INFOGRAPHICS_SUFFIXES=.pdf .svg _600.png _1200.png _1920.png _6000.png
+INFOGRAPHICS_DST=$(foreach suffix, $(INFOGRAPHICS_SUFFIXES), $(addsuffix $(suffix),$(INFOGRAPHICS_BASE)))
 DATASETS_FOLDER=assets/datasets
 DATASETS_SRC=$(wildcard collections/_datasets/*.md)
 DATASETS_DST=$(addprefix $(DATASETS_FOLDER)/,$(notdir $(DATASETS_SRC:.md=.png)))
@@ -99,11 +101,11 @@ $(TOPICS_FOLDER)/%: collections/_topics/%
 	mkdir -p $(@D)
 	cp $< $@
 
-$(INFOGRAPHICS_FOLDER)/%.pdf: collections/_infographics/*/%.pdf
-	@utils/convert-infographic.sh $< $@
+$(foreach suffix, $(INFOGRAPHICS_SUFFIXES), $(INFOGRAPHICS_FOLDER)/%$(suffix)): collections/_infographics/*/%.pdf
+	@utils/convert-infographic.sh $< $(addprefix $(INFOGRAPHICS_FOLDER)/,$(notdir $<))
 
-$(INFOGRAPHICS_FOLDER)/%.pdf: collections/_studies/%.pdf
-	@utils/convert-infographic.sh $< $@
+$(foreach suffix, $(INFOGRAPHICS_SUFFIXES), $(INFOGRAPHICS_FOLDER)/%$(suffix)): collections/_studies/%.pdf
+	@utils/convert-infographic.sh $< $(addprefix $(INFOGRAPHICS_FOLDER)/,$(notdir $<))
 
 $(STUDIES_FOLDER)/%: collections/_studies/%
 	mkdir -p $(@D)
