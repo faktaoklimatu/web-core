@@ -78,6 +78,10 @@
     margin-inline: auto;
 }
 
+.multi-card-box .preview-card-container, .double-preview-box .preview-card-container {
+    width: 100%;  // Don't make it smaller if there are multiple-boxes
+}
+
 .preview-card {
     text-decoration: none;
     text-align: left;
@@ -99,6 +103,17 @@
     p.card-survey-caption {
         font-size: 0.9rem;
     }
+}
+
+.selected-preview-card {
+    border-width: 2px;
+    border-color: rgba(0,0,0,.5);
+}
+
+.small-font-card {
+    .card-title { font-size: 1rem; margin-bottom: 0; }
+    .card-subtitle { display: none; }
+    .card-img-overlay { padding: 0.6rem; }
 }
 
 .card-with-comment {

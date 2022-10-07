@@ -11,8 +11,13 @@
   {%- if include.slug %}
     <div class="row">
       {%- for slug in slugs %}
+        {%- if slug==include.selected %}
+          {%- assign selected_class = "selected-preview-card" %}
+        {%- else %}
+          {%- assign selected_class = "" %}
+        {%- endif %}
         <div class="{{ include.card_class | default: 'py-1 w-100' }}">
-          {%- include preview-block.html slug=slug no_include_tags=true %}
+          {%- include preview-block.html slug=slug no_include_tags=true class=selected_class show-order=true %}
         </div>
       {%- endfor %}
     </div>
