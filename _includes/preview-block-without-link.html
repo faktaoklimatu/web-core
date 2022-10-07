@@ -1,4 +1,9 @@
 {% assign item = include.item %}
+{% if include.show-order and item.series-order %}
+    {%- assign title = '<span class="series-order">' | append: item.series-order | append: ". </span>" | append: item.title %}
+{%- else %}
+    {%- assign title = item.title %}
+{%- endif %}
 {% case item.layout %}
     {% when 'infographic' %}
         <img src="/assets/generated/{{ item.slug }}_600.png" alt="{{ item.title }}" title="{{ item.title }}" class="img-fluid" />
@@ -6,27 +11,27 @@
         <div style="background-image: url('/assets-local/datasets/{{ item.slug }}.png')" title="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
         </div>
         <div class="card-img-overlay card-title-overlay">
-            <h5 class="card-title">{{ item.title }}</h5>
+            <h5 class="card-title">{{ title }}</h5>
             <h6 class="card-subtitle">{{ site.data.lang.text.dataset.dataset }}</h6>
         </div>
     {% when 'explainer' %}
         <div style="background-image: url('/assets/covers/{{ item.slug }}_600.jpg')" title="{{ site.data.lang.text.explainer.explainer }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
         </div>
         <div class="card-img-overlay card-title-overlay">
-            <h5 class="card-title">{{ item.title }}</h5>
+            <h5 class="card-title">{{ title }}</h5>
             <h6 class="card-subtitle">{{ site.data.lang.text.explainer.explainer }}</h6>
         </div>
     {% when 'study' %}
         <div style="background-image: url('/assets/studies/{{ item.slug }}.jpg')" title="{{ site.data.lang.text.study.study }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
         </div>
         <div class="card-img-overlay card-title-overlay">
-            <h5 class="card-title">{{ item.title }}</h5>
+            <h5 class="card-title">{{ title }}</h5>
             <p class="card-author">{{ item.study-institution }}, {{ item.study-year }}</p>
             <h6 class="card-subtitle">{{ site.data.lang.text.study.study }}</h6>
         </div>
     {% when 'survey' %}
         <div class="card-body">
-            <h5 class="card-title">{{ item.title }}</h5>
+            <h5 class="card-title">{{ title }}</h5>
             <h6 class="card-subtitle">{{ site.data.lang.text.survey.survey }}</h6>
             <p class="card-text card-survey-caption mt-3">{{ item.caption }}</p>
         </div>
@@ -34,7 +39,7 @@
         <div title="{{ site.data.lang.text.episode.episode }}: {{ item.title }}" class="preview-card-image episode-card-image img-fluid card-img">
         </div>
         <div class="card-img-overlay card-title-overlay">
-            <h5 class="card-title">{{ item.title }}</h5>
+            <h5 class="card-title">{{ title }}</h5>
             <h6 class="card-subtitle">{{ site.data.lang.text.episode.episode }} <i class="fas fa-external-link-alt"></i></h6>
         </div>
     {% else %}

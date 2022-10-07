@@ -93,32 +93,13 @@
     line-height: 1.5em;
 }
 
-.advanced-part-separator {
-    position: relative;
-    width: 100%;
-    height: calc(20px + 5rem);
-    margin-block-start: 5rem;
-    /* Clip edges, as some of the lines don't terminate nicely. */
-    overflow: hidden;
+h1 {
+    display: flex;
+}
 
-    .ellipse {
-        position: absolute;
-        background: radial-gradient(ellipse, transparent, transparent 3.5px, $c-grey 3.5px, $c-grey 5px, transparent 5.5px);
-        background-size: 18px 20px;
-        width: 100%;
-        height: 10px;
-    }
-    .ellipse-bottom {
-        top: 10px;
-        left: 9px;
-        background-position: 0px -10px;
-    }
-    .comment {
-        font-size: 0.8rem;
-        color: $c-grey;
-        margin-inline-start: 2rem;
-        margin-block-start: 20px;
-    }
+.series-order {
+    opacity: 50%;
+    padding-right: 0.2em;
 }
 
 @media (min-width: 768px) {
