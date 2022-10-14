@@ -1,0 +1,34 @@
+.audio-player {
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.audio-player .fa-headphones {
+  display: block;
+  width: 2em;
+  height: 2em;
+  padding-top: .45em;
+  flex-shrink: 0;
+  background: #ebebf2;
+  color: navy;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 1.6em;
+}
+
+/*
+.audio-player .play-btn {
+  display: block;
+  width: 2em;
+  height: 2em;
+  padding: .2em 0 0 .1em;
+  background: #ddd;
+  border-radius: 50%;
+  text-align: center;
+}
+.audio-player .play-btn i { color: #222; }
+.audio-player .play-btn:hover i { color: #0056b3; }
+*/
+
+.audio-player .progress { height: .6em; cursor: pointer; }
+.audio-player .progress-bar { width: 0; background: #999; }

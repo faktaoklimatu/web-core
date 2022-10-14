@@ -88,9 +88,13 @@
 }
 
 .explainer-perex {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     font-size: 1.4rem;
     line-height: 1.5em;
+}
+
+.explainer-perex + p {
+    margin-top: 3rem;
 }
 
 @media (min-width: 768px) {

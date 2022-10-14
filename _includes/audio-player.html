@@ -1,0 +1,104 @@
+{% assign audio_path = "/assets-local/audio/" | append: include.slug | append: ".opus" %}
+{% assign element_id = "player-" | append: include.slug %}
+<div class="card audio-player">
+  <div class="card-body d-flex">
+    <i class="fa-solid fa-headphones"></i>
+    <div class="d-flex flex-column ml-3">
+      <div class="mb-2">
+        Tento explainer si nyní můžete i poslechnout. Namluvený text si můžete pustit v našem přehrávači níže, nebo si jej můžete <a href="{{ audio_path }}" download>stáhnout</a> do vlastního zařízení a poslouchat jej kdykoliv se vám to hodí. Pokud vám nahrávky našich textů přijdou užitečné, uvítáme <a class="ext-link" href="{{ site.fundraising }}" target="_blank" rel="noopener noreferrer">finanční podporu</a> na jejich realizaci.
+      </div>
+      <audio controls id="{{ element_id }}" preload="metadata" src="{{ audio_path }}">
+        <a href="{{ audio_path }}" download>Stáhnout audio</a>
+      </audio>
+      <div class="d-none align-items-center">
+        <a class="play-btn" role="button" title="Přehrát audio">
+          <i class="fa-solid fa-play"></i>
+        </a>
+        <div class="progress flex-grow-1 mx-3">
+          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <span id="{{ element_id }}-time"></span>
+        <a class="ml-3 download-btn" role="button" title="Stáhnout audio">
+          <i class="fa-solid fa-download"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  function secondsToMinutes(seconds) {
+    const min = Math.trunc(seconds / 60);
+    const sec = '0' + Math.trunc(seconds % 60);
+    return `${min}:${sec.substr(-2)}`;
+  }
+
+  function updateTime(audio, time) {
+    const { currentTime, duration } = audio;
+    if (!isNaN(audio.duration)) {
+      time.innerText = `${secondsToMinutes(currentTime)} / ${secondsToMinutes(duration)}`;
+    }
+  }
+
+  function updateProgress(audio, progressBar) {
+    const { currentTime, duration } = audio;
+    if (isNaN(audio.duration)) return;
+    const elapsedPct = Math.round(currentTime / duration * 1000) / 10;
+    progressBar.style.width = `${elapsedPct}%`;
+    progressBar.setAttribute('aria-valuenow', elapsedPct);
+  }
+
+  const audioEl = document.getElementById('{{ element_id }}');
+  const customPlayerDiv = audioEl.nextElementSibling;
+  const progressEl = customPlayerDiv.querySelector('.progress');
+  const playBtn = customPlayerDiv.querySelector('.play-btn');
+  const timeEl = customPlayerDiv.querySelector('#{{ element_id }}-time');
+
+  audioEl.controls = false;
+  customPlayerDiv.classList.remove('d-none');
+  customPlayerDiv.classList.add('d-flex');
+
+  audioEl.addEventListener('play', () => {
+    playBtn.title = 'Pozastavit audio';
+    playBtn.firstElementChild.classList.remove('fa-play');
+    playBtn.firstElementChild.classList.add('fa-pause');
+  });
+
+  audioEl.addEventListener('pause', () => {
+    playBtn.title = 'Přehrát audio';
+    playBtn.firstElementChild.classList.remove('fa-pause');
+    playBtn.firstElementChild.classList.add('fa-play');
+  });
+
+  audioEl.addEventListener('canplay', (event) => {
+    updateTime(event.target, timeEl);
+  });
+
+  audioEl.addEventListener('loadedmetadata', (event) => {
+    updateTime(event.target, timeEl);
+  });
+
+  audioEl.addEventListener('timeupdate', (event) => {
+    updateTime(event.target, timeEl);
+    updateProgress(audioEl, progressEl.firstElementChild);
+  });
+
+  playBtn.addEventListener('click', (event) => {
+    if (audioEl.paused || audioEl.ended) {
+      audioEl.play();
+    } else {
+      audioEl.pause();
+    }
+    event.preventDefault();
+  });
+
+  progressEl.addEventListener('click', (event) => {
+    if (isNaN(audioEl.duration)) return;
+    const { offsetX } = event;
+    const seekPct = offsetX / progressEl.offsetWidth;
+    const seekSec = seekPct * audioEl.duration;
+    audioEl.fastSeek(seekSec);
+  });
+})();
+</script>

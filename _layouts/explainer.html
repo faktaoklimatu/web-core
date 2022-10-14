@@ -73,6 +73,9 @@
               {{ page.perex }}
             </p>
             {%- endif %}
+            {%- if page.has-audio %}
+            {% include audio-player.html slug=page.slug %}
+            {%- endif %}
             {{ content }}
           </div>
           <div class="longread-xl-space-right"></div>
