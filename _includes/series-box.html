@@ -1,24 +1,24 @@
 {%- for topic in site.topics %}
-  {%- assign serial = topic.subtopics | find: "id", include.subtopic-id %}
-  {%- if serial %}
+  {%- assign series = topic.subtopics | find: "id", include.series-id %}
+  {%- if series %}
     {%- assign previous_url = nil %}
     {%- assign next_url = nil %}
-    {%- for slug in serial.content %}
+    {%- for slug in series.content %}
       {%- if slug == include.selected %}
         {%- unless forloop.first %}
           {%- assign index = forloop.index0 | minus: 1 %}
-          {%- assign previous_slug = serial.content[index] %}
+          {%- assign previous_slug = series.content[index] %}
           {% assign previous_url = site.infographics | concat: site.studies | concat: site.explainers | concat: site.episodes | find:"slug",previous_slug | get_url %}
         {%- endunless %}
         {%- unless forloop.last %}
           {%- assign index = forloop.index0 | plus: 1 %}
-          {%- assign next_slug = serial.content[index] %}
+          {%- assign next_slug = series.content[index] %}
           {% assign next_url = site.infographics | concat: site.studies | concat: site.explainers | concat: site.episodes | find:"slug",next_slug | get_url %}
         {%- endunless %}
       {%- endif %}
     {%- endfor %}
 
-    {%- assign slugs = serial.content | join: "," %}
+    {%- assign slugs = series.content | join: "," %}
     {%- capture text-below %}
 {%- if previous_url %}
 
@@ -33,10 +33,10 @@
 {%- endif %}
     {%- endcapture %}
     {%- include preview-box.html
-      title=serial.title
+      title=series.title
       class="no-float-box multi-card-box clearfix"
       card_class="col-6 col-md-4 p-1 small-font-card"
-      text=include.text
+      text=series.series-short-lead
       selected=include.selected
       slug=slugs
       text-below=text-below

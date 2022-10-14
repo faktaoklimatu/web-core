@@ -63,6 +63,10 @@
     text-transform: uppercase;
     font-weight: bold;
     margin-bottom: 1rem;
+    span {
+        opacity: 0.8;
+        padding-inline-start: 0.3rem;
+    }
 }
 
 .explainer-metadata {

@@ -114,7 +114,11 @@
     {%- for sub in page.subtopics %}
       {%- if sub.id and sub.title %}
         {%- assign sub_id = sub.id %}
-        {%- assign sub_title = sub.title %}
+        {%- if sub.series %}
+          {%- assign sub_title = site.data.lang.topic.series-prefix | append: sub.title %}
+        {%- else %}
+          {%- assign sub_title = sub.title %}
+        {%- endif %}
         {%- assign sub_class = "" %}
       {%- else %}
         {%- assign sub_id = site.data.lang.topic.nutshell-id %}

@@ -43,12 +43,20 @@
         <div class="container clearfix">
           <div class="row justify-content-center">
             <div class="col">
-              {%- if page.series-order %}
-                {%- assign type = site.data.lang.text.explainer.series %}
-              {%- else %}
-              {%- assign type = site.data.lang.text.explainer.explainer %}
-              {%- endif %}
-              <div class="explainer-type">{{ type }}</div>
+              <div class="explainer-type">
+                {%- if page.series-order %}
+                  {{ site.data.lang.text.explainer.series }}
+                  {%- for topic in site.topics %}
+                    {%- assign series = topic.subtopics | find: "id", page.series-id %}
+                    {%- if series %}
+                      <span>{{ series.title }}</span>
+                      {%- break %}
+                    {%- endif %}
+                  {%- endfor %}
+                {%- else %}
+                  {{ site.data.lang.text.explainer.explainer }}
+                {%- endif %}
+              </div>
               <h1>
                 {%- if page.series-order %}
                   <span class="series-order">{{page.series-order}}.</span>
