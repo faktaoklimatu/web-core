@@ -1,4 +1,7 @@
 <div class="longread-figure {{ include.class }}">
+  {%- if include.caption-above %}
+    <div class="caption caption-above">{{ include.caption-above }}</div>
+  {%- endif %}
   <a href="/assets-local/figures/{{ page.slug }}/{{ include.name }}" data-lightbox
     {%- assign suffix = include.name | split:'.' | last %}
     {%- if suffix == "svg" %}
@@ -17,7 +20,7 @@
   {%- if include.caption or include.source-text %}
   <div class="fancybox-custom-caption">
     {%- if include.caption %}
-      <div class="caption">
+      <div class="caption caption-below">
         {{- include.caption }}
       </div>
     {%- endif %}
