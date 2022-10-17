@@ -77,6 +77,10 @@
 
   audioEl.addEventListener('loadedmetadata', (event) => {
     updateTime(event.target, timeEl);
+    {%- if include.bookmarks %}
+    const bookmarks = [{{ include.bookmarks | join: ", " }}];
+      console.log('Bookmark percents:', bookmarks.map((sec) => Math.round(1000 * sec / event.target.duration) / 10 + '%').join(', '));
+    {% endif -%}
   });
 
   audioEl.addEventListener('timeupdate', (event) => {

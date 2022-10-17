@@ -74,7 +74,7 @@
             </p>
             {%- endif %}
             {%- if page.has-audio %}
-            {% include audio-player.html slug=page.slug %}
+            {% include audio-player.html slug=page.slug bookmarks=page.audio-bookmarks %}
             {%- endif %}
             {{ content }}
           </div>
