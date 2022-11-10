@@ -284,10 +284,10 @@ ul.arrow {
     }
 }
 
-.navbar, .dropdown-menu { font-size: 1.2rem; }
+.navbar-nav, .dropdown-menu { font-size: 1.2rem; }
 
 @media (min-width: 768px) {
-    .navbar, .dropdown-menu { font-size: 1rem; }
+    .navbar-nav, .dropdown-menu { font-size: 1rem; }
     .navbar #fundraising { margin-block: 0; }
 }
 

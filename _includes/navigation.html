@@ -1,4 +1,13 @@
 <nav class="navbar navbar-expand-md navbar-light fixed-top">
+    {%- if site.banner %}
+        <div id="banner-section">
+            <div id="banner-container" class="container">
+                <div class="banner">
+                    {% include {{ site.banner }} %}
+                </div>
+            </div>
+        </div>
+    {%- endif %}
     <div id="nav-container" class="container">
         <a class="navbar-brand" href="/"><img src="/assets-local/logo-navbar.svg" alt="{{ site.title }}"/></a>
         <div id="navbar-buttons">
