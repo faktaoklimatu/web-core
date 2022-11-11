@@ -1,1 +1,1 @@
-<span class="popover-text" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-html="true" data-content="{{ include.popover }}">{{ include.text }}</span>
+<span class="popover-text" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-html="true" data-content="{{ include.popover | escape_once }}">{{ include.text }}</span>
