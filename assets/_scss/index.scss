@@ -388,25 +388,30 @@ a.card:hover {
 // Banner
 
 #banner-section {
-    background-color: palegoldenrod;
     width: 100%;
+    z-index: 1;
     margin-bottom: 0.2rem;
+    background-color: #faf190;
+    color: $c-secondary;
 
     #banner-container {
-        z-index: 1;
         padding-block: 0.3rem;
-        // border-radius: 0  0 0.25rem 0.25rem;
-        color: black;
 
         .banner {
             flex-grow: 1;
             display: flex;
-            justify-content: space-between;
+            justify-content: stretch;
             align-items: center;
 
-            a#cta {
-                padding-block: 0.25rem;
-                white-space: nowrap;
+            .text { flex-grow: 1; }
+
+            .cta {
+                flex-grow: 2;
+
+                a {
+                    padding-block: 0.25rem;
+                    white-space: nowrap;
+                }
             }
         }
     }
