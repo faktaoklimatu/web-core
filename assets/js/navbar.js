@@ -34,6 +34,10 @@ class Navbars {
     if (this.frozenUpdates) {
       return;
     }
+
+    // Account for primary nav height to not cover any page content.
+    $("body").css('padding-top', this.primaryNav.outerHeight());
+
     var navbarsVisible = this.areNavbarsVisible();
 
     this.primaryNav.css('top', navbarsVisible ? 0 : this.getTopForHiddenElement(this.primaryNav));
