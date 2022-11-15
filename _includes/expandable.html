@@ -1,0 +1,17 @@
+{%- assign title-tag = include.title-tag | default: "div" -%}
+{%- assign content-tag = include.content-tag | default: "div" -%}
+{%- assign id = include.id-prefix | append: "-" | append: include.counter %}
+
+<{{ title-tag }} class="expandable-title">
+  <a class="expander collapsed" data-toggle="collapse" data-target="#{{ id }}" aria-expanded="false" aria-controls="{{ id }}">
+    <div class="expander-button">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <p>
+      {{ include.title | markdownify }}
+    </p>
+  </a>
+</{{ title-tag }}>
+<{{ content-tag }} class="expandable-content collapse" id="{{ id }}">
+  <div>{{ include.content | markdownify }}</div>
+</{{ content-tag }}>
