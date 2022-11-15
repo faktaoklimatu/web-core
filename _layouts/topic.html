@@ -140,19 +140,7 @@
             {%- if sub.qa %}
               <dl class="qa">
                 {%- for qa in sub.qa %}
-                  <dt>
-                    <a class="expander collapsed" data-toggle="collapse" data-target="#collapse-qa-{{ qaCounter }}" aria-expanded="false" aria-controls="collapse-qa-{{ qaCounter }}">
-                      <div class="expander-button">
-                        <i class="fas fa-chevron-down"></i>
-                      </div>
-                      <p>
-                        {{ qa.q }}
-                      </p>
-                    </a>
-                  </dt>
-                  <dd class="collapse" id="collapse-qa-{{ qaCounter }}">
-                    <div>{{ qa.a | markdownify }}</div>
-                  </dd>
+                  {%- include expandable.html title-tag="dt" content-tag="dd" title=qa.q content=qa.a id-prefix="collapse-qa" counter=qaCounter %}
                   {% assign qaCounter = qaCounter | plus: 1 %}
                 {%- endfor %}
               </dl>

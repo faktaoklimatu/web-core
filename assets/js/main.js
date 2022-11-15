@@ -3,17 +3,6 @@ $(document).ready(function() {
         console.log('This is the local development version of the website.');
     }
 
-    // Open the correponding <details> rolldown if the URL target is inside one
-    // and scroll browser view to the target element.
-    if (location.hash) {
-        const targetEl = $(decodeURIComponent(location.hash));
-        const parentDetails = targetEl.parents('details')[0];
-        if (parentDetails) {
-            parentDetails.open = true;
-            targetEl[0].scrollIntoView();
-        }
-    }
-
     // Enable all poppers in the document
     setTimeout(function () {
         $('[data-toggle="popover"]').popover();
