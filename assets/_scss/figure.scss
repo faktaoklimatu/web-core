@@ -59,23 +59,6 @@
     margin-top: 1rem;
 }
 
-.tldr {
-    background-color: $c-extralight-blue;
-    border-radius: 1rem;
-    margin-block: 2rem;
-    padding: 1.5rem;
-    padding-inline-start: 3rem;
-
-    li { margin-block: 0.2rem; }
-
-    &::before {
-        content: "tl;dr";
-        font-size: 1.4rem;
-        display: block;
-        margin-block: 0.5rem 1rem;
-    }
-}
-
 .contrast-figure {
     padding-block: .05rem;
     padding-inline-start: 1.5rem;

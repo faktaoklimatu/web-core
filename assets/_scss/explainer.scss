@@ -106,6 +106,23 @@ h1 {
     padding-right: 0.2em;
 }
 
+.tldr {
+    background-color: $c-extralight-blue;
+    border-radius: 1rem;
+    margin-block: 2rem;
+    padding: 1.5rem;
+    .title {
+        opacity: 0.6;
+        font-size: 1.4rem;
+        font-weight: normal;
+        margin-block: 0.5rem 1rem;
+        margin-inline: 1.5rem;
+    }
+
+    ul { padding-inline-start: 1.5rem; }
+    li { margin-block: 0.2rem; }
+}
+
 @media (min-width: 768px) {
     .cover-header-source {
         .cover-header-source-toggle.collapsed {
