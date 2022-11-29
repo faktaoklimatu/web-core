@@ -274,14 +274,14 @@ a.card:hover {
 }
 
 .logos img {
-    height: 60px;
-    margin: 0.3rem .6rem;
-    &.small { height: 40px; }
+    height: 50px;
+    margin: .6rem;
+    &.small { height: 35px; }
 }
 @media (min-width: 768px) {
     .logos img {
         height: 90px;
-        margin: 0.5rem 1rem;
+        margin: 1rem;
         &.small { height: 60px; }
     }
 }
