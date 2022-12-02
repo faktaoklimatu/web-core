@@ -111,6 +111,7 @@ h1 {
     border-radius: 1rem;
     margin-block: 2rem;
     padding: 1.5rem;
+    line-height: 1.25;
     .title {
         opacity: 0.6;
         font-size: 1.4rem;
@@ -120,7 +121,7 @@ h1 {
     }
 
     ul { padding-inline-start: 1.5rem; }
-    li { margin-block: 0.2rem; }
+    li { margin-block: 0.7rem; }
 }
 
 @media (min-width: 768px) {
