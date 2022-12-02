@@ -122,20 +122,11 @@ p.caption {
         text-align: left;
         margin-block: 0.3rem;
         line-height: 1.25;
-        padding-left: 0.3rem;
+        padding-left: 0.4rem;
     }
 
     li::marker {
         color: $c-lighter-grey;
-    }
-
-    li.is-active-li::before {
-        content: "●";
-        display: block;
-        position: absolute;
-        left: -25px;
-        color: $c-primary;
-        font-weight: bold;
     }
 
     ol {
@@ -144,17 +135,17 @@ p.caption {
         ol {
             padding-left: 0.5rem;
             font-size: 0.9rem;
-            margin-block: 0.3rem 0.5rem;
+            margin-block: 0.4rem 0.6rem;
             list-style-type: none;
+
+            li {
+                margin-block: 0.3rem;
+            }
 
             a:not(:hover) {
                 color: $c-lighter-grey;
             }
         }
-    }
-
-    .is-active-li .is-active-link, .is-active-li::marker {
-        color: $c-primary;
     }
 }
 
@@ -164,6 +155,23 @@ p.caption {
         position: -webkit-sticky;
         top: var(--navbar-height);
         left: 100px;
+
+        li {
+            margin-block: 0.5rem;
+        }
+
+        li.is-active-li::before {
+            content: "●";
+            display: block;
+            position: absolute;
+            left: -25px;
+            color: $c-primary;
+            font-weight: bold;
+        }
+
+        .is-active-li .is-active-link, .is-active-li::marker {
+            color: $c-primary;
+        }
     }
 }
 
