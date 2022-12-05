@@ -1,7 +1,10 @@
-{%- unless include.expanded %}
+{%- if include.expanded %}
+  {%- assign link-collapsed="" %}
+  {%- assign div-expanded=" show" %}
+{%- else %}
   {%- assign link-collapsed=" collapsed" %}
-  {%- assign div-collapsed=" collapse" %}
-{%- endunless %}
+  {%- assign div-expanded="" %}
+{%- endif %}
 <div class="expander-block">
   <h4 class="expander-title {{ include.label-class }}">
     <a class="expander{{ link-collapsed }}" data-toggle="collapse" data-target="#collapse-figure-{{ include.name }}" aria-expanded="false" aria-controls="collapse-figure-{{ include.name }}">
@@ -13,5 +16,5 @@
       </p>
     </a>
   </h4>
-  <div class="expander-body{{ div-collapsed }}" id="collapse-figure-{{ include.name }}">{{ include.content | markdownify }}</div>
+  <div class="expander-body collapse{{ div-expanded }}" id="collapse-figure-{{ include.name }}">{{ include.content | markdownify }}</div>
 </div>
