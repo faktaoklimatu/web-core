@@ -2,7 +2,7 @@
   {%- if include.caption-above %}
     <div class="caption caption-above">{{ include.caption-above | markdownify }}</div>
   {%- endif %}
-  <a href="/assets-local/figures/{{ page.slug }}/{{ include.name }}" data-lightbox
+  <a class="lightbox-desktop-only" href="/assets-local/figures/{{ page.slug }}/{{ include.name }}" data-lightbox
     {%- assign suffix = include.name | split:'.' | last %}
     {%- if suffix == "svg" %}
     data-type="iframe"
