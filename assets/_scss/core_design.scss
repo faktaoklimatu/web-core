@@ -57,12 +57,6 @@ a {
     cursor: pointer;
 }
 
-@media (max-width: 576px) {
-    a.lightbox-desktop-only {
-        pointer-events: none;
-    }
-}
-
 .ext-link:after, .glossary-link:after {
     display: inline-block;
     font-family: "Font Awesome 5 Free";
@@ -639,5 +633,13 @@ ul.inline-bullet-list {
             content: "\2022\ ";
             margin: 0 0.4em;
         }
+    }
+}
+
+/* Lightbox */
+
+@media (max-width: 576px) {
+    a.lightbox-desktop-only {
+        pointer-events: none;
     }
 }
