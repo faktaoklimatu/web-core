@@ -57,8 +57,10 @@ a {
     cursor: pointer;
 }
 
-a.lightbox-desktop-only {
-    pointer-events: none;
+@media (max-width: 576px) {
+    a.lightbox-desktop-only {
+        pointer-events: none;
+    }
 }
 
 .ext-link:after, .glossary-link:after {
