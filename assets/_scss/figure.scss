@@ -88,14 +88,14 @@
 .wide-figure-mobile {
     overflow-x: scroll;
     overflow-y: hidden;
-    img { width: 280%; }
+    img { width: 260%; }
     .caption { margin-inline: 0; }
 }
 
 .wide-figure-mobile-caption-above {
     .caption-above {
         display: flex;
-        width: 280%;
+        width: 260%;
     }
     .fancybox-custom-caption {
         position: sticky;
@@ -105,10 +105,13 @@
 
 .wide-figure-mobile-caption-below {
     margin-bottom: 3rem;
-    .fancybox-custom-caption { display: block; }
+    .fancybox-custom-caption {
+        display: block;
+        padding-bottom: 2rem;  /* To account for absolutely positioned source. */
+    }
     .caption-below {
         display: flex;
-        width: 280%;
+        width: 260%;
     }
     .source {
         position: absolute;
