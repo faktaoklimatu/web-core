@@ -636,6 +636,11 @@ ul.inline-bullet-list {
     }
 }
 
+/* Nested numbered lists */
+ol ol {
+    list-style-type: lower-alpha;
+}
+
 /* Lightbox */
 
 @media (max-width: 576px) {
