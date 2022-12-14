@@ -97,6 +97,10 @@ p.caption {
     }
 }
 
+.footnotes li:target {
+    background: $c-extralight-blue;
+}
+
 .sticky-toc {
     margin-bottom: 2rem;
 
