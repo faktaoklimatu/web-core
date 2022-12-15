@@ -156,8 +156,17 @@ pre {
     background-color: white;
 }
 
+ul li, ol li {
+    margin-block: 0.2rem;
+    line-height: 1.4;
+}
+
 ul:last-child {
     margin-bottom: 0;
+}
+
+ol ol {
+    list-style-type: lower-alpha;
 }
 
 .table {
@@ -186,6 +195,19 @@ ul.arrow {
 
 ol.upper-alpha {
     list-style-type: upper-alpha;
+}
+
+ul.inline-bullet-list {
+    padding-left: 0;
+
+    > li {
+        display: inline;
+
+        &:not(:first-child)::before {
+            content: "\2022\ ";
+            margin: 0 0.4em;
+        }
+    }
 }
 
 /* Buttons */
@@ -619,26 +641,6 @@ sup.chem-ion {
     top: -0.6em;
     margin-right: 0.05em;
     margin-left: -0.5em;
-}
-
-/* Inline bullet lists */
-
-ul.inline-bullet-list {
-    padding-left: 0;
-
-    > li {
-        display: inline;
-
-        &:not(:first-child)::before {
-            content: "\2022\ ";
-            margin: 0 0.4em;
-        }
-    }
-}
-
-/* Nested numbered lists */
-ol ol {
-    list-style-type: lower-alpha;
 }
 
 /* Lightbox */
