@@ -93,7 +93,12 @@ p.caption {
     }
 
     .longread-small, .footnotes {
+        font-size: 1rem;
+    }
+
+    .longread-tiny {
         font-size: 0.9rem;
+        line-height: 1.4;
     }
 
     ul li, ol li {
