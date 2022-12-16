@@ -9,9 +9,6 @@
 
 .longread-figure {
     margin: 2rem 0rem;
-    text-align: center;
-
-    * { text-align: left; }
 
     img {
         width: 100%;
@@ -83,8 +80,6 @@
     }
 }
 
-.narrow-figure img { width: 80%; }
-
 .wide-figure-mobile {
     overflow-x: scroll;
     overflow-y: hidden;
@@ -123,15 +118,15 @@
 }
 
 @media (min-width: 576px) {
-    .narrow-figure img { width: 65%; }
+    .narrow-figure img { width: 81.65%; }
     .wide-figure-mobile {
         img, .caption-above, .caption-below { width: 100%; }
     }
 }
 
 @media (min-width: 768px) {
-    .narrow-figure img { width: 50%; }
-    .seminarrow-figure img { width: 85%; }
+    .narrow-figure img { width: 66.66%; }
+    .seminarrow-figure img { width: 81.65%; }
 }
 
 @media (min-width: 992px) {
@@ -142,7 +137,7 @@
 
 @media (min-width: 1200px) {
     .wide-figure-desktop {
-        width: 130%;
+        width: 125%;
     }
 }
 
