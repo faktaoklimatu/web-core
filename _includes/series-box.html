@@ -23,13 +23,13 @@
 {%- if previous_url %}
 
 {:.float-left}
-[<< Předchozí díl]({{ previous_url }})
+[{{ site.data.lang.text.series.previous }}]({{ previous_url }})
 {%- endif %}
 
 {%- if next_url %}
 
 {:.float-right}
-[Další díl >>]({{ next_url }})
+[{{ site.data.lang.text.series.next }}]({{ next_url }})
 {%- endif %}
     {%- endcapture %}
     {%- include preview-box.html
