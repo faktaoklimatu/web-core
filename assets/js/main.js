@@ -21,7 +21,9 @@ $(document).ready(function() {
         });
         $('.longread-toc').removeClass('invisible');
     } else {
-        $('.longread-toc').addClass('longread-toc-none');
+        // Keep it visible for the largest size so that it does not break the
+        // central alignment of the .longread box.
+        $('.longread-toc').addClass('d-none d-xl-block');
     }
 
     // Create the instance that handles js search.
