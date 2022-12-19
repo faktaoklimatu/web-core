@@ -188,6 +188,10 @@ p.caption {
             font-weight: bold;
         }
 
+        ol ol li::before {
+            left: 0;
+        }
+
         li.is-active-li::before {
             opacity: 1;
         }
