@@ -113,6 +113,7 @@ p.caption {
 
 .sticky-toc {
     margin-bottom: 2rem;
+    --toc-transition-time: 300ms;
 
     h2::before {
         height: 5px;
@@ -126,6 +127,7 @@ p.caption {
 
     a {
       text-decoration: none;
+      transition: color var(--toc-transition-time);
     }
 
     h2, li, a:not(:hover) {
@@ -141,6 +143,7 @@ p.caption {
 
     li::marker {
         color: $c-lighter-grey;
+        transition: color var(--toc-transition-time);
     }
 
     ol {
@@ -174,13 +177,19 @@ p.caption {
             margin-block: 0.5rem;
         }
 
-        li.is-active-li::before {
+        li::before {
+            opacity: 0;
+            transition: opacity var(--toc-transition-time);
             content: "●";
             display: block;
             position: absolute;
             left: -1.25rem;
             color: $c-primary;
             font-weight: bold;
+        }
+
+        li.is-active-li::before {
+            opacity: 1;
         }
 
         .is-active-li .is-active-link, .is-active-li::marker {
