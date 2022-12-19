@@ -156,12 +156,14 @@ h1 {
 
 /* TL;DR box */
 
-.tldr {
+.longread .tldr {
     background-color: $c-extralight-blue;
     border-radius: 1rem;
     margin-block: 2rem;
     padding: 1.5rem;
-    line-height: 1.35;
+    &, li {
+        line-height: 1.35;
+    }
     .title {
         opacity: 0.6;
         font-size: 1.4rem;
@@ -175,7 +177,8 @@ h1 {
 }
 
 @media (max-width: 767px) {
-    .tldr, .tldr ul { padding-inline-start: 2.25rem; }
+    .longread .tldr { padding-inline: 1rem; }
+    .longread .tldr ul { padding-inline-start: 1.25rem; }
 }
 
 /* Callout box */
