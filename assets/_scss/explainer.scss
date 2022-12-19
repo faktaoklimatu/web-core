@@ -1,3 +1,5 @@
+/* Explainer template */
+
 .explainer-cover-container {
     display: flex;
     flex-direction: column-reverse;
@@ -106,50 +108,6 @@ h1 {
     padding-right: 0.2em;
 }
 
-.tldr {
-    background-color: $c-extralight-blue;
-    border-radius: 1rem;
-    margin-block: 2rem;
-    padding: 1.5rem;
-    line-height: 1.35;
-    .title {
-        opacity: 0.6;
-        font-size: 1.4rem;
-        font-weight: normal;
-        margin-block: 0.5rem 1rem;
-        margin-inline: 1.5rem;
-    }
-
-    ul { padding-inline-start: 1.5rem; }
-    li { margin-block: 0.7rem; }
-}
-
-.callout {
-    font-size: 1.2rem;
-    line-height: 1.35;
-    margin-top: 2rem;
-    font-weight: bold;
-    letter-spacing: 0.33px;
-}
-
-.numbered-callouts {
-    counter-reset: callouts 0;
-
-    .callout {
-        counter-increment: callouts 1;
-        display: flex;
-        align-items: center;
-
-        &::before {
-            content: counter(callouts);
-            font-size: 3.2rem;
-            font-weight: bold;
-            color: rgba(0,0,0,0.2);
-            padding-right: 1rem;
-        }
-    }
-}
-
 @media (min-width: 768px) {
     .cover-header-source {
         .cover-header-source-toggle.collapsed {
@@ -193,5 +151,57 @@ h1 {
 
     .explainer-metadata {
         padding-top: 5%;
+    }
+}
+
+/* TL;DR box */
+
+.tldr {
+    background-color: $c-extralight-blue;
+    border-radius: 1rem;
+    margin-block: 2rem;
+    padding: 1.5rem;
+    line-height: 1.35;
+    .title {
+        opacity: 0.6;
+        font-size: 1.4rem;
+        font-weight: normal;
+        margin-block: 0.5rem 1rem;
+        margin-inline: 1.5rem;
+    }
+
+    ul { padding-inline-start: 1.5rem; }
+    li { margin-block: 0.7rem; }
+}
+
+@media (max-width: 767px) {
+    .tldr, .tldr ul { padding-inline-start: 2.25rem; }
+}
+
+/* Callout box */
+
+.callout {
+    font-size: 1.2rem;
+    line-height: 1.35;
+    margin-top: 2rem;
+    font-weight: bold;
+    letter-spacing: 0.33px;
+}
+
+.numbered-callouts {
+    counter-reset: callouts 0;
+
+    .callout {
+        counter-increment: callouts 1;
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: counter(callouts);
+            font-size: 3.2rem;
+            font-weight: bold;
+            color: rgba(0,0,0,0.2);
+            padding-right: 1rem;
+        }
     }
 }
