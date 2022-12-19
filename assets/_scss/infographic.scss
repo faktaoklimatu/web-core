@@ -294,14 +294,21 @@ p.caption {
         min-width: 320px;
         width: 50%;
         max-width: 400px;
-        margin-left: calc(-25px + 2rem);
+        margin-left: 2rem;
         margin-right: 0;
-        position: relative;
-        left: 25px;
+
     }
     .no-float-box {
         float: none;
         position: static;
+    }
+}
+
+@media (min-width: 768px) {
+    .preview-box, .highlight-text-box {
+        margin-left: calc(-25px + 2rem);
+        position: relative;
+        left: 25px;
     }
 }
 
