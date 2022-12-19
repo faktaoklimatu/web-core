@@ -82,9 +82,10 @@
 /* Wide and narrow figures */
 
 .wide-figure-mobile {
+    --wide-figure-width: 187.5%;
     overflow-x: scroll;
     overflow-y: hidden;
-    img { width: 260%; }
+    img { width: var(--wide-figure-width); }
     .caption { margin-inline: 0; }
 }
 
@@ -102,7 +103,7 @@
 .wide-figure-mobile-caption-above {
     .caption-above {
         display: flex;
-        width: 260%;
+        width: var(--wide-figure-width);
     }
     .fancybox-custom-caption {
         position: sticky;
@@ -118,7 +119,7 @@
     }
     .caption-below {
         display: flex;
-        width: 260%;
+        width: var(--wide-figure-width);
     }
     .source {
         position: absolute;
