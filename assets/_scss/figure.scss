@@ -88,6 +88,17 @@
     .caption { margin-inline: 0; }
 }
 
+.wide-figure-mobile::before {
+    content: " ";
+    position: sticky;
+    display: block;
+    left: 0;
+    height: 2rem;
+    margin-block: 1rem;
+    width: 100%;
+    background: url("/assets-local/img/explore-figure.svg") center/contain no-repeat;
+}
+
 .wide-figure-mobile-caption-above {
     .caption-above {
         display: flex;
