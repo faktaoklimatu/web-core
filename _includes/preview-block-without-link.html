@@ -1,5 +1,5 @@
 {% assign item = include.item %}
-{% if include.show-order and item.series-order %}
+{% if include.show-series-order and item.series-order %}
     {%- assign title = '<span class="series-order">' | append: item.series-order | append: ". </span>" | append: item.title %}
 {%- else %}
     {%- assign title = item.title %}
