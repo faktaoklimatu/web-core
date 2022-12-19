@@ -87,12 +87,16 @@ p.caption {
     }
 
     .longread-small, .footnotes {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .longread-tiny {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         line-height: 1.4;
+    }
+
+    ul, ol {
+        padding-inline-start: 1.75rem;
     }
 
     ul li, ol li {
@@ -103,6 +107,23 @@ p.caption {
 
 .footnotes li:target {
     background: $c-extralight-blue;
+}
+
+@media (min-width: 576px) {
+    .longread {
+        ul, ol {
+            padding-inline-start: 2.5rem;
+        }
+
+        .longread-small, .footnotes {
+            font-size: 1rem;
+        }
+
+        .longread-tiny {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+    }
 }
 
 /* TOC */
