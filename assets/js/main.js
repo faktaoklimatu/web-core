@@ -14,7 +14,7 @@ $(document).ready(function() {
             tocSelector: '#TOC',
             contentSelector: '.longread',
             headingSelector: 'h2, h3',
-            // This is quite arbitrary and can't work bullet-proof. As selected heading is devised from
+            // This is quite arbitrary and can't work bullet-proof. Currently selected heading is devised from
             // ~mid-screen, so it's screen dependent.
             headingsOffset: -300,
             scrollSmooth: false,
