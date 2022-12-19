@@ -1,11 +1,4 @@
-.leadin-figure {
-    width: 8em;
-    margin: 0 1.5em 1em 0;
-
-    img {
-        width: 100%;
-    }
-}
+/* Basic figure style */
 
 .longread-figure {
     margin: 2rem 0rem;
@@ -38,6 +31,8 @@
     }
 }
 
+/* Expander figures */
+
 .expander-block {
     margin-block: 0.75rem;
 }
@@ -63,11 +58,15 @@
     }
 }
 
+/* Figures with box-like visual */
+
 .contrast-figure {
     padding-block: .05rem;
     padding-inline-start: 1.5rem;
     border-left: 0.15rem solid rgba(0,0,0,0.2);
 }
+
+/* Multi-columns */
 
 .columns {
     display: flex;
@@ -79,6 +78,8 @@
         padding-right: 1rem;
     }
 }
+
+/* Wide and narrow figures */
 
 .wide-figure-mobile {
     overflow-x: scroll;
@@ -113,10 +114,6 @@
     }
 }
 
-@media (max-width: 767px) {
-    .tldr, .tldr ul { padding-inline-start: 2.25rem; }
-}
-
 @media (min-width: 576px) {
     .narrow-figure img { width: 81.65%; }
     .wide-figure-mobile {
@@ -138,6 +135,17 @@
 @media (min-width: 1200px) {
     .wide-figure-desktop {
         width: 125%;
+    }
+}
+
+/* Figure at a beginning of a line of text (typically a heading) */
+
+.leadin-figure {
+    width: 8em;
+    margin: 0 1.5em 1em 0;
+
+    img {
+        width: 100%;
     }
 }
 

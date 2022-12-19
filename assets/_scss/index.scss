@@ -65,6 +65,8 @@
     }
 }
 
+/* Cards (used on the intro page and elsewhere) */
+
 .card {
     margin: 10px 0;
     border-width: 2px;
@@ -205,6 +207,8 @@ a.card:hover {
     border-bottom: 2px solid rgba(0, 0, 0, 0.125);
     border-radius: 0;
 }
+
+/* Overlays used only on the intro page (with old tags) */
 
 .more-overlay-box {
     overflow: hidden;
@@ -357,7 +361,7 @@ a.card:hover {
     .topic-tile a h3 { font-size: 1.1rem; }
 }
 
-/* Carousel with successes */
+/* Support us redirect box */
 
 .payment-box {
   display: none;
@@ -375,6 +379,8 @@ a.card:hover {
     }
   }
 }
+
+/* List of logos on the main page (and in about us) */
 
 .index-logos {
     max-height: 100px;
