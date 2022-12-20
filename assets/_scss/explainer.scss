@@ -165,11 +165,12 @@ h1 {
         line-height: 1.35;
     }
     .title {
-        opacity: 0.6;
         font-size: 1.4rem;
-        font-weight: normal;
         margin-block: 0.5rem 1rem;
         margin-inline: 1.5rem;
+        font-weight: bold;
+        letter-spacing: .05em;
+        text-transform: uppercase;
     }
 
     ul { padding-inline-start: 1.5rem; }
