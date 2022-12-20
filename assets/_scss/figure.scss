@@ -83,7 +83,7 @@
 
 .wide-figure-mobile {
     --wide-figure-width: 187.5%;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
     img { width: var(--wide-figure-width); }
     .caption { margin-inline: 0; }
