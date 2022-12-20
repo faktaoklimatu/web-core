@@ -1,5 +1,5 @@
 <div class="tldr">
-  <div class="title">{{ site.data.lang.text.tldr }}</div>
+  <div class="title">{{ include.title | default: site.data.lang.text.tldr }}</div>
   <div class="text">
     {{ include.content | markdownify }}
   </div>
