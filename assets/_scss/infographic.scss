@@ -198,7 +198,6 @@ p.caption {
             opacity: 0;
             transition: opacity var(--toc-transition-time);
             content: "●";
-            display: block;
             position: absolute;
             left: -1.25rem;
             color: $c-primary;
