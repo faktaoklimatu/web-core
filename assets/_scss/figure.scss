@@ -89,6 +89,11 @@
     .caption { margin-inline: 0; }
 }
 
+.contrast-figure.wide-figure-mobile, .contrast-figure .wide-figure-mobile {
+    /* 3.1rem = 187.5% * 1.65rem which is the border of contrast-figure. */
+    --wide-figure-width: calc(187.5% + 3.1rem);
+}
+
 .wide-figure-mobile::before {
     content: " ";
     position: sticky;
@@ -130,6 +135,10 @@
     .wide-figure-mobile {
         --wide-figure-width: 125%;
     }
+    .contrast-figure.wide-figure-mobile, .contrast-figure .wide-figure-mobile {
+        /* 2.06rem = 125% * 1.65rem which is the border of contrast-figure. */
+        --wide-figure-width: calc(125% + 2.06rem);
+    }
     .narrow-figure img { width: 66.66%; }
 }
 
@@ -145,6 +154,7 @@
 
 @media (min-width: 1200px) {
     .wide-figure-desktop {
+        box-sizing: content-box;  /* Use content-box to guarantee the same size within contrast figures. */
         width: 125%;
     }
 }
