@@ -4,38 +4,38 @@ class CheckBuildErrors < ::HTMLProofer::Check
     def run
         @html.css('div.build-error').each do |node|
             @div = create_element(node)
-            add_issue("Build error", line: @div.line, content: node.inner_html)
+            add_issue('Build error', line: @div.line, content: node.inner_html)
         end
     end
 end
 
 options = {
-    :assume_extension => true,
-    :check_favicon => true,
-    :check_html => true,
-    :check_img_http => true,
-    :disable_external => true
+    :allow_missing_href => true,
+    :checks => ['Favicon', 'Images', 'Links', 'Scripts'],
+    :disable_external => true,
+    :enforce_https => false,
 }
 
 options_external = {
-    :assume_extension => true,
-    :external_only => true,
+    :allow_missing_href => true,
     :typhoeus => {
         :connecttimeout => 30,    # default: 10
-        :timeout => 60            # default: 30
+        :timeout => 60,           # default: 30
     },
     :cache => {
         :storage_dir => '.cache/.htmlproofer',
-        :timeframe => '7d'
+        :timeframe => {
+            :external => '1w',
+            :internal => '1w',
+        },
     },
-    # :log_level => :debug
 }
 
 begin
-    if ARGV[0] == "external"
-        HTMLProofer.check_directory("./_site", options_external).run
+    if ARGV[0] == 'external'
+        HTMLProofer.check_directory('./_site', options_external).run
     else
-        HTMLProofer.check_directory("./_site", options).run
+        HTMLProofer.check_directory('./_site', options).run
     end
 rescue => msg
     puts "#{msg}"
