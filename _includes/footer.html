@@ -29,6 +29,9 @@
             {% endif %}
         </div>
         <div class="col-12 col-md-6 col-lg-4 mt-3 pl-md-5">
+            {% if site.data.lang.footer.contact %}
+            <a class="no-ext-link-icon" href="/{{ site.slugs.contact }}"><span class="fas fa-fw fa-address-card"></span> {{ site.data.lang.footer.contact }}</a><br/>
+            {% endif %}
             {% if site.data.lang.footer.how-to-use %}
             <a class="no-ext-link-icon" href="/{{ site.slugs.how-to-use }}"><span class="fas fa-fw fa-redo"></span> {{ site.data.lang.footer.how-to-use }}</a><br/>
             {% endif %}
@@ -58,8 +61,8 @@
             </div>
             {%- endif %}
             &copy; {{ site.git.commit_date | date: "%Y" }}
-            {%- if site.copyright-link %}
-                <a href="{{ site.copyright-link }}">{{ site.copyright }}</a>
+            {%- if site.slugs.contact %}
+                <a href="/{{ site.slugs.contact }}">{{ site.copyright }}</a>
             {%- else %}
                 {{ site.copyright }}
             {%- endif %}
