@@ -57,7 +57,13 @@
                 </div>
             </div>
             {%- endif %}
-            &copy; {{ site.git.commit_date | date: "%Y" }} {{ site.copyright }}<br/>
+            &copy; {{ site.git.commit_date | date: "%Y" }}
+            {%- if site.copyright-link %}
+                <a href="{{ site.copyright-link }}">{{ site.copyright }}</a>
+            {%- else %}
+                {{ site.copyright }}
+            {%- endif %}
+            <br/>
             <a href="{{ site.data.lang.licence.link }}" title="{{ site.data.lang.licence.title }}" rel="license">{{ site.data.lang.licence.id }}</a><br/>
             <a class="no-ext-link-icon" href="mailto:{{ site.email }}">{{ site.email }}</a><br/>
         </div>
