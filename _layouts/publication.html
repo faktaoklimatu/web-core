@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  {% include header.html %}
+</head>
+
+<body>
+  {% include navigation.html %}
+  <main>
+    <div class="section publication-cover" style="background-color: {{ page.background_color }}">
+      {% assign download_path = "/assets/studies/" | append: page.slug %}
+      <div class="container">
+        <div class="titles">
+          <div class="publication-type">
+            {{ page.type | default: site.data.lang.text.publication.publication }}
+          </div>
+          <h1>{{ page.title_br | default: page.title }}</h1>
+          <div class="subtitle">{{ page.subtitle }}</div>
+        </div>
+        <div class="cover-img" style="background-image: url('{{ download_path }}.svg')"></div>
+        <div class="download">
+          <a href="/assets-local/publications/{{page.slug }}.pdf" class="btn btn-outline-light"><i class="fas fa-fw fa-download"></i>
+            {{ page.download | default: site.data.lang.text.publication.download }}
+          </a>
+        </div>
+        {%- if page.sponsor %}
+          <div class="sponsor">
+            <span class="title">{{ site.data.lang.text.publication.sponsor}}:</span>
+            {%- if page.sponsor_link %}
+              <a href="{{ page.sponsor_link}}" class="content">{{ page.sponsor }}</a>
+            {%- else %}
+              <span class="content">{{ page.sponsor }}</span>
+            {%- endif %}
+            {%- if page.sponsor_disclaimer %}
+              <div class="disclaimer">{{ page.sponsor_disclaimer }}</div>
+            {%- endif %}
+          </div>
+        {%- endif %}
+      </div>
+    </div>
+    <div class="section">
+      <div class="container-md container-xl-fluid">
+        <div class="row justify-content-center">
+          <div class="longread-xl-space-left"></div>
+          <div class="col-lg-4 longread-toc invisible">
+            <div class="sticky-toc">
+              <h2>{{ site.data.lang.text.toc }}</h2>
+              <div id="TOC"></div>
+            </div>
+          </div>
+          <div class="longread-xl-space-middle"></div>
+          <div class="col-lg-8 longread">
+            {%- if page.perex %}
+            <p class="perex explainer-perex">
+              {{ page.perex }}
+            </p>
+            {%- endif %}
+            {{ content }}
+
+            <div class="download">
+              <a href="/assets-local/publications/{{page.slug }}.pdf" class="btn btn-primary"><i class="fas fa-fw fa-download"></i>
+                {{ page.download | default: site.data.lang.text.publication.download }}
+              </a>
+            </div>
+          </div>
+          <div class="longread-xl-space-right"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  {% include footer.html %}
+  {% include scripts.html %}
+</body>
+</html>

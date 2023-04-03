@@ -10,7 +10,7 @@ DATASETS_FOLDER=assets/datasets
 DATASETS_SRC=$(wildcard collections/_datasets/*.md)
 DATASETS_DST=$(addprefix $(DATASETS_FOLDER)/,$(notdir $(DATASETS_SRC:.md=.png)))
 STUDIES_FOLDER=assets/studies
-STUDIES_SRC=$(wildcard collections/_studies/*.jpg _studies/*.png)
+STUDIES_SRC=$(wildcard collections/_studies/*.jpg collections/_studies/*.png collections/_studies/*.svg)
 STUDIES_DST=$(addprefix $(STUDIES_FOLDER)/,$(notdir $(STUDIES_SRC)))
 COVERS_FOLDER=assets/covers
 COVERS_SRC=$(wildcard collections/_explainers/*.jpg)

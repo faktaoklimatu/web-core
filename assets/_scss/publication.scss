@@ -1,0 +1,103 @@
+/* Publication page customizations */
+
+.publication-cover {
+  padding-top: 0;
+  color: white;
+
+  .cover-img {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    // Enforce A4 aspect ratio.
+    height: 0;
+    padding-bottom: 141%;
+  }
+
+  .titles {
+    // A heuristic to make a bit more space for titles on mobile.
+    height: 100px;
+
+    .publication-type {
+      text-transform: uppercase;
+      font-weight: bold;
+      padding-block: 1rem;
+    }
+  }
+
+  .sponsor {
+    .title { font-weight: bold; }
+    a { color: white; }
+    .disclaimer {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: $c-lighter-grey;
+    }
+  }
+}
+
+.download {
+  margin-block: 2rem;
+  a { font-size: 1.4rem; }
+}
+
+.longread {
+  counter-reset: h2counter;
+
+  h2 {
+    display: flex;
+  }
+
+  h2::before {
+    content: counter(h2counter);
+    counter-increment: h2counter;
+    margin-inline-end: 1rem;
+    border: 2px solid $c-primary;
+    border-radius: 50%;
+    min-width: 1.35em;
+    width: 1.35em;
+    height: 1.35em;
+    text-align: center;
+  }
+
+  ul {
+    list-style-type: "\2192\0020\0020";
+    li { margin-block: 0.4rem; }
+  }
+
+  .publication-card {
+    background-color: rgba($c-grey, 0.05);
+    border-radius: 5%;
+    // Use the same spacing as Bootstrap grid.
+    margin-block: 15px;
+    padding: 15px;
+
+    h2, h3, h4 { margin-top: 0; }
+  }
+}
+
+@media (min-width: 768px) {
+  .publication-cover {
+    .sponsor {
+      padding-inline: 10%;
+    }
+    .titles {
+      height: 0;
+      padding-inline: 10%;
+
+      .publication-type {
+        padding-top: 3rem;
+      }
+      h1 {
+        font-size: 5.5rem;
+      }
+      .subtitle {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  .download {
+    text-align: center;
+    a { font-size: 1.6rem; }
+  }
+}
