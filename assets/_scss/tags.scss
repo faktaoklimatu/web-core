@@ -4,10 +4,12 @@
     top: auto;
     padding: 40px 15px 15px 15px;
     overflow: hidden;
-    background-image: linear-gradient(rgba(255,255,255,0), white 80%);
 
     .tags {
         width: max-content;
+        .btn-tag {
+            box-shadow: 0 0px 5px white;
+        }
     }
 }
 
@@ -40,7 +42,7 @@
     margin-bottom: 10px;
     background-color: $c-primary;
     color: $c-body;
-    
+
     &:hover {
         border-color: $c-light-blue;
         background-color: $c-light-blue;
