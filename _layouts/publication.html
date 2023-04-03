@@ -7,35 +7,46 @@
 <body>
   {% include navigation.html %}
   <main>
-    <div class="section publication-cover" style="background-color: {{ page.background_color }}">
-      {% assign download_path = "/assets/studies/" | append: page.slug %}
+    {% assign download_path = "/assets/studies/" | append: page.slug %}
+    <div class="section publication-cover" style="--bg-color: {{ page.background_color }};
+                                                  --cover-img: url('{{ download_path }}.svg');">
       <div class="container">
-        <div class="titles">
-          <div class="publication-type">
-            {{ page.type | default: site.data.lang.text.publication.publication }}
+        <div class="cover-img-desktop">
+          <div class="titles">
+            <div class="publication-type">
+              {{ page.type | default: site.data.lang.text.publication.publication }}
+            </div>
+            <h1>{{ page.title_br | default: page.title }}</h1>
+            <div class="subtitle">{{ page.subtitle }}</div>
           </div>
-          <h1>{{ page.title_br | default: page.title }}</h1>
-          <div class="subtitle">{{ page.subtitle }}</div>
-        </div>
-        <div class="cover-img" style="background-image: url('{{ download_path }}.svg')"></div>
-        <div class="download">
-          <a href="/assets-local/publications/{{page.slug }}.pdf" class="btn btn-outline-light"><i class="fas fa-fw fa-download"></i>
-            {{ page.download | default: site.data.lang.text.publication.download }}
-          </a>
-        </div>
-        {%- if page.sponsor %}
-          <div class="sponsor">
-            <span class="title">{{ site.data.lang.text.publication.sponsor}}:</span>
-            {%- if page.sponsor_link %}
-              <a href="{{ page.sponsor_link}}" class="content">{{ page.sponsor }}</a>
-            {%- else %}
-              <span class="content">{{ page.sponsor }}</span>
-            {%- endif %}
-            {%- if page.sponsor_disclaimer %}
-              <div class="disclaimer">{{ page.sponsor_disclaimer }}</div>
-            {%- endif %}
+          <div class="cover-img-mobile d-md-none"></div>
+          {%- if page.authors %}
+            <div class="author-logos">
+              {%- for author in page.authors %}
+                <img src="/assets-local/author-logos/{{ author.logo }}" alt="{{ author.name }}">
+              {%- endfor %}
+            </div>
+          {%- endif %}
+          <div class="download">
+            <a href="/assets-local/publications/{{page.slug }}.pdf" class="btn btn-outline-light">
+              <i class="fas fa-fw fa-download"></i>
+              {{ page.download | default: site.data.lang.text.publication.download }}
+            </a>
           </div>
-        {%- endif %}
+          {%- if page.sponsor %}
+            <div class="sponsor">
+              <span class="title">{{ site.data.lang.text.publication.sponsor}}:</span>
+              {%- if page.sponsor_link %}
+                <a href="{{ page.sponsor_link}}" class="content">{{ page.sponsor }}</a>
+              {%- else %}
+                <span class="content">{{ page.sponsor }}</span>
+              {%- endif %}
+              {%- if page.sponsor_disclaimer %}
+                <div class="disclaimer">{{ page.sponsor_disclaimer }}</div>
+              {%- endif %}
+            </div>
+          {%- endif %}
+        </div>
       </div>
     </div>
     <div class="section">
