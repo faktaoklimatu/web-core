@@ -3,25 +3,29 @@
 .publication-cover {
   padding-top: 0;
   color: white;
+  background-color: var(--bg-color) !important;
 
-  .cover-img {
+  .cover-img-mobile {
+    background-image: var(--cover-img);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    // Enforce A4 aspect ratio.
+    margin-block: 1rem;
+    // Enforce a fixed aspect ratio 1:0.8.
     height: 0;
-    padding-bottom: 141%;
+    padding-bottom: 80%;
   }
 
-  .titles {
-    // A heuristic to make a bit more space for titles on mobile.
-    height: 100px;
+  .titles .publication-type {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-block: 1rem;
+  }
 
-    .publication-type {
-      text-transform: uppercase;
-      font-weight: bold;
-      padding-block: 1rem;
-    }
+  .author-logos img {
+    height: 40px;
+    margin-top: 2rem;
+    margin-right: 2rem;
   }
 
   .sponsor {
@@ -76,28 +80,21 @@
 }
 
 @media (min-width: 768px) {
-  .publication-cover {
-    .sponsor {
-      padding-inline: 10%;
-    }
-    .titles {
-      height: 0;
-      padding-inline: 10%;
-
-      .publication-type {
-        padding-top: 3rem;
-      }
-      h1 {
-        font-size: 5.5rem;
-      }
-      .subtitle {
-        font-size: 2.5rem;
-      }
-    }
+  .publication-cover .titles {
+    padding-top: 3rem;
+    h1 { font-size: 4rem; }
+    .subtitle { font-size: 2rem; }
   }
 
-  .download {
+  .cover-img-desktop {
+    background-image: var(--cover-img);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: 50%;
+    padding-right: 50%;
+  }
+
+  .longread .download {
     text-align: center;
-    a { font-size: 1.6rem; }
   }
 }
