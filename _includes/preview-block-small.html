@@ -17,6 +17,11 @@
         <div class="card-img-overlay small-card-img-overlay">
             <h5>{{ site.data.lang.text.study.study }}</h5>
         </div>
+    {% when 'publication' %}
+        <div style="background-image: url('/assets/studies/{{ item.slug }}.svg')" class="specific-card"></div>
+        <div class="card-img-overlay small-card-img-overlay">
+            <h5>{{ item.type | default: site.data.lang.text.publication.publication }}</h5>
+        </div>
     {%- when 'survey' %}
         <div class='branded-card'></div>
         <div class="card-img-overlay small-card-img-overlay">
