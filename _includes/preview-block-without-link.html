@@ -34,7 +34,7 @@
         </div>
         <div class="card-img-overlay card-title-overlay">
             <h5 class="card-title">{{ title }}</h5>
-            <p class="card-author">{{ item.author }}, {{ item.published | date: "%Y" }}</p>
+            <p class="card-author">{{ item.authors | map: "name" | join: ", "}}, {{ item.published | date: "%Y" }}</p>
             <h6 class="card-subtitle">
                 {{ item.type | default: site.data.lang.text.publication.publication }}
             </h6>
