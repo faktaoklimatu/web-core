@@ -38,6 +38,7 @@ exclude:
     - _infographics/*/*.pdf # Original infographics (build moves them to assets)
     - _studies/*.jpg        # Study images
     - _studies/*.png        # Study images
+    - _studies/*.svg        # Study images
     - _studies/*.pdf        # Original study infographics (build moves them to assets)
     - _explainers/*.jpg     # Explainer cover image
     - _episodes/*.jpg       # Episode cover image
