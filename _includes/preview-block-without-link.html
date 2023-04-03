@@ -29,6 +29,16 @@
             <p class="card-author">{{ item.study-institution }}, {{ item.study-year }}</p>
             <h6 class="card-subtitle">{{ site.data.lang.text.study.study }}</h6>
         </div>
+    {% when 'publication' %}
+        <div style="background-image: url('/assets/studies/{{ item.slug }}.svg')" title="{{ site.data.lang.text.publication.publication }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
+        </div>
+        <div class="card-img-overlay card-title-overlay">
+            <h5 class="card-title">{{ title }}</h5>
+            <p class="card-author">{{ item.author }}, {{ item.published | date: "%Y" }}</p>
+            <h6 class="card-subtitle">
+                {{ item.type | default: site.data.lang.text.publication.publication }}
+            </h6>
+        </div>
     {% when 'survey' %}
         <div class="card-body">
             <h5 class="card-title">{{ title }}</h5>
