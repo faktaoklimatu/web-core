@@ -22,10 +22,14 @@
     padding-block: 1rem;
   }
 
-  .author-logos img {
-    height: 40px;
-    margin-top: 2rem;
-    margin-right: 2rem;
+  .author-logos {
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+
+    img {
+      height: 40px;
+      margin-right: 2rem;
+    }
   }
 
   .sponsor {
