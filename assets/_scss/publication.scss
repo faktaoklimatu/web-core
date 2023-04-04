@@ -41,7 +41,7 @@
 
 .download {
   margin-block: 2rem;
-  a { font-size: 1.4rem; }
+  a { font-size: 1.2rem; padding: 0.5rem 1rem; }
 }
 
 .longread {
@@ -71,9 +71,8 @@
   .publication-card {
     background-color: rgba($c-grey, 0.05);
     border-radius: 5%;
-    // Use the same spacing as Bootstrap grid.
-    margin-block: 15px;
-    padding: 15px;
+    padding: 1.5rem;
+    height: 100%;
 
     h2, h3, h4 { margin-top: 0; }
   }
@@ -94,7 +93,12 @@
     padding-right: 50%;
   }
 
-  .longread .download {
-    text-align: center;
+  .longread {
+    .download {
+      text-align: center;
+    }
+
+    // Add back double the margin (on the right side) to maintain margin between boxes.
+    .publication-card { margin-right: 2rem; }
   }
 }
