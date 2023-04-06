@@ -53,7 +53,19 @@
             <h6 class="card-subtitle">{{ site.data.lang.text.episode.episode }} <i class="fas fa-external-link-alt"></i></h6>
         </div>
     {% else %}
-        <div class="build-error">Unknown layout ‘{{ item.layout }}’</div>
+        {%- if item.search_type %}
+            {%- if item.search_image %}
+                <div style="background-image: url('{{ item.search_image }}')" title="{{ page.search_type }}: {{ item.title }}" class="preview-card-image img-fluid card-img"></div>
+            {%- else %}
+                <div class='branded-card preview-card-image img-fluid card-img'></div>
+            {%- endif %}
+            <div class="card-img-overlay card-title-overlay">
+                <h5 class="card-title">{{ title }}</h5>
+                <h6 class="card-subtitle">{{ item.search_type }}</h6>
+            </div>
+        {%- else %}
+            <div class="build-error">Unknown layout ‘{{ item.layout }}’</div>
+        {%- endif %}
 {% endcase %}
 
 {%- unless include.no_include_tags %}
