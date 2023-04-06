@@ -47,7 +47,16 @@
   a { font-size: 1.2rem; padding: 0.5rem 1rem; }
 }
 
-.longread {
+.publication-card {
+  background-color: rgba($c-grey, 0.05);
+  border-radius: 5%;
+  padding: 1.5rem;
+  height: 100%;
+
+  h2, h3, h4 { margin-top: 0; }
+}
+
+main.executive-summary .longread {
   counter-reset: h2counter;
 
   h2 {
@@ -70,15 +79,6 @@
     list-style-type: "\2192\0020\0020";
     li { margin-block: 0.4rem; }
   }
-
-  .publication-card {
-    background-color: rgba($c-grey, 0.05);
-    border-radius: 5%;
-    padding: 1.5rem;
-    height: 100%;
-
-    h2, h3, h4 { margin-top: 0; }
-  }
 }
 
 @media (min-width: 768px) {
@@ -97,12 +97,12 @@
     padding-right: 50%;
   }
 
+  // Add back double the margin (on the right side) to maintain margin between boxes.
+  .publication-card { margin-right: 2rem; }
+
   .longread {
     .download {
       text-align: center;
     }
-
-    // Add back double the margin (on the right side) to maintain margin between boxes.
-    .publication-card { margin-right: 2rem; }
   }
 }

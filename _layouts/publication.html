@@ -6,7 +6,7 @@
 
 <body>
   {% include navigation.html %}
-  <main>
+  <main class="publication {{ page.class }}">
     {% assign download_path = "/assets/studies/" | append: page.slug %}
     <div class="section publication-cover" style="--bg-color: {{ page.background_color }};
                                                   --cover-img: url('{{ download_path }}.svg');">
