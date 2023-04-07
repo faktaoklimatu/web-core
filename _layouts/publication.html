@@ -8,15 +8,16 @@
   {% include navigation.html %}
   <main class="publication {{ page.class }}">
     {% assign download_path = "/assets/studies/" | append: page.slug %}
-    <div class="section publication-cover" style="--bg-color: {{ page.background_color }};
-                                                  --cover-img: url('{{ download_path }}.svg');">
+    <div class="section publication-cover"
+         style="--bg-color: {{ page.background_color | default: 'dimgray' }};
+                --cover-img: url('{{ download_path }}.svg');">
       <div class="container">
         <div class="cover-img-desktop">
           <div class="titles">
             <div class="publication-type">
               {{ page.type | default: site.data.lang.text.publication.publication }}
             </div>
-            <h1>{{ page.title_br | default: page.title }}</h1>
+            <h1>{{ page.title_formatted | default: page.title }}</h1>
             <div class="subtitle">{{ page.subtitle }}</div>
           </div>
           <div class="cover-img-mobile d-md-none"></div>
@@ -28,16 +29,16 @@
             </div>
           {%- endif %}
           <div class="download">
-            <a href="/assets-local/publications/{{page.slug }}.pdf" class="btn btn-outline-light">
+            <a href="/assets-local/publications/{{ page.slug }}.pdf" class="btn btn-outline-light">
               <i class="fas fa-fw fa-download"></i>
               {{ page.download | default: site.data.lang.text.publication.download }}
             </a>
           </div>
           {%- if page.sponsor %}
             <div class="sponsor">
-              <span class="title">{{ site.data.lang.text.publication.sponsor}}:</span>
+              <span class="title">{{ site.data.lang.text.publication.sponsor }}:</span>
               {%- if page.sponsor_link %}
-                <a href="{{ page.sponsor_link}}" class="content">{{ page.sponsor }}</a>
+                <a href="{{ page.sponsor_link }}" class="content">{{ page.sponsor }}</a>
               {%- else %}
                 <span class="content">{{ page.sponsor }}</span>
               {%- endif %}
