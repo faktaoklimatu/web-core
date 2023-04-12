@@ -11,21 +11,17 @@
 <meta property="og:title" content="{{ page.title }}">
 <meta name="twitter:title" content="{{ page.title }}">
 {% if page.caption %}
-  {% assign caption = page.caption | markdownify | strip_html %}
-  <meta name="description" content="{{ caption }}">
-  <meta property="og:description" content="{{ caption }}">
-  <meta name="twitter:description" content="{{ caption }}">
+  {% assign description = page.caption | markdownify | strip_html %}
 {% elsif page.intro %}
-  {% assign intro = page.intro | markdownify | strip_html %}
-  <meta name="description" content="{{ intro }}">
-  <meta property="og:description" content="{{ intro }}">
-  <meta name="twitter:description" content="{{ intro }}">
+  {% assign description = page.intro | markdownify | strip_html %}
+{% elsif page.perex %}
+  {% assign description = page.perex | markdownify | strip_html %}
 {% else %}
   {% assign description = page.description | markdownify | strip_html %}
-  <meta name="description" content="{{ description }}">
-  <meta property="og:description" content="{{ description }}">
-  <meta name="twitter:description" content="{{ description }}">
 {% endif %}
+<meta name="description" content="{{ description }}">
+<meta property="og:description" content="{{ description }}">
+<meta name="twitter:description" content="{{ description }}">
 <meta name="twitter:card" content="summary_large_image">
 {% case page.layout %}
 {% when 'infographic' %}
