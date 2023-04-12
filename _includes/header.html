@@ -11,17 +11,20 @@
 <meta property="og:title" content="{{ page.title }}">
 <meta name="twitter:title" content="{{ page.title }}">
 {% if page.caption %}
-  <meta name="description" content="{{ page.caption }}">
-  <meta property="og:description" content="{{ page.caption }}">
-  <meta name="twitter:description" content="{{ page.caption }}">
+  {% assign caption = page.caption | markdownify | strip_html %}
+  <meta name="description" content="{{ caption }}">
+  <meta property="og:description" content="{{ caption }}">
+  <meta name="twitter:description" content="{{ caption }}">
 {% elsif page.intro %}
-  <meta name="description" content="{{ page.intro }}">
-  <meta property="og:description" content="{{ page.intro }}">
-  <meta name="twitter:description" content="{{ page.intro }}">
+  {% assign intro = page.intro | markdownify | strip_html %}
+  <meta name="description" content="{{ intro }}">
+  <meta property="og:description" content="{{ intro }}">
+  <meta name="twitter:description" content="{{ intro }}">
 {% else %}
-  <meta name="description" content="{{ site.description }}">
-  <meta property="og:description" content="{{ site.description }}">
-  <meta name="twitter:description" content="{{ site.description }}">
+  {% assign description = page.description | markdownify | strip_html %}
+  <meta name="description" content="{{ description }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta name="twitter:description" content="{{ description }}">
 {% endif %}
 <meta name="twitter:card" content="summary_large_image">
 {% case page.layout %}
