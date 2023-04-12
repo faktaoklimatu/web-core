@@ -1,20 +1,26 @@
-TOPICS_FOLDER=assets/topics
-TOPICS_SRC=$(wildcard collections/_topics/*.svg)
-TOPICS_DST=$(addprefix $(TOPICS_FOLDER)/,$(notdir $(TOPICS_SRC)))
 INFOGRAPHICS_FOLDER=assets/generated
 INFOGRAPHICS_SRC=$(wildcard collections/_infographics/*/*.pdf collections/_studies/*.pdf)
 INFOGRAPHICS_BASE=$(addprefix $(INFOGRAPHICS_FOLDER)/,$(basename $(notdir $(INFOGRAPHICS_SRC))))
 INFOGRAPHICS_SUFFIXES=.pdf .svg _600.png _1200.png _1920.png _6000.png
 INFOGRAPHICS_DST=$(foreach suffix, $(INFOGRAPHICS_SUFFIXES), $(addsuffix $(suffix),$(INFOGRAPHICS_BASE)))
-DATASETS_FOLDER=assets/datasets
-DATASETS_SRC=$(wildcard collections/_datasets/*.md)
-DATASETS_DST=$(addprefix $(DATASETS_FOLDER)/,$(notdir $(DATASETS_SRC:.md=.png)))
+
+ILLUSTRATIONS_FOLDER=assets/illustrations
+ILLUSTRATIONS_SRC=$(wildcard collections/_studies/*.svg collections/_topics/*.svg)
+ILLUSTRATIONS_BASE=$(addprefix $(ILLUSTRATIONS_FOLDER)/,$(basename $(notdir $(ILLUSTRATIONS_SRC))))
+ILLUSTRATIONS_SUFFIXES=.svg _1200.png
+ILLUSTRATIONS_DST=$(foreach suffix, $(ILLUSTRATIONS_SUFFIXES), $(addsuffix $(suffix),$(ILLUSTRATIONS_BASE)))
+
 STUDIES_FOLDER=assets/studies
 STUDIES_SRC=$(wildcard collections/_studies/*.jpg collections/_studies/*.png collections/_studies/*.svg)
 STUDIES_DST=$(addprefix $(STUDIES_FOLDER)/,$(notdir $(STUDIES_SRC)))
+
 COVERS_FOLDER=assets/covers
 COVERS_SRC=$(wildcard collections/_explainers/*.jpg)
 COVERS_DST=$(addprefix $(COVERS_FOLDER)/,$(notdir $(COVERS_SRC)))
+
+DATASETS_FOLDER=assets/datasets
+DATASETS_SRC=$(wildcard collections/_datasets/*.md)
+DATASETS_DST=$(addprefix $(DATASETS_FOLDER)/,$(notdir $(DATASETS_SRC:.md=.png)))
 
 PODMAN=podman
 CONTAINER_IMAGE=factsonclimate/web
@@ -47,12 +53,12 @@ delete-container:
 bundle-install:
 	bundle install
 
-build: $(TOPICS_DST) $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
+build: $(INFOGRAPHICS_DST) $(ILLUSTRATIONS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
 	@echo "Building the website using Jekyll..."
 	@if [ "$(BRANCH)" = "master" ]; then echo "=== Production build ($(BRANCH)) ==="; else echo "=== Development build ($(BRANCH)) ==="; fi
 	@if [ "$(BRANCH)" = "master" ]; then JEKYLL_ENV=production bundle exec jekyll build; else bundle exec jekyll build; fi
 
-local: $(TOPICS_DST) $(INFOGRAPHICS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
+local: $(INFOGRAPHICS_DST) $(ILLUSTRATIONS_DST) $(STUDIES_DST) $(COVERS_DST) generated-files bundle-install
 	bundle exec jekyll serve --trace --host 0.0.0.0
 
 check: build
@@ -97,15 +103,17 @@ favicon.ico: assets-local/favicon.ico
 	@echo "Copying favicon..."
 	cp $^ $@
 
-$(TOPICS_FOLDER)/%: collections/_topics/%
-	mkdir -p $(@D)
-	cp $< $@
-
 $(foreach suffix, $(INFOGRAPHICS_SUFFIXES), $(INFOGRAPHICS_FOLDER)/%$(suffix)): collections/_infographics/*/%.pdf
 	@utils/convert-infographic.sh $< $(addprefix $(INFOGRAPHICS_FOLDER)/,$(notdir $<))
 
 $(foreach suffix, $(INFOGRAPHICS_SUFFIXES), $(INFOGRAPHICS_FOLDER)/%$(suffix)): collections/_studies/%.pdf
 	@utils/convert-infographic.sh $< $(addprefix $(INFOGRAPHICS_FOLDER)/,$(notdir $<))
+
+$(foreach suffix, $(ILLUSTRATIONS_SUFFIXES), $(ILLUSTRATIONS_FOLDER)/%$(suffix)): collections/_studies/%.svg
+	@utils/convert-illustration.sh $< $(addprefix $(ILLUSTRATIONS_FOLDER)/,$(notdir $<))
+
+$(foreach suffix, $(ILLUSTRATIONS_SUFFIXES), $(ILLUSTRATIONS_FOLDER)/%$(suffix)): collections/_topics/%.svg
+	@utils/convert-illustration.sh $< $(addprefix $(ILLUSTRATIONS_FOLDER)/,$(notdir $<))
 
 $(STUDIES_FOLDER)/%: collections/_studies/%
 	mkdir -p $(@D)
@@ -113,6 +121,8 @@ $(STUDIES_FOLDER)/%: collections/_studies/%
 
 $(COVERS_FOLDER)/%: collections/_explainers/%
 	@utils/convert-cover.sh $< $@
+
+# === Special target for dataset images (not run in normal builds)  ===
 
 dataset-images: $(DATASETS_DST)
 
@@ -122,8 +132,8 @@ $(DATASETS_FOLDER)/%.png: collections/_datasets/%.md
 # === Cleaning targets  ===
 
 clean:
-	rm -rf $(TOPICS_FOLDER)
 	rm -rf $(INFOGRAPHICS_FOLDER)
+	rm -rf $(ILLUSTRATIONS_FOLDER)
 	rm -rf $(STUDIES_FOLDER)
 	rm -rf $(COVERS_FOLDER)
 	rm -f humans.txt _config.yml firebase.json .firebaserc

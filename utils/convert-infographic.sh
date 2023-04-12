@@ -8,29 +8,7 @@ then
     exit 1
 fi
 
-# Inkscape install instructions
-inkscape_install_instructions() {
-    echo "On Ubuntu, add ppa for the latest Inkscape and install it using the commands below."
-    echo "  sudo add-apt-repository ppa:inkscape.dev/stable"
-    echo "  sudo apt update"
-    echo "  sudo apt install inkscape"
-}
-
-# Check for Inkscape availability
-if ! (which inkscape >/dev/null 2>&1)
-then
-    echo "Error: Inkscape not installed."
-    inkscape_install_instructions
-    exit 2
-fi
-
-# Check Inkscape version
-if ! (inkscape --version 2>/dev/null | grep '^Inkscape 1\.' >/dev/null)
-then
-    echo "Error: You have an old version of Inkscape (below 1.0.0)."
-    inkscape_install_instructions
-    exit 3
-fi
+source utils/convert-svg.sh
 
 # Exit when any command fails
 set -e
@@ -56,24 +34,10 @@ inkscape \
         "$SRC_FILE_PDF" \
         >/dev/null 2>&1
 
-convert_svg_to_png() {
-    input_svg=$1
-    width=$2
-    inkscape \
-        --export-area-page \
-        --export-background=white \
-        --export-width=$width \
-        --export-background-opacity=255 \
-        --export-type=png \
-        --export-filename="${input_svg%.svg}_$width.png" \
-        "$input_svg" \
-        >/dev/null 2>&1
-}
-
 # Convert SVG into PNGs of various sizes
 for width in ${WIDTHS[@]}; do
     echo -e `basename $DST_FILE_SVG`": converting to PNG (${width}px)..."
-    convert_svg_to_png "$DST_FILE_SVG" $width
+    convert_svg_to_png "$DST_FILE_SVG" "$DST_FILE_SVG" $width
 done
 
 # If all previous conversions pass, copy the file checked by Make
