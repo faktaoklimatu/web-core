@@ -68,7 +68,7 @@
         {%- endif %}
 {% endcase %}
 
-{%- unless include.no_include_tags %}
+{%- unless include.no_include_tags or item.skip_topic %}
 <div class="card-img-overlay tags-overlay-box">
     {% include tags.html tags=item.tags slug=item.slug %}
 </div>
