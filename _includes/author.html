@@ -7,7 +7,7 @@
     {%- for member in group.members %}
       {%- if author.id == member.id %}
         {%- assign name = member.name %}
-        {%- assign link = "/o-nas/#" | append: member.id %}
+        {%- assign link = "/o-nas#" | append: member.id %}
         {%- if author.show_internal_affiliation %}
           {%- assign affiliation = site.title %}
         {%- endif %}
