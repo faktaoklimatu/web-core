@@ -1,0 +1,30 @@
+.authors {
+    font-size: 1.1rem;
+
+    .affiliation {
+        opacity: 0.8;
+
+        &::before {
+            content: ", ";
+        }
+    }
+}
+
+.authors-minor {
+    font-size: 0.9rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 0.5rem;
+    margin-top: 0.5rem;
+
+    dt {
+        opacity: 0.8;
+        font-weight: normal;
+        margin-bottom: 0.1rem;
+        &::after {
+            content: ":";
+            padding-right: 0.25rem;
+        }
+    }
+    dd { margin-bottom: 0.1rem; }
+}

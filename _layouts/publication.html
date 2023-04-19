@@ -21,13 +21,14 @@
             <div class="subtitle">{{ page.subtitle }}</div>
           </div>
           <div class="cover-img-mobile d-md-none"></div>
-          {%- if page.authors %}
+          {%- if page.organizations %}
             <div class="author-logos">
-              {%- for author in page.authors %}
+              {%- for author in page.organizations %}
                 <img src="/assets-local/author-logos/{{ author.logo }}" alt="{{ author.name }}">
               {%- endfor %}
             </div>
           {%- endif %}
+          {% include authors.html authors=page.authors %}
           <div class="download">
             <a href="/assets-local/publications/{{ page.slug }}.pdf" class="btn btn-outline-light">
               <i class="fas fa-fw fa-download"></i>

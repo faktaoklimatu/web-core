@@ -1,0 +1,28 @@
+{%- assign author = include.author %}
+{%- if author.id %}
+  {%- assign name = nil %}
+  {%- assign link = nil %}
+  {%- assign affiliation = nil %}
+  {%- for group in site.data.organization-members %}
+    {%- for member in group.members %}
+      {%- if author.id == member.id %}
+        {%- assign name = member.name %}
+        {%- assign link = "/o-nas/#" | append: member.id %}
+        {%- if author.show_internal_affiliation %}
+          {%- assign affiliation = site.title %}
+        {%- endif %}
+      {%- endif %}
+    {%- endfor %}
+  {%- endfor %}
+{%- else %}
+  {%- assign name = author.name %}
+  {%- assign link = author.link %}
+  {%- assign affiliation = author.affiliation %}
+{%- endif %}
+
+{%- if link %}
+  <a href="{{ link }}"><span class="name">{{ name }}</span></a>
+{%- else %}
+  <span class="name">{{ name }}</span>
+{%- endif %}
+{%- if affiliation %}<span class="affiliation">{{ affiliation }}</span>{%- endif %}

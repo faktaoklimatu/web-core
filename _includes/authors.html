@@ -1,0 +1,21 @@
+{%- if include.authors %}
+<div class="authors">
+  {%- assign majors = include.authors | where_exp: "author","author.minor-role == nil" %}
+  {%- if majors %}
+    <div class="authors-major">
+      {%- for author in majors %}
+        <div class="author">{% include author.html author=author %}</div>
+      {%- endfor %}
+    </div>
+  {%- endif %}
+  {%- assign minors = include.authors | where_exp: "author","author.minor-role != nil" %}
+  {%- if minors %}
+    <dl class="authors-minor">
+      {%- for author in minors %}
+        <dt>{{ author.minor-role }}</dt>
+        <dd>{% include author.html author=author %}</dd>
+      {%- endfor %}
+    </dl>
+  {%- endif %}
+</div>
+{%- endif %}
