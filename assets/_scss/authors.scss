@@ -1,6 +1,10 @@
 .authors {
     font-size: 1.1rem;
 
+    .name + .name::before {
+        content: ", ";
+    }
+
     .affiliation {
         opacity: 0.8;
 
