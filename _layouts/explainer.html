@@ -53,8 +53,8 @@
                       {%- break %}
                     {%- endif %}
                   {%- endfor %}
-                {%- else %}
-                  {{ site.data.lang.text.explainer.explainer }}
+                {%- else if page.type %}
+                  {{ page.type }}
                 {%- endif %}
               </div>
               <h1>
