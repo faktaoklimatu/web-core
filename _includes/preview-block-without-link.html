@@ -15,11 +15,13 @@
             <h6 class="card-subtitle">{{ site.data.lang.text.dataset.dataset }}</h6>
         </div>
     {% when 'explainer' %}
-        <div style="background-image: url('/assets/covers/{{ item.slug }}_600.jpg')" title="{{ site.data.lang.text.explainer.explainer }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
+        <div style="background-image: url('/assets/covers/{{ item.slug }}_600.jpg')" title="{{ item.title }}" class="preview-card-image img-fluid card-img">
         </div>
         <div class="card-img-overlay card-title-overlay">
             <h5 class="card-title">{{ title }}</h5>
-            <h6 class="card-subtitle">{{ site.data.lang.text.explainer.explainer }}</h6>
+            {%- if item.type %}
+                <h6 class="card-subtitle">{{ item.type }}</h6>
+            {%- endif %}
         </div>
     {% when 'study' %}
         <div style="background-image: url('/assets/studies/{{ item.slug }}.jpg')" title="{{ site.data.lang.text.study.study }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
