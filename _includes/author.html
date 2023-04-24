@@ -6,7 +6,7 @@
   {%- for group in site.data.organization-members %}
     {%- for member in group.members %}
       {%- if author.id == member.id %}
-        {%- assign name = member.name %}
+        {%- assign name = member.name_formal | default: member.name %}
         {%- assign link = "/o-nas#" | append: member.id %}
         {%- if author.show_internal_affiliation %}
           {%- assign affiliation = site.title %}
