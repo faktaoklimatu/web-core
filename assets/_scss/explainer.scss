@@ -75,21 +75,18 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
     font-size: 1.1rem;
-    text-align: right;
+    display: flex;
+
+    .tags {
+        flex-grow: 1;
+    }
 
     .author {
         font-weight: bold;
     }
 
-    .date::before {
-        content: "•";
-        font-weight: bold;
-        padding-left: .5rem;
-        padding-right: .5rem;
-    }
-
-    .tags {
-        float: left;
+    .date {
+        padding-right: 1.5rem;
     }
 }
 
@@ -137,7 +134,7 @@ h1 {
             // min-height: calc(1.2em * 3);  // minimum three lines
             vertical-align: baseline;
         }
-        .author a {
+        .authors a {
             color: white;
         }
         .tags {
