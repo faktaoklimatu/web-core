@@ -1,28 +1,26 @@
 {%- assign author = include.author %}
-{%- if author.id %}
-  {%- assign name = nil %}
-  {%- assign link = nil %}
-  {%- assign affiliation = nil %}
-  {%- for group in site.data.organization-members %}
-    {%- for member in group.members %}
-      {%- if author.id == member.id %}
-        {%- assign name = member.name_formal | default: member.name %}
-        {%- assign link = "/o-nas#" | append: member.id %}
-        {%- if author.show_internal_affiliation %}
-          {%- assign affiliation = site.title %}
-        {%- endif %}
-      {%- endif %}
+{%- if author.id or author.ids %}
+  {%- if author.show_internal_affiliation %}
+    {%- assign affiliation = site.title %}
+  {%- else %}
+    {%- assign affiliation = nil %}
+  {%- endif %}
+
+  {%- assign ids = author.ids | join: "," | default: author.id %}
+  {%- assign ids_list = ids | split: "," %}
+
+  {%- for id in ids_list %}
+    {%- for group in site.data.organization-members %}
+      {%- assign member = group.members | find: "id",id %}
+      {%- if member %}<span class="name"><a href="{{ 'o-nas#' | append: member.id }}">{{ member.name_formal | default: member.name }}</a></span>{%- endif %}
     {%- endfor %}
   {%- endfor %}
 {%- else %}
-  {%- assign name = author.name %}
-  {%- assign link = author.link %}
   {%- assign affiliation = author.affiliation %}
-{%- endif %}
-
-{%- if link %}
-  <a href="{{ link }}"><span class="name">{{ name }}</span></a>
-{%- else %}
-  <span class="name">{{ name }}</span>
+  {%- if author.link %}
+    <span class="name"><a href="{{ link }}">{{ author.name }}</a></span>
+  {%- else %}
+    <span class="name">{{ author.name }}</span>
+  {%- endif %}
 {%- endif %}
 {%- if affiliation %}<span class="affiliation">{{ affiliation }}</span>{%- endif %}
