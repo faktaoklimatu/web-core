@@ -64,10 +64,13 @@
                   <span class="series-title">{{ page.title }}</span>
               </h1>
               <div class="explainer-metadata">
-                {% include tags.html tags=page.tags slug=page.slug link="true" %}
-                <span class="author"><a href="/{{ site.slugs.about }}#members">{{ page.author }}</a></span>
                 <span class="date">{{ page.published | date: "%-d. %-m. %Y" }}</span>
-              {% assign download_path = "/assets/studies/" | append: page.slug %}
+                {% include tags.html tags=page.tags slug=page.slug link="true" %}
+                {%- if page.author %}
+                  <span class="authors author"><a href="/{{ site.slugs.about }}#members">{{ page.author }}</a></span>
+                {%- else if page.authors %}
+                  {% include authors.html authors=page.authors %}
+                {%- endif %}
               </div>
             </div>
           </div>
