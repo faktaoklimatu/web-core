@@ -12,7 +12,7 @@
   {%- for id in ids_list %}
     {%- for group in site.data.organization-members %}
       {%- assign member = group.members | find: "id",id %}
-      {%- if member %}<span class="name"><a href="{{ 'o-nas#' | append: member.id }}">{{ member.name_formal | default: member.name }}</a></span>{%- endif %}
+      {%- if member %}<span class="name"><a href="{{ '/o-nas#' | append: member.id }}">{{ member.name_formal | default: member.name }}</a></span>{%- endif %}
     {%- endfor %}
   {%- endfor %}
 {%- else %}
