@@ -251,13 +251,13 @@ p.caption {
     margin-right: auto;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    padding: 0.75rem 0rem 0.75rem 1.5rem;
+    padding: 0 0 0 1.5rem;
     border-left: 0.15rem solid rgba(0,0,0,0.2);
     font-size: 1rem;
     line-height: 1.5em;
 
     h4 {
-        margin-top: 0;
+        margin-top: 0.5rem;
     }
     p {
         text-align: left;
@@ -282,20 +282,29 @@ p.caption {
     max-width: 590px;
 }
 
+.smaller-preview-box {
+    width: 325px;
+}
+
 .highlight-text-box {
     font-size: 1.2rem;
+    padding-block: 0.5rem;
 }
 
 @media (min-width: 576px) {
-    .preview-box, .highlight-text-box {
+    .preview-box, .highlight-text-box, .smaller-preview-box {
         float: right;
         clear: right;
+        margin-left: 2rem;
+        margin-right: 0;
+    }
+    .preview-box, .highlight-text-box {
         min-width: 320px;
         width: 50%;
         max-width: 400px;
-        margin-left: 2rem;
-        margin-right: 0;
-
+    }
+    .smaller-preview-box {
+        width: 275px;
     }
     .no-float-box {
         float: none;
@@ -304,10 +313,13 @@ p.caption {
 }
 
 @media (min-width: 768px) {
-    .preview-box, .highlight-text-box {
+    .preview-box, .highlight-text-box, .smaller-preview-box {
         margin-left: calc(-25px + 2rem);
         position: relative;
         left: 25px;
+    }
+    .smaller-preview-box {
+        width: 325px;
     }
 }
 
@@ -318,8 +330,15 @@ p.caption {
 }
 
 @media (min-width: 1200px) {
+    .longread-box {
+        bottom: 0.75rem;
+    }
     .preview-box, .highlight-text-box {
         width: 60%;
+        left: 40%;
+        margin-left: calc(-40% + 2rem);
+    }
+    .smaller-preview-box {
         left: 40%;
         margin-left: calc(-40% + 2rem);
     }
