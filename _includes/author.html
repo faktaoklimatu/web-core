@@ -15,6 +15,7 @@
       {%- assign member = group.members | find: "id",id %}
       {%- if member %}<span class="name"><a href="{{ '/o-nas#' | append: member.id }}">{{ member.name_formal | default: member.name }}</a></span>{%- assign found=true %}{%- endif %}
     {%- endfor %}
+    {%- unless forloop.last %}<span>, </span>{%- endunless %}
     {%- unless found %}
     <div class="build-error">Author {{ id }} is not present in organization members</div>
     {%- endunless %}
@@ -27,4 +28,4 @@
     <span class="name">{{ author.name }}</span>
   {%- endif %}
 {%- endif %}
-{%- if affiliation %}<span class="affiliation">{{ affiliation }}</span>{%- endif %}
+{%- if affiliation %}, <span class="affiliation">{{ affiliation }}</span>{%- endif %}
