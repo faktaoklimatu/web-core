@@ -136,7 +136,8 @@ main.executive-summary .longread {
         background-repeat: no-repeat;
         background-position: center right;
         background-size: 50%;
-        padding-right: 50%;
+        // Keep 3% space between illustration and content.
+        padding-right: 53%;
     }
 
     // Add back double the margin (on the right side) to maintain margin between boxes.
@@ -153,7 +154,7 @@ main.executive-summary .longread {
 
 @media (min-width: 1200px) {
     .publication-cover .titles {
-        h1 { font-size: 4rem; }
-        .subtitle { font-size: 2rem; }
+        h1 { font-size: 3.8rem; }
+        .subtitle { font-size: 1.9rem; }
     }
 }
