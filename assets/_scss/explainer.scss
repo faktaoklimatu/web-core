@@ -75,10 +75,9 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
     font-size: 1.1rem;
-    display: flex;
 
-    .tags {
-        flex-grow: 1;
+    .date-tags {
+        margin-bottom: 0.5rem;
     }
 
     .author {
@@ -86,7 +85,8 @@
     }
 
     .date {
-        padding-right: 1.5rem;
+        margin-bottom: 0.5rem;
+        padding-left: 0.5rem;
     }
 }
 
@@ -126,7 +126,7 @@ h1 {
         background-size: cover;
         background-blend-mode: multiply;
         background-color: #a0a5b8 !important;
-        padding-top: 12%;
+        padding-top: 11%;
         color: white;
         text-shadow: 0px 0px 0.1rem black;
         h1 {
@@ -147,7 +147,19 @@ h1 {
     }
 
     .explainer-metadata {
-        padding-top: 5%;
+        padding-top: 4%;
+        display: flex;
+        align-items: center;
+
+        .date-tags {
+            flex-grow: 1;
+            display: flex;
+        }
+
+        .date::after {
+            content: "•";
+            padding-inline: .5rem;
+        }
     }
 }
 

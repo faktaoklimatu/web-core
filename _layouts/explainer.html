@@ -64,8 +64,10 @@
                   <span class="series-title">{{ page.title }}</span>
               </h1>
               <div class="explainer-metadata">
-                <span class="date">{{ page.published | date: "%-d. %-m. %Y" }}</span>
-                {% include tags.html tags=page.tags slug=page.slug link="true" %}
+                <div class="date-tags">
+                  <div class="date">{{ page.published | date: "%-d. %-m. %Y" }}</div>
+                  {% include tags.html tags=page.tags slug=page.slug link="true" %}
+                </div>
                 {%- if page.author %}
                   <span class="authors author"><a href="/{{ site.slugs.about }}#members">{{ page.author }}</a></span>
                 {%- else if page.authors %}
