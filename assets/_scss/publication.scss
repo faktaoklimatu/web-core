@@ -20,10 +20,15 @@
         padding-bottom: 80%;
     }
 
-    .titles .publication-type {
-        text-transform: uppercase;
-        font-weight: bold;
-        padding-block: 1rem;
+    .titles {
+        .publication-type {
+            text-transform: uppercase;
+            font-weight: bold;
+            padding-block: 1rem;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+        }
     }
 
     .author-logos {
@@ -32,6 +37,7 @@
         img {
             height: 40px;
             margin-right: 2rem;
+            margin-block: 0.5rem;
         }
     }
 
@@ -113,11 +119,11 @@ main.executive-summary .longread {
         padding-top: 3rem;
 
         h1 {
-            font-size: 4rem;
+            font-size: 3.2rem;
         }
 
         .subtitle {
-            font-size: 2rem;
+            font-size: 1.6rem;
         }
 
         .author-logos {
@@ -142,5 +148,12 @@ main.executive-summary .longread {
         .download {
             text-align: center;
         }
+    }
+}
+
+@media (min-width: 1200px) {
+    .publication-cover .titles {
+        h1 { font-size: 4rem; }
+        .subtitle { font-size: 2rem; }
     }
 }
