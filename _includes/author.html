@@ -18,7 +18,7 @@
 {%- else %}
   {%- assign affiliation = author.affiliation %}
   {%- if author.link %}
-    <span class="name"><a href="{{ link }}">{{ author.name }}</a></span>
+    <span class="name"><a href="{{ author.link }}" class="no-ext-link-icon">{{ author.name }}</a></span>
   {%- else %}
     <span class="name">{{ author.name }}</span>
   {%- endif %}
