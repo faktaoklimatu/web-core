@@ -12,7 +12,7 @@
     .cover-img-mobile {
         background-image: var(--cover-img);
         background-repeat: no-repeat;
-        background-position: center;
+        background-position: left center;
         background-size: contain;
         margin-block: 2rem;
         // Enforce a fixed aspect ratio 1:0.8.
@@ -103,6 +103,12 @@ main.executive-summary .longread {
 }
 
 @media (min-width: 768px) {
+    .publication-cover {
+        .cover-img-mobile { padding-bottom: 60%; }
+    }
+}
+
+@media (min-width: 992px) {
     .publication-cover .titles {
         padding-top: 3rem;
 
