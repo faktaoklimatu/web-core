@@ -12,7 +12,7 @@
   {%- if minors %}
     <dl class="authors-minor">
       {%- for author in minors %}
-        <dt>{{ author.minor-role }}</dt>
+        <dt>{{ author.minor-role }}:</dt>
         <dd>{% include author.html author=author %}</dd>
       {%- endfor %}
     </dl>
