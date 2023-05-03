@@ -4,13 +4,12 @@
   {%- if author.show_internal_affiliation %}
     {%- assign affiliation = site.title %}
   {%- endif %}
-  {% include author-internal.html ids=author.id check=true %}
-{%- elsif author.ids %}
-  {%- assign ids = author.ids | join: "," %}
+  {%- assign ids = author.id | split: "," %}
   {% include author-internal.html ids=ids check=true %}
+{%- elsif author.ids %}
+  {% include author-internal.html ids=author.ids check=true %}
 {%- elsif author.names-or-ids %}
-  {%- assign ids = author.names-or-ids | join: "," %}
-  {% include author-internal.html ids=ids check=false %}
+  {% include author-internal.html ids=author.names-or-ids check=false %}
 {%- else %}
   {%- assign affiliation = author.affiliation %}
   {%- if author.link %}
