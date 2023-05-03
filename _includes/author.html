@@ -1,25 +1,16 @@
 {%- assign author = include.author %}
-{%- if author.id or author.ids %}
+{%- assign affiliation = nil %}
+{%- if author.id %}
   {%- if author.show_internal_affiliation %}
     {%- assign affiliation = site.title %}
-  {%- else %}
-    {%- assign affiliation = nil %}
   {%- endif %}
-
-  {%- assign ids = author.ids | join: "," | default: author.id %}
-  {%- assign ids_list = ids | split: "," %}
-
-  {%- for id in ids_list %}
-    {%- assign found=false %}
-    {%- for group in site.data.organization-members %}
-      {%- assign member = group.members | find: "id",id %}
-      {%- if member %}<span class="name"><a href="/o-nas#{{ member.id }}">{{ member.name_formal | default: member.name }}</a></span>{%- assign found=true %}{%- endif %}
-    {%- endfor %}
-    {%- unless forloop.last %}<span>, </span>{%- endunless %}
-    {%- unless found %}
-    <div class="build-error">Author {{ id }} is not present in organization members</div>
-    {%- endunless %}
-  {%- endfor %}
+  {% include author-internal.html ids=author.id check=true %}
+{%- elsif author.ids %}
+  {%- assign ids = author.ids | join: "," %}
+  {% include author-internal.html ids=ids check=true %}
+{%- elsif author.names-or-ids %}
+  {%- assign ids = author.names-or-ids | join: "," %}
+  {% include author-internal.html ids=ids check=false %}
 {%- else %}
   {%- assign affiliation = author.affiliation %}
   {%- if author.link %}
@@ -28,4 +19,4 @@
     <span class="name">{{ author.name }}</span>
   {%- endif %}
 {%- endif %}
-{%- if affiliation %}, <span class="affiliation">{{ affiliation }}</span>{%- endif %}
+{%- if affiliation %}<span class="affiliation">, {{ affiliation }}</span>{%- endif %}
