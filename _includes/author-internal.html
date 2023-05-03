@@ -1,0 +1,17 @@
+{%- assign ids_list = include.ids | split: "," %}
+{%- for id in ids_list %}
+  {%- assign found=false %}
+  {%- for group in site.data.organization-members %}
+    {%- assign member = group.members | find: "id",id %}
+    {%- if member %}<span class="name"><a href="/o-nas#{{ member.id }}">{{ member.name_formal | default: member.name }}</a></span>{%- assign found=true %}{%- endif %}
+  {%- endfor %}
+  {%- unless found %}
+    {%- if include.check %}
+      <div class="build-error">Author {{ id }} is not present in organization members</div>
+    {%- else %}
+      <span class="name">{{ id }}</span>
+    {%- endif %}
+  {%- endunless %}
+  {%- unless forloop.last %}<span>, </span>{%- endunless %}
+{%- endfor %}
+{%- comment %}# No new line at the end of this file (to avoid unintended space after author name).{%- endcomment %}
