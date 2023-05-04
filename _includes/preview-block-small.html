@@ -9,11 +9,9 @@
         </div>
     {%- when 'explainer' %}
         <div style="background-image: url('/assets/covers/{{ item.slug }}_600.jpg')" class="specific-card"></div>
-        {%- if item.type %}
-            <div class="card-img-overlay small-card-img-overlay">
-                <h5>{{ item.type }}</h5>
-            </div>
-        {%- endif %}
+        <div class="card-img-overlay small-card-img-overlay">
+            <h5>{{ item.type | default: site.data.lang.text.explainer.explainer }}</h5>
+        </div>
     {%- when 'study' %}
         <div style="background-image: url('/assets/studies/{{ item.slug }}.jpg')" class="specific-card"></div>
         <div class="card-img-overlay small-card-img-overlay">
