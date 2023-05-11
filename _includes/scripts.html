@@ -12,6 +12,8 @@
 {% if jekyll.environment == "production" %}
 {% include includes-local/website-analytics-noscript.html %}
 {% endif %}
-{% if page.extrascripts == "thankyou" %}
-<script src="/assets/js/thankyou.js"></script>
+{% if page.extra-scripts %}
+{% for script_url in page.extra-scripts %}
+<script src="{{ script_url }}"></script>
+{% endfor %}
 {% endif %}
