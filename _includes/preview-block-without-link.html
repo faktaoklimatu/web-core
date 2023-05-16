@@ -42,11 +42,20 @@
             </h6>
         </div>
     {% when 'survey' %}
-        <div class="card-body">
-            <h5 class="card-title">{{ title }}</h5>
-            <h6 class="card-subtitle">{{ site.data.lang.text.survey.survey }}</h6>
-            <p class="card-text card-survey-caption mt-3">{{ item.caption }}</p>
-        </div>
+        {%- if item.use-preview-image %}
+            <div style="background-image: url('/assets/studies/{{ item.slug }}.jpg')" title="{{ site.data.lang.text.survey.survey }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
+            </div>
+            <div class="card-img-overlay card-title-overlay">
+                <h5 class="card-title">{{ title }}</h5>
+                <h6 class="card-subtitle">{{ site.data.lang.text.survey.survey }}</h6>
+            </div>
+        {%- else %}
+            <div class="card-body">
+                <h5 class="card-title">{{ title }}</h5>
+                <h6 class="card-subtitle">{{ site.data.lang.text.survey.survey }}</h6>
+                <p class="card-text card-survey-caption mt-3">{{ item.caption }}</p>
+            </div>
+        {%- endif %}
     {% when 'episode' %}
         <div title="{{ site.data.lang.text.episode.episode }}: {{ item.title }}" class="preview-card-image episode-card-image img-fluid card-img">
         </div>
