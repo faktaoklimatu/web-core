@@ -23,10 +23,17 @@
             <h5>{{ item.type | default: site.data.lang.text.publication.publication }}</h5>
         </div>
     {%- when 'survey' %}
-        <div class='branded-card'></div>
-        <div class="card-img-overlay small-card-img-overlay">
-            <h5>{{ site.data.lang.text.survey.survey }}</h5>
-        </div>
+        {%- if item.use-preview-image %}
+            <div style="background-image: url('/assets/studies/{{ item.slug }}.jpg')" class="specific-card"></div>
+            <div class="card-img-overlay small-card-img-overlay">
+                <h5>{{ site.data.lang.text.survey.survey }}</h5>
+            </div>
+        {%- else %}
+            <div class='branded-card'></div>
+            <div class="card-img-overlay small-card-img-overlay">
+                <h5>{{ site.data.lang.text.survey.survey }}</h5>
+            </div>
+        {%- endif %}
     {%- when 'episode' %}
         <div class="specific-card episode-card"></div>
         <div class="card-img-overlay small-card-img-overlay">
