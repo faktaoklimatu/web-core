@@ -30,7 +30,7 @@
 {% when 'study' %}
   {% assign social_image = "/assets/studies/" | append: page.slug | append: ".jpg" %}
 {% when 'survey' %}
-  {%- if item.use-preview-image %}
+  {%- if page.use-preview-image %}
     {% assign social_image = "/assets/studies/" | append: page.slug | append: ".jpg" %}
   {%- endif %}
 {% when 'explainer' %}
