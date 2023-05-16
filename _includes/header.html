@@ -23,17 +23,20 @@
 <meta property="og:description" content="{{ description }}">
 <meta name="twitter:description" content="{{ description }}">
 <meta name="twitter:card" content="summary_large_image">
+{% assign social_image = "/assets-local/img/preview.png" %}
 {% case page.layout %}
 {% when 'infographic' %}
   {% assign social_image = "/assets/generated/" | append: page.slug | append: "_1200.png" %}
 {% when 'study' %}
   {% assign social_image = "/assets/studies/" | append: page.slug | append: ".jpg" %}
+{% when 'survey' %}
+  {%- if item.use-preview-image %}
+    {% assign social_image = "/assets/studies/" | append: page.slug | append: ".jpg" %}
+  {%- endif %}
 {% when 'explainer' %}
   {% assign social_image = "/assets/covers/" | append: page.slug | append: ".jpg" %}
 {% when 'topic', 'publication' %}
   {% assign social_image = "/assets/illustrations/" | append: page.slug | append: "_1200.png" %}
-{% else %}
-  {% assign social_image = "/assets-local/img/preview.png" %}
 {% endcase %}
 <meta property="og:image" content="{{ social_image | absolute_url }}">
 <meta name="twitter:image" content="{{ social_image | absolute_url }}">
