@@ -71,9 +71,12 @@ class Navbars {
     var headings = [];
     // Exclude the home link in the search for headings.
     for (const link of $("#secondary-navbar a:not(.home)")) {
-      let heading = $(link.hash);
-      if (heading) {
-        headings.push(heading[0]);
+      // Exclude external links that have no hash.
+      if (link.hash) {
+        let heading = $(link.hash);
+        if (heading) {
+          headings.push(heading[0]);
+        }
       }
     }
     var highlightedId = this.getHighlightedId(headings);
