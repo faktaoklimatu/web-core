@@ -23,7 +23,7 @@
 <meta property="og:description" content="{{ description }}">
 <meta name="twitter:description" content="{{ description }}">
 <meta name="twitter:card" content="summary_large_image">
-{% assign social_image = "/assets-local/img/preview.png" %}
+{% assign social_image = page.preview_image | default: "/assets-local/img/preview.png" %}
 {% case page.layout %}
 {% when 'infographic' %}
   {% assign social_image = "/assets/generated/" | append: page.slug | append: "_1200.png" %}
