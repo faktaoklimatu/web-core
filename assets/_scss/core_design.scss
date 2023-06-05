@@ -230,6 +230,18 @@ ul.inline-bullet-list {
     }
 }
 
+.btn-gray {
+    color: $c-body;
+    background-color: $c-lighter-grey;
+    border-color: $c-lighter-grey;
+
+    &:hover {
+        color: $c-body;
+        background-color: $c-grey;
+        border-color: $c-grey;
+    }
+}
+
 .btn-secondary {
     background-color: transparent;
     color: $c-primary;
