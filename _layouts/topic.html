@@ -26,17 +26,19 @@
     <div class="section pt-0">
       <div class="container clearfix">
         <div class="row topic-intro">
-          <div class="col-12 col-lg-7 col-xl-6">
-            {%- unless page.no_image %}
+          {%- if page.no_image %}
+            <div class="col-12 col-lg-10">
+              {{ page.intro | markdownify }}
+            </div>
+          {%- else %}
+            <div class="col-12 col-lg-7 col-xl-6">
               <img class="d-none d-md-block d-lg-none float-right col-6 pr-0 pb-3" loading="eager" src="/assets/illustrations/{{ page.slug }}.svg" alt="{{ page.title }}">
-            {%- endunless %}
-            {{ page.intro | markdownify }}
-          </div>
-          <div class="col-10 col-sm-8 d-md-none d-lg-block col-lg-5 col-xl-6 topic-icon">
-            {%- unless page.no_image %}
+              {{ page.intro | markdownify }}
+            </div>
+            <div class="col-10 col-sm-8 d-md-none d-lg-block col-lg-5 col-xl-6 topic-icon">
               <img class="px-xl-5" loading="eager" src="/assets/illustrations/{{ page.slug }}.svg" alt="{{ page.title }}">
-            {%- endunless %}
-          </div>
+            </div>
+          {%- endif %}
         </div>
         {%- if page.dashboard %}
           <div class="dashboard row">
@@ -134,7 +136,7 @@
           <div class="subtopic">
             <h2 id="{{ sub_id }}">{{ sub_title }} <a href="#{{ sub_id }}" class="section-link" title="{{ site.data.lang.text.section-link }}">#</a></h2>
             {%- if sub.lead %}
-              <div class="subtopic-intro">{{ sub.lead | markdownify }}</div>
+              <div class="subtopic-intro narrow-text">{{ sub.lead | markdownify }}</div>
             {%- endif %}
             {%- if sub.commented-content %}
               {%- assign slugs = sub.commented-content | map: "slug" %}
