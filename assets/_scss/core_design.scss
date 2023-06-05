@@ -131,7 +131,8 @@ pre {
 
 @media (min-width: 992px) {
     .narrow-text {
-        width: 85%;
+        // Corresponds to 10/12.
+        width: 83.33%;
     }
 }
 
