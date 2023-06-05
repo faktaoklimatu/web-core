@@ -1,8 +1,8 @@
 {% case include.section %}
   {% when "downloads" %}
     <div class="btn-group dropdown d-lg-inline-flex" role="group">
-      <a href="{{ download_path }}.pdf" class="btn btn-gray download-pdf" download>PDF</a>
-      <a href="{{ download_path }}.svg" class="btn btn-gray download-svg" download>SVG</a>
+      <a href="{{ download_path }}.pdf" class="btn btn-secondary download-pdf" download>PDF</a>
+      <a href="{{ download_path }}.svg" class="btn btn-secondary download-svg" download>SVG</a>
       <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PNG</button>
       <div class="dropdown-menu dropdown-links" aria-label="{{ site.data.lang.sidebar.download.png-size }}">
         <a class="dropdown-item download-png-lg" href="{{ download_path }}_6000.png" download>6000 x 4242 px</a>
@@ -13,14 +13,14 @@
   {% when "data" %}
     {% if page.dataset %}
       <p class="d-none d-lg-block">{{ site.data.lang.sidebar.data.caption-dataset }}</p>
-      <a href="/{{ site.slugs.datasets }}/{{ page.dataset }}" class="btn btn-gray" role="button">{{ site.data.lang.sidebar.data.button-dataset }}</a>
+      <a href="/{{ site.slugs.datasets }}/{{ page.dataset }}" class="btn btn-secondary" role="button">{{ site.data.lang.sidebar.data.button-dataset }}</a>
     {% else %}
       <p class="d-none d-lg-block">{{ site.data.lang.sidebar.data.caption-data }}</p>
       {% if page.data-our and page.data-our != '' %}
-      <a href="{{ page.data-our }}" class="btn btn-gray data-our" role="button">{{ site.data.lang.sidebar.data.button-data }}</a>
+      <a href="{{ page.data-our }}" class="btn btn-secondary data-our" role="button">{{ site.data.lang.sidebar.data.button-data }}</a>
       {% endif %}
       {% if page.data-orig.size == 1 %}
-      <a href="{{ page.data-orig[0][1] }}" class="btn btn-gray data-original" role="button">{{ page.data-orig[0][0] }}</a>
+      <a href="{{ page.data-orig[0][1] }}" class="btn btn-secondary data-original" role="button">{{ page.data-orig[0][0] }}</a>
       {% elsif page.data-orig.size > 1 %}
       <div class="dropdown"> <!-- Do not delete this element -- makes dropdown work -->
           <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ site.data.lang.sidebar.data.button-data-orig }}</button>
