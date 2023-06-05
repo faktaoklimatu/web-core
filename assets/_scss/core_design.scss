@@ -124,6 +124,11 @@ pre {
     font-size: 1.15rem;
 }
 
+.perex {
+    font-size: 1.15rem;
+    margin-block: 1.5rem;
+}
+
 @media (min-width: 992px) {
     .narrow-text {
         width: 85%;
@@ -131,7 +136,7 @@ pre {
 }
 
 @media (min-width: 768px) {
-    .lead {
+    .lead, .perex {
         font-size: 1.2rem;
     }
 }
