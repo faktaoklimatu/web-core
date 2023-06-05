@@ -17,10 +17,6 @@ p.caption {
     font-style: italic;
 }
 
-.perex {
-    font-size: 1.25rem;
-}
-
 .downloads-box {
     h2:first-child {
         margin-top: 0;
@@ -73,7 +69,7 @@ p.caption {
         font-family: 'Source Serif Pro', sans-serif;
     }
 
-    .expander-body, .longread-box, .explainer-perex {
+    .expander-body, .longread-box, .perex {
         font-family: 'Source Sans Pro', sans-serif;
     }
 
