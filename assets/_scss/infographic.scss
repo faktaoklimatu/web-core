@@ -67,7 +67,15 @@ p.caption {
 /* Longread texts */
 
 .longread {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+
+    & > p, & > ul, & > ol {
+        font-family: 'Source Serif Pro', sans-serif;
+    }
+
+    .expander-body, .longread-box, .explainer-perex {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
 
     .longread-small, .footnotes {
         font-size: 0.9rem;
