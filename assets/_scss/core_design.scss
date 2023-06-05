@@ -247,7 +247,7 @@ ul.inline-bullet-list {
     color: $c-primary;
     border-color: $c-primary;
 
-    &:hover {
+    &:hover, &:active {
         background-color: $c-accent;
         border-color: $c-accent;
     }
