@@ -22,11 +22,12 @@ p.caption {
 }
 
 .downloads-box {
-    margin-top: 1rem;
-
-    h2 {
+    h2:first-child {
         margin-top: 0;
-        font-size: 1.35rem;
+    }
+
+    h2:not(:first-child) {
+        margin-top: 1.5rem;
     }
 
     p {
@@ -67,24 +68,6 @@ p.caption {
 
 .longread {
     font-size: 1.1rem;
-
-    h2 {
-        font-size: 1.75rem;
-        margin-top: 2.5rem;
-        margin-bottom: 1rem;
-    }
-
-    h3 {
-        font-size: 1.5rem;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-    }
-
-    h4 {
-        font-size: 1.2rem;
-        margin-top: 1rem;
-        margin-bottom: 0.5rem;
-    }
 
     .longread-small, .footnotes {
         font-size: 0.9rem;
@@ -200,7 +183,7 @@ p.caption {
             content: "●";
             position: absolute;
             left: -1.25rem;
-            color: $c-primary;
+            color: $c-accent;
             font-weight: bold;
         }
 
@@ -213,7 +196,7 @@ p.caption {
         }
 
         .is-active-li .is-active-link, .is-active-li::marker {
-            color: $c-primary;
+            color: $c-accent;
         }
     }
 }

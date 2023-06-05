@@ -91,7 +91,7 @@ main.executive-summary .longread {
         content: counter(h2counter);
         counter-increment: h2counter;
         margin-inline-end: 1rem;
-        border: 2px solid $c-primary;
+        border: 2px solid $c-accent;
         border-radius: 50%;
         min-width: 1.35em;
         width: 1.35em;

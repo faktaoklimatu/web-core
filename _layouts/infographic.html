@@ -29,12 +29,10 @@
               <h2>{{ site.data.lang.sidebar.download.title }}</h2>
               <p>{{ site.data.lang.sidebar.download.caption }} (<a href="/{{ site.slugs.how-to-use }}#file-formats">{{ site.data.lang.sidebar.download.which-file-format }}</a>)</p>
               {% include infographic-dataset-sidebar.html section="downloads" %}
-              <hr />
 
               {% if page.dataset or page.data-our or page.data-orig %}
                 <h2>{{ site.data.lang.sidebar.data.title }}</h2>
                 {% include infographic-dataset-sidebar.html section="data" %}
-                <hr />
               {% endif %}
 
               <h2>{{ site.data.lang.sidebar.share.title }}</h2>
@@ -50,7 +48,6 @@
                   {% include infographic-dataset-sidebar.html section="downloads" %}
                 </div>
               </div>
-              <hr class="w-100 my-0">
               {% if page.dataset or page.data-our or page.data-orig %}
                 <div class="d-flex d-lg-none align-items-center text-secondary pt-2">
                   <div>{{ site.data.lang.sidebar.mobile.data }}</div>
@@ -58,7 +55,6 @@
                     {% include infographic-dataset-sidebar.html section="data" %}
                   </div>
                 </div>
-                <hr class="w-100 my-0">
               {% endif %}
               <div class="d-flex d-lg-none align-items-center text-secondary pt-2">
                 <div>{{ site.data.lang.sidebar.mobile.share }}</div>
