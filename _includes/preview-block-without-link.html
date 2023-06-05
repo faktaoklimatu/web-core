@@ -8,14 +8,14 @@
     {% when 'infographic' %}
         <img src="/assets/generated/{{ item.slug }}_600.png" alt="{{ item.title }}" title="{{ item.title }}" class="img-fluid" />
     {% when 'dataset' %}
-        <div style="background-image: url('/assets-local/datasets/{{ item.slug }}.png')" title="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
+        <div style="--background: url('/assets-local/datasets/{{ item.slug }}.png')" title="{{ site.data.lang.text.dataset.dataset }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
         </div>
         <div class="card-img-overlay card-title-overlay">
             <h5 class="card-title">{{ title }}</h5>
             <h6 class="card-subtitle">{{ site.data.lang.text.dataset.dataset }}</h6>
         </div>
     {% when 'explainer' %}
-        <div style="background-image: url('/assets/covers/{{ item.slug }}_600.jpg')" title="{{ item.title }}" class="preview-card-image img-fluid card-img">
+        <div style="--background: url('/assets/covers/{{ item.slug }}_600.jpg')" title="{{ item.title }}" class="preview-card-image img-fluid card-img">
         </div>
         <div class="card-img-overlay card-title-overlay">
             <h5 class="card-title">{{ title }}</h5>
@@ -24,7 +24,7 @@
             {%- endif %}
         </div>
     {% when 'study' %}
-        <div style="background-image: url('/assets/studies/{{ item.slug }}.jpg')" title="{{ site.data.lang.text.study.study }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
+        <div style="--background: url('/assets/studies/{{ item.slug }}.jpg')" title="{{ site.data.lang.text.study.study }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
         </div>
         <div class="card-img-overlay card-title-overlay">
             <h5 class="card-title">{{ title }}</h5>
@@ -32,7 +32,7 @@
             <h6 class="card-subtitle">{{ site.data.lang.text.study.study }}</h6>
         </div>
     {% when 'publication' %}
-        <div style="background-image: url('/assets/studies/{{ item.slug }}.svg')" title="{{ site.data.lang.text.publication.publication }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
+        <div style="--background: url('/assets/studies/{{ item.slug }}.svg')" title="{{ site.data.lang.text.publication.publication }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
         </div>
         <div class="card-img-overlay card-title-overlay">
             <h5 class="card-title">{{ title }}</h5>
@@ -43,7 +43,7 @@
         </div>
     {% when 'survey' %}
         {%- if item.use-preview-image %}
-            <div style="background-image: url('/assets/studies/{{ item.slug }}.jpg')" title="{{ site.data.lang.text.survey.survey }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
+            <div style="--background: url('/assets/studies/{{ item.slug }}.jpg')" title="{{ site.data.lang.text.survey.survey }}: {{ item.title }}" class="preview-card-image img-fluid card-img">
             </div>
             <div class="card-img-overlay card-title-overlay">
                 <h5 class="card-title">{{ title }}</h5>
@@ -66,7 +66,7 @@
     {% else %}
         {%- if item.search_type %}
             {%- if item.search_image %}
-                <div style="background-image: url('{{ item.search_image }}')" title="{{ page.search_type }}: {{ item.title }}" class="preview-card-image img-fluid card-img"></div>
+                <div style="--background: url('{{ item.search_image }}')" title="{{ page.search_type }}: {{ item.title }}" class="preview-card-image img-fluid card-img"></div>
             {%- else %}
                 <div class='branded-card preview-card-image img-fluid card-img'></div>
             {%- endif %}

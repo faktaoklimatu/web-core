@@ -152,6 +152,24 @@
     padding-bottom: calc(70% + 3px);
     background-size: cover;
     background-position: bottom;
+    background-blend-mode: multiply;
+    background-image: linear-gradient(to bottom, #000a1996, #ffffff00), var(--background);
+
+    &:after {
+        content: '';
+        background-image: inherit;
+        background-size: cover;
+        background-position: bottom;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 1;
+        filter: blur(2px);
+        mask: linear-gradient(black 20%, transparent);
+        -webkit-mask: linear-gradient(black 20%, transparent);
+    }
 }
 
 .episode-card-image {
@@ -202,10 +220,16 @@ a.card:hover {
 }
 
 .card-title-overlay {
-    background-color: rgba(255, 255, 255, 0.925);
-    bottom: auto;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0;
+    color: white;
+    background-color: transparent;
+    text-shadow: 0px 0px 0.1rem black;
+
+    h5 {
+        font-size: 1.4rem;
+    }
+    h5, h6 {
+        color: inherit;
+    }
 }
 
 /* Overlays used only on the intro page (with old tags) */
