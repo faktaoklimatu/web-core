@@ -291,7 +291,7 @@ ul.inline-bullet-list {
     }
 
     &-scrolled {
-        box-shadow: 0 3px 10px $c-grey;
+        box-shadow: 0 3px 10px $c-lighter-grey;
     }
 
     &-brand {
@@ -466,7 +466,7 @@ ul.inline-bullet-list {
 }
 
 #secondary-navbar.secondary-navbar-stuck {
-    box-shadow: 0 3px 10px $c-grey;
+    box-shadow: 0 3px 10px $c-lighter-grey;
     background-color: $c-body;
     // When getting stuck, animate also bg-color and shadow. When getting unstuck, animate neither bg-color not shadow
     // to avoid a weird transition artifact when scrolling fast up on desktop.
