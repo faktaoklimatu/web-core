@@ -15,7 +15,7 @@ body {
     padding-top: 56px;
     font-family: 'Source Sans Pro', sans-serif !important;
     color: $c-primary;
-    font-size: 1rem;
+    font-size: 1.1rem;
     background: $c-body;
     position: relative;
     display: flex;
@@ -33,9 +33,10 @@ main {
 
 /* Headings */
 
-h2 { font-size: 1.35rem; text-transform: uppercase; }
-h3 { font-size: 1.2rem; }
-h1, h2, h3, h4, h5, .display-1, .display-2, .display-3 { font-weight: bold; }
+h2 { font-size: 1.75rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+h3 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; }
+h4 { font-size: 1.2rem; margin-top: 1rem; margin-bottom: 0.5rem; }
+h1, h2, h3, h4, h5, .display-1, .display-2, .display-3 { font-weight: bold; color: $c-secondary; }
 h1 a, h2 a, h3 a, h4 a, h5 a { text-decoration: none; }
 
 // Display versions for the title page
@@ -224,8 +225,8 @@ ul.inline-bullet-list {
 
     &:hover {
         color: #fff;
-        background-color: $c-light-blue;
-        border-color: $c-light-blue;
+        background-color: $c-grey;
+        border-color: $c-grey;
     }
 }
 
@@ -235,8 +236,8 @@ ul.inline-bullet-list {
     border-color: $c-primary;
 
     &:hover {
-        background-color: $c-primary;
-        color: $c-body;
+        background-color: $c-grey;
+        border-color: $c-grey;
     }
 }
 
@@ -244,8 +245,8 @@ ul.inline-bullet-list {
 .btn-primary:not(:disabled):not(.disabled):active,
 .show > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: $c-light-blue;
-    border-color: $c-light-blue;
+    background-color: $c-grey;
+    border-color: $c-grey;
 }
 
 .dropdown-menu {
@@ -441,8 +442,8 @@ ul.inline-bullet-list {
         color: gray;
     }
     a.highlighted {
-        color: $c-primary;
-        border-bottom: 2px solid $c-primary;
+        color: $c-accent;
+        border-bottom: 2px solid $c-accent;
     }
 }
 
@@ -484,6 +485,7 @@ a.expander {
         transition: .3s transform ease-in-out;
         transform: rotate(-180deg);
     }
+    h2, h3, h4 { margin-top: 0rem; }
 }
 a.expander.collapsed i.fas {
     transform: rotate(0deg);

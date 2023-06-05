@@ -29,18 +29,18 @@
 
 .btn-tag-link {
     margin-bottom: 10px;
-    color: $c-primary;
-    border-color: $c-primary;
+    color: $c-accent;
+    border-color: $c-accent;
 
     &:hover {
-        background-color: $c-primary;
+        background-color: $c-accent;
         color: $c-body;
     }
 }
 
 .btn-tag-highlighted {
     margin-bottom: 10px;
-    background-color: $c-primary;
+    background-color: $c-accent;
     color: $c-body;
 
     &:hover {
