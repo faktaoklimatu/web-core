@@ -225,8 +225,8 @@ ul.inline-bullet-list {
 
     &:hover {
         color: #fff;
-        background-color: $c-grey;
-        border-color: $c-grey;
+        background-color: $c-accent;
+        border-color: $c-accent;
     }
 }
 
@@ -237,8 +237,8 @@ ul.inline-bullet-list {
 
     &:hover {
         color: $c-body;
-        background-color: $c-grey;
-        border-color: $c-grey;
+        background-color: $c-accent;
+        border-color: $c-accent;
     }
 }
 
@@ -248,8 +248,8 @@ ul.inline-bullet-list {
     border-color: $c-primary;
 
     &:hover {
-        background-color: $c-grey;
-        border-color: $c-grey;
+        background-color: $c-accent;
+        border-color: $c-accent;
     }
 }
 
@@ -257,8 +257,8 @@ ul.inline-bullet-list {
 .btn-primary:not(:disabled):not(.disabled):active,
 .show > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: $c-grey;
-    border-color: $c-grey;
+    background-color: $c-accent;
+    border-color: $c-accent;
 }
 
 .dropdown-menu {
@@ -285,7 +285,7 @@ ul.inline-bullet-list {
     }
 
     &-scrolled {
-        box-shadow: 0 3px 10px #e2e2ff;
+        box-shadow: 0 3px 10px $c-grey;
     }
 
     &-brand {
@@ -343,7 +343,7 @@ ul.inline-bullet-list {
     }
     &:not(.btn-primary) {
         &:focus, &:hover {
-            color:  #000000;
+            color: $c-accent;
         }
     }
 }
@@ -352,7 +352,7 @@ ul.inline-bullet-list {
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .show > .nav-link {
-    color: #000000;
+    color: $c-primary;
 }
 
 .navbar-expand-md .navbar-nav .nav-link {
@@ -451,7 +451,7 @@ ul.inline-bullet-list {
 
     a {
         text-decoration: none;
-        color: gray;
+        color: $c-grey;
     }
     a.highlighted {
         color: $c-accent;
@@ -460,7 +460,7 @@ ul.inline-bullet-list {
 }
 
 #secondary-navbar.secondary-navbar-stuck {
-    box-shadow: 0 3px 10px #e2e2ff;
+    box-shadow: 0 3px 10px $c-grey;
     background-color: $c-body;
     // When getting stuck, animate also bg-color and shadow. When getting unstuck, animate neither bg-color not shadow
     // to avoid a weird transition artifact when scrolling fast up on desktop.
