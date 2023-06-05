@@ -98,7 +98,6 @@
     }
     p.card-author {
         font-size: 0.9rem;
-        color: slategray;
         margin-top: -.375rem;
         margin-bottom: 0.5rem;
     }
@@ -166,9 +165,9 @@
         right: 0;
         bottom: 0;
         opacity: 1;
-        filter: blur(2px);
-        mask: linear-gradient(black 20%, transparent);
-        -webkit-mask: linear-gradient(black 20%, transparent);
+        filter: blur(1px);
+        mask: linear-gradient(black 15%, transparent);
+        -webkit-mask: linear-gradient(black 15%, transparent);
     }
 }
 
