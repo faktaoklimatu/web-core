@@ -17,15 +17,13 @@
               <a class="infographic no-ext-link-icon" id="data-our" href="{{ page.dataset-url }}">
                 <img class="dataset" src="/assets-local/datasets/{{ page.slug }}.png" alt="Dataset: {{ page.title }}">
               </a>
-              <hr/>
-              <p class="caption">{{ page.caption }}</p>
+              <p class="caption mt-5">{{ page.caption }}</p>
             </div>
 
             <div class="col-md-12 col-lg-3 download-buttons">
               <div class="d-none d-lg-block">
                 <h2>{{ site.data.lang.sidebar.data.title }}</h2>
                 {% include infographic-dataset-sidebar.html section="data" %}
-                <hr />
 
                 <h2>{{ site.data.lang.sidebar.share.title }}</h2>
                 <p>{{ site.data.lang.sidebar.share.caption-dataset-1 }} <a href="{{ site.data.lang.licence.link }}" title="{{ site.data.lang.licence.title }}" rel="license">{{ site.data.lang.licence.id }}</a>.</p>
@@ -41,7 +39,6 @@
                     {% include infographic-dataset-sidebar.html section="data" %}
                   </div>
                 </div>
-                <hr class="w-100 my-0">
                 <div class="d-flex d-lg-none align-items-center text-secondary">
                   <div>{{ site.data.lang.sidebar.mobile.share }}</div>
                   <div class="ml-auto text-right">
