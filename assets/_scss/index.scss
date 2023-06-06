@@ -362,6 +362,7 @@ a.card:hover {
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    color: $c-secondary;
 
     img {
         // Fix for img sizing on Safari.
