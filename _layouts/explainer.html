@@ -49,7 +49,7 @@
                   {%- for topic in site.topics %}
                     {%- assign series = topic.subtopics | find: "id", page.series-id %}
                     {%- if series %}
-                      <span>{{ series.title }}</span>
+                      <div>{{ series.title }}</div>
                       {%- break %}
                     {%- endif %}
                   {%- endfor %}
@@ -76,11 +76,13 @@
                   </div>
                   {% include tags.html tags=page.tags slug=page.slug link="true" %}
                 </div>
-                {%- if page.author %}
-                  <span class="authors author"><a href="/{{ site.slugs.about }}#members">{{ page.author }}</a></span>
-                {%- else if page.authors %}
-                  {% include authors.html authors=page.authors %}
-                {%- endif %}
+                <div class="d-none d-md-block">
+                  {%- if page.author %}
+                    <span class="authors author"><a href="/{{ site.slugs.about }}#members">{{ page.author }}</a></span>
+                  {%- else if page.authors %}
+                    {% include authors.html authors=page.authors %}
+                  {%- endif %}
+                </div>
               </div>
             </div>
           </div>
@@ -88,6 +90,13 @@
       </div>
     </div>
     <div class="section">
+      <div class="container-md d-md-none mb-5">
+        {%- if page.author %}
+          <span class="authors author"><a href="/{{ site.slugs.about }}#members">{{ page.author }}</a></span>
+        {%- else if page.authors %}
+          {% include authors.html authors=page.authors %}
+        {%- endif %}
+      </div>
       <div class="container-md container-xl-fluid">
         <div class="row justify-content-center">
           <div class="longread-xl-space-left"></div>
