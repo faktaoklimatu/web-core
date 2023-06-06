@@ -227,8 +227,8 @@ ul.inline-bullet-list {
 
 .btn-primary {
     color: #fff;
-    background-color: $c-primary;
-    border-color: $c-primary;
+    background-color: $c-secondary;
+    border-color: $c-secondary;
 
     &:hover {
         color: #fff;
@@ -251,8 +251,8 @@ ul.inline-bullet-list {
 
 .btn-secondary {
     background-color: transparent;
-    color: $c-primary;
-    border-color: $c-primary;
+    color: $c-secondary;
+    border-color: $c-secondary;
 
     &:hover, &:active {
         background-color: $c-accent;
