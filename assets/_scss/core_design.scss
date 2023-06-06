@@ -469,7 +469,7 @@ ul.inline-bullet-list {
         &:hover { color: $c-accent; }
         &.highlighted {
             color: $c-primary;
-            font-family: bold;
+            font-weight: bold;
         }
     }
 }
