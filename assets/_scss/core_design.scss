@@ -37,18 +37,18 @@ h2 { font-size: 1.75rem; margin-top: 2.5rem; margin-bottom: 1rem; }
 h3 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; }
 h4 { font-size: 1.2rem; margin-top: 1rem; margin-bottom: 0.5rem; }
 h2:first-child, h3:first-child, h4:first-child { margin-top: 0rem; }
-h1, h2, h3, h4, h5, .display-1, .display-2, .display-3 { font-weight: bold; color: $c-secondary; }
+h1, h2, h3, h4, h5, .display { font-weight: bold; color: $c-secondary; }
 h1 a, h2 a, h3 a, h4 a, h5 a { text-decoration: none; }
 
 // Display versions for the title page
-.display-1 { font-size: 3rem; }
-.display-2 { font-size: 2rem; text-transform: none; }
-.display-3 { font-size: 1.5em; margin: 0rem}
+h1.display { font-size: 3rem; }
+h2.display { font-size: 2rem; text-transform: none; }
+h3.display { font-size: 1.5em; margin: 0rem}
 
 @media (min-width: 768px) {
-    .display-1 { font-size: 4rem; }
-    .display-2 { font-size: 2.5rem; text-transform: none; }
-    .display-3 { font-size: 1.75em; margin: 0rem}
+    h1.display { font-size: 4rem; }
+    h2.display { font-size: 2.5rem; text-transform: none; }
+    h3.display { font-size: 1.75em; margin: 0rem}
 }
 
 /* Links */
