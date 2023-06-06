@@ -458,10 +458,12 @@ ul.inline-bullet-list {
     a {
         text-decoration: none;
         color: $c-grey;
-    }
-    a.highlighted {
-        color: $c-accent;
-        border-bottom: 2px solid $c-accent;
+
+        &:hover { color: $c-accent; }
+        &.highlighted {
+            color: $c-accent;
+            border-bottom: 2px solid $c-accent;
+        }
     }
 }
 
