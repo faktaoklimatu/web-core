@@ -468,8 +468,8 @@ ul.inline-bullet-list {
 
         &:hover { color: $c-accent; }
         &.highlighted {
-            color: $c-accent;
-            border-bottom: 2px solid $c-accent;
+            color: $c-primary;
+            font-family: bold;
         }
     }
 }
