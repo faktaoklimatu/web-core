@@ -9,7 +9,7 @@
     </div>
   {%- endif %}
   {%- assign minors = include.authors | where_exp: "author","author.minor-role != nil" %}
-  {%- if minors %}
+  {%- if minors.size > 0 %}
     <dl class="authors-minor">
       {%- for author in minors %}
         <dt>{{ author.minor-role }}:</dt>

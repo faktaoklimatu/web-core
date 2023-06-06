@@ -1,25 +1,5 @@
 /* Explainer template */
 
-.explainer-cover-container {
-    display: flex;
-    flex-direction: column-reverse;
-}
-
-.explainer-cover::before {
-    content: " ";
-    display: block;
-    background-image: var(--path-mobile);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-top: 60%;
-    margin-bottom: 1.5rem;
-}
-
-.explainer-cover {
-    padding: 0;
-}
-
 .cover-header-source {
     text-align: right;
     padding-top: 0.2rem;
@@ -61,37 +41,72 @@
     }
 }
 
-.explainer-type {
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    span {
-        opacity: 0.8;
-        padding-inline-start: 0.3rem;
+.explainer-cover-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.explainer-cover {
+    --spacing-around-title: 4rem;
+    background-image: var(--path-mobile);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-color: #a0a5b8 !important;
+    color: white;
+    text-shadow: 0px 0px 0.1rem black;
+    padding-bottom: 0.5rem;
+
+    .explainer-type {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.9rem;
+        min-height: var(--spacing-around-title);
+        div {
+            opacity: 0.8;
+        }
+    }
+
+    h1 {
+        color: white;
+        font-size: 2.5rem;
+        vertical-align: baseline;
+        min-height: 4rem;
+        margin-bottom: var(--spacing-around-title);
+        display: flex;
+    }
+    .authors a {
+        color: white;
+    }
+    .tags {
+        text-shadow: none;
     }
 }
 
 .explainer-metadata {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
     font-size: 1.1rem;
 
     .date-tags {
-        margin-bottom: 0.5rem;
-    }
-
-    .author {
-        font-weight: bold;
+        display: flex;
     }
 
     .date {
-        margin-bottom: 0.5rem;
-        padding-left: 0.5rem;
+        flex-shrink: 0;
         .updated {
             font-size: 0.9rem;
             opacity: 0.8;
         }
+
+        &::after {
+            content: "•";
+            padding-inline: .5rem;
+        }
     }
+}
+
+.author {
+    font-weight: bold;
 }
 
 .longread .perex {
@@ -100,71 +115,37 @@
     line-height: 1.5em;
 }
 
-h1 {
-    display: flex;
-}
-
 .series-order {
     opacity: 50%;
     padding-right: 0.2em;
 }
 
 @media (min-width: 768px) {
-    .cover-header-source {
-        .cover-header-source-toggle.collapsed {
-            background-color: rgba(white, 0.3);
-        }
-        .cover-header-source-toggle, .cover-header-source-toggle:hover, #coverLicense {
-            background-color: rgba(white, 0.6);
-        }
-    }
-
-    .explainer-cover::before {
-        content: none;
-    }
-
     .explainer-cover {
+        --spacing-around-title: 5rem;
         background-image: var(--path-desktop);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-blend-mode: multiply;
-        background-color: #a0a5b8 !important;
-        padding-top: 11%;
-        color: white;
-        text-shadow: 0px 0px 0.1rem black;
-        h1 {
-            color: white;
-            font-size: 4rem;
-            // min-height: calc(1.2em * 3);  // minimum three lines
-            vertical-align: baseline;
-        }
-        .authors a {
-            color: white;
-        }
-        .tags {
-            text-shadow: none;
-        }
-    }
+        padding-bottom: 1rem;
 
-    .explainer-cover-container {
-        flex-direction: column;
+        .explainer-type {
+            font-size: 1.1rem;
+            div {
+                display: inline;
+                padding-inline-start: 0.3rem;
+            }
+        }
+
+        h1 {
+            font-size: 4rem;
+            min-height: 11rem;
+        }
     }
 
     .explainer-metadata {
-        padding-top: 4%;
         display: flex;
         align-items: center;
+        min-height: 4rem;
 
-        .date-tags {
-            flex-grow: 1;
-            display: flex;
-        }
-
-        .date::after {
-            content: "•";
-            padding-inline: .5rem;
-        }
+        .date-tags { flex-grow: 1; }
     }
 }
 
