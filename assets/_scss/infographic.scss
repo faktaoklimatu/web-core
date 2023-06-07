@@ -40,6 +40,10 @@ p.caption {
   stroke: none;
 }
 
+.btn-sharing:hover svg {
+    fill: white;
+  }
+
 #sharing-embed svg {
     width: 1.3em;
     height: 1.3em;
