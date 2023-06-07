@@ -18,17 +18,12 @@ p.caption {
 }
 
 .downloads-box {
-    h2:first-child {
-        margin-top: 0;
-    }
-
-    h2:not(:first-child) {
-        margin-top: 1.5rem;
-    }
-
     p {
         text-align: left;
         font-size: 0.91rem;
+    }
+    div {
+        font-size: 1rem;
     }
 }
 
