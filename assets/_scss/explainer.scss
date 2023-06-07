@@ -47,7 +47,8 @@
 }
 
 .explainer-cover {
-    --spacing-around-title: 4rem;
+    --spacing-around-title: 1.5rem;
+    --additional-spacing-below: 1rem;
     background-image: var(--path-mobile);
     background-position: center;
     background-repeat: no-repeat;
@@ -59,10 +60,13 @@
     padding-bottom: 0.5rem;
 
     .explainer-type {
+        --margin: 1rem;
         text-transform: uppercase;
         font-weight: bold;
         font-size: 0.9rem;
-        min-height: var(--spacing-around-title);
+        margin-bottom: var(--margin);
+        min-height: calc(var(--spacing-around-title) - var(--margin));
+
         div {
             opacity: 0.8;
         }
@@ -73,7 +77,7 @@
         font-size: 2.5rem;
         vertical-align: baseline;
         min-height: 6rem;
-        margin-bottom: var(--spacing-around-title);
+        margin-bottom: calc(var(--spacing-around-title) + var(--additional-spacing-below));
         display: flex;
     }
     .authors a {
