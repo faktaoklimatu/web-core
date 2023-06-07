@@ -25,21 +25,21 @@
 
           <aside class="col-lg-3 downloads-box">
             <div class="d-none d-lg-block">
-              <h2>{{ site.data.lang.sidebar.download.title }}</h2>
+              <h3>{{ site.data.lang.sidebar.download.title }}</h3>
               <p>{{ site.data.lang.sidebar.download.caption }} (<a href="/{{ site.slugs.how-to-use }}#file-formats">{{ site.data.lang.sidebar.download.which-file-format }}</a>)</p>
               {% include infographic-dataset-sidebar.html section="downloads" %}
 
               {% if page.dataset or page.data-our or page.data-orig %}
-                <h2>{{ site.data.lang.sidebar.data.title }}</h2>
+                <h3>{{ site.data.lang.sidebar.data.title }}</h3>
                 {% include infographic-dataset-sidebar.html section="data" %}
               {% endif %}
 
-              <h2>{{ site.data.lang.sidebar.share.title }}</h2>
+              <h3>{{ site.data.lang.sidebar.share.title }}</h3>
               <p>{{ site.data.lang.sidebar.share.caption-infographic }} <a href="{{ site.data.lang.licence.link }}" title="{{ site.data.lang.licence.title }}" rel="license">{{ site.data.lang.licence.id }}</a>. (<a href="/{{ site.slugs.how-to-use }}">{{ site.data.lang.sidebar.share.usage }}</a>)</p>
               {% include infographic-dataset-sidebar.html section="sharing" %}
             </div>
-            <div class="d-lg-none">
-              <h2>{{ site.data.lang.sidebar.mobile.title }}</h2>
+            <div class="d-lg-none downloads-box mt-5">
+              <h3>{{ site.data.lang.sidebar.mobile.title }}</h3>
               <p>{{ site.data.lang.sidebar.mobile.caption-infographic }} <a href="{{ site.data.lang.licence.link }}" title="{{ site.data.lang.licence.title }}" rel="license">{{ site.data.lang.licence.id }}</a>. (<a href="/{{ site.slugs.how-to-use }}">{{ site.data.lang.sidebar.share.usage }}</a>)</p>
               <div class="d-flex d-lg-none align-items-center mt-2 text-secondary">
                 <div>{{ site.data.lang.sidebar.mobile.download }}</div>
@@ -66,7 +66,7 @@
               <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h2 class="modal-title" id="modal-title">{{ site.data.lang.sidebar.share.modal-title }}</h2>
+                    <h3 class="modal-title" id="modal-title">{{ site.data.lang.sidebar.share.modal-title }}</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>

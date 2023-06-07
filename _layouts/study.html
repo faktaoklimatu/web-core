@@ -22,7 +22,7 @@
             <div class="card">
               <img src="{{ download_path }}.jpg" class="card-img-top" alt="{{ page.title }}" title="{{ page.study-title }} ({{ page.study-year}})">
               <div class="card-body">
-                <h2 class="card-title">{{ page.study-title }}</h2>
+                <h3 class="card-title">{{ page.study-title }}</h3>
                 <ul>
                   {% if page.study-author %}<li><strong>{{ site.data.lang.sidebar.study.author }}</strong>: {{ page.study-author }}</li>{% endif %}
                   {% if page.study-institution %}<li><strong>{{ site.data.lang.sidebar.study.institution }}</strong>: {{ page.study-institution }}</li>{% endif %}

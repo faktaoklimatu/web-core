@@ -20,18 +20,18 @@
               <p class="caption mt-5">{{ page.caption }}</p>
             </div>
 
-            <div class="col-md-12 col-lg-3 download-buttons">
+            <div class="col-md-12 col-lg-3 downloads-box">
               <div class="d-none d-lg-block">
-                <h2>{{ site.data.lang.sidebar.data.title }}</h2>
+                <h3>{{ site.data.lang.sidebar.data.title }}</h3>
                 {% include infographic-dataset-sidebar.html section="data" %}
 
-                <h2>{{ site.data.lang.sidebar.share.title }}</h2>
+                <h3>{{ site.data.lang.sidebar.share.title }}</h3>
                 <p>{{ site.data.lang.sidebar.share.caption-dataset-1 }} <a href="{{ site.data.lang.licence.link }}" title="{{ site.data.lang.licence.title }}" rel="license">{{ site.data.lang.licence.id }}</a>.</p>
                 <p>{{ site.data.lang.sidebar.share.caption-dataset-2 }}</p>
                 {% include infographic-dataset-sidebar.html section="sharing" %}
               </div>
-              <div class="d-lg-none download-buttons-smallscreen">
-                <h2>{{ site.data.lang.sidebar.mobile.title }}</h2>
+              <div class="d-lg-none downloads-box mt-5">
+                <h3>{{ site.data.lang.sidebar.mobile.title }}</h3>
                 <p>{{ site.data.lang.sidebar.mobile.caption-dataset-1 }} <a href="{{ site.data.lang.licence.link }}" title="{{ site.data.lang.licence.title }}" rel="license">{{ site.data.lang.licence.id }}</a>. {{ site.data.lang.sidebar.share.caption-dataset-2 }}</p>
                 <div class="d-flex d-lg-none align-items-center text-secondary mt-2">
                   <div>{{ site.data.lang.sidebar.mobile.data }}</div>
@@ -50,7 +50,7 @@
                 <div class="modal-dialog modal-lg" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h2 class="modal-title" id="modal-title">{{ site.data.lang.sidebar.share.modal-title }}</h2>
+                      <h3 class="modal-title" id="modal-title">{{ site.data.lang.sidebar.share.modal-title }}</h3>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
