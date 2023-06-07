@@ -243,18 +243,6 @@ ul.inline-bullet-list {
     }
 }
 
-.btn-gray {
-    color: $c-body;
-    background-color: $c-lighter-grey;
-    border-color: $c-lighter-grey;
-
-    &:hover {
-        color: $c-body;
-        background-color: $c-accent;
-        border-color: $c-accent;
-    }
-}
-
 .btn-secondary {
     background-color: transparent;
     color: $c-secondary;
