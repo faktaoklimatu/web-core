@@ -76,7 +76,7 @@
         color: white;
         font-size: 2.5rem;
         vertical-align: baseline;
-        min-height: 6rem;
+        min-height: 4rem;
         margin-bottom: calc(var(--spacing-around-title) + var(--additional-spacing-below));
         display: flex;
     }
@@ -114,6 +114,7 @@
 }
 
 .longread .perex {
+    margin-top: 0rem;
     margin-bottom: 3rem;
     font-size: 1.4rem;
     line-height: 1.5em;
@@ -126,9 +127,10 @@
 
 @media (min-width: 768px) {
     .explainer-cover {
-        --spacing-around-title: 7rem;
+        --spacing-around-title: 2rem;
         background-image: var(--path-desktop);
-        padding-bottom: 1rem;
+        padding-top: 10%;
+        padding-bottom: 0.75rem;
 
         .explainer-type {
             font-size: 1.1rem;
@@ -140,7 +142,7 @@
 
         h1 {
             font-size: 4rem;
-            min-height: 11rem;
+            min-height: 7rem;
         }
     }
 
