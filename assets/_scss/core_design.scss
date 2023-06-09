@@ -256,10 +256,12 @@ ul.inline-bullet-list {
 
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,
-.show > .btn-primary.dropdown-toggle {
+.show{ 
+    & > .btn-primary.dropdown-toggle, & > .btn-secondary.dropdown-toggle {
     color: #fff;
     background-color: $c-accent;
     border-color: $c-accent;
+    }
 }
 
 .dropdown-menu {
@@ -457,7 +459,9 @@ ul.inline-bullet-list {
         &:hover { color: $c-accent; }
         &.highlighted {
             color: $c-primary;
-            border-bottom: 2px solid $c-primary;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+            text-decoration-color: currentcolor;
         }
     }
 }
