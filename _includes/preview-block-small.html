@@ -3,28 +3,28 @@
     {%- when 'infographic' %}
         <div style="background-image: url('/assets/generated/{{ item.slug }}_600.png')" class="specific-card"></div>
     {%- when 'dataset' %}
-        <div style="background-image: url('/assets/datasets/{{ item.slug }}.png')" class="specific-card"></div>
+        <div style="--background: url('/assets/datasets/{{ item.slug }}.png')" class="specific-card small-card-bg"></div>
         <div class="card-img-overlay small-card-img-overlay">
             <h5>{{ site.data.lang.text.dataset.dataset }}</h5>
         </div>
     {%- when 'explainer' %}
-        <div style="background-image: url('/assets/covers/{{ item.slug }}_600.jpg')" class="specific-card"></div>
+        <div style="--background: url('/assets/covers/{{ item.slug }}_600.jpg')" class="specific-card small-card-bg"></div>
         <div class="card-img-overlay small-card-img-overlay">
             <h5>{{ item.type | default: site.data.lang.text.explainer.explainer }}</h5>
         </div>
     {%- when 'study' %}
-        <div style="background-image: url('/assets/studies/{{ item.slug }}.jpg')" class="specific-card"></div>
+        <div style="--background: url('/assets/studies/{{ item.slug }}.jpg')" class="specific-card small-card-bg"></div>
         <div class="card-img-overlay small-card-img-overlay">
             <h5>{{ site.data.lang.text.study.study }}</h5>
         </div>
     {% when 'publication' %}
-        <div style="background-image: url('/assets/studies/{{ item.slug }}.svg')" class="specific-card"></div>
+        <div style="--background: url('/assets/studies/{{ item.slug }}.svg')" class="specific-card small-card-bg"></div>
         <div class="card-img-overlay small-card-img-overlay">
             <h5>{{ item.type | default: site.data.lang.text.publication.publication }}</h5>
         </div>
     {%- when 'survey' %}
         {%- if item.use-preview-image %}
-            <div style="background-image: url('/assets/studies/{{ item.slug }}.jpg')" class="specific-card"></div>
+            <div style="--background: url('/assets/studies/{{ item.slug }}.jpg')" class="specific-card small-card-bg"></div>
             <div class="card-img-overlay small-card-img-overlay">
                 <h5>{{ site.data.lang.text.survey.survey }}</h5>
             </div>
@@ -42,7 +42,7 @@
     {%- else %}
         {%- if item.search_type %}
             {%- if item.search_image %}
-                <div style="background-image: url('{{ item.search_image }}')" class="specific-card"></div>
+                <div style="--background: url('{{ item.search_image }}')" class="specific-card small-card-bg"></div>
             {%- else %}
                 <div class='branded-card'></div>
             {%- endif %}

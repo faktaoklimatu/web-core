@@ -71,7 +71,7 @@
 
 .card {
     margin: 10px 0;
-    border-width: 2px;
+    border-width: 1px;
 }
 
 .preview-card-container {
@@ -183,6 +183,10 @@ a.card:hover {
             font-size: 0.7rem;
         }
     }
+}
+
+.small-card-bg {
+    background-image: linear-gradient(to top, rgba(0, 20, 65, 0.7), #ffffff00), var(--background);
 }
 
 @media (min-width: 768px) {
