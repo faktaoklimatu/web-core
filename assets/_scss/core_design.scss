@@ -57,6 +57,16 @@ a {
     color: $c-primary;
     text-decoration: underline;
     cursor: pointer;
+
+    &:hover {
+        color: $c-primary;
+    }
+}
+
+@media (hover: hover) {
+    a:hover {
+        color: $c-accent;
+    }
 }
 
 .ext-link:after, .glossary-link:after {
@@ -256,7 +266,7 @@ ul.inline-bullet-list {
 
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,
-.show{ 
+.show{
     & > .btn-primary.dropdown-toggle, & > .btn-secondary.dropdown-toggle {
     color: #fff;
     background-color: $c-accent;
@@ -504,8 +514,17 @@ a.expander {
         transition: .3s transform ease-in-out;
         transform: rotate(-180deg);
     }
-    h2, h3, h4 { margin-top: 0rem; }
+    h2, h3, h4 {
+        margin-top: 0rem;
+
+        @media (hover: hover) {
+            &:hover {
+                color: $c-accent;
+            }
+        }
+    }
 }
+
 a.expander.collapsed i.fas {
     transform: rotate(0deg);
 }
