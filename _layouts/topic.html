@@ -88,14 +88,8 @@
                           <div class="item">
                             {%- if item.region %}
                               <div class="scope">
-                                {%- case item.region %}
-                                  {% when 'cz' %}
-                                    <img src="/assets/topic-icons/cz.svg" alt="ČR"><span>ČR</span>
-                                  {% when 'eu' %}
-                                    <img src="/assets/topic-icons/eu.svg" alt="EU"><span>EU</span>
-                                  {% when 'world' %}
-                                    <img src="/assets/topic-icons/world.svg" alt="svět"><span>svět</span>
-                                {%- endcase %}
+                                {%- assign scope_label = site.data.lang.topic.region[item.region] %}
+                                <img src="/assets/topic-icons/{{ item.region }}.svg" alt="{{ scope_label }}"><span>{{ scope_label }}</span>
                               </div>
                             {%- endif %}
                             <div class="value">
