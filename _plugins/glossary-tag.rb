@@ -33,20 +33,20 @@ module Jekyll
           id = element['id']
           # Require that each reference specify the ID of the referenced item.
           if id.nil?
-            Jekyll.logger.error "glossary-tag: tag has no id attribute"
+            Jekyll.logger.abort_with "glossary-tag: tag has no id attribute"
             next
           end
 
           # Require that the tag have contents, i.e. disallow <glossary id="xxx" />
           if element.children.empty?
-            Jekyll.logger.error "glossary-tag: tag '#{id}' cannot be empty"
+            Jekyll.logger.abort_with "glossary-tag: tag '#{id}' cannot be empty"
             next
           end
 
           # Find the definition of the corresponding item in the glossary.
           item = glossary.find { |it| it['id'] == id }
           if item.nil?
-            Jekyll.logger.error "glossary-tag: item with id '#{id}' does not exist in glossary"
+            Jekyll.logger.abort_with "glossary-tag: item with id '#{id}' does not exist in glossary"
             next
           end
 
