@@ -3,9 +3,10 @@ $(document).ready(function() {
         console.log('This is the local development version of the website.');
     }
 
-    // Enable all poppers in the document
+    // Enable all poppers and tooltips in the document
     setTimeout(function () {
         $('[data-toggle="popover"]').popover();
+        $('[data-toggle="tooltip"]').tooltip();
     }, 500);
 
     // Render table of contents if it is non-trivial.
