@@ -4,10 +4,8 @@ $(document).ready(function() {
     }
 
     // Enable all poppers and tooltips in the document
-    setTimeout(function () {
-        $('[data-toggle="popover"]').popover();
-        $('[data-toggle="tooltip"]').tooltip();
-    }, 500);
+    $('[data-toggle="popover"]').popover();
+    $('[data-toggle="tooltip"]').tooltip();
 
     // Render table of contents if it is non-trivial.
     if ($('.longread h2, .longread h3').length > 1) {
@@ -64,7 +62,7 @@ $(document).ready(function() {
             expandables.addClass(blockExpandingClass);
             setTimeout(() => {
                 expandables.addClass(blockExpandedClass);
-              });
+            });
         }
     });
 });
