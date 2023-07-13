@@ -46,8 +46,9 @@
 }
 
 .large-expander-title span {
-    font-size: 1.2rem;
-    font-weight: bold;
+    // This corresponds to H4 style, keep in sync.
+    font-size: 1.15rem;
+    font-weight: 600;
 }
 
 .expander-body {
