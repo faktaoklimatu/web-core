@@ -93,19 +93,20 @@
 
     .date-tags {
         display: flex;
+        flex-wrap: wrap;
+    }
+
+    .date, .tags {
+        margin-top: 1rem;
     }
 
     .date {
-        flex-shrink: 0;
         .updated {
             font-size: 0.9rem;
             opacity: 0.8;
         }
 
-        &::after {
-            content: "•";
-            padding-inline: .5rem;
-        }
+        padding-right: 2rem;
     }
 }
 
