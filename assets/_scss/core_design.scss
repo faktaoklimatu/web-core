@@ -200,6 +200,10 @@ ol ol {
         background-color: rgba(0,0,0,.05);
     }
 
+    tbody {
+        border-bottom: 1px solid #dee2e6;
+    }
+
     &-striped tbody tr:nth-of-type(odd) {
         background-color: rgba(0,0,0,.02);
     }
