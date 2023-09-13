@@ -181,3 +181,9 @@
         margin-bottom: 0;
     }
 }
+
+/* Figure within a list item actually breaks the list into two. This class simulates the figure being within the list item. */
+
+.figure-in-list {
+    margin-left: 40px;
+}
