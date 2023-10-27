@@ -1,3 +1,4 @@
+{%- assign folder = include.folder | default:page.slug %}
 <div class="longread-figure {{ include.class }}">
   {%- if include.caption-above %}
     <div class="caption caption-above">{{ include.caption-above | markdownify }}</div>
@@ -5,15 +6,15 @@
   {%- capture picture %}
   <picture>
     {%- if include.name-mobile %}
-    <source media="(max-width: 575px)" srcset="/assets-local/figures/{{ page.slug }}/{{ include.name-mobile }}" />
+    <source media="(max-width: 575px)" srcset="/assets-local/figures/{{ folder }}/{{ include.name-mobile }}" />
     {%- endif %}
-    <img src="/assets-local/figures/{{ page.slug }}/{{ include.name }}" alt="{{ include.alt }}" class="{{ include.image-class }}">
+    <img src="/assets-local/figures/{{ folder }}/{{ include.name }}" alt="{{ include.alt }}" class="{{ include.image-class }}">
   </picture>
   {%- endcapture %}
   {%- if include.no-lightbox %}
     {{ picture }}
   {%- else %}
-  <a class="lightbox-desktop-only" href="/assets-local/figures/{{ page.slug }}/{{ include.name }}" data-lightbox
+  <a class="lightbox-desktop-only" href="/assets-local/figures/{{ folder }}/{{ include.name }}" data-lightbox
     {%- assign suffix = include.name | split:'.' | last %}
     {%- if suffix == "svg" %}
     data-type="iframe"
