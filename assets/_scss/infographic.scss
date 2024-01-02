@@ -36,22 +36,14 @@ p.caption {
     text-decoration: none;
 }
 
-.btn-sharing svg {
-  width: 1em;
-  height: 1.5em;
-  margin: 0;
-  vertical-align: middle;
-  fill: $c-primary;
-  stroke: none;
+.btn-sharing i {
+    width: 1em;
+    margin: 0;
+    vertical-align: middle;
 }
 
-.btn-sharing:hover svg {
-    fill: white;
-  }
-
-#sharing-embed svg {
+.sharing-embed i {
     width: 1.3em;
-    height: 1.3em;
 }
 
 .embed-example-caption {
