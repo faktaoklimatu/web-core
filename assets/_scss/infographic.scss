@@ -32,22 +32,6 @@ p.caption {
     }
 }
 
-@media print {
-    .infographic-title {
-        display: none;
-    }
-    .infographic-box {
-        max-width: 100%;
-        flex: 0 0 100%;
-    }
-    img.infographic {
-        margin: 0;
-    }
-    .downloads-box {
-        display: none;
-    }
-
-}
 
 .dropdown-links a {
     text-decoration: none;
@@ -362,4 +346,22 @@ p.caption {
         flex: 0 0 100%;
         max-width: 100%;
     }
+
+    .infographic-title {
+        display: none;
+    }
+    .infographic-box {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    img.infographic {
+        margin: 0;
+    }
+    .downloads-box {
+        display: none;
+    }
+    .container{
+        min-width: 0px !important;
+    }
+
 }

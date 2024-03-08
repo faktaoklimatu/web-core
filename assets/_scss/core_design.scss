@@ -11,6 +11,18 @@ html {
     }
 }
 
+@media print {
+    html {
+        background-color: white;
+        scroll-padding-top: 0rem;
+    }
+}
+
+@page {
+    size: a4 portrait;
+    margin-top: 2cm;
+  }
+
 body {
     padding-top: 56px;
     font-family: 'Source Sans Pro', sans-serif !important;
@@ -25,14 +37,13 @@ body {
     @media screen and (max-width: 768px) {
         text-align: left;
     }
-}
 
-@media print {
-    body {
-        padding-top: 0;
+    @media print {
+        background-color: white;
         color: black;
     }
 }
+
 
 main {
     flex-grow: 1;
@@ -58,6 +69,12 @@ h3.display { font-size: 1.5em; margin: 0rem}
     h1.display { font-size: 4rem; }
     h2.display { font-size: 2.5rem; text-transform: none; }
     h3.display { font-size: 1.75em; margin: 0rem}
+}
+
+@media print{
+    h1, h2, h3, h4, h5{
+        color: black;
+    }
 }
 
 /* Links */

@@ -156,6 +156,34 @@
     }
 }
 
+@media print {
+    .explainer-cover-container{
+        color:black;
+    }
+    .cover-header-source{
+        display: none;
+    }
+
+    .explainer-cover {
+        background-image: none;
+        background-color: white !important;
+        padding-top: 0mm; 
+
+        h1 {
+            font-size: 40pt;
+            min-height: 50pt;
+            color: black;
+        }
+        .explainer-metadata{
+            color: black;
+        }        
+        .authors a{
+            color: black;
+            text-decoration: none;
+        }
+    }
+}
+
 /* TL;DR box */
 
 .longread .tldr {
