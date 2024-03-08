@@ -20,7 +20,7 @@ html {
 
 @page {
     size: a4 portrait;
-    margin-top: 2cm;
+    margin: 20mm 30mm;
   }
 
 body {
@@ -214,6 +214,7 @@ span[title] {
 @media print {
     .section {
         background-color: white;
+        width: 210mm;
     }
 }
 

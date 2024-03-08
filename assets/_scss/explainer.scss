@@ -159,6 +159,7 @@
 @media print {
     .explainer-cover-container{
         color:black;
+        flex-direction: row;
     }
     .cover-header-source{
         display: none;
@@ -173,6 +174,7 @@
             font-size: 40pt;
             min-height: 50pt;
             color: black;
+            max-width: 210mm;
         }
         .explainer-metadata{
             color: black;
@@ -252,4 +254,5 @@
     #zdroje-a-poznámky, #poznámky{
         page-break-before: always;
     }
+
 }
