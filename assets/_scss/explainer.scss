@@ -240,3 +240,16 @@
         }
     }
 }
+@media print {
+    .multi-card-box{
+        display: none;
+    }
+
+    .collapse{
+        display: block !important;
+    }
+
+    #zdroje-a-poznámky, #poznámky{
+        page-break-before: always;
+    }
+}
