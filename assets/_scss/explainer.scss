@@ -184,6 +184,12 @@
             text-decoration: none;
         }
     }
+
+    .authors{
+        a{
+            text-decoration: none;
+        }
+    }
 }
 
 /* TL;DR box */
@@ -251,7 +257,7 @@
         display: block !important;
     }
 
-    #zdroje-a-poznámky, #poznámky{
+    #zdroje-a-poznámky, #poznámky, #zdroje{
         page-break-before: always;
     }
 
