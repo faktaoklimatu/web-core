@@ -1,0 +1,32 @@
+.table {
+    margin: 2rem auto;
+    font-size: .9em;
+    width: auto;
+}
+
+.table thead {
+    background: none;
+}
+
+.table thead th {
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    border-top: none;
+    line-height: 1.2em;
+}
+
+.table thead th span {
+    text-transform: none;
+    letter-spacing: 0;
+    color: #999;
+    font-weight: normal;
+}
+
+.table tbody {
+    color: #555;
+    border-bottom: none;
+}
+
+.table td, .table th {
+    padding: 0.5rem 0.75rem;
+}
