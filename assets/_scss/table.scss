@@ -1,0 +1,30 @@
+.table {
+    margin: 2rem auto;
+    font-size: .9em;
+    width: auto;
+
+    thead {
+        background: none;
+
+        th {
+            text-transform: uppercase;
+            letter-spacing: .02em;
+            border-top: none;
+            line-height: 1.2em;
+
+            .text-muted {
+                text-transform: none;
+                letter-spacing: 0;
+                font-weight: normal;
+            }
+        }
+    }
+
+    tbody { color: $c-body-lighter; }
+
+    &.no-border tbody { border-bottom: none; }
+
+    td, th {
+        padding: 0.5rem 0.75rem;
+    }
+}
