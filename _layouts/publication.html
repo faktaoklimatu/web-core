@@ -10,6 +10,7 @@
     {% assign image_path = "/assets/illustrations/" | append: page.slug %}
     <div class="section publication-cover"
          style="--bg-color: {{ page.background_color | default: 'dimgray' }};
+                --text-color: {{ page.text_color | default: 'white' }};
                 --cover-img: url('{{ image_path }}.svg');">
       <div class="container">
         <div class="cover-img-desktop">
@@ -30,7 +31,7 @@
           {%- endif %}
           {% include authors.html authors=page.authors %}
           <div class="download">
-            <a href="/assets-local/publications/{{ page.slug }}.pdf" class="btn btn-outline-light">
+            <a href="/assets-local/publications/{{ page.slug }}.pdf" class="btn {{ page.button_style | default: 'btn-outline-light' }}">
               <i class="fas fa-fw fa-download"></i>
               {{ page.download | default: site.data.lang.text.publication.download }}
             </a>
