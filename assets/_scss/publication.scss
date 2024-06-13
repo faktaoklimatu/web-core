@@ -2,11 +2,11 @@
 
 .publication-cover {
     padding-top: 0;
-    color: white;
+    color: var(--text-color);
     background-color: var(--bg-color) !important;
 
     a {
-        color: white;
+        color: var(--text-color);
     }
 
     .cover-img-mobile {
@@ -21,7 +21,7 @@
     }
 
     .titles {
-        h1 { color: white; }
+        h1 { color: var(--text-color); }
         .publication-type {
             text-transform: uppercase;
             font-weight: bold;
