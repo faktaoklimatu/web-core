@@ -1,5 +1,5 @@
 os: linux
-dist: focal    # Ubuntu 20.04 LTS
+dist: jammy  # Ubuntu 22.04 LTS
 language: ruby
 gemfile: web-core/Gemfile
 
@@ -11,7 +11,7 @@ git:
 addons:
   apt:
     sources:
-      - sourceline: 'ppa:inkscape.dev/stable'
+    - sourceline: 'ppa:inkscape.dev/stable'
     packages:
     - inkscape
     - imagemagick
