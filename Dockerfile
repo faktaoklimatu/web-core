@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:jammy
 
 LABEL name="Facts on Climate" \
       maintainer="info@factsonclimate.org" \
