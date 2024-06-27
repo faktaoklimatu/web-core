@@ -75,10 +75,10 @@ check: build
 lighthouse: build
 	lhci autorun
 
-deploy-preview: build
+deploy-preview:
 	./firebase hosting:channel:deploy $(BRANCH) --only preview
 
-deploy-production: build
+deploy-production:
 	./firebase deploy --only hosting:production
 
 # === Targets for generating files  ===
