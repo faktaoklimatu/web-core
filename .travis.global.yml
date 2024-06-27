@@ -48,12 +48,14 @@ before_deploy:
 deploy:
   # Firebase production deployment
   - provider: script # uses FIREBASE_TOKEN
+    edge: true
     on:
       branch: master
     skip_cleanup: true
     script: make deploy-production
   # Firebase preview deployment
   - provider: script # uses FIREBASE_TOKEN
+    edge: true
     on:
       all_branches: true
       condition: $TRAVIS_BRANCH = preview-*
