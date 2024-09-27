@@ -314,7 +314,7 @@ a.card:hover {
     &.small { width: 90px; }
     &.square { width: 90px; }
 }
-.logos .note{
+.logos .note {
     font-size: 0.9rem;
 }
 @media (min-width: 768px) {
@@ -323,8 +323,9 @@ a.card:hover {
         margin: 0 2rem 1rem 0;
         &.small { width: 100px; }
         &.square { width: 100px; }
+        &.wide { width: auto; height: 4.5rem; }
     }
-    .logos .note{
+    .logos .note {
         font-size: 0.9rem;
     }
 }
