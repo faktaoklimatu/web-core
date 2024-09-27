@@ -17,5 +17,5 @@ gem 'nokogiri', '~> 1.13'
 # Local fix applied (URI escaping needed). Pull request submitted.
 # gem 'jekyll-target-blank'
 
-# Temporary workaround enabling build with Ruby 3+ (e.g. Fedora 34)
-gem "webrick", "~> 1.7"
+# Fix for CVE-2024-47220, https://nvd.nist.gov/vuln/detail/CVE-2024-47220
+gem 'webrick', '>= 1.8.2'
