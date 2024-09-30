@@ -313,6 +313,7 @@ a.card:hover {
     margin: 0 1.2rem .8rem 0;
     &.small { width: 90px; }
     &.square { width: 90px; }
+    &.wide { width: auto; height: 3.5rem; }
 }
 .logos .note {
     font-size: 0.9rem;
@@ -323,7 +324,7 @@ a.card:hover {
         margin: 0 2rem 1rem 0;
         &.small { width: 100px; }
         &.square { width: 100px; }
-        &.wide { width: auto; height: 4.5rem; }
+        &.wide { height: 4.5rem; }
     }
     .logos .note {
         font-size: 0.9rem;
