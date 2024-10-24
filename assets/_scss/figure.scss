@@ -37,15 +37,15 @@
     margin-block: 0.75rem;
 }
 
-.longread h4.expander-title {
+.longread h4.expander-header {
     margin-block: 0;
 }
 
-.expander-title span {
+.expander-header .expander-title {
     font-size: 1.1rem;
 }
 
-.large-expander-title span {
+.large-expander-title .expander-title {
     // This corresponds to H4 style, keep in sync.
     font-size: 1.2rem;
     font-weight: 600;
