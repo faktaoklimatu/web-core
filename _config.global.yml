@@ -41,6 +41,7 @@ exclude:
     - _studies/*.svg        # Study images
     - _studies/*.pdf        # Original study infographics (build moves them to assets)
     - _explainers/*.jpg     # Explainer cover image
+    - _explainers/*.png     # Explainer cover image
     - _episodes/*.jpg       # Episode cover image
     - _episodes/*.png       # Episode cover image
     - .cache/               # Intermediate files
