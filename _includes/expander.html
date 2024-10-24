@@ -1,15 +1,15 @@
 <div class="expander-block">
-  <h4 class="expander-title {{ include.label-class }}">
+  <h4 class="expander-header {{ include.label-class }}">
     {%- if include.expanded %}
-      <span>{{ include.label | markdownify }}</span>
+      <div class="expander-title">{{ include.label | markdownify }}</div>
     {%- else %}
       <a class="expander collapsed" data-toggle="collapse" data-target="#collapse-figure-{{ include.name }}" aria-expanded="false" aria-controls="collapse-figure-{{ include.name }}">
         <div class="expander-button">
           <i class="fas fa-chevron-down"></i>
         </div>
-        <span>
+        <div class="expander-title">
           {{ include.label | markdownify }}
-        </span>
+        </div>
       </a>
     {%- endif %}
   </h4>
