@@ -10,15 +10,14 @@
       "cleanUrls": true,
       "trailingSlash": false,
       "redirects": [ {
-        "source": "/assets/files/atlas-klimaticke-zmeny.pdf",
-        "destination": "/assets-local/files/atlas-klimaticke-zmeny.pdf",
-        "type": 301
-      },
-        {
-            "source": "/dotaznik",
-            "destination": "https://www.survio.com/survey/d/U1W4V6F5A5K9W0L3B",
-            "type": 301
-          } ],
+          "source": "/assets/files/atlas-klimaticke-zmeny.pdf",
+          "destination": "/assets-local/files/atlas-klimaticke-zmeny.pdf",
+          "type": 301
+        }, {
+          "source": "/dotaznik",
+          "destination": "https://www.survio.com/survey/d/U1W4V6F5A5K9W0L3B",
+          "type": 301
+        } ],
       "headers": [ {
         "source": "@(assets|assets-local)/files/**",
         "headers": [ {
@@ -76,15 +75,14 @@
       "cleanUrls": true,
       "trailingSlash": false,
       "redirects": [ {
-        "source": "/assets/files/atlas-klimaticke-zmeny.pdf",
-        "destination": "/assets-local/files/atlas-klimaticke-zmeny.pdf",
-        "type": 301
-      },
-        {
-            "source": "/dotaznik",
-            "destination": "https://www.survio.com/survey/d/U1W4V6F5A5K9W0L3B",
-            "type": 301
-          } ],
+          "source": "/assets/files/atlas-klimaticke-zmeny.pdf",
+          "destination": "/assets-local/files/atlas-klimaticke-zmeny.pdf",
+          "type": 301
+        }, {
+          "source": "/dotaznik",
+          "destination": "https://www.survio.com/survey/d/U1W4V6F5A5K9W0L3B",
+          "type": 301
+        } ],
       "headers": [ {
         "source": "@(assets|assets-local)/**",
         "headers": [ {
