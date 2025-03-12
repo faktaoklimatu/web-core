@@ -17,3 +17,8 @@
 <script src="{{ script_url }}"></script>
 {% endfor %}
 {% endif %}
+{% if site.local-scripts %}
+{% for script_url in site.local-scripts %}
+<script src="{{ script_url }}"></script>
+{% endfor %}
+{% endif %}
