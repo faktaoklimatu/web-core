@@ -1,3 +1,22 @@
+{% assign social_image = page.preview_image | default: "/assets-local/img/preview.png" %}
+{% assign opengraph_type = "website" %}
+{% assign jsonld_type = "WebPage" %}
+{% case page.layout %}
+{% when 'infographic' %}
+  {% assign social_image = "/assets/generated/" | append: page.slug | append: "_1200.png" %}
+{% when 'study' %}
+  {% assign social_image = "/assets/studies/" | append: page.slug | append: ".jpg" %}
+{% when 'survey' %}
+  {%- if page.use-preview-image %}
+    {% assign social_image = "/assets/studies/" | append: page.slug | append: ".jpg" %}
+  {%- endif %}
+{% when 'explainer' %}
+  {% assign social_image = "/assets/covers/" | append: page.slug | append: ".jpg" %}
+  {% assign opengraph_type = "article" %}
+  {% assign jsonld_type = "Article" %}
+{% when 'topic', 'publication' %}
+  {% assign social_image = "/assets/illustrations/" | append: page.slug | append: "_1200.png" %}
+{% endcase %}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {% if page.tags %}
@@ -7,8 +26,14 @@
 {% endif %}
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:url" content="{{ page.url | absolute_url }}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="{{ opengraph_type }}">
 <meta property="og:title" content="{{ page.title }}">
+{% if page.published %}
+<meta property="article:published_time" content="{{ page.published | date_to_xmlschema }}">
+{% endif %}
+{% if page.updated %}
+<meta property="article:modified_time" content="{{ page.updated | date_to_xmlschema }}">
+{% endif %}
 <meta name="twitter:title" content="{{ page.title }}">
 {% if page.caption %}
   {% assign description = page.caption | markdownify | strip_html %}
@@ -23,24 +48,26 @@
 <meta property="og:description" content="{{ description }}">
 <meta name="twitter:description" content="{{ description }}">
 <meta name="twitter:card" content="summary_large_image">
-{% assign social_image = page.preview_image | default: "/assets-local/img/preview.png" %}
-{% case page.layout %}
-{% when 'infographic' %}
-  {% assign social_image = "/assets/generated/" | append: page.slug | append: "_1200.png" %}
-{% when 'study' %}
-  {% assign social_image = "/assets/studies/" | append: page.slug | append: ".jpg" %}
-{% when 'survey' %}
-  {%- if page.use-preview-image %}
-    {% assign social_image = "/assets/studies/" | append: page.slug | append: ".jpg" %}
-  {%- endif %}
-{% when 'explainer' %}
-  {% assign social_image = "/assets/covers/" | append: page.slug | append: ".jpg" %}
-{% when 'topic', 'publication' %}
-  {% assign social_image = "/assets/illustrations/" | append: page.slug | append: "_1200.png" %}
-{% endcase %}
 <meta property="og:image" content="{{ social_image | absolute_url }}">
 <meta name="twitter:image" content="{{ social_image | absolute_url }}">
 <meta name="twitter:image:alt" content="{{ page.title }}">
+{%- comment %}
+  TODO: Does the following work well enough? Should we generate the object/dictionary
+  elsewhere and only serialize it to JSON here?
+{% endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{ jsonld_type }}",
+  "title": "{{ page.title }}",
+{% if page.published %}
+  "datePublished": "{{ page.published | date_to_xmlschema }}"
+{% endif %}
+{% if page.updated %},
+  "dateModified": "{{ page.updated | date_to_xmlschema }}"
+{% endif %}
+}
+</script>
 
 {% case page.layout %}
 {% when 'tag' %}
