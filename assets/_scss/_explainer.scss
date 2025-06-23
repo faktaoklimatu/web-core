@@ -1,3 +1,5 @@
+@use "colors";
+
 /* Explainer template */
 
 .cover-header-source {
@@ -159,7 +161,7 @@
 /* TL;DR box */
 
 .longread .tldr {
-    background-color: $c-extralight-blue;
+    background-color: colors.$c-extralight-blue;
     border-radius: 1rem;
     margin-block: 2rem;
     padding: 1.5rem;

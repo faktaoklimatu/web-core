@@ -1,3 +1,5 @@
+@use "colors";
+
 /* Main navbar containers */
 
 #nav-container, #search-container, main {
@@ -53,7 +55,7 @@ body.navbar-search {
         left: .9rem;
         font-size: 1.1rem;
         line-height: 2.2;
-        color: $c-secondary;
+        color: colors.$c-secondary;
     }
     #searchbox {
         padding-left: 2.5rem;
@@ -101,7 +103,7 @@ body.navbar-search {
         margin-right: auto;
         overflow-y: scroll;
         scrollbar-width: thin;
-        scrollbar-color: $c-grey transparent;
+        scrollbar-color: colors.$c-grey transparent;
         border-color: var(--border-color);
 
         .dropdown-item {
@@ -156,12 +158,12 @@ body.navbar-search {
 
         .dropdown-item.active, .dropdown-item:active {
             color: inherit;
-            background-color: $c-extralight-blue;
+            background-color: colors.$c-extralight-blue;
         }
 
         .dropdown-item.empty {
             font-size: 0.9rem;
-            color: $c-secondary;
+            color: colors.$c-secondary;
         }
     }
 }

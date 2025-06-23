@@ -1,3 +1,5 @@
+@use "colors";
+
 /* Basic figure style */
 
 .longread-figure {
@@ -20,9 +22,9 @@
     .caption, .source {
         margin: 0.25rem;
         font-size: 0.8rem;
-        color: $c-grey;
+        color: colors.$c-grey;
         a {
-            color: $c-grey;
+            color: colors.$c-grey;
         }
     }
     .source {
