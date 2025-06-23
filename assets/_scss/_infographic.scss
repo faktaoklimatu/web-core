@@ -1,3 +1,5 @@
+@use "colors";
+
 /* Infographic template */
 
 a.infographic {
@@ -79,7 +81,7 @@ p.caption {
 }
 
 .footnotes li:target {
-    background: $c-extralight-blue;
+    background: colors.$c-extralight-blue;
 }
 
 @media (min-width: 576px) {
@@ -123,7 +125,7 @@ p.caption {
     }
 
     h2, li, a:not(:hover) {
-        color: $c-grey;
+        color: colors.$c-grey;
     }
 
     li {
@@ -134,7 +136,7 @@ p.caption {
     }
 
     li::marker {
-        color: $c-lighter-grey;
+        color: colors.$c-lighter-grey;
         transition: color var(--toc-transition-time);
     }
 
@@ -153,7 +155,7 @@ p.caption {
             }
 
             a:not(:hover) {
-                color: $c-lighter-grey;
+                color: colors.$c-lighter-grey;
             }
         }
     }
@@ -176,7 +178,7 @@ p.caption {
             content: "●";
             position: absolute;
             left: -1.25rem;
-            color: $c-primary;
+            color: colors.$c-primary;
             font-weight: bold;
         }
 
@@ -189,7 +191,7 @@ p.caption {
         }
 
         .is-active-li .is-active-link, .is-active-li::marker {
-            color: $c-primary;
+            color: colors.$c-primary;
         }
     }
 }

@@ -1,3 +1,5 @@
+@use "colors";
+
 /* Publication page customizations */
 
 .publication-cover {
@@ -54,7 +56,7 @@
         .disclaimer {
             margin-top: 0.5rem;
             font-size: 0.9rem;
-            color: $c-lighter-grey;
+            color: colors.$c-lighter-grey;
         }
     }
 }
@@ -69,7 +71,7 @@
 }
 
 .publication-card {
-    background-color: rgba($c-grey, 0.05);
+    background-color: rgba(colors.$c-grey, 0.05);
     border-radius: 5%;
     padding: 1.5rem;
     height: 100%;
@@ -92,9 +94,9 @@ main.executive-summary .longread {
         content: counter(h2counter);
         counter-increment: h2counter;
         margin-inline-end: 1rem;
-        border: 2px solid $c-secondary;
+        border: 2px solid colors.$c-secondary;
         border-radius: 50%;
-        color: $c-secondary;
+        color: colors.$c-secondary;
         min-width: 1.35em;
         width: 1.35em;
         height: 1.35em;
