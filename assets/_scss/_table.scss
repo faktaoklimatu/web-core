@@ -1,3 +1,5 @@
+@use "colors";
+
 .table {
     margin: 2rem auto;
     font-size: .9em;
@@ -20,7 +22,7 @@
         }
     }
 
-    tbody { color: $c-body-lighter; }
+    tbody { color: colors.$c-body-lighter; }
 
     &.no-border tbody { border-bottom: none; }
 
