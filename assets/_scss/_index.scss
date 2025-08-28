@@ -1,3 +1,5 @@
+@use "colors";
+
 /* Intro page customizations */
 
 .intro {
@@ -162,9 +164,9 @@
 }
 
 a.card:hover {
-    border-color: rgba($c-accent, 0.5);
+    border-color: rgba(colors.$c-accent, 0.5);
     text-decoration: none;
-    box-shadow: 0px 0px 2px 1px rgba($c-accent, 0.5);
+    box-shadow: 0px 0px 2px 1px rgba(colors.$c-accent, 0.5);
 }
 
 .small-card-img-overlay {
@@ -246,9 +248,9 @@ a.card:hover {
 
 /* Tabs for role-specific links */
 
-.bg-extralight-blue { background: $c-extralight-blue !important; }
-.bg-extralight-lightblue { background: $c-extralight-lightblue !important; }
-.bg-extralight-gray { background: $c-extralight-grey !important; }
+.bg-extralight-blue { background: colors.$c-extralight-blue !important; }
+.bg-extralight-lightblue { background: colors.$c-extralight-lightblue !important; }
+.bg-extralight-gray { background: colors.$c-extralight-grey !important; }
 
 .nav-tabs .nav-link {
     display: flex;
@@ -263,10 +265,10 @@ a.card:hover {
 }
 
 .nav-tabs .nav-link.active {
-    color: $c-primary;
+    color: colors.$c-primary;
 }
 .nav-tabs .nav-link:not(.active) {
-    color: $c-secondary;
+    color: colors.$c-secondary;
     font-weight: normal;
 }
 
@@ -363,7 +365,7 @@ a.card:hover {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    color: $c-secondary;
+    color: colors.$c-secondary;
 
     img {
         // Fix for img sizing on Safari.
@@ -402,7 +404,7 @@ a.card:hover {
 
     td {
       padding: 3px 10px;
-      border-left: 2px solid $c-accent;
+      border-left: 2px solid colors.$c-accent;
     }
   }
 }
@@ -425,7 +427,7 @@ a.card:hover {
 
 #newsletter-modal {
     .modal-content {
-        background-color: $c-extralight-blue;
+        background-color: colors.$c-extralight-blue;
     }
 
     button.close {
@@ -440,7 +442,7 @@ a.card:hover {
     z-index: 1;
     margin-bottom: 0.2rem;
     background-color: #f8c152bb;
-    color: $c-secondary;
+    color: colors.$c-secondary;
 
     #banner-container {
         padding-block: 0.3rem;
