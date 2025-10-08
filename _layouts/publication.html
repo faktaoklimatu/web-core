@@ -4,7 +4,7 @@
   {% include header.html %}
 </head>
 
-<body>
+<body {% if page.body-class %}class="{{ page.body-class }}"{% endif %}>
   {% include navigation.html %}
   <main class="publication {{ page.class }}">
     {% assign image_path = "/assets/illustrations/" | append: page.slug %}

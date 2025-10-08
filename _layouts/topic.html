@@ -4,7 +4,7 @@
   {% include header.html %}
 </head>
 
-<body>
+<body {% if page.body-class %}class="{{ page.body-class }}"{% endif %}>
   {% include navigation.html %}
   <main>
     <div id="{{ site.data.lang.navigation.first-id }}" class="section pb-0">
