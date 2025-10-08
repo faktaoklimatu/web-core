@@ -4,7 +4,7 @@
   {% include header.html %}
 </head>
 
-<body data-spy="scroll" data-target="#navbar" data-offset="100">
+<body data-spy="scroll" data-target="#navbar" data-offset="100" {% if page.body-class %}class="{{ page.body-class }}"{% endif %}>
   {% include navigation.html %}
   <main>
     {{ content }}
