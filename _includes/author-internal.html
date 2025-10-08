@@ -4,13 +4,13 @@
     {%- assign member = group.members | find: "id",id %}
     {%- if member -%}
       <span class="name">
-        {%- unless member.no_link %}
+        {%- unless member.no_link -%}
           <a href="/o-nas#{{ member.id }}">
-            {{ member.name_formal | default: member.name }}
+            {{- member.name_formal | default: member.name -}}
           </a>
         {%- else %}
-          {{ member.name_formal | default: member.name }}
-        {%- endunless %}
+          {{- member.name_formal | default: member.name -}}
+        {%- endunless -%}
       </span>
       {%- assign found=true %}
     {%- endif %}
