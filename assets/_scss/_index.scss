@@ -435,6 +435,86 @@ a.card:hover {
     }
 }
 
+// Online course pop-up
+
+#online-course-modal {
+    .modal-content {
+        background-image: linear-gradient(0deg, #011f26, #14b8a512), 
+                          url("/assets-local/img/online-course-popup.png"),
+                          linear-gradient(0deg, colors.$c-online-course-green, colors.$c-online-course-green), ;
+        background-size: cover;
+        background-position: center;
+        color: white;
+
+        h2, p{
+            color: white;
+            text-align: center;
+        }
+
+    }
+
+    .modal-body{
+        padding: 5px;
+    }
+
+    .icons-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        text-align: center;
+        margin-bottom: 50px;
+        line-height: 1.2;
+        font-size: 1rem;
+
+        img{
+            display: none;
+        }
+    }
+
+
+    .big-number{
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .btn-white{
+        background-color: colors.$c-online-course-green;
+        color: white;
+        margin-top: 0px;
+    }
+
+    .btn-white:hover{
+        background-color: white;
+        color: colors.$c-online-course-green;
+        margin-top: 50px;
+    }
+    button.close {
+        text-align: right;
+        padding-right: 0.5rem;
+        padding-top: 0.2rem;
+    }
+}
+
+@media (min-width: 768px) {
+
+    #online-course-modal {
+        
+        .modal-body{
+            padding: 100px 50px 50px 50px;
+        }
+
+        .icons-container{
+            margin-top: 50px;
+            font-size: 1.1rem;
+
+            img{
+                display: inline;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+    }
+}
+
 // Banner
 
 #banner-section {
