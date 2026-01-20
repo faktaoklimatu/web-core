@@ -1,6 +1,6 @@
 {
-  "hosting": [ 
-    
+  "hosting": [
+
     {
       "_comment": "HTTP header setting for production channel",
       "_comment-details": "All caches to 1 week, files must revalidate, others have stale-while-revalidate for 1 month",
@@ -16,6 +16,10 @@
         }, {
           "source": "/dotaznik",
           "destination": "https://www.survio.com/survey/d/U1W4V6F5A5K9W0L3B",
+          "type": 301
+        }, {
+          "source": "/podporit-atlas-dekarbonizace-2vydani",
+          "destination": "https://www.darujme.cz/projekt/1203742?utm_source=druhe_vydani&utm_medium=print&utm_campaign=dekatlas",
           "type": 301
         } ],
       "headers": [ {
@@ -65,7 +69,7 @@
         } ]
       } ]
     },
-    
+
     {
       "_comment": "HTTP header setting for preview channels",
       "_comment-details": "All asset caches down to 5 minutes, CSP report URI is empty",
@@ -81,6 +85,10 @@
         }, {
           "source": "/dotaznik",
           "destination": "https://www.survio.com/survey/d/U1W4V6F5A5K9W0L3B",
+          "type": 301
+        }, {
+          "source": "/podporit-atlas-dekarbonizace-2vydani",
+          "destination": "https://www.darujme.cz/projekt/1203742?utm_source=druhe_vydani&utm_medium=print&utm_campaign=dekatlas",
           "type": 301
         } ],
       "headers": [ {
@@ -120,7 +128,7 @@
           "value": "same-origin; report-to='default'"
         } ]
       } ]
-    } 
+    }
 
   ]
 }
