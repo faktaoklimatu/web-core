@@ -18,6 +18,8 @@
       <p class="d-none d-lg-block">{{ site.data.lang.sidebar.data.caption-data }}</p>
       {% if page.data-our and page.data-our != '' %}
       <a href="{{ page.data-our }}" class="btn btn-secondary data-our" role="button">{{ site.data.lang.sidebar.data.button-data }}</a>
+      {% elsif page.data-jupyter and page.data-jupyter != '' %}
+      <a href="{{ page.data-jupyter }}" class="btn btn-secondary data-jupyter" role="button">{{ site.data.lang.sidebar.data.button-data-jupyter }}</a>
       {% endif %}
       {% if page.data-orig.size == 1 %}
       <a href="{{ page.data-orig[0][1] }}" class="btn btn-secondary data-original" role="button">{{ page.data-orig[0][0] }}</a>

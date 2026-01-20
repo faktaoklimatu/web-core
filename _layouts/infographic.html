@@ -29,7 +29,7 @@
               <p>{{ site.data.lang.sidebar.download.caption }} (<a href="/{{ site.slugs.how-to-use }}#file-formats">{{ site.data.lang.sidebar.download.which-file-format }}</a>)</p>
               {% include infographic-dataset-sidebar.html section="downloads" %}
 
-              {% if page.dataset or page.data-our or page.data-orig %}
+              {% if page.dataset or page.data-our or page.data-jupyter or page.data-orig %}
                 <h3>{{ site.data.lang.sidebar.data.title }}</h3>
                 {% include infographic-dataset-sidebar.html section="data" %}
               {% endif %}
