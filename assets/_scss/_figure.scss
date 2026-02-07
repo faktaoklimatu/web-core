@@ -53,6 +53,19 @@
     font-weight: 600;
 }
 
+/* More compact title and spacing */
+
+.small-expander-title.longread-figure {
+    margin-block: 1.5rem;
+}
+
+.small-expander-title {
+    .expander-title {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+
 .expander-body {
     padding-top: 1rem;
 
