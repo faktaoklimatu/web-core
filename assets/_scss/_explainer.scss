@@ -126,12 +126,9 @@
         padding-top: 10%;
         padding-bottom: 0.75rem;
 
-        .explainer-type {
-            font-size: 1.1rem;
-            div {
-                display: inline;
-                padding-inline-start: 0.3rem;
-            }
+        .page-type div {
+            display: inline;
+            padding-inline-start: 0.3rem;
         }
 
         h1 {
