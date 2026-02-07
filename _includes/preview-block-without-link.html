@@ -47,12 +47,12 @@
             </div>
             <div class="card-img-overlay card-title-overlay">
                 <h5 class="card-title">{{ title }}</h5>
-                <h6 class="card-subtitle">{{ site.data.lang.text.survey.survey }}</h6>
+                <h6 class="card-subtitle">{{ item.type | default: site.data.lang.text.survey.survey }}</h6>
             </div>
         {%- else %}
             <div class="card-body">
                 <h5 class="card-title">{{ title }}</h5>
-                <h6 class="card-subtitle">{{ site.data.lang.text.survey.survey }}</h6>
+                <h6 class="card-subtitle">{{ item.type | default: site.data.lang.text.survey.survey }}</h6>
                 <p class="card-text card-survey-caption mt-3">{{ item.caption }}</p>
             </div>
         {%- endif %}

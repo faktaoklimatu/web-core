@@ -26,12 +26,12 @@
         {%- if item.use-preview-image %}
             <div style="--background: url('/assets/studies/{{ item.slug }}.jpg')" class="specific-card small-card-bg"></div>
             <div class="card-img-overlay small-card-img-overlay">
-                <h5>{{ site.data.lang.text.survey.survey }}</h5>
+                <h5>{{ item.type | default: site.data.lang.text.survey.survey }}</h5>
             </div>
         {%- else %}
             <div class='branded-card'></div>
             <div class="card-img-overlay small-card-img-overlay">
-                <h5>{{ site.data.lang.text.survey.survey }}</h5>
+                <h5>{{ item.type | default: site.data.lang.text.survey.survey }}</h5>
             </div>
         {%- endif %}
     {%- when 'episode' %}
