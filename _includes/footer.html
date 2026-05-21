@@ -33,24 +33,11 @@
             {% endif %}
         </div>
         <div class="col-12 col-md-6 col-lg-4 mt-3 pl-md-5">
-            {% if site.data.lang.footer.hiring and site.slugs.hiring %}
-            <div class="pb-3"><a class="no-ext-link-icon pb-3" href="/{{ site.slugs.hiring }}"><span class="fas fa-fw fa-user-plus"></span> {{ site.data.lang.footer.hiring }}</a></div>
-            {% endif %}
-            {% if site.data.lang.footer.contact %}
-            <a class="no-ext-link-icon" href="/{{ site.slugs.contact }}"><span class="fas fa-fw fa-address-card"></span> {{ site.data.lang.footer.contact }}</a><br/>
-            {% endif %}
-            {% if site.data.lang.footer.how-to-use %}
-            <a class="no-ext-link-icon" href="/{{ site.slugs.how-to-use }}"><span class="fas fa-fw fa-redo"></span> {{ site.data.lang.footer.how-to-use }}</a><br/>
-            {% endif %}
-            {% if site.data.lang.footer.further-sources %}
-            <a class="no-ext-link-icon" href="/{{ site.slugs.further-sources }}"><span class="fas fa-fw fa-bookmark"></span> {{ site.data.lang.footer.further-sources }}</a><br/>
-            {% endif %}
-            {% if site.data.lang.footer.privacy-policy %}
-            <a href="/gdpr"><span class="fas fa-fw fa-file-contract"></span> {{ site.data.lang.footer.privacy-policy }}</a><br/>
-            {% endif %}
-            {% if site.github %}
-            <a class="no-ext-link-icon" href="https://github.com/{{ site.github }}/"><span class="fab fa-fw fa-github"></span> {{ site.github }}</a><br/>
-            {% endif %}
+            {%- for menu-item in site.data.footer -%}
+            <div class="{{ menu-item.class }}">
+                <a class="no-ext-link-icon" href="{{ menu-item.link }}">{{ menu-item.title }}</a>
+            </div>
+            {%- endfor %}
         </div>
         <div class="col-12 col-md-6 col-lg-4 mt-3 text-md-center">
             {%- assign selected_lang = site.langs | find_exp: "item", "item.code == site.lang" %}
