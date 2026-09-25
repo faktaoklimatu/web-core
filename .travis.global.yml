@@ -42,7 +42,11 @@ cache:
   - $TRAVIS_BUILD_DIR/web-core/assets/covers  # Enable caching of generated explainer covers
 
 before_deploy:
-  - wget -q --output-document=web-core/firebase https://firebase.tools/bin/linux/latest
+  # Pinned, not "latest": 15.31.0 crashes on startup before running any command
+  # at all — it require()s stream-chain, which has gone ESM-only, and dies with
+  # ERR_REQUIRE_ESM reported only as "An unexpected error has occurred."
+  # 15.30.2 is the last release before that. Bump once a fix ships upstream.
+  - wget -q --output-document=web-core/firebase https://firebase.tools/bin/linux/v15.30.2
   - chmod +x web-core/firebase
 
 deploy:
