@@ -65,4 +65,28 @@ $(document).ready(function() {
             });
         }
     });
+
+    // Show popovers for foonotes when hovered (on desktop) or clicked (on mobile).
+    $(".footnote").each((_i, footnote) => {
+        const foonoteId = footnote.hash.substring(1);
+        // Copy footnote content and strip backlinks for use in popover.
+        const foonoteContent = $(document.getElementById(foonoteId).firstElementChild).clone();
+        foonoteContent.find(".reversefootnote").remove();
+
+        $(footnote).popover({
+            container: "body",
+            content: foonoteContent,
+            html: true,
+            placement: "auto",
+            trigger: "manual",
+            sanitize: false,
+        });
+
+        footnote.addEventListener("pointerdown", (event) => {
+            const { pointerType } = event;
+            if (pointerType === "mouse") return;
+            event.preventDefault();
+            $(footnote).popover("toggle");
+        });
+    });
 });
